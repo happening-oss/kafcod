@@ -1,0 +1,13 @@
+{application, make_codecs,
+ [{description, "Create Erlang encoders and decoders from the Kafka message schemas."},
+  {vsn, "0.1.0"},
+  {registered, []},
+  {applications,
+   [kernel,
+    stdlib
+   ]},
+  {env,[]},
+  {modules, []},
+
+  {links, []}
+ ]}.

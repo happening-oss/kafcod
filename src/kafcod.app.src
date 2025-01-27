@@ -1,0 +1,17 @@
+{application, kafcod, [
+    {description, "Kafka Encoders/Decoders"},
+    {vsn, "0.3.1"},
+    {registered, []},
+    {applications, [
+        kernel,
+        stdlib,
+
+        crc32cer,
+        snappyer,
+        telemetry
+    ]},
+    {env, []},
+    {modules, []},
+
+    {links, []}
+]}.

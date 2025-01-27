@@ -1,0 +1,15 @@
+{application, group_consumer, [
+    {description, "An OTP application"},
+    {vsn, "0.1.0"},
+    {registered, []},
+    {mod, {group_consumer_app, []}},
+    {applications, [
+        kernel,
+        stdlib,
+        kafcod
+    ]},
+    {env, []},
+    {modules, []},
+
+    {links, []}
+]}.

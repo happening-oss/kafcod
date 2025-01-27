@@ -1,0 +1,13 @@
+{application, get_metadata,
+ [{description, "An escript"},
+  {vsn, "0.1.0"},
+  {registered, []},
+  {applications,
+   [kernel,
+    stdlib,
+    kafcod
+   ]},
+  {env,[]},
+  {modules, []},
+  {links, []}
+ ]}.

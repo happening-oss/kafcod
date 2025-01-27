@@ -1,0 +1,2 @@
+-define(EARLIEST_TIMESTAMP, -2).
+-define(LATEST_TIMESTAMP, -1).

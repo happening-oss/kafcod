@@ -1,0 +1,15 @@
+{application, reassign,
+ [{description, "An escript"},
+  {vsn, "0.1.0"},
+  {registered, []},
+  {applications,
+   [kernel,
+    stdlib,
+    kafcod
+   ]},
+  {env,[]},
+  {modules, []},
+
+  {licenses, []},
+  {links, []}
+ ]}.

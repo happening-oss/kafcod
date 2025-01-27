@@ -1,0 +1,12 @@
+{"1.2.0",
+[{<<"logger_color_formatter">>,
+  {git,"https://github.com/rlipscombe/logger_color_formatter.git",
+       {ref,"f1c96f979e6350f8cd787d27fe9ff003cbf3416b"}},
+  0},
+ {<<"snappyer">>,{pkg,<<"snappyer">>,<<"1.2.9">>},1}]}.
+[
+{pkg_hash,[
+ {<<"snappyer">>, <<"9CC58470798648CE34C662CA0AA6DAAE31367667714C9A543384430A3586E5D3">>}]},
+{pkg_hash_ext,[
+ {<<"snappyer">>, <<"18D00CA218AE613416E6EECAFE1078DB86342A66F86277BD45C95F05BF1C8B29">>}]}
+].

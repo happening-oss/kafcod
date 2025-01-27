@@ -1,0 +1,14 @@
+{application, api_versions,
+ [{description, "An escript"},
+  {vsn, "0.1.0"},
+  {registered, []},
+  {applications,
+   [kernel,
+    stdlib
+   ]},
+  {env,[]},
+  {modules, []},
+
+  {licenses, []},
+  {links, []}
+ ]}.
