@@ -31,7 +31,9 @@
     encode_fetch_response_14/1,
     decode_fetch_response_14/1,
     encode_fetch_response_15/1,
-    decode_fetch_response_15/1
+    decode_fetch_response_15/1,
+    encode_fetch_response_16/1,
+    decode_fetch_response_16/1
 ]).
 -export_type([
     fetch_response_0/0,
@@ -105,7 +107,15 @@
     snapshot_id_15/0,
     aborted_transaction_15/0,
     partition_data_15/0,
-    fetchable_topic_response_15/0
+    fetchable_topic_response_15/0,
+    fetch_response_16/0,
+    epoch_end_offset_16/0,
+    leader_id_and_epoch_16/0,
+    snapshot_id_16/0,
+    aborted_transaction_16/0,
+    partition_data_16/0,
+    fetchable_topic_response_16/0,
+    node_endpoint_16/0
 ]).
 -include("../encoders.hrl").
 -include("../decoders.hrl").
@@ -4013,6 +4023,525 @@ decode_fetchable_topic_response_15_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
     Acc.
 
+-spec encode_fetch_response_16(fetch_response_16()) -> iodata().
+
+encode_fetch_response_16(
+    Args = #{
+        % The correlation ID of this request.
+        correlation_id := CorrelationId,
+        % The duration in milliseconds for which the request was throttled due to a quota violation, or zero if the request did not violate any quota.
+        throttle_time_ms := ThrottleTimeMs,
+        % The top level response error code.
+        error_code := ErrorCode,
+        % The fetch session ID, or 0 if this is not part of a fetch session.
+        session_id := SessionId,
+        % The response topics.
+        responses := Responses
+    }
+) when
+    ?is_int32(CorrelationId),
+    ?is_int32(ThrottleTimeMs),
+    ?is_int16(ErrorCode),
+    ?is_int32(SessionId),
+    ?is_array(Responses)
+->
+    [
+        ?encode_response_header_1(CorrelationId),
+        ?encode_int32(ThrottleTimeMs),
+        ?encode_int16(ErrorCode),
+        ?encode_int32(SessionId),
+        ?encode_compact_array(Responses, fun encode_fetchable_topic_response_16/1),
+        ?encode_tagged_fields(
+            fun encode_fetch_response_16_tagged_field/2,
+            Args
+        )
+    ];
+encode_fetch_response_16(Args) ->
+    ?encoder_error(Args, #{
+        correlation_id => int32,
+        throttle_time_ms => int32,
+        error_code => int16,
+        session_id => int32,
+        responses => {array, fetchable_topic_response_16}
+    }).
+
+-spec encode_fetch_response_16_tagged_field(Key :: atom(), Value :: term()) -> iodata() | ignore.
+
+encode_fetch_response_16_tagged_field(_Key = node_endpoints, NodeEndpoints) ->
+    {0, ?encode_compact_array(NodeEndpoints, fun encode_node_endpoint_16/1)};
+encode_fetch_response_16_tagged_field(_Key, _Value) ->
+    ignore.
+
+-spec decode_fetch_response_16(binary()) -> {Decoded, Rest} when
+    Decoded :: fetch_response_16(),
+    Rest :: binary().
+
+decode_fetch_response_16(Bin) when is_binary(Bin) ->
+    {Header, Bin0} = ?decode_response_header_1(Bin),
+    ?_decode_int32(ThrottleTimeMs, Bin0, Bin1),
+    ?_decode_int16(ErrorCode, Bin1, Bin2),
+    ?_decode_int32(SessionId, Bin2, Bin3),
+    ?_decode_compact_array(Responses, Bin3, Bin4, ?_decode_element(decode_fetchable_topic_response_16)),
+    ?decode_tagged_fields(
+        fun decode_fetch_response_16_tagged_field/3,
+        Header#{
+            throttle_time_ms => ThrottleTimeMs,
+            error_code => ErrorCode,
+            session_id => SessionId,
+            responses => Responses
+        },
+        Bin4
+    ).
+
+-spec decode_fetch_response_16_tagged_field(Tag, Input, AccIn) -> AccOut when
+    Tag :: non_neg_integer(),
+    Input :: binary(),
+    AccIn :: Acc,
+    AccOut :: Acc.
+
+%% NodeEndpoints
+%% Endpoints for all current-leaders enumerated in PartitionData, with errors NOT_LEADER_OR_FOLLOWER & FENCED_LEADER_EPOCH.
+decode_fetch_response_16_tagged_field(_Tag = 0, Bin0, Acc) ->
+    ?_decode_compact_array(NodeEndpoints, Bin0, Bin1, ?_decode_element(decode_node_endpoint_16)),
+    <<>> = Bin1,
+    Acc#{node_endpoints => NodeEndpoints};
+decode_fetch_response_16_tagged_field(_Tag, _Bin0, Acc) ->
+    % Unrecognised tag; ignore it.
+    Acc.
+
+-spec encode_epoch_end_offset_16(epoch_end_offset_16()) -> iodata().
+
+encode_epoch_end_offset_16(
+    _Args = #{
+        epoch := Epoch,
+        end_offset := EndOffset
+    }
+) when
+    ?is_int32(Epoch),
+    ?is_int64(EndOffset)
+->
+    [
+        ?encode_int32(Epoch),
+        ?encode_int64(EndOffset),
+        ?EMPTY_TAG_BUFFER
+    ];
+encode_epoch_end_offset_16(Args) ->
+    ?encoder_error(Args, #{
+        epoch => int32,
+        end_offset => int64
+    }).
+
+-spec decode_epoch_end_offset_16(binary()) -> {Decoded, Rest} when
+    Decoded :: epoch_end_offset_16(),
+    Rest :: binary().
+
+decode_epoch_end_offset_16(Bin0) when is_binary(Bin0) ->
+    ?_decode_int32(Epoch, Bin0, Bin1),
+    ?_decode_int64(EndOffset, Bin1, Bin2),
+    ?decode_tagged_fields(
+        fun decode_epoch_end_offset_16_tagged_field/3,
+        #{
+            epoch => Epoch,
+            end_offset => EndOffset
+        },
+        Bin2
+    ).
+
+-spec decode_epoch_end_offset_16_tagged_field(Tag, Input, AccIn) -> AccOut when
+    Tag :: non_neg_integer(),
+    Input :: binary(),
+    AccIn :: Acc,
+    AccOut :: Acc.
+
+decode_epoch_end_offset_16_tagged_field(_Tag, _Bin0, Acc) ->
+    % Unrecognised tag; ignore it.
+    Acc.
+
+-spec encode_leader_id_and_epoch_16(leader_id_and_epoch_16()) -> iodata().
+
+encode_leader_id_and_epoch_16(
+    _Args = #{
+        % The ID of the current leader or -1 if the leader is unknown.
+        leader_id := LeaderId,
+        % The latest known leader epoch
+        leader_epoch := LeaderEpoch
+    }
+) when
+    ?is_int32(LeaderId),
+    ?is_int32(LeaderEpoch)
+->
+    [
+        ?encode_int32(LeaderId),
+        ?encode_int32(LeaderEpoch),
+        ?EMPTY_TAG_BUFFER
+    ];
+encode_leader_id_and_epoch_16(Args) ->
+    ?encoder_error(Args, #{
+        leader_id => int32,
+        leader_epoch => int32
+    }).
+
+-spec decode_leader_id_and_epoch_16(binary()) -> {Decoded, Rest} when
+    Decoded :: leader_id_and_epoch_16(),
+    Rest :: binary().
+
+decode_leader_id_and_epoch_16(Bin0) when is_binary(Bin0) ->
+    ?_decode_int32(LeaderId, Bin0, Bin1),
+    ?_decode_int32(LeaderEpoch, Bin1, Bin2),
+    ?decode_tagged_fields(
+        fun decode_leader_id_and_epoch_16_tagged_field/3,
+        #{
+            leader_id => LeaderId,
+            leader_epoch => LeaderEpoch
+        },
+        Bin2
+    ).
+
+-spec decode_leader_id_and_epoch_16_tagged_field(Tag, Input, AccIn) -> AccOut when
+    Tag :: non_neg_integer(),
+    Input :: binary(),
+    AccIn :: Acc,
+    AccOut :: Acc.
+
+decode_leader_id_and_epoch_16_tagged_field(_Tag, _Bin0, Acc) ->
+    % Unrecognised tag; ignore it.
+    Acc.
+
+-spec encode_snapshot_id_16(snapshot_id_16()) -> iodata().
+
+encode_snapshot_id_16(
+    _Args = #{
+        end_offset := EndOffset,
+        epoch := Epoch
+    }
+) when
+    ?is_int64(EndOffset),
+    ?is_int32(Epoch)
+->
+    [
+        ?encode_int64(EndOffset),
+        ?encode_int32(Epoch),
+        ?EMPTY_TAG_BUFFER
+    ];
+encode_snapshot_id_16(Args) ->
+    ?encoder_error(Args, #{
+        end_offset => int64,
+        epoch => int32
+    }).
+
+-spec decode_snapshot_id_16(binary()) -> {Decoded, Rest} when
+    Decoded :: snapshot_id_16(),
+    Rest :: binary().
+
+decode_snapshot_id_16(Bin0) when is_binary(Bin0) ->
+    ?_decode_int64(EndOffset, Bin0, Bin1),
+    ?_decode_int32(Epoch, Bin1, Bin2),
+    ?decode_tagged_fields(
+        fun decode_snapshot_id_16_tagged_field/3,
+        #{
+            end_offset => EndOffset,
+            epoch => Epoch
+        },
+        Bin2
+    ).
+
+-spec decode_snapshot_id_16_tagged_field(Tag, Input, AccIn) -> AccOut when
+    Tag :: non_neg_integer(),
+    Input :: binary(),
+    AccIn :: Acc,
+    AccOut :: Acc.
+
+decode_snapshot_id_16_tagged_field(_Tag, _Bin0, Acc) ->
+    % Unrecognised tag; ignore it.
+    Acc.
+
+-spec encode_aborted_transaction_16(aborted_transaction_16()) -> iodata().
+
+encode_aborted_transaction_16(
+    _Args = #{
+        % The producer id associated with the aborted transaction.
+        producer_id := ProducerId,
+        % The first offset in the aborted transaction.
+        first_offset := FirstOffset
+    }
+) when
+    ?is_int64(ProducerId),
+    ?is_int64(FirstOffset)
+->
+    [
+        ?encode_int64(ProducerId),
+        ?encode_int64(FirstOffset),
+        ?EMPTY_TAG_BUFFER
+    ];
+encode_aborted_transaction_16(Args) ->
+    ?encoder_error(Args, #{
+        producer_id => int64,
+        first_offset => int64
+    }).
+
+-spec decode_aborted_transaction_16(binary()) -> {Decoded, Rest} when
+    Decoded :: aborted_transaction_16(),
+    Rest :: binary().
+
+decode_aborted_transaction_16(Bin0) when is_binary(Bin0) ->
+    ?_decode_int64(ProducerId, Bin0, Bin1),
+    ?_decode_int64(FirstOffset, Bin1, Bin2),
+    ?decode_tagged_fields(
+        fun decode_aborted_transaction_16_tagged_field/3,
+        #{
+            producer_id => ProducerId,
+            first_offset => FirstOffset
+        },
+        Bin2
+    ).
+
+-spec decode_aborted_transaction_16_tagged_field(Tag, Input, AccIn) -> AccOut when
+    Tag :: non_neg_integer(),
+    Input :: binary(),
+    AccIn :: Acc,
+    AccOut :: Acc.
+
+decode_aborted_transaction_16_tagged_field(_Tag, _Bin0, Acc) ->
+    % Unrecognised tag; ignore it.
+    Acc.
+
+-spec encode_partition_data_16(partition_data_16()) -> iodata().
+
+encode_partition_data_16(
+    Args = #{
+        % The partition index.
+        partition_index := PartitionIndex,
+        % The error code, or 0 if there was no fetch error.
+        error_code := ErrorCode,
+        % The current high water mark.
+        high_watermark := HighWatermark,
+        % The last stable offset (or LSO) of the partition. This is the last offset such that the state of all transactional records prior to this offset have been decided (ABORTED or COMMITTED)
+        last_stable_offset := LastStableOffset,
+        % The current log start offset.
+        log_start_offset := LogStartOffset,
+        % The aborted transactions.
+        aborted_transactions := AbortedTransactions,
+        % The preferred read replica for the consumer to use on its next fetch request
+        preferred_read_replica := PreferredReadReplica,
+        % The record data.
+        records := Records
+    }
+) when
+    ?is_int32(PartitionIndex),
+    ?is_int16(ErrorCode),
+    ?is_int64(HighWatermark),
+    ?is_int64(LastStableOffset),
+    ?is_int64(LogStartOffset),
+    ?is_nullable_array(AbortedTransactions),
+    ?is_int32(PreferredReadReplica),
+    ?is_nullable_records(Records)
+->
+    [
+        ?encode_int32(PartitionIndex),
+        ?encode_int16(ErrorCode),
+        ?encode_int64(HighWatermark),
+        ?encode_int64(LastStableOffset),
+        ?encode_int64(LogStartOffset),
+        ?encode_compact_nullable_array(AbortedTransactions, fun encode_aborted_transaction_16/1),
+        ?encode_int32(PreferredReadReplica),
+        ?encode_compact_nullable_records(Records),
+        ?encode_tagged_fields(
+            fun encode_partition_data_16_tagged_field/2,
+            Args
+        )
+    ];
+encode_partition_data_16(Args) ->
+    ?encoder_error(Args, #{
+        partition_index => int32,
+        error_code => int16,
+        high_watermark => int64,
+        last_stable_offset => int64,
+        log_start_offset => int64,
+        aborted_transactions => {nullable_array, aborted_transaction_16},
+        preferred_read_replica => int32,
+        records => nullable_records
+    }).
+
+-spec encode_partition_data_16_tagged_field(Key :: atom(), Value :: term()) -> iodata() | ignore.
+
+encode_partition_data_16_tagged_field(_Key = diverging_epoch, DivergingEpoch) ->
+    {0, encode_epoch_end_offset_16(DivergingEpoch)};
+encode_partition_data_16_tagged_field(_Key = current_leader, CurrentLeader) ->
+    {1, encode_leader_id_and_epoch_16(CurrentLeader)};
+encode_partition_data_16_tagged_field(_Key = snapshot_id, SnapshotId) ->
+    {2, encode_snapshot_id_16(SnapshotId)};
+encode_partition_data_16_tagged_field(_Key, _Value) ->
+    ignore.
+
+-spec decode_partition_data_16(binary()) -> {Decoded, Rest} when
+    Decoded :: partition_data_16(),
+    Rest :: binary().
+
+decode_partition_data_16(Bin0) when is_binary(Bin0) ->
+    ?_decode_int32(PartitionIndex, Bin0, Bin1),
+    ?_decode_int16(ErrorCode, Bin1, Bin2),
+    ?_decode_int64(HighWatermark, Bin2, Bin3),
+    ?_decode_int64(LastStableOffset, Bin3, Bin4),
+    ?_decode_int64(LogStartOffset, Bin4, Bin5),
+    ?_decode_compact_nullable_array(AbortedTransactions, Bin5, Bin6, ?_decode_element(decode_aborted_transaction_16)),
+    ?_decode_int32(PreferredReadReplica, Bin6, Bin7),
+    ?_decode_compact_nullable_records(Records, Bin7, Bin8),
+    ?decode_tagged_fields(
+        fun decode_partition_data_16_tagged_field/3,
+        #{
+            partition_index => PartitionIndex,
+            error_code => ErrorCode,
+            high_watermark => HighWatermark,
+            last_stable_offset => LastStableOffset,
+            log_start_offset => LogStartOffset,
+            aborted_transactions => AbortedTransactions,
+            preferred_read_replica => PreferredReadReplica,
+            records => Records
+        },
+        Bin8
+    ).
+
+-spec decode_partition_data_16_tagged_field(Tag, Input, AccIn) -> AccOut when
+    Tag :: non_neg_integer(),
+    Input :: binary(),
+    AccIn :: Acc,
+    AccOut :: Acc.
+
+%% DivergingEpoch
+%% In case divergence is detected based on the `LastFetchedEpoch` and `FetchOffset` in the request, this field indicates the largest epoch and its end offset such that subsequent records are known to diverge
+decode_partition_data_16_tagged_field(_Tag = 0, Bin0, Acc) ->
+    ?_decode_entity(DivergingEpoch, Bin0, Bin1, decode_epoch_end_offset_16),
+    <<>> = Bin1,
+    Acc#{diverging_epoch => DivergingEpoch};
+%% CurrentLeader
+decode_partition_data_16_tagged_field(_Tag = 1, Bin0, Acc) ->
+    ?_decode_entity(CurrentLeader, Bin0, Bin1, decode_leader_id_and_epoch_16),
+    <<>> = Bin1,
+    Acc#{current_leader => CurrentLeader};
+%% SnapshotId
+%% In the case of fetching an offset less than the LogStartOffset, this is the end offset and epoch that should be used in the FetchSnapshot request.
+decode_partition_data_16_tagged_field(_Tag = 2, Bin0, Acc) ->
+    ?_decode_entity(SnapshotId, Bin0, Bin1, decode_snapshot_id_16),
+    <<>> = Bin1,
+    Acc#{snapshot_id => SnapshotId};
+decode_partition_data_16_tagged_field(_Tag, _Bin0, Acc) ->
+    % Unrecognised tag; ignore it.
+    Acc.
+
+-spec encode_fetchable_topic_response_16(fetchable_topic_response_16()) -> iodata().
+
+encode_fetchable_topic_response_16(
+    _Args = #{
+        % The unique topic ID
+        topic_id := TopicId,
+        % The topic partitions.
+        partitions := Partitions
+    }
+) when
+    ?is_uuid(TopicId),
+    ?is_array(Partitions)
+->
+    [
+        ?encode_uuid(TopicId),
+        ?encode_compact_array(Partitions, fun encode_partition_data_16/1),
+        ?EMPTY_TAG_BUFFER
+    ];
+encode_fetchable_topic_response_16(Args) ->
+    ?encoder_error(Args, #{
+        topic_id => uuid,
+        partitions => {array, partition_data_16}
+    }).
+
+-spec decode_fetchable_topic_response_16(binary()) -> {Decoded, Rest} when
+    Decoded :: fetchable_topic_response_16(),
+    Rest :: binary().
+
+decode_fetchable_topic_response_16(Bin0) when is_binary(Bin0) ->
+    ?_decode_uuid(TopicId, Bin0, Bin1),
+    ?_decode_compact_array(Partitions, Bin1, Bin2, ?_decode_element(decode_partition_data_16)),
+    ?decode_tagged_fields(
+        fun decode_fetchable_topic_response_16_tagged_field/3,
+        #{
+            topic_id => TopicId,
+            partitions => Partitions
+        },
+        Bin2
+    ).
+
+-spec decode_fetchable_topic_response_16_tagged_field(Tag, Input, AccIn) -> AccOut when
+    Tag :: non_neg_integer(),
+    Input :: binary(),
+    AccIn :: Acc,
+    AccOut :: Acc.
+
+decode_fetchable_topic_response_16_tagged_field(_Tag, _Bin0, Acc) ->
+    % Unrecognised tag; ignore it.
+    Acc.
+
+-spec encode_node_endpoint_16(node_endpoint_16()) -> iodata().
+
+encode_node_endpoint_16(
+    _Args = #{
+        % The ID of the associated node.
+        node_id := NodeId,
+        % The node's hostname.
+        host := Host,
+        % The node's port.
+        port := Port,
+        % The rack of the node, or null if it has not been assigned to a rack.
+        rack := Rack
+    }
+) when
+    ?is_int32(NodeId),
+    ?is_string(Host),
+    ?is_int32(Port),
+    ?is_nullable_string(Rack)
+->
+    [
+        ?encode_int32(NodeId),
+        ?encode_compact_string(Host),
+        ?encode_int32(Port),
+        ?encode_compact_nullable_string(Rack),
+        ?EMPTY_TAG_BUFFER
+    ];
+encode_node_endpoint_16(Args) ->
+    ?encoder_error(Args, #{
+        node_id => int32,
+        host => string,
+        port => int32,
+        rack => nullable_string
+    }).
+
+-spec decode_node_endpoint_16(binary()) -> {Decoded, Rest} when
+    Decoded :: node_endpoint_16(),
+    Rest :: binary().
+
+decode_node_endpoint_16(Bin0) when is_binary(Bin0) ->
+    ?_decode_int32(NodeId, Bin0, Bin1),
+    ?_decode_compact_string(Host, Bin1, Bin2),
+    ?_decode_int32(Port, Bin2, Bin3),
+    ?_decode_compact_nullable_string(Rack, Bin3, Bin4),
+    ?decode_tagged_fields(
+        fun decode_node_endpoint_16_tagged_field/3,
+        #{
+            node_id => NodeId,
+            host => Host,
+            port => Port,
+            rack => Rack
+        },
+        Bin4
+    ).
+
+-spec decode_node_endpoint_16_tagged_field(Tag, Input, AccIn) -> AccOut when
+    Tag :: non_neg_integer(),
+    Input :: binary(),
+    AccIn :: Acc,
+    AccOut :: Acc.
+
+decode_node_endpoint_16_tagged_field(_Tag, _Bin0, Acc) ->
+    % Unrecognised tag; ignore it.
+    Acc.
+
 -type fetch_response_0() :: #{
     correlation_id => integer(),
     responses := list(fetchable_topic_response_0())
@@ -4417,4 +4946,51 @@ decode_fetchable_topic_response_15_tagged_field(_Tag, _Bin0, Acc) ->
 -type fetchable_topic_response_15() :: #{
     topic_id := kafcod:uuid(),
     partitions := list(partition_data_15())
+}.
+-type fetch_response_16() :: #{
+    correlation_id => integer(),
+    throttle_time_ms := integer(),
+    error_code := integer(),
+    session_id := integer(),
+    responses := list(fetchable_topic_response_16()),
+    node_endpoints := list(node_endpoint_16())
+}.
+-type epoch_end_offset_16() :: #{
+    epoch := integer(),
+    end_offset := integer()
+}.
+-type leader_id_and_epoch_16() :: #{
+    leader_id := integer(),
+    leader_epoch := integer()
+}.
+-type snapshot_id_16() :: #{
+    end_offset := integer(),
+    epoch := integer()
+}.
+-type aborted_transaction_16() :: #{
+    producer_id := integer(),
+    first_offset := integer()
+}.
+-type partition_data_16() :: #{
+    partition_index := integer(),
+    error_code := integer(),
+    high_watermark := integer(),
+    last_stable_offset := integer(),
+    log_start_offset := integer(),
+    diverging_epoch := epoch_end_offset_16(),
+    current_leader := leader_id_and_epoch_16(),
+    snapshot_id := snapshot_id_16(),
+    aborted_transactions := list(aborted_transaction_16()) | null,
+    preferred_read_replica := integer(),
+    records := kafcod_records:records()
+}.
+-type fetchable_topic_response_16() :: #{
+    topic_id := kafcod:uuid(),
+    partitions := list(partition_data_16())
+}.
+-type node_endpoint_16() :: #{
+    node_id := integer(),
+    host := binary(),
+    port := integer(),
+    rack := binary() | null
 }.

@@ -31,8 +31,6 @@ encode_consumer_group_heartbeat_response_0(
         member_id := MemberId,
         % The member epoch.
         member_epoch := MemberEpoch,
-        % True if the member should compute the assignment for the group.
-        should_compute_assignment := ShouldComputeAssignment,
         % The heartbeat interval in milliseconds.
         heartbeat_interval_ms := HeartbeatIntervalMs,
         % null if not provided; the assignment otherwise.
@@ -45,7 +43,6 @@ encode_consumer_group_heartbeat_response_0(
     ?is_nullable_string(ErrorMessage),
     ?is_nullable_string(MemberId),
     ?is_int32(MemberEpoch),
-    ?is_bool(ShouldComputeAssignment),
     ?is_int32(HeartbeatIntervalMs),
     ?is_nullable_entity(Assignment)
 ->
@@ -56,7 +53,6 @@ encode_consumer_group_heartbeat_response_0(
         ?encode_compact_nullable_string(ErrorMessage),
         ?encode_compact_nullable_string(MemberId),
         ?encode_int32(MemberEpoch),
-        ?encode_bool(ShouldComputeAssignment),
         ?encode_int32(HeartbeatIntervalMs),
         encode_assignment_0(Assignment),
         ?EMPTY_TAG_BUFFER
@@ -69,7 +65,6 @@ encode_consumer_group_heartbeat_response_0(Args) ->
         error_message => nullable_string,
         member_id => nullable_string,
         member_epoch => int32,
-        should_compute_assignment => bool,
         heartbeat_interval_ms => int32,
         assignment => nullable_Assignment
     }).
@@ -85,9 +80,8 @@ decode_consumer_group_heartbeat_response_0(Bin) when is_binary(Bin) ->
     ?_decode_compact_nullable_string(ErrorMessage, Bin2, Bin3),
     ?_decode_compact_nullable_string(MemberId, Bin3, Bin4),
     ?_decode_int32(MemberEpoch, Bin4, Bin5),
-    ?_decode_bool(ShouldComputeAssignment, Bin5, Bin6),
-    ?_decode_int32(HeartbeatIntervalMs, Bin6, Bin7),
-    ?_decode_entity(Assignment, Bin7, Bin8, decode_assignment_0),
+    ?_decode_int32(HeartbeatIntervalMs, Bin5, Bin6),
+    ?_decode_entity(Assignment, Bin6, Bin7, decode_assignment_0),
     ?decode_tagged_fields(
         fun decode_consumer_group_heartbeat_response_0_tagged_field/3,
         Header#{
@@ -96,11 +90,10 @@ decode_consumer_group_heartbeat_response_0(Bin) when is_binary(Bin) ->
             error_message => ErrorMessage,
             member_id => MemberId,
             member_epoch => MemberEpoch,
-            should_compute_assignment => ShouldComputeAssignment,
             heartbeat_interval_ms => HeartbeatIntervalMs,
             assignment => Assignment
         },
-        Bin8
+        Bin7
     ).
 
 -spec decode_consumer_group_heartbeat_response_0_tagged_field(Tag, Input, AccIn) -> AccOut when
@@ -117,39 +110,19 @@ decode_consumer_group_heartbeat_response_0_tagged_field(_Tag, _Bin0, Acc) ->
 
 encode_assignment_0(
     _Args = #{
-        % The assigned error.
-        error := Error,
         % The partitions assigned to the member that can be used immediately.
-        assigned_topic_partitions := AssignedTopicPartitions,
-        % The partitions assigned to the member that cannot be used because they are not released by their former owners yet.
-        pending_topic_partitions := PendingTopicPartitions,
-        % The version of the metadata.
-        metadata_version := MetadataVersion,
-        % The assigned metadata.
-        metadata_bytes := MetadataBytes
+        topic_partitions := TopicPartitions
     }
 ) when
-    ?is_int8(Error),
-    ?is_array(AssignedTopicPartitions),
-    ?is_array(PendingTopicPartitions),
-    ?is_int16(MetadataVersion),
-    ?is_bytes(MetadataBytes)
+    ?is_array(TopicPartitions)
 ->
     [
-        ?encode_int8(Error),
-        ?encode_compact_array(AssignedTopicPartitions, fun encode_topic_partitions_0/1),
-        ?encode_compact_array(PendingTopicPartitions, fun encode_topic_partitions_0/1),
-        ?encode_int16(MetadataVersion),
-        ?encode_compact_bytes(MetadataBytes),
+        ?encode_compact_array(TopicPartitions, fun encode_topic_partitions_0/1),
         ?EMPTY_TAG_BUFFER
     ];
 encode_assignment_0(Args) ->
     ?encoder_error(Args, #{
-        error => int8,
-        assigned_topic_partitions => {array, topic_partitions_0},
-        pending_topic_partitions => {array, topic_partitions_0},
-        metadata_version => int16,
-        metadata_bytes => bytes
+        topic_partitions => {array, topic_partitions_0}
     }).
 
 -spec decode_assignment_0(binary()) -> {Decoded, Rest} when
@@ -157,21 +130,13 @@ encode_assignment_0(Args) ->
     Rest :: binary().
 
 decode_assignment_0(Bin0) when is_binary(Bin0) ->
-    ?_decode_int8(Error, Bin0, Bin1),
-    ?_decode_compact_array(AssignedTopicPartitions, Bin1, Bin2, ?_decode_element(decode_topic_partitions_0)),
-    ?_decode_compact_array(PendingTopicPartitions, Bin2, Bin3, ?_decode_element(decode_topic_partitions_0)),
-    ?_decode_int16(MetadataVersion, Bin3, Bin4),
-    ?_decode_compact_bytes(MetadataBytes, Bin4, Bin5),
+    ?_decode_compact_array(TopicPartitions, Bin0, Bin1, ?_decode_element(decode_topic_partitions_0)),
     ?decode_tagged_fields(
         fun decode_assignment_0_tagged_field/3,
         #{
-            error => Error,
-            assigned_topic_partitions => AssignedTopicPartitions,
-            pending_topic_partitions => PendingTopicPartitions,
-            metadata_version => MetadataVersion,
-            metadata_bytes => MetadataBytes
+            topic_partitions => TopicPartitions
         },
-        Bin5
+        Bin1
     ).
 
 -spec decode_assignment_0_tagged_field(Tag, Input, AccIn) -> AccOut when
@@ -241,16 +206,11 @@ decode_topic_partitions_0_tagged_field(_Tag, _Bin0, Acc) ->
     error_message := binary() | null,
     member_id := binary() | null,
     member_epoch := integer(),
-    should_compute_assignment := boolean(),
     heartbeat_interval_ms := integer(),
     assignment := assignment_0() | null
 }.
 -type assignment_0() :: #{
-    error := integer(),
-    assigned_topic_partitions := list(topic_partitions_0()),
-    pending_topic_partitions := list(topic_partitions_0()),
-    metadata_version := integer(),
-    metadata_bytes := kafcod:bytes()
+    topic_partitions := list(topic_partitions_0())
 }.
 -type topic_partitions_0() :: #{
     topic_id := kafcod:uuid(),

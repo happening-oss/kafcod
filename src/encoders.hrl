@@ -70,7 +70,9 @@
 -define(encode_compact_records(R), kafcod_records:encode_compact_records(R)).
 -define(encode_compact_nullable_records(R), kafcod_records:encode_compact_records(R)).
 
+-define(encode_int8_, fun(V) -> <<V:8/big-signed>> end).
 -define(encode_int32_, fun(V) -> <<V:32/big-signed>> end).
 -define(encode_int64_, fun(V) -> <<V:64/big-signed>> end).
 -define(encode_string_, fun kafcod_primitives:encode_string/1).
 -define(encode_compact_string_, fun kafcod_primitives:encode_compact_string/1).
+-define(encode_uuid_, fun kafcod_primitives:encode_uuid/1).

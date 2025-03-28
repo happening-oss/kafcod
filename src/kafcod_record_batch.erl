@@ -132,18 +132,31 @@ encode_compression_attribute(none) -> ?COMPRESSION_NONE;
 encode_compression_attribute(gzip) -> ?COMPRESSION_GZIP;
 encode_compression_attribute(snappy) -> ?COMPRESSION_SNAPPY;
 encode_compression_attribute(lz4) -> ?COMPRESSION_LZ4;
-encode_compression_attribute(zstd) -> ?COMPRESSION_ZSTD.
+encode_compression_attribute(zstd) -> ?COMPRESSION_ZSTD;
+encode_compression_attribute(Compression) -> error(badarg, [Compression]).
 
 compress_records(_Compression = none, Records) ->
     Count = length(Records),
     [<<Count:32/big-signed>>, encode_records(Records)];
 compress_records(_Compression = gzip, Records) ->
     Count = length(Records),
-    CompressedRecords = zlib:gzip(encode_records(Records)),
+    EncodedRecords = iolist_to_binary(encode_records(Records)),
+    CompressedRecords = zlib:gzip(EncodedRecords),
+    telemetry:execute([kafcod, record_batch, compress_records], #{
+        compression => gzip,
+        uncompressed_byte_size => byte_size(EncodedRecords),
+        compressed_byte_size => iolist_size(CompressedRecords)
+    }),
     [<<Count:32/big-signed>>, CompressedRecords];
 compress_records(_Compression = snappy, Records) ->
     Count = length(Records),
-    {ok, CompressedRecords} = kafcod_snappy:compress(encode_records(Records)),
+    EncodedRecords = iolist_to_binary(encode_records(Records)),
+    {ok, CompressedRecords} = kafcod_snappy:compress(EncodedRecords),
+    telemetry:execute([kafcod, record_batch, compress_records], #{
+        compression => snappy,
+        uncompressed_byte_size => byte_size(EncodedRecords),
+        compressed_byte_size => iolist_size(CompressedRecords)
+    }),
     [<<Count:32/big-signed>>, CompressedRecords].
 
 -spec encode_records([kafcod_record:record()]) -> iodata().

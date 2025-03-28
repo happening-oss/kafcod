@@ -17,7 +17,9 @@
     encode_offset_fetch_response_7/1,
     decode_offset_fetch_response_7/1,
     encode_offset_fetch_response_8/1,
-    decode_offset_fetch_response_8/1
+    decode_offset_fetch_response_8/1,
+    encode_offset_fetch_response_9/1,
+    decode_offset_fetch_response_9/1
 ]).
 -export_type([
     offset_fetch_response_0/0,
@@ -47,7 +49,11 @@
     offset_fetch_response_8/0,
     offset_fetch_response_partitions_8/0,
     offset_fetch_response_topics_8/0,
-    offset_fetch_response_group_8/0
+    offset_fetch_response_group_8/0,
+    offset_fetch_response_9/0,
+    offset_fetch_response_partitions_9/0,
+    offset_fetch_response_topics_9/0,
+    offset_fetch_response_group_9/0
 ]).
 -include("../encoders.hrl").
 -include("../decoders.hrl").
@@ -1476,6 +1482,240 @@ decode_offset_fetch_response_group_8_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
     Acc.
 
+-spec encode_offset_fetch_response_9(offset_fetch_response_9()) -> iodata().
+
+encode_offset_fetch_response_9(
+    _Args = #{
+        % The correlation ID of this request.
+        correlation_id := CorrelationId,
+        % The duration in milliseconds for which the request was throttled due to a quota violation, or zero if the request did not violate any quota.
+        throttle_time_ms := ThrottleTimeMs,
+        % The responses per group id.
+        groups := Groups
+    }
+) when
+    ?is_int32(CorrelationId),
+    ?is_int32(ThrottleTimeMs),
+    ?is_array(Groups)
+->
+    [
+        ?encode_response_header_1(CorrelationId),
+        ?encode_int32(ThrottleTimeMs),
+        ?encode_compact_array(Groups, fun encode_offset_fetch_response_group_9/1),
+        ?EMPTY_TAG_BUFFER
+    ];
+encode_offset_fetch_response_9(Args) ->
+    ?encoder_error(Args, #{
+        correlation_id => int32,
+        throttle_time_ms => int32,
+        groups => {array, offset_fetch_response_group_9}
+    }).
+
+-spec decode_offset_fetch_response_9(binary()) -> {Decoded, Rest} when
+    Decoded :: offset_fetch_response_9(),
+    Rest :: binary().
+
+decode_offset_fetch_response_9(Bin) when is_binary(Bin) ->
+    {Header, Bin0} = ?decode_response_header_1(Bin),
+    ?_decode_int32(ThrottleTimeMs, Bin0, Bin1),
+    ?_decode_compact_array(Groups, Bin1, Bin2, ?_decode_element(decode_offset_fetch_response_group_9)),
+    ?decode_tagged_fields(
+        fun decode_offset_fetch_response_9_tagged_field/3,
+        Header#{
+            throttle_time_ms => ThrottleTimeMs,
+            groups => Groups
+        },
+        Bin2
+    ).
+
+-spec decode_offset_fetch_response_9_tagged_field(Tag, Input, AccIn) -> AccOut when
+    Tag :: non_neg_integer(),
+    Input :: binary(),
+    AccIn :: Acc,
+    AccOut :: Acc.
+
+decode_offset_fetch_response_9_tagged_field(_Tag, _Bin0, Acc) ->
+    % Unrecognised tag; ignore it.
+    Acc.
+
+-spec encode_offset_fetch_response_partitions_9(offset_fetch_response_partitions_9()) -> iodata().
+
+encode_offset_fetch_response_partitions_9(
+    _Args = #{
+        % The partition index.
+        partition_index := PartitionIndex,
+        % The committed message offset.
+        committed_offset := CommittedOffset,
+        % The leader epoch.
+        committed_leader_epoch := CommittedLeaderEpoch,
+        % The partition metadata.
+        metadata := Metadata,
+        % The partition-level error code, or 0 if there was no error.
+        error_code := ErrorCode
+    }
+) when
+    ?is_int32(PartitionIndex),
+    ?is_int64(CommittedOffset),
+    ?is_int32(CommittedLeaderEpoch),
+    ?is_nullable_string(Metadata),
+    ?is_int16(ErrorCode)
+->
+    [
+        ?encode_int32(PartitionIndex),
+        ?encode_int64(CommittedOffset),
+        ?encode_int32(CommittedLeaderEpoch),
+        ?encode_compact_nullable_string(Metadata),
+        ?encode_int16(ErrorCode),
+        ?EMPTY_TAG_BUFFER
+    ];
+encode_offset_fetch_response_partitions_9(Args) ->
+    ?encoder_error(Args, #{
+        partition_index => int32,
+        committed_offset => int64,
+        committed_leader_epoch => int32,
+        metadata => nullable_string,
+        error_code => int16
+    }).
+
+-spec decode_offset_fetch_response_partitions_9(binary()) -> {Decoded, Rest} when
+    Decoded :: offset_fetch_response_partitions_9(),
+    Rest :: binary().
+
+decode_offset_fetch_response_partitions_9(Bin0) when is_binary(Bin0) ->
+    ?_decode_int32(PartitionIndex, Bin0, Bin1),
+    ?_decode_int64(CommittedOffset, Bin1, Bin2),
+    ?_decode_int32(CommittedLeaderEpoch, Bin2, Bin3),
+    ?_decode_compact_nullable_string(Metadata, Bin3, Bin4),
+    ?_decode_int16(ErrorCode, Bin4, Bin5),
+    ?decode_tagged_fields(
+        fun decode_offset_fetch_response_partitions_9_tagged_field/3,
+        #{
+            partition_index => PartitionIndex,
+            committed_offset => CommittedOffset,
+            committed_leader_epoch => CommittedLeaderEpoch,
+            metadata => Metadata,
+            error_code => ErrorCode
+        },
+        Bin5
+    ).
+
+-spec decode_offset_fetch_response_partitions_9_tagged_field(Tag, Input, AccIn) -> AccOut when
+    Tag :: non_neg_integer(),
+    Input :: binary(),
+    AccIn :: Acc,
+    AccOut :: Acc.
+
+decode_offset_fetch_response_partitions_9_tagged_field(_Tag, _Bin0, Acc) ->
+    % Unrecognised tag; ignore it.
+    Acc.
+
+-spec encode_offset_fetch_response_topics_9(offset_fetch_response_topics_9()) -> iodata().
+
+encode_offset_fetch_response_topics_9(
+    _Args = #{
+        % The topic name.
+        name := Name,
+        % The responses per partition
+        partitions := Partitions
+    }
+) when
+    ?is_string(Name),
+    ?is_array(Partitions)
+->
+    [
+        ?encode_compact_string(Name),
+        ?encode_compact_array(Partitions, fun encode_offset_fetch_response_partitions_9/1),
+        ?EMPTY_TAG_BUFFER
+    ];
+encode_offset_fetch_response_topics_9(Args) ->
+    ?encoder_error(Args, #{
+        name => string,
+        partitions => {array, offset_fetch_response_partitions_9}
+    }).
+
+-spec decode_offset_fetch_response_topics_9(binary()) -> {Decoded, Rest} when
+    Decoded :: offset_fetch_response_topics_9(),
+    Rest :: binary().
+
+decode_offset_fetch_response_topics_9(Bin0) when is_binary(Bin0) ->
+    ?_decode_compact_string(Name, Bin0, Bin1),
+    ?_decode_compact_array(Partitions, Bin1, Bin2, ?_decode_element(decode_offset_fetch_response_partitions_9)),
+    ?decode_tagged_fields(
+        fun decode_offset_fetch_response_topics_9_tagged_field/3,
+        #{
+            name => Name,
+            partitions => Partitions
+        },
+        Bin2
+    ).
+
+-spec decode_offset_fetch_response_topics_9_tagged_field(Tag, Input, AccIn) -> AccOut when
+    Tag :: non_neg_integer(),
+    Input :: binary(),
+    AccIn :: Acc,
+    AccOut :: Acc.
+
+decode_offset_fetch_response_topics_9_tagged_field(_Tag, _Bin0, Acc) ->
+    % Unrecognised tag; ignore it.
+    Acc.
+
+-spec encode_offset_fetch_response_group_9(offset_fetch_response_group_9()) -> iodata().
+
+encode_offset_fetch_response_group_9(
+    _Args = #{
+        % The group ID.
+        group_id := GroupId,
+        % The responses per topic.
+        topics := Topics,
+        % The group-level error code, or 0 if there was no error.
+        error_code := ErrorCode
+    }
+) when
+    ?is_string(GroupId),
+    ?is_array(Topics),
+    ?is_int16(ErrorCode)
+->
+    [
+        ?encode_compact_string(GroupId),
+        ?encode_compact_array(Topics, fun encode_offset_fetch_response_topics_9/1),
+        ?encode_int16(ErrorCode),
+        ?EMPTY_TAG_BUFFER
+    ];
+encode_offset_fetch_response_group_9(Args) ->
+    ?encoder_error(Args, #{
+        group_id => string,
+        topics => {array, offset_fetch_response_topics_9},
+        error_code => int16
+    }).
+
+-spec decode_offset_fetch_response_group_9(binary()) -> {Decoded, Rest} when
+    Decoded :: offset_fetch_response_group_9(),
+    Rest :: binary().
+
+decode_offset_fetch_response_group_9(Bin0) when is_binary(Bin0) ->
+    ?_decode_compact_string(GroupId, Bin0, Bin1),
+    ?_decode_compact_array(Topics, Bin1, Bin2, ?_decode_element(decode_offset_fetch_response_topics_9)),
+    ?_decode_int16(ErrorCode, Bin2, Bin3),
+    ?decode_tagged_fields(
+        fun decode_offset_fetch_response_group_9_tagged_field/3,
+        #{
+            group_id => GroupId,
+            topics => Topics,
+            error_code => ErrorCode
+        },
+        Bin3
+    ).
+
+-spec decode_offset_fetch_response_group_9_tagged_field(Tag, Input, AccIn) -> AccOut when
+    Tag :: non_neg_integer(),
+    Input :: binary(),
+    AccIn :: Acc,
+    AccOut :: Acc.
+
+decode_offset_fetch_response_group_9_tagged_field(_Tag, _Bin0, Acc) ->
+    % Unrecognised tag; ignore it.
+    Acc.
+
 -type offset_fetch_response_0() :: #{
     correlation_id => integer(),
     topics := list(offset_fetch_response_topic_0())
@@ -1621,5 +1861,26 @@ decode_offset_fetch_response_group_8_tagged_field(_Tag, _Bin0, Acc) ->
 -type offset_fetch_response_group_8() :: #{
     group_id := binary(),
     topics := list(offset_fetch_response_topics_8()),
+    error_code := integer()
+}.
+-type offset_fetch_response_9() :: #{
+    correlation_id => integer(),
+    throttle_time_ms := integer(),
+    groups := list(offset_fetch_response_group_9())
+}.
+-type offset_fetch_response_partitions_9() :: #{
+    partition_index := integer(),
+    committed_offset := integer(),
+    committed_leader_epoch := integer(),
+    metadata := binary() | null,
+    error_code := integer()
+}.
+-type offset_fetch_response_topics_9() :: #{
+    name := binary(),
+    partitions := list(offset_fetch_response_partitions_9())
+}.
+-type offset_fetch_response_group_9() :: #{
+    group_id := binary(),
+    topics := list(offset_fetch_response_topics_9()),
     error_code := integer()
 }.

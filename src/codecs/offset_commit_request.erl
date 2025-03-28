@@ -202,7 +202,7 @@ encode_offset_commit_request_1(
         client_id := ClientId,
         % The unique group identifier.
         group_id := GroupId,
-        % The generation of the group if using the generic group protocol or the member epoch if using the consumer protocol.
+        % The generation of the group if using the classic group protocol or the member epoch if using the consumer protocol.
         generation_id_or_member_epoch := GenerationIdOrMemberEpoch,
         % The member ID assigned by the group coordinator.
         member_id := MemberId,
@@ -354,7 +354,7 @@ encode_offset_commit_request_2(
         client_id := ClientId,
         % The unique group identifier.
         group_id := GroupId,
-        % The generation of the group if using the generic group protocol or the member epoch if using the consumer protocol.
+        % The generation of the group if using the classic group protocol or the member epoch if using the consumer protocol.
         generation_id_or_member_epoch := GenerationIdOrMemberEpoch,
         % The member ID assigned by the group coordinator.
         member_id := MemberId,
@@ -506,7 +506,7 @@ encode_offset_commit_request_3(
         client_id := ClientId,
         % The unique group identifier.
         group_id := GroupId,
-        % The generation of the group if using the generic group protocol or the member epoch if using the consumer protocol.
+        % The generation of the group if using the classic group protocol or the member epoch if using the consumer protocol.
         generation_id_or_member_epoch := GenerationIdOrMemberEpoch,
         % The member ID assigned by the group coordinator.
         member_id := MemberId,
@@ -658,7 +658,7 @@ encode_offset_commit_request_4(
         client_id := ClientId,
         % The unique group identifier.
         group_id := GroupId,
-        % The generation of the group if using the generic group protocol or the member epoch if using the consumer protocol.
+        % The generation of the group if using the classic group protocol or the member epoch if using the consumer protocol.
         generation_id_or_member_epoch := GenerationIdOrMemberEpoch,
         % The member ID assigned by the group coordinator.
         member_id := MemberId,
@@ -810,7 +810,7 @@ encode_offset_commit_request_5(
         client_id := ClientId,
         % The unique group identifier.
         group_id := GroupId,
-        % The generation of the group if using the generic group protocol or the member epoch if using the consumer protocol.
+        % The generation of the group if using the classic group protocol or the member epoch if using the consumer protocol.
         generation_id_or_member_epoch := GenerationIdOrMemberEpoch,
         % The member ID assigned by the group coordinator.
         member_id := MemberId,
@@ -955,7 +955,7 @@ encode_offset_commit_request_6(
         client_id := ClientId,
         % The unique group identifier.
         group_id := GroupId,
-        % The generation of the group if using the generic group protocol or the member epoch if using the consumer protocol.
+        % The generation of the group if using the classic group protocol or the member epoch if using the consumer protocol.
         generation_id_or_member_epoch := GenerationIdOrMemberEpoch,
         % The member ID assigned by the group coordinator.
         member_id := MemberId,
@@ -1107,7 +1107,7 @@ encode_offset_commit_request_7(
         client_id := ClientId,
         % The unique group identifier.
         group_id := GroupId,
-        % The generation of the group if using the generic group protocol or the member epoch if using the consumer protocol.
+        % The generation of the group if using the classic group protocol or the member epoch if using the consumer protocol.
         generation_id_or_member_epoch := GenerationIdOrMemberEpoch,
         % The member ID assigned by the group coordinator.
         member_id := MemberId,
@@ -1266,7 +1266,7 @@ encode_offset_commit_request_8(
         client_id := ClientId,
         % The unique group identifier.
         group_id := GroupId,
-        % The generation of the group if using the generic group protocol or the member epoch if using the consumer protocol.
+        % The generation of the group if using the classic group protocol or the member epoch if using the consumer protocol.
         generation_id_or_member_epoch := GenerationIdOrMemberEpoch,
         % The member ID assigned by the group coordinator.
         member_id := MemberId,
@@ -1461,7 +1461,7 @@ encode_offset_commit_request_9(
         client_id := ClientId,
         % The unique group identifier.
         group_id := GroupId,
-        % The generation of the group if using the generic group protocol or the member epoch if using the consumer protocol.
+        % The generation of the group if using the classic group protocol or the member epoch if using the consumer protocol.
         generation_id_or_member_epoch := GenerationIdOrMemberEpoch,
         % The member ID assigned by the group coordinator.
         member_id := MemberId,

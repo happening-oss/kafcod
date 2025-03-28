@@ -9,8 +9,6 @@ cli() ->
                 help => "Bootstrap broker(s) (host[:port])",
                 long => "-bootstrap",
                 required => true,
-                nargs => nonempty_list,
-                action => extend,
                 type => {custom, fun parse_broker/1}
             }
         ],
@@ -62,6 +60,65 @@ cli() ->
                         required => false,
                         type => boolean,
                         default => false
+                    },
+
+                    #{
+                        name => keep_leader,
+                        help => "Keep the leader",
+                        long => "-keep-leader",
+                        required => false,
+                        type => boolean,
+                        default => false
+                    },
+
+                    #{
+                        name => rack_aware,
+                        help => "Rack aware",
+                        long => "-rack-aware",
+                        required => false,
+                        type => boolean,
+                        default => false
+                    }
+                ]
+            },
+            "elect-leaders" => #{
+                handler => fun reassign:elect_leaders/1,
+                arguments => [
+                    #{
+                        name => topic,
+                        long => "-topic",
+                        required => true,
+                        type => binary
+                    },
+
+                    #{
+                        name => partition,
+                        long => "-partition",
+                        required => false,
+                        nargs => nonempty_list,
+                        action => extend,
+                        type => {integer, [{min, 0}]}
+                    }
+                ]
+            },
+            "validate-replication" => #{
+                handler => fun reassign:validate_replication/1,
+                arguments => [
+                    #{
+                        name => pick,
+                        help => "Pick N of the given brokers",
+                        long => "-pick",
+                        required => true,
+                        type => {integer, [{min, 0}]}
+                    },
+
+                    #{
+                        name => rack_aware,
+                        help => "Rack aware",
+                        long => "-rack-aware",
+                        required => false,
+                        type => boolean,
+                        default => false
                     }
                 ]
             }
@@ -73,9 +130,9 @@ cli() ->
 parse_broker(Arg) when is_list(Arg) ->
     case string:split(Arg, ":") of
         [Host, Port] ->
-            {Host, list_to_integer(Port)};
+            #{host => list_to_binary(Host), port => list_to_integer(Port)};
         [Host] ->
-            {Host, ?DEFAULT_BROKER_PORT};
+            #{host => list_to_binary(Host), port => ?DEFAULT_BROKER_PORT};
         _ ->
             error(badarg)
     end.
@@ -88,14 +145,24 @@ args_from(Command) ->
 
 cli_test_() ->
     [
-        {"multiple bootstrap brokers",
+        {"bootstrap broker",
             ?_assertMatch(
-                {ok,
-                    #{bootstrap := [{"localhost", 9092}, {"localhost", 9093}, {"localhost", 9094}]},
-                    _, _},
+                {ok, #{bootstrap := #{host := <<"localhost">>, port := 9093}}, _, _},
                 argparse:parse(
                     args_from(
-                        "./reassign list-partition-reassignments --bootstrap localhost localhost:9093 --bootstrap localhost:9094"
+                        "./reassign list-partition-reassignments --bootstrap localhost:9093"
+                    ),
+                    cli(),
+                    #{progname => ?MODULE}
+                )
+            )},
+
+        {"bootstrap broker default port",
+            ?_assertMatch(
+                {ok, #{bootstrap := #{host := <<"localhost">>, port := 9092}}, _, _},
+                argparse:parse(
+                    args_from(
+                        "./reassign list-partition-reassignments --bootstrap localhost"
                     ),
                     cli(),
                     #{progname => ?MODULE}
@@ -105,11 +172,17 @@ cli_test_() ->
         {"move partitions (when replacing a broker)",
             ?_assertMatch(
                 {ok,
-                    #{bootstrap := [{"localhost", 9092}], topic := <<"topic">>, partition := [0, 1, 2], from := [101], to := [104], shuffle := false},
+                    #{
+                        bootstrap := #{host := <<"localhost">>, port := 9092},
+                        topic := <<"topic">>,
+                        partition := [0, 1, 2],
+                        to := [104],
+                        shuffle := false
+                    },
                     _, _},
                 argparse:parse(
                     args_from(
-                        "./reassign reassign-partitions --bootstrap localhost --topic topic --partition 0 1 2 --from 101 --to 104"
+                        "./reassign reassign-partitions --bootstrap localhost --topic topic --partition 0 1 2 --to 104"
                     ),
                     cli(),
                     #{progname => ?MODULE}

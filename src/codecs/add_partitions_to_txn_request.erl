@@ -9,7 +9,9 @@
     encode_add_partitions_to_txn_request_3/1,
     decode_add_partitions_to_txn_request_3/1,
     encode_add_partitions_to_txn_request_4/1,
-    decode_add_partitions_to_txn_request_4/1
+    decode_add_partitions_to_txn_request_4/1,
+    encode_add_partitions_to_txn_request_5/1,
+    decode_add_partitions_to_txn_request_5/1
 ]).
 -export_type([
     add_partitions_to_txn_request_0/0,
@@ -22,7 +24,10 @@
     add_partitions_to_txn_topic_3/0,
     add_partitions_to_txn_request_4/0,
     add_partitions_to_txn_transaction_4/0,
-    add_partitions_to_txn_topic_4/0
+    add_partitions_to_txn_topic_4/0,
+    add_partitions_to_txn_request_5/0,
+    add_partitions_to_txn_transaction_5/0,
+    add_partitions_to_txn_topic_5/0
 ]).
 -include("../encoders.hrl").
 -include("../decoders.hrl").
@@ -630,6 +635,180 @@ decode_add_partitions_to_txn_topic_4_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
     Acc.
 
+-spec encode_add_partitions_to_txn_request_5(add_partitions_to_txn_request_5()) -> iodata().
+
+encode_add_partitions_to_txn_request_5(
+    _Args = #{
+        % The correlation ID of this request.
+        correlation_id := CorrelationId,
+        % The client ID string.
+        client_id := ClientId,
+        % List of transactions to add partitions to.
+        transactions := Transactions
+    }
+) when
+    ?is_int32(CorrelationId),
+    ?is_nullable_string(ClientId),
+    ?is_array(Transactions)
+->
+    [
+        ?encode_request_header_2(?ADD_PARTITIONS_TO_TXN_REQUEST, 5, CorrelationId, ClientId),
+        ?encode_compact_array(Transactions, fun encode_add_partitions_to_txn_transaction_5/1),
+        ?EMPTY_TAG_BUFFER
+    ];
+encode_add_partitions_to_txn_request_5(Args) ->
+    ?encoder_error(Args, #{
+        correlation_id => int32,
+        client_id => nullable_string,
+        transactions => {array, add_partitions_to_txn_transaction_5}
+    }).
+
+-spec decode_add_partitions_to_txn_request_5(binary()) -> {Decoded, Rest} when
+    Decoded :: add_partitions_to_txn_request_5(),
+    Rest :: binary().
+
+decode_add_partitions_to_txn_request_5(Bin) when is_binary(Bin) ->
+    {Header, Bin0} = ?decode_request_header_2(Bin),
+    ?_decode_compact_array(Transactions, Bin0, Bin1, ?_decode_element(decode_add_partitions_to_txn_transaction_5)),
+    ?decode_tagged_fields(
+        fun decode_add_partitions_to_txn_request_5_tagged_field/3,
+        Header#{
+            transactions => Transactions
+        },
+        Bin1
+    ).
+
+-spec decode_add_partitions_to_txn_request_5_tagged_field(Tag, Input, AccIn) -> AccOut when
+    Tag :: non_neg_integer(),
+    Input :: binary(),
+    AccIn :: Acc,
+    AccOut :: Acc.
+
+decode_add_partitions_to_txn_request_5_tagged_field(_Tag, _Bin0, Acc) ->
+    % Unrecognised tag; ignore it.
+    Acc.
+
+-spec encode_add_partitions_to_txn_transaction_5(add_partitions_to_txn_transaction_5()) -> iodata().
+
+encode_add_partitions_to_txn_transaction_5(
+    _Args = #{
+        % The transactional id corresponding to the transaction.
+        transactional_id := TransactionalId,
+        % Current producer id in use by the transactional id.
+        producer_id := ProducerId,
+        % Current epoch associated with the producer id.
+        producer_epoch := ProducerEpoch,
+        % Boolean to signify if we want to check if the partition is in the transaction rather than add it.
+        verify_only := VerifyOnly,
+        % The partitions to add to the transaction.
+        topics := Topics
+    }
+) when
+    ?is_string(TransactionalId),
+    ?is_int64(ProducerId),
+    ?is_int16(ProducerEpoch),
+    ?is_bool(VerifyOnly),
+    ?is_array(Topics)
+->
+    [
+        ?encode_compact_string(TransactionalId),
+        ?encode_int64(ProducerId),
+        ?encode_int16(ProducerEpoch),
+        ?encode_bool(VerifyOnly),
+        ?encode_compact_array(Topics, fun encode_add_partitions_to_txn_topic_5/1),
+        ?EMPTY_TAG_BUFFER
+    ];
+encode_add_partitions_to_txn_transaction_5(Args) ->
+    ?encoder_error(Args, #{
+        transactional_id => string,
+        producer_id => int64,
+        producer_epoch => int16,
+        verify_only => bool,
+        topics => {array, add_partitions_to_txn_topic_5}
+    }).
+
+-spec decode_add_partitions_to_txn_transaction_5(binary()) -> {Decoded, Rest} when
+    Decoded :: add_partitions_to_txn_transaction_5(),
+    Rest :: binary().
+
+decode_add_partitions_to_txn_transaction_5(Bin0) when is_binary(Bin0) ->
+    ?_decode_compact_string(TransactionalId, Bin0, Bin1),
+    ?_decode_int64(ProducerId, Bin1, Bin2),
+    ?_decode_int16(ProducerEpoch, Bin2, Bin3),
+    ?_decode_bool(VerifyOnly, Bin3, Bin4),
+    ?_decode_compact_array(Topics, Bin4, Bin5, ?_decode_element(decode_add_partitions_to_txn_topic_5)),
+    ?decode_tagged_fields(
+        fun decode_add_partitions_to_txn_transaction_5_tagged_field/3,
+        #{
+            transactional_id => TransactionalId,
+            producer_id => ProducerId,
+            producer_epoch => ProducerEpoch,
+            verify_only => VerifyOnly,
+            topics => Topics
+        },
+        Bin5
+    ).
+
+-spec decode_add_partitions_to_txn_transaction_5_tagged_field(Tag, Input, AccIn) -> AccOut when
+    Tag :: non_neg_integer(),
+    Input :: binary(),
+    AccIn :: Acc,
+    AccOut :: Acc.
+
+decode_add_partitions_to_txn_transaction_5_tagged_field(_Tag, _Bin0, Acc) ->
+    % Unrecognised tag; ignore it.
+    Acc.
+
+-spec encode_add_partitions_to_txn_topic_5(add_partitions_to_txn_topic_5()) -> iodata().
+
+encode_add_partitions_to_txn_topic_5(
+    _Args = #{
+        % The name of the topic.
+        name := Name,
+        % The partition indexes to add to the transaction
+        partitions := Partitions
+    }
+) when
+    ?is_string(Name),
+    ?is_array(Partitions)
+->
+    [
+        ?encode_compact_string(Name),
+        ?encode_compact_array(Partitions, ?encode_int32_),
+        ?EMPTY_TAG_BUFFER
+    ];
+encode_add_partitions_to_txn_topic_5(Args) ->
+    ?encoder_error(Args, #{
+        name => string,
+        partitions => {array, int32}
+    }).
+
+-spec decode_add_partitions_to_txn_topic_5(binary()) -> {Decoded, Rest} when
+    Decoded :: add_partitions_to_txn_topic_5(),
+    Rest :: binary().
+
+decode_add_partitions_to_txn_topic_5(Bin0) when is_binary(Bin0) ->
+    ?_decode_compact_string(Name, Bin0, Bin1),
+    ?_decode_compact_array(Partitions, Bin1, Bin2, ?decode_int32_),
+    ?decode_tagged_fields(
+        fun decode_add_partitions_to_txn_topic_5_tagged_field/3,
+        #{
+            name => Name,
+            partitions => Partitions
+        },
+        Bin2
+    ).
+
+-spec decode_add_partitions_to_txn_topic_5_tagged_field(Tag, Input, AccIn) -> AccOut when
+    Tag :: non_neg_integer(),
+    Input :: binary(),
+    AccIn :: Acc,
+    AccOut :: Acc.
+
+decode_add_partitions_to_txn_topic_5_tagged_field(_Tag, _Bin0, Acc) ->
+    % Unrecognised tag; ignore it.
+    Acc.
+
 -type add_partitions_to_txn_request_0() :: #{
     api_key => integer(),
     api_version => integer(),
@@ -701,6 +880,24 @@ decode_add_partitions_to_txn_topic_4_tagged_field(_Tag, _Bin0, Acc) ->
     topics := list(add_partitions_to_txn_topic_4())
 }.
 -type add_partitions_to_txn_topic_4() :: #{
+    name := binary(),
+    partitions := list(integer())
+}.
+-type add_partitions_to_txn_request_5() :: #{
+    api_key => integer(),
+    api_version => integer(),
+    correlation_id => integer(),
+    client_id => binary() | null,
+    transactions := list(add_partitions_to_txn_transaction_5())
+}.
+-type add_partitions_to_txn_transaction_5() :: #{
+    transactional_id := binary(),
+    producer_id := integer(),
+    producer_epoch := integer(),
+    verify_only := boolean(),
+    topics := list(add_partitions_to_txn_topic_5())
+}.
+-type add_partitions_to_txn_topic_5() :: #{
     name := binary(),
     partitions := list(integer())
 }.

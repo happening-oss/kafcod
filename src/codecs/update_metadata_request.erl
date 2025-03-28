@@ -2171,7 +2171,7 @@ decode_update_metadata_partition_state_7_tagged_field(_Tag, _Bin0, Acc) ->
 -spec encode_update_metadata_request_8(update_metadata_request_8()) -> iodata().
 
 encode_update_metadata_request_8(
-    _Args = #{
+    Args = #{
         % The correlation ID of this request.
         correlation_id := CorrelationId,
         % The client ID string.
@@ -2206,7 +2206,10 @@ encode_update_metadata_request_8(
         ?encode_int64(BrokerEpoch),
         ?encode_compact_array(TopicStates, fun encode_update_metadata_topic_state_8/1),
         ?encode_compact_array(LiveBrokers, fun encode_update_metadata_broker_8/1),
-        ?EMPTY_TAG_BUFFER
+        ?encode_tagged_fields(
+            fun encode_update_metadata_request_8_tagged_field/2,
+            Args
+        )
     ];
 encode_update_metadata_request_8(Args) ->
     ?encoder_error(Args, #{
@@ -2219,6 +2222,13 @@ encode_update_metadata_request_8(Args) ->
         topic_states => {array, update_metadata_topic_state_8},
         live_brokers => {array, update_metadata_broker_8}
     }).
+
+-spec encode_update_metadata_request_8_tagged_field(Key :: atom(), Value :: term()) -> iodata() | ignore.
+
+encode_update_metadata_request_8_tagged_field(_Key = type, Type) ->
+    {0, ?encode_int8(Type)};
+encode_update_metadata_request_8_tagged_field(_Key, _Value) ->
+    ignore.
 
 -spec decode_update_metadata_request_8(binary()) -> {Decoded, Rest} when
     Decoded :: update_metadata_request_8(),
@@ -2251,6 +2261,12 @@ decode_update_metadata_request_8(Bin) when is_binary(Bin) ->
     AccIn :: Acc,
     AccOut :: Acc.
 
+%% Type
+%% Indicates if this request is a Full metadata snapshot (2), Incremental (1), or Unknown (0). Using during ZK migration, see KIP-866
+decode_update_metadata_request_8_tagged_field(_Tag = 0, Bin0, Acc) ->
+    ?_decode_int8(Type, Bin0, Bin1),
+    <<>> = Bin1,
+    Acc#{type => Type};
 decode_update_metadata_request_8_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
     Acc.
@@ -2788,6 +2804,7 @@ decode_update_metadata_partition_state_8_tagged_field(_Tag, _Bin0, Acc) ->
     client_id => binary() | null,
     controller_id := integer(),
     is_k_raft_controller := boolean(),
+    type := integer(),
     controller_epoch := integer(),
     broker_epoch := integer(),
     topic_states := list(update_metadata_topic_state_8()),

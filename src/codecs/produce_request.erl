@@ -19,7 +19,11 @@
     encode_produce_request_8/1,
     decode_produce_request_8/1,
     encode_produce_request_9/1,
-    decode_produce_request_9/1
+    decode_produce_request_9/1,
+    encode_produce_request_10/1,
+    decode_produce_request_10/1,
+    encode_produce_request_11/1,
+    decode_produce_request_11/1
 ]).
 -export_type([
     produce_request_0/0,
@@ -51,7 +55,13 @@
     topic_produce_data_8/0,
     produce_request_9/0,
     partition_produce_data_9/0,
-    topic_produce_data_9/0
+    topic_produce_data_9/0,
+    produce_request_10/0,
+    partition_produce_data_10/0,
+    topic_produce_data_10/0,
+    produce_request_11/0,
+    partition_produce_data_11/0,
+    topic_produce_data_11/0
 ]).
 -include("../encoders.hrl").
 -include("../decoders.hrl").
@@ -1456,6 +1466,354 @@ decode_topic_produce_data_9_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
     Acc.
 
+-spec encode_produce_request_10(produce_request_10()) -> iodata().
+
+encode_produce_request_10(
+    _Args = #{
+        % The correlation ID of this request.
+        correlation_id := CorrelationId,
+        % The client ID string.
+        client_id := ClientId,
+        % The transactional ID, or null if the producer is not transactional.
+        transactional_id := TransactionalId,
+        % The number of acknowledgments the producer requires the leader to have received before considering a request complete. Allowed values: 0 for no acknowledgments, 1 for only the leader and -1 for the full ISR.
+        acks := Acks,
+        % The timeout to await a response in milliseconds.
+        timeout_ms := TimeoutMs,
+        % Each topic to produce to.
+        topic_data := TopicData
+    }
+) when
+    ?is_int32(CorrelationId),
+    ?is_nullable_string(ClientId),
+    ?is_nullable_string(TransactionalId),
+    ?is_int16(Acks),
+    ?is_int32(TimeoutMs),
+    ?is_array(TopicData)
+->
+    [
+        ?encode_request_header_2(?PRODUCE_REQUEST, 10, CorrelationId, ClientId),
+        ?encode_compact_nullable_string(TransactionalId),
+        ?encode_int16(Acks),
+        ?encode_int32(TimeoutMs),
+        ?encode_compact_array(TopicData, fun encode_topic_produce_data_10/1),
+        ?EMPTY_TAG_BUFFER
+    ];
+encode_produce_request_10(Args) ->
+    ?encoder_error(Args, #{
+        correlation_id => int32,
+        client_id => nullable_string,
+        transactional_id => nullable_string,
+        acks => int16,
+        timeout_ms => int32,
+        topic_data => {array, topic_produce_data_10}
+    }).
+
+-spec decode_produce_request_10(binary()) -> {Decoded, Rest} when
+    Decoded :: produce_request_10(),
+    Rest :: binary().
+
+decode_produce_request_10(Bin) when is_binary(Bin) ->
+    {Header, Bin0} = ?decode_request_header_2(Bin),
+    ?_decode_compact_nullable_string(TransactionalId, Bin0, Bin1),
+    ?_decode_int16(Acks, Bin1, Bin2),
+    ?_decode_int32(TimeoutMs, Bin2, Bin3),
+    ?_decode_compact_array(TopicData, Bin3, Bin4, ?_decode_element(decode_topic_produce_data_10)),
+    ?decode_tagged_fields(
+        fun decode_produce_request_10_tagged_field/3,
+        Header#{
+            transactional_id => TransactionalId,
+            acks => Acks,
+            timeout_ms => TimeoutMs,
+            topic_data => TopicData
+        },
+        Bin4
+    ).
+
+-spec decode_produce_request_10_tagged_field(Tag, Input, AccIn) -> AccOut when
+    Tag :: non_neg_integer(),
+    Input :: binary(),
+    AccIn :: Acc,
+    AccOut :: Acc.
+
+decode_produce_request_10_tagged_field(_Tag, _Bin0, Acc) ->
+    % Unrecognised tag; ignore it.
+    Acc.
+
+-spec encode_partition_produce_data_10(partition_produce_data_10()) -> iodata().
+
+encode_partition_produce_data_10(
+    _Args = #{
+        % The partition index.
+        index := Index,
+        % The record data to be produced.
+        records := Records
+    }
+) when
+    ?is_int32(Index),
+    ?is_nullable_records(Records)
+->
+    [
+        ?encode_int32(Index),
+        ?encode_compact_nullable_records(Records),
+        ?EMPTY_TAG_BUFFER
+    ];
+encode_partition_produce_data_10(Args) ->
+    ?encoder_error(Args, #{
+        index => int32,
+        records => nullable_records
+    }).
+
+-spec decode_partition_produce_data_10(binary()) -> {Decoded, Rest} when
+    Decoded :: partition_produce_data_10(),
+    Rest :: binary().
+
+decode_partition_produce_data_10(Bin0) when is_binary(Bin0) ->
+    ?_decode_int32(Index, Bin0, Bin1),
+    ?_decode_compact_nullable_records(Records, Bin1, Bin2),
+    ?decode_tagged_fields(
+        fun decode_partition_produce_data_10_tagged_field/3,
+        #{
+            index => Index,
+            records => Records
+        },
+        Bin2
+    ).
+
+-spec decode_partition_produce_data_10_tagged_field(Tag, Input, AccIn) -> AccOut when
+    Tag :: non_neg_integer(),
+    Input :: binary(),
+    AccIn :: Acc,
+    AccOut :: Acc.
+
+decode_partition_produce_data_10_tagged_field(_Tag, _Bin0, Acc) ->
+    % Unrecognised tag; ignore it.
+    Acc.
+
+-spec encode_topic_produce_data_10(topic_produce_data_10()) -> iodata().
+
+encode_topic_produce_data_10(
+    _Args = #{
+        % The topic name.
+        name := Name,
+        % Each partition to produce to.
+        partition_data := PartitionData
+    }
+) when
+    ?is_string(Name),
+    ?is_array(PartitionData)
+->
+    [
+        ?encode_compact_string(Name),
+        ?encode_compact_array(PartitionData, fun encode_partition_produce_data_10/1),
+        ?EMPTY_TAG_BUFFER
+    ];
+encode_topic_produce_data_10(Args) ->
+    ?encoder_error(Args, #{
+        name => string,
+        partition_data => {array, partition_produce_data_10}
+    }).
+
+-spec decode_topic_produce_data_10(binary()) -> {Decoded, Rest} when
+    Decoded :: topic_produce_data_10(),
+    Rest :: binary().
+
+decode_topic_produce_data_10(Bin0) when is_binary(Bin0) ->
+    ?_decode_compact_string(Name, Bin0, Bin1),
+    ?_decode_compact_array(PartitionData, Bin1, Bin2, ?_decode_element(decode_partition_produce_data_10)),
+    ?decode_tagged_fields(
+        fun decode_topic_produce_data_10_tagged_field/3,
+        #{
+            name => Name,
+            partition_data => PartitionData
+        },
+        Bin2
+    ).
+
+-spec decode_topic_produce_data_10_tagged_field(Tag, Input, AccIn) -> AccOut when
+    Tag :: non_neg_integer(),
+    Input :: binary(),
+    AccIn :: Acc,
+    AccOut :: Acc.
+
+decode_topic_produce_data_10_tagged_field(_Tag, _Bin0, Acc) ->
+    % Unrecognised tag; ignore it.
+    Acc.
+
+-spec encode_produce_request_11(produce_request_11()) -> iodata().
+
+encode_produce_request_11(
+    _Args = #{
+        % The correlation ID of this request.
+        correlation_id := CorrelationId,
+        % The client ID string.
+        client_id := ClientId,
+        % The transactional ID, or null if the producer is not transactional.
+        transactional_id := TransactionalId,
+        % The number of acknowledgments the producer requires the leader to have received before considering a request complete. Allowed values: 0 for no acknowledgments, 1 for only the leader and -1 for the full ISR.
+        acks := Acks,
+        % The timeout to await a response in milliseconds.
+        timeout_ms := TimeoutMs,
+        % Each topic to produce to.
+        topic_data := TopicData
+    }
+) when
+    ?is_int32(CorrelationId),
+    ?is_nullable_string(ClientId),
+    ?is_nullable_string(TransactionalId),
+    ?is_int16(Acks),
+    ?is_int32(TimeoutMs),
+    ?is_array(TopicData)
+->
+    [
+        ?encode_request_header_2(?PRODUCE_REQUEST, 11, CorrelationId, ClientId),
+        ?encode_compact_nullable_string(TransactionalId),
+        ?encode_int16(Acks),
+        ?encode_int32(TimeoutMs),
+        ?encode_compact_array(TopicData, fun encode_topic_produce_data_11/1),
+        ?EMPTY_TAG_BUFFER
+    ];
+encode_produce_request_11(Args) ->
+    ?encoder_error(Args, #{
+        correlation_id => int32,
+        client_id => nullable_string,
+        transactional_id => nullable_string,
+        acks => int16,
+        timeout_ms => int32,
+        topic_data => {array, topic_produce_data_11}
+    }).
+
+-spec decode_produce_request_11(binary()) -> {Decoded, Rest} when
+    Decoded :: produce_request_11(),
+    Rest :: binary().
+
+decode_produce_request_11(Bin) when is_binary(Bin) ->
+    {Header, Bin0} = ?decode_request_header_2(Bin),
+    ?_decode_compact_nullable_string(TransactionalId, Bin0, Bin1),
+    ?_decode_int16(Acks, Bin1, Bin2),
+    ?_decode_int32(TimeoutMs, Bin2, Bin3),
+    ?_decode_compact_array(TopicData, Bin3, Bin4, ?_decode_element(decode_topic_produce_data_11)),
+    ?decode_tagged_fields(
+        fun decode_produce_request_11_tagged_field/3,
+        Header#{
+            transactional_id => TransactionalId,
+            acks => Acks,
+            timeout_ms => TimeoutMs,
+            topic_data => TopicData
+        },
+        Bin4
+    ).
+
+-spec decode_produce_request_11_tagged_field(Tag, Input, AccIn) -> AccOut when
+    Tag :: non_neg_integer(),
+    Input :: binary(),
+    AccIn :: Acc,
+    AccOut :: Acc.
+
+decode_produce_request_11_tagged_field(_Tag, _Bin0, Acc) ->
+    % Unrecognised tag; ignore it.
+    Acc.
+
+-spec encode_partition_produce_data_11(partition_produce_data_11()) -> iodata().
+
+encode_partition_produce_data_11(
+    _Args = #{
+        % The partition index.
+        index := Index,
+        % The record data to be produced.
+        records := Records
+    }
+) when
+    ?is_int32(Index),
+    ?is_nullable_records(Records)
+->
+    [
+        ?encode_int32(Index),
+        ?encode_compact_nullable_records(Records),
+        ?EMPTY_TAG_BUFFER
+    ];
+encode_partition_produce_data_11(Args) ->
+    ?encoder_error(Args, #{
+        index => int32,
+        records => nullable_records
+    }).
+
+-spec decode_partition_produce_data_11(binary()) -> {Decoded, Rest} when
+    Decoded :: partition_produce_data_11(),
+    Rest :: binary().
+
+decode_partition_produce_data_11(Bin0) when is_binary(Bin0) ->
+    ?_decode_int32(Index, Bin0, Bin1),
+    ?_decode_compact_nullable_records(Records, Bin1, Bin2),
+    ?decode_tagged_fields(
+        fun decode_partition_produce_data_11_tagged_field/3,
+        #{
+            index => Index,
+            records => Records
+        },
+        Bin2
+    ).
+
+-spec decode_partition_produce_data_11_tagged_field(Tag, Input, AccIn) -> AccOut when
+    Tag :: non_neg_integer(),
+    Input :: binary(),
+    AccIn :: Acc,
+    AccOut :: Acc.
+
+decode_partition_produce_data_11_tagged_field(_Tag, _Bin0, Acc) ->
+    % Unrecognised tag; ignore it.
+    Acc.
+
+-spec encode_topic_produce_data_11(topic_produce_data_11()) -> iodata().
+
+encode_topic_produce_data_11(
+    _Args = #{
+        % The topic name.
+        name := Name,
+        % Each partition to produce to.
+        partition_data := PartitionData
+    }
+) when
+    ?is_string(Name),
+    ?is_array(PartitionData)
+->
+    [
+        ?encode_compact_string(Name),
+        ?encode_compact_array(PartitionData, fun encode_partition_produce_data_11/1),
+        ?EMPTY_TAG_BUFFER
+    ];
+encode_topic_produce_data_11(Args) ->
+    ?encoder_error(Args, #{
+        name => string,
+        partition_data => {array, partition_produce_data_11}
+    }).
+
+-spec decode_topic_produce_data_11(binary()) -> {Decoded, Rest} when
+    Decoded :: topic_produce_data_11(),
+    Rest :: binary().
+
+decode_topic_produce_data_11(Bin0) when is_binary(Bin0) ->
+    ?_decode_compact_string(Name, Bin0, Bin1),
+    ?_decode_compact_array(PartitionData, Bin1, Bin2, ?_decode_element(decode_partition_produce_data_11)),
+    ?decode_tagged_fields(
+        fun decode_topic_produce_data_11_tagged_field/3,
+        #{
+            name => Name,
+            partition_data => PartitionData
+        },
+        Bin2
+    ).
+
+-spec decode_topic_produce_data_11_tagged_field(Tag, Input, AccIn) -> AccOut when
+    Tag :: non_neg_integer(),
+    Input :: binary(),
+    AccIn :: Acc,
+    AccOut :: Acc.
+
+decode_topic_produce_data_11_tagged_field(_Tag, _Bin0, Acc) ->
+    % Unrecognised tag; ignore it.
+    Acc.
+
 -type produce_request_0() :: #{
     api_key => integer(),
     api_version => integer(),
@@ -1632,4 +1990,40 @@ decode_topic_produce_data_9_tagged_field(_Tag, _Bin0, Acc) ->
 -type topic_produce_data_9() :: #{
     name := binary(),
     partition_data := list(partition_produce_data_9())
+}.
+-type produce_request_10() :: #{
+    api_key => integer(),
+    api_version => integer(),
+    correlation_id => integer(),
+    client_id => binary() | null,
+    transactional_id := binary() | null,
+    acks := integer(),
+    timeout_ms := integer(),
+    topic_data := list(topic_produce_data_10())
+}.
+-type partition_produce_data_10() :: #{
+    index := integer(),
+    records := kafcod_records:records()
+}.
+-type topic_produce_data_10() :: #{
+    name := binary(),
+    partition_data := list(partition_produce_data_10())
+}.
+-type produce_request_11() :: #{
+    api_key => integer(),
+    api_version => integer(),
+    correlation_id => integer(),
+    client_id => binary() | null,
+    transactional_id := binary() | null,
+    acks := integer(),
+    timeout_ms := integer(),
+    topic_data := list(topic_produce_data_11())
+}.
+-type partition_produce_data_11() :: #{
+    index := integer(),
+    records := kafcod_records:records()
+}.
+-type topic_produce_data_11() :: #{
+    name := binary(),
+    partition_data := list(partition_produce_data_11())
 }.

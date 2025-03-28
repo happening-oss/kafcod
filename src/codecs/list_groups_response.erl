@@ -9,7 +9,9 @@
     encode_list_groups_response_3/1,
     decode_list_groups_response_3/1,
     encode_list_groups_response_4/1,
-    decode_list_groups_response_4/1
+    decode_list_groups_response_4/1,
+    encode_list_groups_response_5/1,
+    decode_list_groups_response_5/1
 ]).
 -export_type([
     list_groups_response_0/0,
@@ -21,7 +23,9 @@
     list_groups_response_3/0,
     listed_group_3/0,
     list_groups_response_4/0,
-    listed_group_4/0
+    listed_group_4/0,
+    list_groups_response_5/0,
+    listed_group_5/0
 ]).
 -include("../encoders.hrl").
 -include("../decoders.hrl").
@@ -523,6 +527,133 @@ decode_listed_group_4_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
     Acc.
 
+-spec encode_list_groups_response_5(list_groups_response_5()) -> iodata().
+
+encode_list_groups_response_5(
+    _Args = #{
+        % The correlation ID of this request.
+        correlation_id := CorrelationId,
+        % The duration in milliseconds for which the request was throttled due to a quota violation, or zero if the request did not violate any quota.
+        throttle_time_ms := ThrottleTimeMs,
+        % The error code, or 0 if there was no error.
+        error_code := ErrorCode,
+        % Each group in the response.
+        groups := Groups
+    }
+) when
+    ?is_int32(CorrelationId),
+    ?is_int32(ThrottleTimeMs),
+    ?is_int16(ErrorCode),
+    ?is_array(Groups)
+->
+    [
+        ?encode_response_header_1(CorrelationId),
+        ?encode_int32(ThrottleTimeMs),
+        ?encode_int16(ErrorCode),
+        ?encode_compact_array(Groups, fun encode_listed_group_5/1),
+        ?EMPTY_TAG_BUFFER
+    ];
+encode_list_groups_response_5(Args) ->
+    ?encoder_error(Args, #{
+        correlation_id => int32,
+        throttle_time_ms => int32,
+        error_code => int16,
+        groups => {array, listed_group_5}
+    }).
+
+-spec decode_list_groups_response_5(binary()) -> {Decoded, Rest} when
+    Decoded :: list_groups_response_5(),
+    Rest :: binary().
+
+decode_list_groups_response_5(Bin) when is_binary(Bin) ->
+    {Header, Bin0} = ?decode_response_header_1(Bin),
+    ?_decode_int32(ThrottleTimeMs, Bin0, Bin1),
+    ?_decode_int16(ErrorCode, Bin1, Bin2),
+    ?_decode_compact_array(Groups, Bin2, Bin3, ?_decode_element(decode_listed_group_5)),
+    ?decode_tagged_fields(
+        fun decode_list_groups_response_5_tagged_field/3,
+        Header#{
+            throttle_time_ms => ThrottleTimeMs,
+            error_code => ErrorCode,
+            groups => Groups
+        },
+        Bin3
+    ).
+
+-spec decode_list_groups_response_5_tagged_field(Tag, Input, AccIn) -> AccOut when
+    Tag :: non_neg_integer(),
+    Input :: binary(),
+    AccIn :: Acc,
+    AccOut :: Acc.
+
+decode_list_groups_response_5_tagged_field(_Tag, _Bin0, Acc) ->
+    % Unrecognised tag; ignore it.
+    Acc.
+
+-spec encode_listed_group_5(listed_group_5()) -> iodata().
+
+encode_listed_group_5(
+    _Args = #{
+        % The group ID.
+        group_id := GroupId,
+        % The group protocol type.
+        protocol_type := ProtocolType,
+        % The group state name.
+        group_state := GroupState,
+        % The group type name.
+        group_type := GroupType
+    }
+) when
+    ?is_string(GroupId),
+    ?is_string(ProtocolType),
+    ?is_string(GroupState),
+    ?is_string(GroupType)
+->
+    [
+        ?encode_compact_string(GroupId),
+        ?encode_compact_string(ProtocolType),
+        ?encode_compact_string(GroupState),
+        ?encode_compact_string(GroupType),
+        ?EMPTY_TAG_BUFFER
+    ];
+encode_listed_group_5(Args) ->
+    ?encoder_error(Args, #{
+        group_id => string,
+        protocol_type => string,
+        group_state => string,
+        group_type => string
+    }).
+
+-spec decode_listed_group_5(binary()) -> {Decoded, Rest} when
+    Decoded :: listed_group_5(),
+    Rest :: binary().
+
+decode_listed_group_5(Bin0) when is_binary(Bin0) ->
+    ?_decode_compact_string(GroupId, Bin0, Bin1),
+    ?_decode_compact_string(ProtocolType, Bin1, Bin2),
+    ?_decode_compact_string(GroupState, Bin2, Bin3),
+    ?_decode_compact_string(GroupType, Bin3, Bin4),
+    ?decode_tagged_fields(
+        fun decode_listed_group_5_tagged_field/3,
+        #{
+            group_id => GroupId,
+            protocol_type => ProtocolType,
+            group_state => GroupState,
+            group_type => GroupType
+        },
+        Bin4
+    ).
+
+-spec decode_listed_group_5_tagged_field(Tag, Input, AccIn) -> AccOut when
+    Tag :: non_neg_integer(),
+    Input :: binary(),
+    AccIn :: Acc,
+    AccOut :: Acc.
+
+decode_listed_group_5_tagged_field(_Tag, _Bin0, Acc) ->
+    % Unrecognised tag; ignore it.
+    Acc.
+
 -type list_groups_response_0() :: #{
     correlation_id => integer(),
     error_code := integer(),
@@ -572,4 +703,16 @@ decode_listed_group_4_tagged_field(_Tag, _Bin0, Acc) ->
     group_id := binary(),
     protocol_type := binary(),
     group_state := binary()
+}.
+-type list_groups_response_5() :: #{
+    correlation_id => integer(),
+    throttle_time_ms := integer(),
+    error_code := integer(),
+    groups := list(listed_group_5())
+}.
+-type listed_group_5() :: #{
+    group_id := binary(),
+    protocol_type := binary(),
+    group_state := binary(),
+    group_type := binary()
 }.

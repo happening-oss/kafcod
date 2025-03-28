@@ -1,0 +1,3 @@
+-define(ACK_NONE, 0).
+-define(ACK_LEADER, 1).
+-define(ACK_FULL_ISR, -1).

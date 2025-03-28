@@ -594,10 +594,15 @@ format_tagged_field_encoder(Name, Version, Field = #{name := FieldName, tag := T
         format_tagged_field_encoder_name(Name, Version),
         io_lib:format("(_Key = ~s, ~s) ->", [casey:underscore(FieldName), FieldName]),
         ?NL,
-        io_lib:format("    {~B, ", [Tag]),
+        format_tagged_field_encoder_tag(Tag),
         format_field_encoder(Field),
         "};"
     ].
+
+format_tagged_field_encoder_tag(Tag) when is_integer(Tag) ->
+    io_lib:format("    {~B, ", [Tag]);
+format_tagged_field_encoder_tag(Tag) when is_binary(Tag) ->
+    io_lib:format("    {~B, ", [binary_to_integer(Tag)]).
 
 format_unrecognised_tagged_field_encoder(Name, Version) ->
     [
@@ -870,7 +875,7 @@ format_tagged_field_decoder(Name, Version, Field = #{name := FieldName, tag := T
         io_lib:format("%% ~s~n", [FieldName]),
         format_tagged_field_about(Field),
         format_tagged_field_decoder_name(Name, Version),
-        io_lib:format("(_Tag = ~B, Bin0, Acc) ->", [Tag]),
+        format_tagged_field_decoder_tag(Tag),
         ?NL,
         format_field_decoder(Field, 0),
         [",", ?NL],
@@ -878,6 +883,11 @@ format_tagged_field_decoder(Name, Version, Field = #{name := FieldName, tag := T
         ?NL,
         io_lib:format("    Acc#{~s => ~s};", [casey:underscore(FieldName), FieldName])
     ].
+
+format_tagged_field_decoder_tag(Tag) when is_integer(Tag) ->
+    io_lib:format("(_Tag = ~B, Bin0, Acc) ->", [Tag]);
+format_tagged_field_decoder_tag(Tag) when is_binary(Tag) ->
+    io_lib:format("(_Tag = ~B, Bin0, Acc) ->", [binary_to_integer(Tag)]).
 
 format_tagged_field_about(_Field = #{about := About}) ->
     % TODO: Wrap the comment at ~100 characters.

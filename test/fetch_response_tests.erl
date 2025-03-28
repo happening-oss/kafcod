@@ -4,6 +4,27 @@
 
 -define(CORRELATION_ID, 203569230).
 
+% An aside about timestamps, since there are a bunch of them in this test data:
+%
+% Note that Wireshark doesn't parse timestamps correctly.
+%
+% For example, given 0x0000019519529c7c (1739886599292), Wireshark 4.4.3 displays "Jan 1, 1970 00:06:45.424844412".
+%
+% It seems to be treating 0x0000019519529c7c as 0x00000195:0x19529c7c.
+% - 0x00000195 is 405, which is "1970-01-01T00:06:45+00:00".
+% - 0x19529c7c is 424844412, which is displayed as the fractional nanoseconds.
+%
+% You can see this here: https://gitlab.com/wireshark/wireshark/-/blob/v4.4.5/epan/dissectors/packet-kafka.c?ref_type=tags#L1411-1413
+%
+% Wireshark uses an `nstime_t` structure, defined here: https://gitlab.com/wireshark/wireshark/-/blob/master/wsutil/nstime.h#L25-29;
+% this is equivalent to C11's `timespec`: https://en.cppreference.com/w/c/chrono/timespec (except that timespec is explicitly for time intervals).
+%
+% The correct value is "2025-02-18T13:49:59.292Z" (per `date --utc -Is -d @1739886599`; note the loss of the
+% milliseconds).
+%
+% Note, however, that the timestamp is set by the producer and can be anything. Most clients (including kcat, kafka-ui)
+% assume Unix epoch milliseconds.
+
 v4_mixed_test() ->
     Capture =
         <<0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 1, 0, 7, 116, 111, 112, 105, 99, 45, 97, 0, 0, 0, 1, 0,
@@ -716,6 +737,7 @@ v12_test() ->
     ?assertEqual(v11_v12_expected(), fetch_response:decode_fetch_response_12(Capture)),
     ok.
 
+% v11 and v12 are expecting the same results; it's only the encoding in the capture that differs.
 v11_v12_expected() ->
     {
         #{
@@ -737,6 +759,7 @@ v11_v12_expected() ->
                                         [
                                             #{
                                                 attributes => #{compression => none},
+                                                % Unix epoch, milliseconds; 2025-02-18T13:49:59.799Z
                                                 max_timestamp => 1727437823887,
                                                 producer_id => -1,
                                                 producer_epoch => -1,
@@ -807,3 +830,182 @@ v11_v12_expected() ->
         },
         <<>>
     }.
+
+v15_test() ->
+    Capture =
+        <<0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 130, 67, 40, 200, 213, 175, 65, 43, 184,
+            181, 99, 62, 4, 60, 81, 121, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0,
+            0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 1, 255, 255, 255, 255, 253, 2, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 64, 0, 0, 0, 0, 2, 188, 19, 13, 57, 0, 0, 0, 0, 0, 0, 0, 0, 1, 149, 25, 82,
+            156, 124, 0, 0, 1, 149, 25, 82, 156, 124, 255, 255, 255, 255, 255, 255, 255, 255, 255,
+            255, 255, 255, 255, 255, 0, 0, 0, 1, 28, 0, 0, 0, 6, 107, 101, 121, 10, 118, 97, 108,
+            117, 101, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 64, 0, 0, 0, 0, 2, 216, 38, 216, 10, 0, 0,
+            0, 0, 0, 0, 0, 0, 1, 149, 25, 82, 160, 165, 0, 0, 1, 149, 25, 82, 160, 165, 255, 255,
+            255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 0, 0, 0, 1, 28, 0, 0, 0, 6,
+            107, 101, 121, 10, 118, 97, 108, 117, 101, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 64, 0, 0,
+            0, 0, 2, 190, 24, 69, 123, 0, 0, 0, 0, 0, 0, 0, 0, 1, 149, 25, 82, 164, 50, 0, 0, 1,
+            149, 25, 82, 164, 50, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
+            255, 0, 0, 0, 1, 28, 0, 0, 0, 6, 107, 101, 121, 10, 118, 97, 108, 117, 101, 0, 0, 0, 0,
+            0, 0, 0, 0, 3, 0, 0, 0, 64, 0, 0, 0, 0, 2, 185, 209, 18, 135, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+            149, 25, 82, 169, 18, 0, 0, 1, 149, 25, 82, 169, 18, 255, 255, 255, 255, 255, 255, 255,
+            255, 255, 255, 255, 255, 255, 255, 0, 0, 0, 1, 28, 0, 0, 0, 6, 107, 101, 121, 10, 118,
+            97, 108, 117, 101, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 64, 0, 0, 0, 0, 2, 115, 76, 190,
+            173, 0, 0, 0, 0, 0, 0, 0, 0, 1, 149, 25, 82, 172, 14, 0, 0, 1, 149, 25, 82, 172, 14,
+            255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 0, 0, 0, 1, 28, 0,
+            0, 0, 6, 107, 101, 121, 10, 118, 97, 108, 117, 101, 0, 0, 0, 0>>,
+    ?assertEqual(
+        {
+            #{
+                session_id => 0,
+                correlation_id => 3,
+                responses =>
+                    [
+                        #{
+                            partitions =>
+                                [
+                                    #{
+                                        high_watermark => 5,
+                                        aborted_transactions => [],
+                                        error_code => 0,
+                                        last_stable_offset => 5,
+                                        partition_index => 0,
+                                        records =>
+                                            [
+                                                #{
+                                                    attributes => #{compression => none},
+                                                    records =>
+                                                        [
+                                                            #{
+                                                                attributes => 0,
+                                                                value => <<"value">>,
+                                                                key => <<"key">>,
+                                                                headers => [],
+                                                                offset_delta => 0,
+                                                                timestamp_delta => 0
+                                                            }
+                                                        ],
+                                                    base_offset => 0,
+                                                    base_sequence => -1,
+                                                    % Unix epoch, milliseconds; 2025-02-18T13:49:59.292Z
+                                                    base_timestamp => 1739886599292,
+                                                    crc => 3155365177,
+                                                    last_offset_delta => 0,
+                                                    magic => 2,
+                                                    max_timestamp => 1739886599292,
+                                                    partition_leader_epoch => 0,
+                                                    producer_epoch => -1,
+                                                    producer_id => -1
+                                                },
+                                                #{
+                                                    attributes => #{compression => none},
+                                                    records =>
+                                                        [
+                                                            #{
+                                                                attributes => 0,
+                                                                value => <<"value">>,
+                                                                key => <<"key">>,
+                                                                headers => [],
+                                                                offset_delta => 0,
+                                                                timestamp_delta => 0
+                                                            }
+                                                        ],
+                                                    base_offset => 1,
+                                                    base_sequence => -1,
+                                                    base_timestamp => 1739886600357,
+                                                    crc => 3626424330,
+                                                    last_offset_delta => 0,
+                                                    magic => 2,
+                                                    max_timestamp => 1739886600357,
+                                                    partition_leader_epoch => 0,
+                                                    producer_epoch => -1,
+                                                    producer_id => -1
+                                                },
+                                                #{
+                                                    attributes => #{compression => none},
+                                                    records =>
+                                                        [
+                                                            #{
+                                                                attributes => 0,
+                                                                value => <<"value">>,
+                                                                key => <<"key">>,
+                                                                headers => [],
+                                                                offset_delta => 0,
+                                                                timestamp_delta => 0
+                                                            }
+                                                        ],
+                                                    base_offset => 2,
+                                                    base_sequence => -1,
+                                                    base_timestamp => 1739886601266,
+                                                    crc => 3189261691,
+                                                    last_offset_delta => 0,
+                                                    magic => 2,
+                                                    max_timestamp => 1739886601266,
+                                                    partition_leader_epoch => 0,
+                                                    producer_epoch => -1,
+                                                    producer_id => -1
+                                                },
+                                                #{
+                                                    attributes => #{compression => none},
+                                                    records =>
+                                                        [
+                                                            #{
+                                                                attributes => 0,
+                                                                value => <<"value">>,
+                                                                key => <<"key">>,
+                                                                headers => [],
+                                                                offset_delta => 0,
+                                                                timestamp_delta => 0
+                                                            }
+                                                        ],
+                                                    base_offset => 3,
+                                                    base_sequence => -1,
+                                                    base_timestamp => 1739886602514,
+                                                    crc => 3117486727,
+                                                    last_offset_delta => 0,
+                                                    magic => 2,
+                                                    max_timestamp => 1739886602514,
+                                                    partition_leader_epoch => 0,
+                                                    producer_epoch => -1,
+                                                    producer_id => -1
+                                                },
+                                                #{
+                                                    attributes => #{compression => none},
+                                                    records =>
+                                                        [
+                                                            #{
+                                                                attributes => 0,
+                                                                value => <<"value">>,
+                                                                key => <<"key">>,
+                                                                headers => [],
+                                                                offset_delta => 0,
+                                                                timestamp_delta => 0
+                                                            }
+                                                        ],
+                                                    base_offset => 4,
+                                                    base_sequence => -1,
+                                                    base_timestamp => 1739886603278,
+                                                    crc => 1934409389,
+                                                    last_offset_delta => 0,
+                                                    magic => 2,
+                                                    max_timestamp => 1739886603278,
+                                                    partition_leader_epoch => 0,
+                                                    producer_epoch => -1,
+                                                    producer_id => -1
+                                                }
+                                            ],
+                                        log_start_offset => 0,
+                                        preferred_read_replica => -1
+                                    }
+                                ],
+                            topic_id =>
+                                <<"824328c8-d5af-412b-b8b5-633e043c5179">>
+                        }
+                    ],
+                error_code => 0,
+                throttle_time_ms => 0
+            },
+            <<>>
+        },
+        fetch_response:decode_fetch_response_15(Capture)
+    ),
+    ok.

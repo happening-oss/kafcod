@@ -31,7 +31,9 @@
     encode_fetch_request_14/1,
     decode_fetch_request_14/1,
     encode_fetch_request_15/1,
-    decode_fetch_request_15/1
+    decode_fetch_request_15/1,
+    encode_fetch_request_16/1,
+    decode_fetch_request_16/1
 ]).
 -export_type([
     fetch_request_0/0,
@@ -91,7 +93,12 @@
     replica_state_15/0,
     fetch_partition_15/0,
     fetch_topic_15/0,
-    forgotten_topic_15/0
+    forgotten_topic_15/0,
+    fetch_request_16/0,
+    replica_state_16/0,
+    fetch_partition_16/0,
+    fetch_topic_16/0,
+    forgotten_topic_16/0
 ]).
 -include("../encoders.hrl").
 -include("../decoders.hrl").
@@ -3622,6 +3629,366 @@ decode_forgotten_topic_15_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
     Acc.
 
+-spec encode_fetch_request_16(fetch_request_16()) -> iodata().
+
+encode_fetch_request_16(
+    Args = #{
+        % The correlation ID of this request.
+        correlation_id := CorrelationId,
+        % The client ID string.
+        client_id := ClientId,
+        % The maximum time in milliseconds to wait for the response.
+        max_wait_ms := MaxWaitMs,
+        % The minimum bytes to accumulate in the response.
+        min_bytes := MinBytes,
+        % The maximum bytes to fetch.  See KIP-74 for cases where this limit may not be honored.
+        max_bytes := MaxBytes,
+        % This setting controls the visibility of transactional records. Using READ_UNCOMMITTED (isolation_level = 0) makes all records visible. With READ_COMMITTED (isolation_level = 1), non-transactional and COMMITTED transactional records are visible. To be more concrete, READ_COMMITTED returns all data from offsets smaller than the current LSO (last stable offset), and enables the inclusion of the list of aborted transactions in the result, which allows consumers to discard ABORTED transactional records
+        isolation_level := IsolationLevel,
+        % The fetch session ID.
+        session_id := SessionId,
+        % The fetch session epoch, which is used for ordering requests in a session.
+        session_epoch := SessionEpoch,
+        % The topics to fetch.
+        topics := Topics,
+        % In an incremental fetch request, the partitions to remove.
+        forgotten_topics_data := ForgottenTopicsData,
+        % Rack ID of the consumer making this request
+        rack_id := RackId
+    }
+) when
+    ?is_int32(CorrelationId),
+    ?is_nullable_string(ClientId),
+    ?is_int32(MaxWaitMs),
+    ?is_int32(MinBytes),
+    ?is_int32(MaxBytes),
+    ?is_int8(IsolationLevel),
+    ?is_int32(SessionId),
+    ?is_int32(SessionEpoch),
+    ?is_array(Topics),
+    ?is_array(ForgottenTopicsData),
+    ?is_string(RackId)
+->
+    [
+        ?encode_request_header_2(?FETCH_REQUEST, 16, CorrelationId, ClientId),
+        ?encode_int32(MaxWaitMs),
+        ?encode_int32(MinBytes),
+        ?encode_int32(MaxBytes),
+        ?encode_int8(IsolationLevel),
+        ?encode_int32(SessionId),
+        ?encode_int32(SessionEpoch),
+        ?encode_compact_array(Topics, fun encode_fetch_topic_16/1),
+        ?encode_compact_array(ForgottenTopicsData, fun encode_forgotten_topic_16/1),
+        ?encode_compact_string(RackId),
+        ?encode_tagged_fields(
+            fun encode_fetch_request_16_tagged_field/2,
+            Args
+        )
+    ];
+encode_fetch_request_16(Args) ->
+    ?encoder_error(Args, #{
+        correlation_id => int32,
+        client_id => nullable_string,
+        max_wait_ms => int32,
+        min_bytes => int32,
+        max_bytes => int32,
+        isolation_level => int8,
+        session_id => int32,
+        session_epoch => int32,
+        topics => {array, fetch_topic_16},
+        forgotten_topics_data => {array, forgotten_topic_16},
+        rack_id => string
+    }).
+
+-spec encode_fetch_request_16_tagged_field(Key :: atom(), Value :: term()) -> iodata() | ignore.
+
+encode_fetch_request_16_tagged_field(_Key = cluster_id, ClusterId) ->
+    {0, ?encode_compact_nullable_string(ClusterId)};
+encode_fetch_request_16_tagged_field(_Key = replica_state, ReplicaState) ->
+    {1, encode_replica_state_16(ReplicaState)};
+encode_fetch_request_16_tagged_field(_Key, _Value) ->
+    ignore.
+
+-spec decode_fetch_request_16(binary()) -> {Decoded, Rest} when
+    Decoded :: fetch_request_16(),
+    Rest :: binary().
+
+decode_fetch_request_16(Bin) when is_binary(Bin) ->
+    {Header, Bin0} = ?decode_request_header_2(Bin),
+    ?_decode_int32(MaxWaitMs, Bin0, Bin1),
+    ?_decode_int32(MinBytes, Bin1, Bin2),
+    ?_decode_int32(MaxBytes, Bin2, Bin3),
+    ?_decode_int8(IsolationLevel, Bin3, Bin4),
+    ?_decode_int32(SessionId, Bin4, Bin5),
+    ?_decode_int32(SessionEpoch, Bin5, Bin6),
+    ?_decode_compact_array(Topics, Bin6, Bin7, ?_decode_element(decode_fetch_topic_16)),
+    ?_decode_compact_array(ForgottenTopicsData, Bin7, Bin8, ?_decode_element(decode_forgotten_topic_16)),
+    ?_decode_compact_string(RackId, Bin8, Bin9),
+    ?decode_tagged_fields(
+        fun decode_fetch_request_16_tagged_field/3,
+        Header#{
+            max_wait_ms => MaxWaitMs,
+            min_bytes => MinBytes,
+            max_bytes => MaxBytes,
+            isolation_level => IsolationLevel,
+            session_id => SessionId,
+            session_epoch => SessionEpoch,
+            topics => Topics,
+            forgotten_topics_data => ForgottenTopicsData,
+            rack_id => RackId
+        },
+        Bin9
+    ).
+
+-spec decode_fetch_request_16_tagged_field(Tag, Input, AccIn) -> AccOut when
+    Tag :: non_neg_integer(),
+    Input :: binary(),
+    AccIn :: Acc,
+    AccOut :: Acc.
+
+%% ClusterId
+%% The clusterId if known. This is used to validate metadata fetches prior to broker registration.
+decode_fetch_request_16_tagged_field(_Tag = 0, Bin0, Acc) ->
+    ?_decode_compact_nullable_string(ClusterId, Bin0, Bin1),
+    <<>> = Bin1,
+    Acc#{cluster_id => ClusterId};
+%% ReplicaState
+decode_fetch_request_16_tagged_field(_Tag = 1, Bin0, Acc) ->
+    ?_decode_entity(ReplicaState, Bin0, Bin1, decode_replica_state_16),
+    <<>> = Bin1,
+    Acc#{replica_state => ReplicaState};
+decode_fetch_request_16_tagged_field(_Tag, _Bin0, Acc) ->
+    % Unrecognised tag; ignore it.
+    Acc.
+
+-spec encode_replica_state_16(replica_state_16()) -> iodata().
+
+encode_replica_state_16(
+    _Args = #{
+        % The replica ID of the follower, or -1 if this request is from a consumer.
+        replica_id := ReplicaId,
+        % The epoch of this follower, or -1 if not available.
+        replica_epoch := ReplicaEpoch
+    }
+) when
+    ?is_int32(ReplicaId),
+    ?is_int64(ReplicaEpoch)
+->
+    [
+        ?encode_int32(ReplicaId),
+        ?encode_int64(ReplicaEpoch),
+        ?EMPTY_TAG_BUFFER
+    ];
+encode_replica_state_16(Args) ->
+    ?encoder_error(Args, #{
+        replica_id => int32,
+        replica_epoch => int64
+    }).
+
+-spec decode_replica_state_16(binary()) -> {Decoded, Rest} when
+    Decoded :: replica_state_16(),
+    Rest :: binary().
+
+decode_replica_state_16(Bin0) when is_binary(Bin0) ->
+    ?_decode_int32(ReplicaId, Bin0, Bin1),
+    ?_decode_int64(ReplicaEpoch, Bin1, Bin2),
+    ?decode_tagged_fields(
+        fun decode_replica_state_16_tagged_field/3,
+        #{
+            replica_id => ReplicaId,
+            replica_epoch => ReplicaEpoch
+        },
+        Bin2
+    ).
+
+-spec decode_replica_state_16_tagged_field(Tag, Input, AccIn) -> AccOut when
+    Tag :: non_neg_integer(),
+    Input :: binary(),
+    AccIn :: Acc,
+    AccOut :: Acc.
+
+decode_replica_state_16_tagged_field(_Tag, _Bin0, Acc) ->
+    % Unrecognised tag; ignore it.
+    Acc.
+
+-spec encode_fetch_partition_16(fetch_partition_16()) -> iodata().
+
+encode_fetch_partition_16(
+    _Args = #{
+        % The partition index.
+        partition := Partition,
+        % The current leader epoch of the partition.
+        current_leader_epoch := CurrentLeaderEpoch,
+        % The message offset.
+        fetch_offset := FetchOffset,
+        % The epoch of the last fetched record or -1 if there is none
+        last_fetched_epoch := LastFetchedEpoch,
+        % The earliest available offset of the follower replica.  The field is only used when the request is sent by the follower.
+        log_start_offset := LogStartOffset,
+        % The maximum bytes to fetch from this partition.  See KIP-74 for cases where this limit may not be honored.
+        partition_max_bytes := PartitionMaxBytes
+    }
+) when
+    ?is_int32(Partition),
+    ?is_int32(CurrentLeaderEpoch),
+    ?is_int64(FetchOffset),
+    ?is_int32(LastFetchedEpoch),
+    ?is_int64(LogStartOffset),
+    ?is_int32(PartitionMaxBytes)
+->
+    [
+        ?encode_int32(Partition),
+        ?encode_int32(CurrentLeaderEpoch),
+        ?encode_int64(FetchOffset),
+        ?encode_int32(LastFetchedEpoch),
+        ?encode_int64(LogStartOffset),
+        ?encode_int32(PartitionMaxBytes),
+        ?EMPTY_TAG_BUFFER
+    ];
+encode_fetch_partition_16(Args) ->
+    ?encoder_error(Args, #{
+        partition => int32,
+        current_leader_epoch => int32,
+        fetch_offset => int64,
+        last_fetched_epoch => int32,
+        log_start_offset => int64,
+        partition_max_bytes => int32
+    }).
+
+-spec decode_fetch_partition_16(binary()) -> {Decoded, Rest} when
+    Decoded :: fetch_partition_16(),
+    Rest :: binary().
+
+decode_fetch_partition_16(Bin0) when is_binary(Bin0) ->
+    ?_decode_int32(Partition, Bin0, Bin1),
+    ?_decode_int32(CurrentLeaderEpoch, Bin1, Bin2),
+    ?_decode_int64(FetchOffset, Bin2, Bin3),
+    ?_decode_int32(LastFetchedEpoch, Bin3, Bin4),
+    ?_decode_int64(LogStartOffset, Bin4, Bin5),
+    ?_decode_int32(PartitionMaxBytes, Bin5, Bin6),
+    ?decode_tagged_fields(
+        fun decode_fetch_partition_16_tagged_field/3,
+        #{
+            partition => Partition,
+            current_leader_epoch => CurrentLeaderEpoch,
+            fetch_offset => FetchOffset,
+            last_fetched_epoch => LastFetchedEpoch,
+            log_start_offset => LogStartOffset,
+            partition_max_bytes => PartitionMaxBytes
+        },
+        Bin6
+    ).
+
+-spec decode_fetch_partition_16_tagged_field(Tag, Input, AccIn) -> AccOut when
+    Tag :: non_neg_integer(),
+    Input :: binary(),
+    AccIn :: Acc,
+    AccOut :: Acc.
+
+decode_fetch_partition_16_tagged_field(_Tag, _Bin0, Acc) ->
+    % Unrecognised tag; ignore it.
+    Acc.
+
+-spec encode_fetch_topic_16(fetch_topic_16()) -> iodata().
+
+encode_fetch_topic_16(
+    _Args = #{
+        % The unique topic ID
+        topic_id := TopicId,
+        % The partitions to fetch.
+        partitions := Partitions
+    }
+) when
+    ?is_uuid(TopicId),
+    ?is_array(Partitions)
+->
+    [
+        ?encode_uuid(TopicId),
+        ?encode_compact_array(Partitions, fun encode_fetch_partition_16/1),
+        ?EMPTY_TAG_BUFFER
+    ];
+encode_fetch_topic_16(Args) ->
+    ?encoder_error(Args, #{
+        topic_id => uuid,
+        partitions => {array, fetch_partition_16}
+    }).
+
+-spec decode_fetch_topic_16(binary()) -> {Decoded, Rest} when
+    Decoded :: fetch_topic_16(),
+    Rest :: binary().
+
+decode_fetch_topic_16(Bin0) when is_binary(Bin0) ->
+    ?_decode_uuid(TopicId, Bin0, Bin1),
+    ?_decode_compact_array(Partitions, Bin1, Bin2, ?_decode_element(decode_fetch_partition_16)),
+    ?decode_tagged_fields(
+        fun decode_fetch_topic_16_tagged_field/3,
+        #{
+            topic_id => TopicId,
+            partitions => Partitions
+        },
+        Bin2
+    ).
+
+-spec decode_fetch_topic_16_tagged_field(Tag, Input, AccIn) -> AccOut when
+    Tag :: non_neg_integer(),
+    Input :: binary(),
+    AccIn :: Acc,
+    AccOut :: Acc.
+
+decode_fetch_topic_16_tagged_field(_Tag, _Bin0, Acc) ->
+    % Unrecognised tag; ignore it.
+    Acc.
+
+-spec encode_forgotten_topic_16(forgotten_topic_16()) -> iodata().
+
+encode_forgotten_topic_16(
+    _Args = #{
+        % The unique topic ID
+        topic_id := TopicId,
+        % The partitions indexes to forget.
+        partitions := Partitions
+    }
+) when
+    ?is_uuid(TopicId),
+    ?is_array(Partitions)
+->
+    [
+        ?encode_uuid(TopicId),
+        ?encode_compact_array(Partitions, ?encode_int32_),
+        ?EMPTY_TAG_BUFFER
+    ];
+encode_forgotten_topic_16(Args) ->
+    ?encoder_error(Args, #{
+        topic_id => uuid,
+        partitions => {array, int32}
+    }).
+
+-spec decode_forgotten_topic_16(binary()) -> {Decoded, Rest} when
+    Decoded :: forgotten_topic_16(),
+    Rest :: binary().
+
+decode_forgotten_topic_16(Bin0) when is_binary(Bin0) ->
+    ?_decode_uuid(TopicId, Bin0, Bin1),
+    ?_decode_compact_array(Partitions, Bin1, Bin2, ?decode_int32_),
+    ?decode_tagged_fields(
+        fun decode_forgotten_topic_16_tagged_field/3,
+        #{
+            topic_id => TopicId,
+            partitions => Partitions
+        },
+        Bin2
+    ).
+
+-spec decode_forgotten_topic_16_tagged_field(Tag, Input, AccIn) -> AccOut when
+    Tag :: non_neg_integer(),
+    Input :: binary(),
+    AccIn :: Acc,
+    AccOut :: Acc.
+
+decode_forgotten_topic_16_tagged_field(_Tag, _Bin0, Acc) ->
+    % Unrecognised tag; ignore it.
+    Acc.
+
 -type fetch_request_0() :: #{
     api_key => integer(),
     api_version => integer(),
@@ -4046,6 +4413,43 @@ decode_forgotten_topic_15_tagged_field(_Tag, _Bin0, Acc) ->
     partitions := list(fetch_partition_15())
 }.
 -type forgotten_topic_15() :: #{
+    topic_id := kafcod:uuid(),
+    partitions := list(integer())
+}.
+-type fetch_request_16() :: #{
+    api_key => integer(),
+    api_version => integer(),
+    correlation_id => integer(),
+    client_id => binary() | null,
+    cluster_id := binary() | null,
+    replica_state := replica_state_16(),
+    max_wait_ms := integer(),
+    min_bytes := integer(),
+    max_bytes := integer(),
+    isolation_level := integer(),
+    session_id := integer(),
+    session_epoch := integer(),
+    topics := list(fetch_topic_16()),
+    forgotten_topics_data := list(forgotten_topic_16()),
+    rack_id := binary()
+}.
+-type replica_state_16() :: #{
+    replica_id := integer(),
+    replica_epoch := integer()
+}.
+-type fetch_partition_16() :: #{
+    partition := integer(),
+    current_leader_epoch := integer(),
+    fetch_offset := integer(),
+    last_fetched_epoch := integer(),
+    log_start_offset := integer(),
+    partition_max_bytes := integer()
+}.
+-type fetch_topic_16() :: #{
+    topic_id := kafcod:uuid(),
+    partitions := list(fetch_partition_16())
+}.
+-type forgotten_topic_16() :: #{
     topic_id := kafcod:uuid(),
     partitions := list(integer())
 }.

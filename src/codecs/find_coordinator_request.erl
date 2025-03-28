@@ -9,14 +9,17 @@
     encode_find_coordinator_request_3/1,
     decode_find_coordinator_request_3/1,
     encode_find_coordinator_request_4/1,
-    decode_find_coordinator_request_4/1
+    decode_find_coordinator_request_4/1,
+    encode_find_coordinator_request_5/1,
+    decode_find_coordinator_request_5/1
 ]).
 -export_type([
     find_coordinator_request_0/0,
     find_coordinator_request_1/0,
     find_coordinator_request_2/0,
     find_coordinator_request_3/0,
-    find_coordinator_request_4/0
+    find_coordinator_request_4/0,
+    find_coordinator_request_5/0
 ]).
 -include("../encoders.hrl").
 -include("../decoders.hrl").
@@ -283,6 +286,66 @@ decode_find_coordinator_request_4_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
     Acc.
 
+-spec encode_find_coordinator_request_5(find_coordinator_request_5()) -> iodata().
+
+encode_find_coordinator_request_5(
+    _Args = #{
+        % The correlation ID of this request.
+        correlation_id := CorrelationId,
+        % The client ID string.
+        client_id := ClientId,
+        % The coordinator key type. (Group, transaction, etc.)
+        key_type := KeyType,
+        % The coordinator keys.
+        coordinator_keys := CoordinatorKeys
+    }
+) when
+    ?is_int32(CorrelationId),
+    ?is_nullable_string(ClientId),
+    ?is_int8(KeyType),
+    ?is_array(CoordinatorKeys)
+->
+    [
+        ?encode_request_header_2(?FIND_COORDINATOR_REQUEST, 5, CorrelationId, ClientId),
+        ?encode_int8(KeyType),
+        ?encode_compact_array(CoordinatorKeys, ?encode_compact_string_),
+        ?EMPTY_TAG_BUFFER
+    ];
+encode_find_coordinator_request_5(Args) ->
+    ?encoder_error(Args, #{
+        correlation_id => int32,
+        client_id => nullable_string,
+        key_type => int8,
+        coordinator_keys => {array, string}
+    }).
+
+-spec decode_find_coordinator_request_5(binary()) -> {Decoded, Rest} when
+    Decoded :: find_coordinator_request_5(),
+    Rest :: binary().
+
+decode_find_coordinator_request_5(Bin) when is_binary(Bin) ->
+    {Header, Bin0} = ?decode_request_header_2(Bin),
+    ?_decode_int8(KeyType, Bin0, Bin1),
+    ?_decode_compact_array(CoordinatorKeys, Bin1, Bin2, ?decode_string_),
+    ?decode_tagged_fields(
+        fun decode_find_coordinator_request_5_tagged_field/3,
+        Header#{
+            key_type => KeyType,
+            coordinator_keys => CoordinatorKeys
+        },
+        Bin2
+    ).
+
+-spec decode_find_coordinator_request_5_tagged_field(Tag, Input, AccIn) -> AccOut when
+    Tag :: non_neg_integer(),
+    Input :: binary(),
+    AccIn :: Acc,
+    AccOut :: Acc.
+
+decode_find_coordinator_request_5_tagged_field(_Tag, _Bin0, Acc) ->
+    % Unrecognised tag; ignore it.
+    Acc.
+
 -type find_coordinator_request_0() :: #{
     api_key => integer(),
     api_version => integer(),
@@ -315,6 +378,14 @@ decode_find_coordinator_request_4_tagged_field(_Tag, _Bin0, Acc) ->
     key_type := integer()
 }.
 -type find_coordinator_request_4() :: #{
+    api_key => integer(),
+    api_version => integer(),
+    correlation_id => integer(),
+    client_id => binary() | null,
+    key_type := integer(),
+    coordinator_keys := list(binary())
+}.
+-type find_coordinator_request_5() :: #{
     api_key => integer(),
     api_version => integer(),
     correlation_id => integer(),

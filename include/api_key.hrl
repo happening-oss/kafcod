@@ -15,3 +15,5 @@
 -define(API_VERSIONS, 18).
 
 -define(DESCRIBE_CONFIGS, 32).
+
+-define(DESCRIBE_CLUSTER, 60).

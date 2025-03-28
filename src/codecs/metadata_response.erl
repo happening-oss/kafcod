@@ -94,7 +94,7 @@ encode_metadata_response_0(
     _Args = #{
         % The correlation ID of this request.
         correlation_id := CorrelationId,
-        % Each broker in the response.
+        % A list of brokers present in the cluster.
         brokers := Brokers,
         % Each topic in the response.
         topics := Topics
@@ -242,7 +242,7 @@ encode_metadata_response_topic_0(
     _Args = #{
         % The topic error, or 0 if there was no error.
         error_code := ErrorCode,
-        % The topic name.
+        % The topic name. Null for non-existing topics queried by ID. This is never null when ErrorCode is zero. One of Name and TopicId is always populated.
         name := Name,
         % Each partition in the topic.
         partitions := Partitions
@@ -287,7 +287,7 @@ encode_metadata_response_1(
     _Args = #{
         % The correlation ID of this request.
         correlation_id := CorrelationId,
-        % Each broker in the response.
+        % A list of brokers present in the cluster.
         brokers := Brokers,
         % The ID of the controller broker.
         controller_id := ControllerId,
@@ -449,7 +449,7 @@ encode_metadata_response_topic_1(
     _Args = #{
         % The topic error, or 0 if there was no error.
         error_code := ErrorCode,
-        % The topic name.
+        % The topic name. Null for non-existing topics queried by ID. This is never null when ErrorCode is zero. One of Name and TopicId is always populated.
         name := Name,
         % True if the topic is internal.
         is_internal := IsInternal,
@@ -501,7 +501,7 @@ encode_metadata_response_2(
     _Args = #{
         % The correlation ID of this request.
         correlation_id := CorrelationId,
-        % Each broker in the response.
+        % A list of brokers present in the cluster.
         brokers := Brokers,
         % The cluster ID that responding broker belongs to.
         cluster_id := ClusterId,
@@ -670,7 +670,7 @@ encode_metadata_response_topic_2(
     _Args = #{
         % The topic error, or 0 if there was no error.
         error_code := ErrorCode,
-        % The topic name.
+        % The topic name. Null for non-existing topics queried by ID. This is never null when ErrorCode is zero. One of Name and TopicId is always populated.
         name := Name,
         % True if the topic is internal.
         is_internal := IsInternal,
@@ -724,7 +724,7 @@ encode_metadata_response_3(
         correlation_id := CorrelationId,
         % The duration in milliseconds for which the request was throttled due to a quota violation, or zero if the request did not violate any quota.
         throttle_time_ms := ThrottleTimeMs,
-        % Each broker in the response.
+        % A list of brokers present in the cluster.
         brokers := Brokers,
         % The cluster ID that responding broker belongs to.
         cluster_id := ClusterId,
@@ -898,7 +898,7 @@ encode_metadata_response_topic_3(
     _Args = #{
         % The topic error, or 0 if there was no error.
         error_code := ErrorCode,
-        % The topic name.
+        % The topic name. Null for non-existing topics queried by ID. This is never null when ErrorCode is zero. One of Name and TopicId is always populated.
         name := Name,
         % True if the topic is internal.
         is_internal := IsInternal,
@@ -952,7 +952,7 @@ encode_metadata_response_4(
         correlation_id := CorrelationId,
         % The duration in milliseconds for which the request was throttled due to a quota violation, or zero if the request did not violate any quota.
         throttle_time_ms := ThrottleTimeMs,
-        % Each broker in the response.
+        % A list of brokers present in the cluster.
         brokers := Brokers,
         % The cluster ID that responding broker belongs to.
         cluster_id := ClusterId,
@@ -1126,7 +1126,7 @@ encode_metadata_response_topic_4(
     _Args = #{
         % The topic error, or 0 if there was no error.
         error_code := ErrorCode,
-        % The topic name.
+        % The topic name. Null for non-existing topics queried by ID. This is never null when ErrorCode is zero. One of Name and TopicId is always populated.
         name := Name,
         % True if the topic is internal.
         is_internal := IsInternal,
@@ -1180,7 +1180,7 @@ encode_metadata_response_5(
         correlation_id := CorrelationId,
         % The duration in milliseconds for which the request was throttled due to a quota violation, or zero if the request did not violate any quota.
         throttle_time_ms := ThrottleTimeMs,
-        % Each broker in the response.
+        % A list of brokers present in the cluster.
         brokers := Brokers,
         % The cluster ID that responding broker belongs to.
         cluster_id := ClusterId,
@@ -1361,7 +1361,7 @@ encode_metadata_response_topic_5(
     _Args = #{
         % The topic error, or 0 if there was no error.
         error_code := ErrorCode,
-        % The topic name.
+        % The topic name. Null for non-existing topics queried by ID. This is never null when ErrorCode is zero. One of Name and TopicId is always populated.
         name := Name,
         % True if the topic is internal.
         is_internal := IsInternal,
@@ -1415,7 +1415,7 @@ encode_metadata_response_6(
         correlation_id := CorrelationId,
         % The duration in milliseconds for which the request was throttled due to a quota violation, or zero if the request did not violate any quota.
         throttle_time_ms := ThrottleTimeMs,
-        % Each broker in the response.
+        % A list of brokers present in the cluster.
         brokers := Brokers,
         % The cluster ID that responding broker belongs to.
         cluster_id := ClusterId,
@@ -1596,7 +1596,7 @@ encode_metadata_response_topic_6(
     _Args = #{
         % The topic error, or 0 if there was no error.
         error_code := ErrorCode,
-        % The topic name.
+        % The topic name. Null for non-existing topics queried by ID. This is never null when ErrorCode is zero. One of Name and TopicId is always populated.
         name := Name,
         % True if the topic is internal.
         is_internal := IsInternal,
@@ -1650,7 +1650,7 @@ encode_metadata_response_7(
         correlation_id := CorrelationId,
         % The duration in milliseconds for which the request was throttled due to a quota violation, or zero if the request did not violate any quota.
         throttle_time_ms := ThrottleTimeMs,
-        % Each broker in the response.
+        % A list of brokers present in the cluster.
         brokers := Brokers,
         % The cluster ID that responding broker belongs to.
         cluster_id := ClusterId,
@@ -1838,7 +1838,7 @@ encode_metadata_response_topic_7(
     _Args = #{
         % The topic error, or 0 if there was no error.
         error_code := ErrorCode,
-        % The topic name.
+        % The topic name. Null for non-existing topics queried by ID. This is never null when ErrorCode is zero. One of Name and TopicId is always populated.
         name := Name,
         % True if the topic is internal.
         is_internal := IsInternal,
@@ -1892,7 +1892,7 @@ encode_metadata_response_8(
         correlation_id := CorrelationId,
         % The duration in milliseconds for which the request was throttled due to a quota violation, or zero if the request did not violate any quota.
         throttle_time_ms := ThrottleTimeMs,
-        % Each broker in the response.
+        % A list of brokers present in the cluster.
         brokers := Brokers,
         % The cluster ID that responding broker belongs to.
         cluster_id := ClusterId,
@@ -2087,7 +2087,7 @@ encode_metadata_response_topic_8(
     _Args = #{
         % The topic error, or 0 if there was no error.
         error_code := ErrorCode,
-        % The topic name.
+        % The topic name. Null for non-existing topics queried by ID. This is never null when ErrorCode is zero. One of Name and TopicId is always populated.
         name := Name,
         % True if the topic is internal.
         is_internal := IsInternal,
@@ -2148,7 +2148,7 @@ encode_metadata_response_9(
         correlation_id := CorrelationId,
         % The duration in milliseconds for which the request was throttled due to a quota violation, or zero if the request did not violate any quota.
         throttle_time_ms := ThrottleTimeMs,
-        % Each broker in the response.
+        % A list of brokers present in the cluster.
         brokers := Brokers,
         % The cluster ID that responding broker belongs to.
         cluster_id := ClusterId,
@@ -2379,7 +2379,7 @@ encode_metadata_response_topic_9(
     _Args = #{
         % The topic error, or 0 if there was no error.
         error_code := ErrorCode,
-        % The topic name.
+        % The topic name. Null for non-existing topics queried by ID. This is never null when ErrorCode is zero. One of Name and TopicId is always populated.
         name := Name,
         % True if the topic is internal.
         is_internal := IsInternal,
@@ -2452,7 +2452,7 @@ encode_metadata_response_10(
         correlation_id := CorrelationId,
         % The duration in milliseconds for which the request was throttled due to a quota violation, or zero if the request did not violate any quota.
         throttle_time_ms := ThrottleTimeMs,
-        % Each broker in the response.
+        % A list of brokers present in the cluster.
         brokers := Brokers,
         % The cluster ID that responding broker belongs to.
         cluster_id := ClusterId,
@@ -2683,9 +2683,9 @@ encode_metadata_response_topic_10(
     _Args = #{
         % The topic error, or 0 if there was no error.
         error_code := ErrorCode,
-        % The topic name.
+        % The topic name. Null for non-existing topics queried by ID. This is never null when ErrorCode is zero. One of Name and TopicId is always populated.
         name := Name,
-        % The topic id.
+        % The topic id. Zero for non-existing topics queried by name. This is never zero when ErrorCode is zero. One of Name and TopicId is always populated.
         topic_id := TopicId,
         % True if the topic is internal.
         is_internal := IsInternal,
@@ -2763,7 +2763,7 @@ encode_metadata_response_11(
         correlation_id := CorrelationId,
         % The duration in milliseconds for which the request was throttled due to a quota violation, or zero if the request did not violate any quota.
         throttle_time_ms := ThrottleTimeMs,
-        % Each broker in the response.
+        % A list of brokers present in the cluster.
         brokers := Brokers,
         % The cluster ID that responding broker belongs to.
         cluster_id := ClusterId,
@@ -2987,9 +2987,9 @@ encode_metadata_response_topic_11(
     _Args = #{
         % The topic error, or 0 if there was no error.
         error_code := ErrorCode,
-        % The topic name.
+        % The topic name. Null for non-existing topics queried by ID. This is never null when ErrorCode is zero. One of Name and TopicId is always populated.
         name := Name,
-        % The topic id.
+        % The topic id. Zero for non-existing topics queried by name. This is never zero when ErrorCode is zero. One of Name and TopicId is always populated.
         topic_id := TopicId,
         % True if the topic is internal.
         is_internal := IsInternal,
@@ -3067,7 +3067,7 @@ encode_metadata_response_12(
         correlation_id := CorrelationId,
         % The duration in milliseconds for which the request was throttled due to a quota violation, or zero if the request did not violate any quota.
         throttle_time_ms := ThrottleTimeMs,
-        % Each broker in the response.
+        % A list of brokers present in the cluster.
         brokers := Brokers,
         % The cluster ID that responding broker belongs to.
         cluster_id := ClusterId,
@@ -3291,9 +3291,9 @@ encode_metadata_response_topic_12(
     _Args = #{
         % The topic error, or 0 if there was no error.
         error_code := ErrorCode,
-        % The topic name.
+        % The topic name. Null for non-existing topics queried by ID. This is never null when ErrorCode is zero. One of Name and TopicId is always populated.
         name := Name,
-        % The topic id.
+        % The topic id. Zero for non-existing topics queried by name. This is never zero when ErrorCode is zero. One of Name and TopicId is always populated.
         topic_id := TopicId,
         % True if the topic is internal.
         is_internal := IsInternal,

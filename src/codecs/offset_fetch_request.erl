@@ -17,7 +17,9 @@
     encode_offset_fetch_request_7/1,
     decode_offset_fetch_request_7/1,
     encode_offset_fetch_request_8/1,
-    decode_offset_fetch_request_8/1
+    decode_offset_fetch_request_8/1,
+    encode_offset_fetch_request_9/1,
+    decode_offset_fetch_request_9/1
 ]).
 -export_type([
     offset_fetch_request_0/0,
@@ -38,7 +40,10 @@
     offset_fetch_request_topic_7/0,
     offset_fetch_request_8/0,
     offset_fetch_request_topics_8/0,
-    offset_fetch_request_group_8/0
+    offset_fetch_request_group_8/0,
+    offset_fetch_request_9/0,
+    offset_fetch_request_topics_9/0,
+    offset_fetch_request_group_9/0
 ]).
 -include("../encoders.hrl").
 -include("../decoders.hrl").
@@ -951,6 +956,180 @@ decode_offset_fetch_request_group_8_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
     Acc.
 
+-spec encode_offset_fetch_request_9(offset_fetch_request_9()) -> iodata().
+
+encode_offset_fetch_request_9(
+    _Args = #{
+        % The correlation ID of this request.
+        correlation_id := CorrelationId,
+        % The client ID string.
+        client_id := ClientId,
+        % Each group we would like to fetch offsets for
+        groups := Groups,
+        % Whether broker should hold on returning unstable offsets but set a retriable error code for the partitions.
+        require_stable := RequireStable
+    }
+) when
+    ?is_int32(CorrelationId),
+    ?is_nullable_string(ClientId),
+    ?is_array(Groups),
+    ?is_bool(RequireStable)
+->
+    [
+        ?encode_request_header_2(?OFFSET_FETCH_REQUEST, 9, CorrelationId, ClientId),
+        ?encode_compact_array(Groups, fun encode_offset_fetch_request_group_9/1),
+        ?encode_bool(RequireStable),
+        ?EMPTY_TAG_BUFFER
+    ];
+encode_offset_fetch_request_9(Args) ->
+    ?encoder_error(Args, #{
+        correlation_id => int32,
+        client_id => nullable_string,
+        groups => {array, offset_fetch_request_group_9},
+        require_stable => bool
+    }).
+
+-spec decode_offset_fetch_request_9(binary()) -> {Decoded, Rest} when
+    Decoded :: offset_fetch_request_9(),
+    Rest :: binary().
+
+decode_offset_fetch_request_9(Bin) when is_binary(Bin) ->
+    {Header, Bin0} = ?decode_request_header_2(Bin),
+    ?_decode_compact_array(Groups, Bin0, Bin1, ?_decode_element(decode_offset_fetch_request_group_9)),
+    ?_decode_bool(RequireStable, Bin1, Bin2),
+    ?decode_tagged_fields(
+        fun decode_offset_fetch_request_9_tagged_field/3,
+        Header#{
+            groups => Groups,
+            require_stable => RequireStable
+        },
+        Bin2
+    ).
+
+-spec decode_offset_fetch_request_9_tagged_field(Tag, Input, AccIn) -> AccOut when
+    Tag :: non_neg_integer(),
+    Input :: binary(),
+    AccIn :: Acc,
+    AccOut :: Acc.
+
+decode_offset_fetch_request_9_tagged_field(_Tag, _Bin0, Acc) ->
+    % Unrecognised tag; ignore it.
+    Acc.
+
+-spec encode_offset_fetch_request_topics_9(offset_fetch_request_topics_9()) -> iodata().
+
+encode_offset_fetch_request_topics_9(
+    _Args = #{
+        % The topic name.
+        name := Name,
+        % The partition indexes we would like to fetch offsets for.
+        partition_indexes := PartitionIndexes
+    }
+) when
+    ?is_string(Name),
+    ?is_array(PartitionIndexes)
+->
+    [
+        ?encode_compact_string(Name),
+        ?encode_compact_array(PartitionIndexes, ?encode_int32_),
+        ?EMPTY_TAG_BUFFER
+    ];
+encode_offset_fetch_request_topics_9(Args) ->
+    ?encoder_error(Args, #{
+        name => string,
+        partition_indexes => {array, int32}
+    }).
+
+-spec decode_offset_fetch_request_topics_9(binary()) -> {Decoded, Rest} when
+    Decoded :: offset_fetch_request_topics_9(),
+    Rest :: binary().
+
+decode_offset_fetch_request_topics_9(Bin0) when is_binary(Bin0) ->
+    ?_decode_compact_string(Name, Bin0, Bin1),
+    ?_decode_compact_array(PartitionIndexes, Bin1, Bin2, ?decode_int32_),
+    ?decode_tagged_fields(
+        fun decode_offset_fetch_request_topics_9_tagged_field/3,
+        #{
+            name => Name,
+            partition_indexes => PartitionIndexes
+        },
+        Bin2
+    ).
+
+-spec decode_offset_fetch_request_topics_9_tagged_field(Tag, Input, AccIn) -> AccOut when
+    Tag :: non_neg_integer(),
+    Input :: binary(),
+    AccIn :: Acc,
+    AccOut :: Acc.
+
+decode_offset_fetch_request_topics_9_tagged_field(_Tag, _Bin0, Acc) ->
+    % Unrecognised tag; ignore it.
+    Acc.
+
+-spec encode_offset_fetch_request_group_9(offset_fetch_request_group_9()) -> iodata().
+
+encode_offset_fetch_request_group_9(
+    _Args = #{
+        % The group ID.
+        group_id := GroupId,
+        % The member ID assigned by the group coordinator if using the new consumer protocol (KIP-848).
+        member_id := MemberId,
+        % The member epoch if using the new consumer protocol (KIP-848).
+        member_epoch := MemberEpoch,
+        % Each topic we would like to fetch offsets for, or null to fetch offsets for all topics.
+        topics := Topics
+    }
+) when
+    ?is_string(GroupId),
+    ?is_nullable_string(MemberId),
+    ?is_int32(MemberEpoch),
+    ?is_nullable_array(Topics)
+->
+    [
+        ?encode_compact_string(GroupId),
+        ?encode_compact_nullable_string(MemberId),
+        ?encode_int32(MemberEpoch),
+        ?encode_compact_nullable_array(Topics, fun encode_offset_fetch_request_topics_9/1),
+        ?EMPTY_TAG_BUFFER
+    ];
+encode_offset_fetch_request_group_9(Args) ->
+    ?encoder_error(Args, #{
+        group_id => string,
+        member_id => nullable_string,
+        member_epoch => int32,
+        topics => {nullable_array, offset_fetch_request_topics_9}
+    }).
+
+-spec decode_offset_fetch_request_group_9(binary()) -> {Decoded, Rest} when
+    Decoded :: offset_fetch_request_group_9(),
+    Rest :: binary().
+
+decode_offset_fetch_request_group_9(Bin0) when is_binary(Bin0) ->
+    ?_decode_compact_string(GroupId, Bin0, Bin1),
+    ?_decode_compact_nullable_string(MemberId, Bin1, Bin2),
+    ?_decode_int32(MemberEpoch, Bin2, Bin3),
+    ?_decode_compact_nullable_array(Topics, Bin3, Bin4, ?_decode_element(decode_offset_fetch_request_topics_9)),
+    ?decode_tagged_fields(
+        fun decode_offset_fetch_request_group_9_tagged_field/3,
+        #{
+            group_id => GroupId,
+            member_id => MemberId,
+            member_epoch => MemberEpoch,
+            topics => Topics
+        },
+        Bin4
+    ).
+
+-spec decode_offset_fetch_request_group_9_tagged_field(Tag, Input, AccIn) -> AccOut when
+    Tag :: non_neg_integer(),
+    Input :: binary(),
+    AccIn :: Acc,
+    AccOut :: Acc.
+
+decode_offset_fetch_request_group_9_tagged_field(_Tag, _Bin0, Acc) ->
+    % Unrecognised tag; ignore it.
+    Acc.
+
 -type offset_fetch_request_0() :: #{
     api_key => integer(),
     api_version => integer(),
@@ -1063,4 +1242,22 @@ decode_offset_fetch_request_group_8_tagged_field(_Tag, _Bin0, Acc) ->
 -type offset_fetch_request_group_8() :: #{
     group_id := binary(),
     topics := list(offset_fetch_request_topics_8()) | null
+}.
+-type offset_fetch_request_9() :: #{
+    api_key => integer(),
+    api_version => integer(),
+    correlation_id => integer(),
+    client_id => binary() | null,
+    groups := list(offset_fetch_request_group_9()),
+    require_stable := boolean()
+}.
+-type offset_fetch_request_topics_9() :: #{
+    name := binary(),
+    partition_indexes := list(integer())
+}.
+-type offset_fetch_request_group_9() :: #{
+    group_id := binary(),
+    member_id := binary() | null,
+    member_epoch := integer(),
+    topics := list(offset_fetch_request_topics_9()) | null
 }.

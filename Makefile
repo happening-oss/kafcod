@@ -14,7 +14,7 @@ eunit:
 	rebar3 eunit
 	make -C tools/make_codecs eunit
 
-dialyze:
+dialyzer:
 	rebar3 dialyzer
 
 KAFKA_SOURCE_ROOT ?= $(HOME)/Source/apache/kafka
@@ -37,9 +37,9 @@ ci:: dialyze eunit
 
 eqwalize:: compile
 
-# Workaround for eqwalizer.mk
-ERLANG_MK_TMP = $(shell TERM=dumb QUIET=1 rebar3 path --base)
 include eqwalizer.mk
+
+all: compile dialyzer eqwalize eunit
 
 GNU_TAR ?= gtar
 ARCHIVE := ../$(PROJECT)-$(PROJECT_VERSION).tar

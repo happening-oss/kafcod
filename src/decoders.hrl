@@ -121,6 +121,10 @@
 
 % The 'D__' prefix (for "decoder") is to prevent variable shadowing; you're unlikely to have used such an ugly name in
 % the containing scope.
+-define(decode_int8_, fun(D__Bin) ->
+    <<V:8/big, Rest/binary>> = D__Bin,
+    {V, Rest}
+end).
 -define(decode_int32_, fun(D__Bin) ->
     <<V:32/big, Rest/binary>> = D__Bin,
     {V, Rest}
@@ -129,7 +133,8 @@ end).
     <<V:64/big, Rest/binary>> = D__Bin,
     {V, Rest}
 end).
--define(decode_string_, fun(D__Bin) -> kafcod_primitives:decode_string(D__Bin) end).
+-define(decode_string_, fun kafcod_primitives:decode_string/1).
+-define(decode_uuid_, fun kafcod_primitives:decode_uuid/1).
 
 -ifdef(DECODER_TRACING).
 % Decoder tracing replaces (some of) the decoding macros with variants that write to the Erlang logger.

@@ -9,14 +9,17 @@
     encode_list_groups_request_3/1,
     decode_list_groups_request_3/1,
     encode_list_groups_request_4/1,
-    decode_list_groups_request_4/1
+    decode_list_groups_request_4/1,
+    encode_list_groups_request_5/1,
+    decode_list_groups_request_5/1
 ]).
 -export_type([
     list_groups_request_0/0,
     list_groups_request_1/0,
     list_groups_request_2/0,
     list_groups_request_3/0,
-    list_groups_request_4/0
+    list_groups_request_4/0,
+    list_groups_request_5/0
 ]).
 -include("../encoders.hrl").
 -include("../decoders.hrl").
@@ -186,7 +189,7 @@ encode_list_groups_request_4(
         correlation_id := CorrelationId,
         % The client ID string.
         client_id := ClientId,
-        % The states of the groups we want to list. If empty all groups are returned with their state.
+        % The states of the groups we want to list. If empty, all groups are returned with their state.
         states_filter := StatesFilter
     }
 ) when
@@ -231,6 +234,66 @@ decode_list_groups_request_4_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
     Acc.
 
+-spec encode_list_groups_request_5(list_groups_request_5()) -> iodata().
+
+encode_list_groups_request_5(
+    _Args = #{
+        % The correlation ID of this request.
+        correlation_id := CorrelationId,
+        % The client ID string.
+        client_id := ClientId,
+        % The states of the groups we want to list. If empty, all groups are returned with their state.
+        states_filter := StatesFilter,
+        % The types of the groups we want to list. If empty, all groups are returned with their type.
+        types_filter := TypesFilter
+    }
+) when
+    ?is_int32(CorrelationId),
+    ?is_nullable_string(ClientId),
+    ?is_array(StatesFilter),
+    ?is_array(TypesFilter)
+->
+    [
+        ?encode_request_header_2(?LIST_GROUPS_REQUEST, 5, CorrelationId, ClientId),
+        ?encode_compact_array(StatesFilter, ?encode_compact_string_),
+        ?encode_compact_array(TypesFilter, ?encode_compact_string_),
+        ?EMPTY_TAG_BUFFER
+    ];
+encode_list_groups_request_5(Args) ->
+    ?encoder_error(Args, #{
+        correlation_id => int32,
+        client_id => nullable_string,
+        states_filter => {array, string},
+        types_filter => {array, string}
+    }).
+
+-spec decode_list_groups_request_5(binary()) -> {Decoded, Rest} when
+    Decoded :: list_groups_request_5(),
+    Rest :: binary().
+
+decode_list_groups_request_5(Bin) when is_binary(Bin) ->
+    {Header, Bin0} = ?decode_request_header_2(Bin),
+    ?_decode_compact_array(StatesFilter, Bin0, Bin1, ?decode_string_),
+    ?_decode_compact_array(TypesFilter, Bin1, Bin2, ?decode_string_),
+    ?decode_tagged_fields(
+        fun decode_list_groups_request_5_tagged_field/3,
+        Header#{
+            states_filter => StatesFilter,
+            types_filter => TypesFilter
+        },
+        Bin2
+    ).
+
+-spec decode_list_groups_request_5_tagged_field(Tag, Input, AccIn) -> AccOut when
+    Tag :: non_neg_integer(),
+    Input :: binary(),
+    AccIn :: Acc,
+    AccOut :: Acc.
+
+decode_list_groups_request_5_tagged_field(_Tag, _Bin0, Acc) ->
+    % Unrecognised tag; ignore it.
+    Acc.
+
 -type list_groups_request_0() :: #{
     api_key => integer(),
     api_version => integer(),
@@ -261,4 +324,12 @@ decode_list_groups_request_4_tagged_field(_Tag, _Bin0, Acc) ->
     correlation_id => integer(),
     client_id => binary() | null,
     states_filter := list(binary())
+}.
+-type list_groups_request_5() :: #{
+    api_key => integer(),
+    api_version => integer(),
+    correlation_id => integer(),
+    client_id => binary() | null,
+    states_filter := list(binary()),
+    types_filter := list(binary())
 }.
