@@ -425,7 +425,8 @@ decode_describe_delegation_token_response_2(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: describe_delegation_token_response_2().
 
 decode_describe_delegation_token_response_2_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -475,7 +476,8 @@ decode_described_delegation_token_renewer_2(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: described_delegation_token_renewer_2().
 
 decode_described_delegation_token_renewer_2_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -567,7 +569,8 @@ decode_described_delegation_token_2(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: described_delegation_token_2().
 
 decode_described_delegation_token_2_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -630,7 +633,8 @@ decode_describe_delegation_token_response_3(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: describe_delegation_token_response_3().
 
 decode_describe_delegation_token_response_3_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -680,7 +684,8 @@ decode_described_delegation_token_renewer_3(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: described_delegation_token_renewer_3().
 
 decode_described_delegation_token_renewer_3_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -786,7 +791,8 @@ decode_described_delegation_token_3(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: described_delegation_token_3().
 
 decode_described_delegation_token_3_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.

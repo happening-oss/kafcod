@@ -246,7 +246,8 @@ decode_alter_client_quotas_request_1(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: alter_client_quotas_request_1().
 
 decode_alter_client_quotas_request_1_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -296,7 +297,8 @@ decode_entity_data_1(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: entity_data_1().
 
 decode_entity_data_1_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -353,7 +355,8 @@ decode_op_data_1(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: op_data_1().
 
 decode_op_data_1_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -403,7 +406,8 @@ decode_entry_data_1(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: entry_data_1().
 
 decode_entry_data_1_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.

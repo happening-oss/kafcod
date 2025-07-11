@@ -1049,7 +1049,8 @@ decode_offset_commit_response_8(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: offset_commit_response_8().
 
 decode_offset_commit_response_8_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -1099,7 +1100,8 @@ decode_offset_commit_response_partition_8(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: offset_commit_response_partition_8().
 
 decode_offset_commit_response_partition_8_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -1149,7 +1151,8 @@ decode_offset_commit_response_topic_8(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: offset_commit_response_topic_8().
 
 decode_offset_commit_response_topic_8_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -1205,7 +1208,8 @@ decode_offset_commit_response_9(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: offset_commit_response_9().
 
 decode_offset_commit_response_9_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -1255,7 +1259,8 @@ decode_offset_commit_response_partition_9(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: offset_commit_response_partition_9().
 
 decode_offset_commit_response_partition_9_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -1305,7 +1310,8 @@ decode_offset_commit_response_topic_9(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: offset_commit_response_topic_9().
 
 decode_offset_commit_response_topic_9_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.

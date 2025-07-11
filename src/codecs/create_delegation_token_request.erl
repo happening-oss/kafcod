@@ -253,7 +253,8 @@ decode_create_delegation_token_request_2(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: create_delegation_token_request_2().
 
 decode_create_delegation_token_request_2_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -303,7 +304,8 @@ decode_creatable_renewers_2(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: creatable_renewers_2().
 
 decode_creatable_renewers_2_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -377,7 +379,8 @@ decode_create_delegation_token_request_3(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: create_delegation_token_request_3().
 
 decode_create_delegation_token_request_3_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -427,7 +430,8 @@ decode_creatable_renewers_3(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: creatable_renewers_3().
 
 decode_creatable_renewers_3_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.

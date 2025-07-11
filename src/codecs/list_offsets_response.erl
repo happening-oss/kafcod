@@ -900,7 +900,8 @@ decode_list_offsets_response_6(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: list_offsets_response_6().
 
 decode_list_offsets_response_6_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -970,7 +971,8 @@ decode_list_offsets_partition_response_6(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: list_offsets_partition_response_6().
 
 decode_list_offsets_partition_response_6_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -1020,7 +1022,8 @@ decode_list_offsets_topic_response_6(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: list_offsets_topic_response_6().
 
 decode_list_offsets_topic_response_6_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -1076,7 +1079,8 @@ decode_list_offsets_response_7(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: list_offsets_response_7().
 
 decode_list_offsets_response_7_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -1146,7 +1150,8 @@ decode_list_offsets_partition_response_7(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: list_offsets_partition_response_7().
 
 decode_list_offsets_partition_response_7_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -1196,7 +1201,8 @@ decode_list_offsets_topic_response_7(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: list_offsets_topic_response_7().
 
 decode_list_offsets_topic_response_7_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -1252,7 +1258,8 @@ decode_list_offsets_response_8(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: list_offsets_response_8().
 
 decode_list_offsets_response_8_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -1322,7 +1329,8 @@ decode_list_offsets_partition_response_8(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: list_offsets_partition_response_8().
 
 decode_list_offsets_partition_response_8_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -1372,7 +1380,8 @@ decode_list_offsets_topic_response_8(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: list_offsets_topic_response_8().
 
 decode_list_offsets_topic_response_8_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.

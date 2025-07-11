@@ -164,7 +164,8 @@ decode_incremental_alter_configs_response_1(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: incremental_alter_configs_response_1().
 
 decode_incremental_alter_configs_response_1_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -228,7 +229,8 @@ decode_alter_configs_resource_response_1(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: alter_configs_resource_response_1().
 
 decode_alter_configs_resource_response_1_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.

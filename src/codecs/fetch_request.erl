@@ -2415,7 +2415,9 @@ encode_fetch_request_12(Args) ->
         rack_id => string
     }).
 
--spec encode_fetch_request_12_tagged_field(Key :: atom(), Value :: term()) -> iodata() | ignore.
+-spec encode_fetch_request_12_tagged_field(
+    Key :: atom(), Value :: binary() | null
+) -> {non_neg_integer(), iodata()} | ignore.
 
 encode_fetch_request_12_tagged_field(_Key = cluster_id, ClusterId) ->
     {0, ?encode_compact_nullable_string(ClusterId)};
@@ -2459,7 +2461,8 @@ decode_fetch_request_12(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: fetch_request_12().
 
 %% ClusterId
 %% The clusterId if known. This is used to validate metadata fetches prior to broker registration.
@@ -2543,7 +2546,8 @@ decode_fetch_partition_12(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: fetch_partition_12().
 
 decode_fetch_partition_12_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -2593,7 +2597,8 @@ decode_fetch_topic_12(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: fetch_topic_12().
 
 decode_fetch_topic_12_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -2643,7 +2648,8 @@ decode_forgotten_topic_12(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: forgotten_topic_12().
 
 decode_forgotten_topic_12_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -2725,7 +2731,9 @@ encode_fetch_request_13(Args) ->
         rack_id => string
     }).
 
--spec encode_fetch_request_13_tagged_field(Key :: atom(), Value :: term()) -> iodata() | ignore.
+-spec encode_fetch_request_13_tagged_field(
+    Key :: atom(), Value :: binary() | null
+) -> {non_neg_integer(), iodata()} | ignore.
 
 encode_fetch_request_13_tagged_field(_Key = cluster_id, ClusterId) ->
     {0, ?encode_compact_nullable_string(ClusterId)};
@@ -2769,7 +2777,8 @@ decode_fetch_request_13(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: fetch_request_13().
 
 %% ClusterId
 %% The clusterId if known. This is used to validate metadata fetches prior to broker registration.
@@ -2853,7 +2862,8 @@ decode_fetch_partition_13(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: fetch_partition_13().
 
 decode_fetch_partition_13_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -2903,7 +2913,8 @@ decode_fetch_topic_13(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: fetch_topic_13().
 
 decode_fetch_topic_13_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -2953,7 +2964,8 @@ decode_forgotten_topic_13(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: forgotten_topic_13().
 
 decode_forgotten_topic_13_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -3035,7 +3047,9 @@ encode_fetch_request_14(Args) ->
         rack_id => string
     }).
 
--spec encode_fetch_request_14_tagged_field(Key :: atom(), Value :: term()) -> iodata() | ignore.
+-spec encode_fetch_request_14_tagged_field(
+    Key :: atom(), Value :: binary() | null
+) -> {non_neg_integer(), iodata()} | ignore.
 
 encode_fetch_request_14_tagged_field(_Key = cluster_id, ClusterId) ->
     {0, ?encode_compact_nullable_string(ClusterId)};
@@ -3079,7 +3093,8 @@ decode_fetch_request_14(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: fetch_request_14().
 
 %% ClusterId
 %% The clusterId if known. This is used to validate metadata fetches prior to broker registration.
@@ -3163,7 +3178,8 @@ decode_fetch_partition_14(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: fetch_partition_14().
 
 decode_fetch_partition_14_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -3213,7 +3229,8 @@ decode_fetch_topic_14(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: fetch_topic_14().
 
 decode_fetch_topic_14_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -3263,7 +3280,8 @@ decode_forgotten_topic_14(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: forgotten_topic_14().
 
 decode_forgotten_topic_14_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -3340,7 +3358,9 @@ encode_fetch_request_15(Args) ->
         rack_id => string
     }).
 
--spec encode_fetch_request_15_tagged_field(Key :: atom(), Value :: term()) -> iodata() | ignore.
+-spec encode_fetch_request_15_tagged_field(
+    Key :: atom(), Value :: binary() | null | replica_state_15()
+) -> {non_neg_integer(), iodata()} | ignore.
 
 encode_fetch_request_15_tagged_field(_Key = cluster_id, ClusterId) ->
     {0, ?encode_compact_nullable_string(ClusterId)};
@@ -3384,7 +3404,8 @@ decode_fetch_request_15(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: fetch_request_15().
 
 %% ClusterId
 %% The clusterId if known. This is used to validate metadata fetches prior to broker registration.
@@ -3445,7 +3466,8 @@ decode_replica_state_15(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: replica_state_15().
 
 decode_replica_state_15_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -3523,7 +3545,8 @@ decode_fetch_partition_15(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: fetch_partition_15().
 
 decode_fetch_partition_15_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -3573,7 +3596,8 @@ decode_fetch_topic_15(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: fetch_topic_15().
 
 decode_fetch_topic_15_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -3623,7 +3647,8 @@ decode_forgotten_topic_15(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: forgotten_topic_15().
 
 decode_forgotten_topic_15_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -3700,7 +3725,9 @@ encode_fetch_request_16(Args) ->
         rack_id => string
     }).
 
--spec encode_fetch_request_16_tagged_field(Key :: atom(), Value :: term()) -> iodata() | ignore.
+-spec encode_fetch_request_16_tagged_field(
+    Key :: atom(), Value :: binary() | null | replica_state_16()
+) -> {non_neg_integer(), iodata()} | ignore.
 
 encode_fetch_request_16_tagged_field(_Key = cluster_id, ClusterId) ->
     {0, ?encode_compact_nullable_string(ClusterId)};
@@ -3744,7 +3771,8 @@ decode_fetch_request_16(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: fetch_request_16().
 
 %% ClusterId
 %% The clusterId if known. This is used to validate metadata fetches prior to broker registration.
@@ -3805,7 +3833,8 @@ decode_replica_state_16(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: replica_state_16().
 
 decode_replica_state_16_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -3883,7 +3912,8 @@ decode_fetch_partition_16(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: fetch_partition_16().
 
 decode_fetch_partition_16_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -3933,7 +3963,8 @@ decode_fetch_topic_16(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: fetch_topic_16().
 
 decode_fetch_topic_16_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -3983,7 +4014,8 @@ decode_forgotten_topic_16(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: forgotten_topic_16().
 
 decode_forgotten_topic_16_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -4285,7 +4317,7 @@ decode_forgotten_topic_16_tagged_field(_Tag, _Bin0, Acc) ->
     api_version => integer(),
     correlation_id => integer(),
     client_id => binary() | null,
-    cluster_id := binary() | null,
+    cluster_id => binary() | null,
     replica_id := integer(),
     max_wait_ms := integer(),
     min_bytes := integer(),
@@ -4318,7 +4350,7 @@ decode_forgotten_topic_16_tagged_field(_Tag, _Bin0, Acc) ->
     api_version => integer(),
     correlation_id => integer(),
     client_id => binary() | null,
-    cluster_id := binary() | null,
+    cluster_id => binary() | null,
     replica_id := integer(),
     max_wait_ms := integer(),
     min_bytes := integer(),
@@ -4351,7 +4383,7 @@ decode_forgotten_topic_16_tagged_field(_Tag, _Bin0, Acc) ->
     api_version => integer(),
     correlation_id => integer(),
     client_id => binary() | null,
-    cluster_id := binary() | null,
+    cluster_id => binary() | null,
     replica_id := integer(),
     max_wait_ms := integer(),
     min_bytes := integer(),
@@ -4384,8 +4416,8 @@ decode_forgotten_topic_16_tagged_field(_Tag, _Bin0, Acc) ->
     api_version => integer(),
     correlation_id => integer(),
     client_id => binary() | null,
-    cluster_id := binary() | null,
-    replica_state := replica_state_15(),
+    cluster_id => binary() | null,
+    replica_state => replica_state_15(),
     max_wait_ms := integer(),
     min_bytes := integer(),
     max_bytes := integer(),
@@ -4421,8 +4453,8 @@ decode_forgotten_topic_16_tagged_field(_Tag, _Bin0, Acc) ->
     api_version => integer(),
     correlation_id => integer(),
     client_id => binary() | null,
-    cluster_id := binary() | null,
-    replica_state := replica_state_16(),
+    cluster_id => binary() | null,
+    replica_state => replica_state_16(),
     max_wait_ms := integer(),
     min_bytes := integer(),
     max_bytes := integer(),

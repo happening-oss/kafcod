@@ -70,7 +70,8 @@ decode_alter_partition_reassignments_request_0(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: alter_partition_reassignments_request_0().
 
 decode_alter_partition_reassignments_request_0_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -120,7 +121,8 @@ decode_reassignable_partition_0(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: reassignable_partition_0().
 
 decode_reassignable_partition_0_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -170,7 +172,8 @@ decode_reassignable_topic_0(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: reassignable_topic_0().
 
 decode_reassignable_topic_0_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.

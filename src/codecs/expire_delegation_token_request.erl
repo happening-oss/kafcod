@@ -170,7 +170,8 @@ decode_expire_delegation_token_request_2(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: expire_delegation_token_request_2().
 
 decode_expire_delegation_token_request_2_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.

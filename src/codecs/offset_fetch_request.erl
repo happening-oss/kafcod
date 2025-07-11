@@ -623,7 +623,8 @@ decode_offset_fetch_request_6(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: offset_fetch_request_6().
 
 decode_offset_fetch_request_6_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -673,7 +674,8 @@ decode_offset_fetch_request_topic_6(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: offset_fetch_request_topic_6().
 
 decode_offset_fetch_request_topic_6_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -740,7 +742,8 @@ decode_offset_fetch_request_7(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: offset_fetch_request_7().
 
 decode_offset_fetch_request_7_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -790,7 +793,8 @@ decode_offset_fetch_request_topic_7(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: offset_fetch_request_topic_7().
 
 decode_offset_fetch_request_topic_7_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -850,7 +854,8 @@ decode_offset_fetch_request_8(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: offset_fetch_request_8().
 
 decode_offset_fetch_request_8_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -900,7 +905,8 @@ decode_offset_fetch_request_topics_8(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: offset_fetch_request_topics_8().
 
 decode_offset_fetch_request_topics_8_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -950,7 +956,8 @@ decode_offset_fetch_request_group_8(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: offset_fetch_request_group_8().
 
 decode_offset_fetch_request_group_8_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -1010,7 +1017,8 @@ decode_offset_fetch_request_9(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: offset_fetch_request_9().
 
 decode_offset_fetch_request_9_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -1060,7 +1068,8 @@ decode_offset_fetch_request_topics_9(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: offset_fetch_request_topics_9().
 
 decode_offset_fetch_request_topics_9_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -1124,7 +1133,8 @@ decode_offset_fetch_request_group_9(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: offset_fetch_request_group_9().
 
 decode_offset_fetch_request_group_9_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.

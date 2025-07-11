@@ -74,7 +74,8 @@ decode_fetch_snapshot_response_0(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: fetch_snapshot_response_0().
 
 decode_fetch_snapshot_response_0_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -122,7 +123,8 @@ decode_snapshot_id_0(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: snapshot_id_0().
 
 decode_snapshot_id_0_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -172,7 +174,8 @@ decode_leader_id_and_epoch_0(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: leader_id_and_epoch_0().
 
 decode_leader_id_and_epoch_0_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -225,7 +228,9 @@ encode_partition_snapshot_0(Args) ->
         unaligned_records => records
     }).
 
--spec encode_partition_snapshot_0_tagged_field(Key :: atom(), Value :: term()) -> iodata() | ignore.
+-spec encode_partition_snapshot_0_tagged_field(
+    Key :: atom(), Value :: leader_id_and_epoch_0()
+) -> {non_neg_integer(), iodata()} | ignore.
 
 encode_partition_snapshot_0_tagged_field(_Key = current_leader, CurrentLeader) ->
     {0, encode_leader_id_and_epoch_0(CurrentLeader)};
@@ -260,7 +265,8 @@ decode_partition_snapshot_0(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: partition_snapshot_0().
 
 %% CurrentLeader
 decode_partition_snapshot_0_tagged_field(_Tag = 0, Bin0, Acc) ->
@@ -315,7 +321,8 @@ decode_topic_snapshot_0(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: topic_snapshot_0().
 
 decode_topic_snapshot_0_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -339,7 +346,7 @@ decode_topic_snapshot_0_tagged_field(_Tag, _Bin0, Acc) ->
     index := integer(),
     error_code := integer(),
     snapshot_id := snapshot_id_0(),
-    current_leader := leader_id_and_epoch_0(),
+    current_leader => leader_id_and_epoch_0(),
     size := integer(),
     position := integer(),
     unaligned_records := kafcod_records:records()

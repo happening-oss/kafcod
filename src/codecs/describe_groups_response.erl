@@ -949,7 +949,8 @@ decode_describe_groups_response_5(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: describe_groups_response_5().
 
 decode_describe_groups_response_5_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -1027,7 +1028,8 @@ decode_described_group_member_5(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: described_group_member_5().
 
 decode_described_group_member_5_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -1112,7 +1114,8 @@ decode_described_group_5(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: described_group_5().
 
 decode_described_group_5_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.

@@ -166,7 +166,8 @@ decode_describe_client_quotas_request_1(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: describe_client_quotas_request_1().
 
 decode_describe_client_quotas_request_1_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -223,7 +224,8 @@ decode_component_data_1(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: component_data_1().
 
 decode_component_data_1_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.

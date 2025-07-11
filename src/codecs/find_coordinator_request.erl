@@ -220,7 +220,8 @@ decode_find_coordinator_request_3(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: find_coordinator_request_3().
 
 decode_find_coordinator_request_3_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -280,7 +281,8 @@ decode_find_coordinator_request_4(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: find_coordinator_request_4().
 
 decode_find_coordinator_request_4_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -340,7 +342,8 @@ decode_find_coordinator_request_5(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: find_coordinator_request_5().
 
 decode_find_coordinator_request_5_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.

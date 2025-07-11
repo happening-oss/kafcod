@@ -92,7 +92,8 @@ decode_broker_heartbeat_request_0(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: broker_heartbeat_request_0().
 
 decode_broker_heartbeat_request_0_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -149,7 +150,9 @@ encode_broker_heartbeat_request_1(Args) ->
         want_shut_down => bool
     }).
 
--spec encode_broker_heartbeat_request_1_tagged_field(Key :: atom(), Value :: term()) -> iodata() | ignore.
+-spec encode_broker_heartbeat_request_1_tagged_field(
+    Key :: atom(), Value :: list(kafcod:uuid())
+) -> {non_neg_integer(), iodata()} | ignore.
 
 encode_broker_heartbeat_request_1_tagged_field(_Key = offline_log_dirs, OfflineLogDirs) ->
     {0, ?encode_compact_array(OfflineLogDirs, ?encode_uuid_)};
@@ -183,7 +186,8 @@ decode_broker_heartbeat_request_1(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: broker_heartbeat_request_1().
 
 %% OfflineLogDirs
 %% Log directories that failed and went offline.
@@ -216,5 +220,5 @@ decode_broker_heartbeat_request_1_tagged_field(_Tag, _Bin0, Acc) ->
     current_metadata_offset := integer(),
     want_fence := boolean(),
     want_shut_down := boolean(),
-    offline_log_dirs := list(kafcod:uuid())
+    offline_log_dirs => list(kafcod:uuid())
 }.

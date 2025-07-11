@@ -258,7 +258,8 @@ decode_stop_replica_response_2(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: stop_replica_response_2().
 
 decode_stop_replica_response_2_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -315,7 +316,8 @@ decode_stop_replica_partition_error_2(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: stop_replica_partition_error_2().
 
 decode_stop_replica_partition_error_2_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -371,7 +373,8 @@ decode_stop_replica_response_3(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: stop_replica_response_3().
 
 decode_stop_replica_response_3_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -428,7 +431,8 @@ decode_stop_replica_partition_error_3(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: stop_replica_partition_error_3().
 
 decode_stop_replica_partition_error_3_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -484,7 +488,8 @@ decode_stop_replica_response_4(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: stop_replica_response_4().
 
 decode_stop_replica_response_4_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -541,7 +546,8 @@ decode_stop_replica_partition_error_4(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: stop_replica_partition_error_4().
 
 decode_stop_replica_partition_error_4_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.

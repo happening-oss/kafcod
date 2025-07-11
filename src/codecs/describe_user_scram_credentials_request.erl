@@ -62,7 +62,8 @@ decode_describe_user_scram_credentials_request_0(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: describe_user_scram_credentials_request_0().
 
 decode_describe_user_scram_credentials_request_0_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -105,7 +106,8 @@ decode_user_name_0(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: user_name_0().
 
 decode_user_name_0_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.

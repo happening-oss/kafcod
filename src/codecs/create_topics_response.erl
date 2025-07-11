@@ -519,7 +519,8 @@ decode_create_topics_response_5(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: create_topics_response_5().
 
 decode_create_topics_response_5_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -590,7 +591,8 @@ decode_creatable_topic_configs_5(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: creatable_topic_configs_5().
 
 decode_creatable_topic_configs_5_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -643,7 +645,9 @@ encode_creatable_topic_result_5(Args) ->
         configs => {nullable_array, creatable_topic_configs_5}
     }).
 
--spec encode_creatable_topic_result_5_tagged_field(Key :: atom(), Value :: term()) -> iodata() | ignore.
+-spec encode_creatable_topic_result_5_tagged_field(
+    Key :: atom(), Value :: integer()
+) -> {non_neg_integer(), iodata()} | ignore.
 
 encode_creatable_topic_result_5_tagged_field(_Key = topic_config_error_code, TopicConfigErrorCode) ->
     {0, ?encode_int16(TopicConfigErrorCode)};
@@ -678,7 +682,8 @@ decode_creatable_topic_result_5(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: creatable_topic_result_5().
 
 %% TopicConfigErrorCode
 %% Optional topic config error returned if configs are not returned in the response.
@@ -740,7 +745,8 @@ decode_create_topics_response_6(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: create_topics_response_6().
 
 decode_create_topics_response_6_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -811,7 +817,8 @@ decode_creatable_topic_configs_6(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: creatable_topic_configs_6().
 
 decode_creatable_topic_configs_6_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -864,7 +871,9 @@ encode_creatable_topic_result_6(Args) ->
         configs => {nullable_array, creatable_topic_configs_6}
     }).
 
--spec encode_creatable_topic_result_6_tagged_field(Key :: atom(), Value :: term()) -> iodata() | ignore.
+-spec encode_creatable_topic_result_6_tagged_field(
+    Key :: atom(), Value :: integer()
+) -> {non_neg_integer(), iodata()} | ignore.
 
 encode_creatable_topic_result_6_tagged_field(_Key = topic_config_error_code, TopicConfigErrorCode) ->
     {0, ?encode_int16(TopicConfigErrorCode)};
@@ -899,7 +908,8 @@ decode_creatable_topic_result_6(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: creatable_topic_result_6().
 
 %% TopicConfigErrorCode
 %% Optional topic config error returned if configs are not returned in the response.
@@ -961,7 +971,8 @@ decode_create_topics_response_7(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: create_topics_response_7().
 
 decode_create_topics_response_7_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -1032,7 +1043,8 @@ decode_creatable_topic_configs_7(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: creatable_topic_configs_7().
 
 decode_creatable_topic_configs_7_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -1090,7 +1102,9 @@ encode_creatable_topic_result_7(Args) ->
         configs => {nullable_array, creatable_topic_configs_7}
     }).
 
--spec encode_creatable_topic_result_7_tagged_field(Key :: atom(), Value :: term()) -> iodata() | ignore.
+-spec encode_creatable_topic_result_7_tagged_field(
+    Key :: atom(), Value :: integer()
+) -> {non_neg_integer(), iodata()} | ignore.
 
 encode_creatable_topic_result_7_tagged_field(_Key = topic_config_error_code, TopicConfigErrorCode) ->
     {0, ?encode_int16(TopicConfigErrorCode)};
@@ -1127,7 +1141,8 @@ decode_creatable_topic_result_7(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: creatable_topic_result_7().
 
 %% TopicConfigErrorCode
 %% Optional topic config error returned if configs are not returned in the response.
@@ -1202,7 +1217,7 @@ decode_creatable_topic_result_7_tagged_field(_Tag, _Bin0, Acc) ->
     name := binary(),
     error_code := integer(),
     error_message := binary() | null,
-    topic_config_error_code := integer(),
+    topic_config_error_code => integer(),
     num_partitions := integer(),
     replication_factor := integer(),
     configs := list(creatable_topic_configs_5()) | null
@@ -1223,7 +1238,7 @@ decode_creatable_topic_result_7_tagged_field(_Tag, _Bin0, Acc) ->
     name := binary(),
     error_code := integer(),
     error_message := binary() | null,
-    topic_config_error_code := integer(),
+    topic_config_error_code => integer(),
     num_partitions := integer(),
     replication_factor := integer(),
     configs := list(creatable_topic_configs_6()) | null
@@ -1245,7 +1260,7 @@ decode_creatable_topic_result_7_tagged_field(_Tag, _Bin0, Acc) ->
     topic_id := kafcod:uuid(),
     error_code := integer(),
     error_message := binary() | null,
-    topic_config_error_code := integer(),
+    topic_config_error_code => integer(),
     num_partitions := integer(),
     replication_factor := integer(),
     configs := list(creatable_topic_configs_7()) | null

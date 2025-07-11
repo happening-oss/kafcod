@@ -343,7 +343,8 @@ decode_elect_leaders_response_2(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: elect_leaders_response_2().
 
 decode_elect_leaders_response_2_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -400,7 +401,8 @@ decode_partition_result_2(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: partition_result_2().
 
 decode_partition_result_2_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -450,7 +452,8 @@ decode_replica_election_result_2(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: replica_election_result_2().
 
 decode_replica_election_result_2_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.

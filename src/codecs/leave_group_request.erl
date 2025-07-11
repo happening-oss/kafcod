@@ -316,7 +316,8 @@ decode_leave_group_request_4(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: leave_group_request_4().
 
 decode_leave_group_request_4_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -366,7 +367,8 @@ decode_member_identity_4(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: member_identity_4().
 
 decode_member_identity_4_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -426,7 +428,8 @@ decode_leave_group_request_5(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: leave_group_request_5().
 
 decode_leave_group_request_5_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -483,7 +486,8 @@ decode_member_identity_5(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: member_identity_5().
 
 decode_member_identity_5_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.

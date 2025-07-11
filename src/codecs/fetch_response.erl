@@ -2331,7 +2331,8 @@ decode_fetch_response_12(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: fetch_response_12().
 
 decode_fetch_response_12_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -2379,7 +2380,8 @@ decode_epoch_end_offset_12(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: epoch_end_offset_12().
 
 decode_epoch_end_offset_12_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -2429,7 +2431,8 @@ decode_leader_id_and_epoch_12(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: leader_id_and_epoch_12().
 
 decode_leader_id_and_epoch_12_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -2477,7 +2480,8 @@ decode_snapshot_id_12(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: snapshot_id_12().
 
 decode_snapshot_id_12_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -2527,7 +2531,8 @@ decode_aborted_transaction_12(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: aborted_transaction_12().
 
 decode_aborted_transaction_12_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -2590,7 +2595,9 @@ encode_partition_data_12(Args) ->
         records => nullable_records
     }).
 
--spec encode_partition_data_12_tagged_field(Key :: atom(), Value :: term()) -> iodata() | ignore.
+-spec encode_partition_data_12_tagged_field(
+    Key :: atom(), Value :: epoch_end_offset_12() | leader_id_and_epoch_12() | snapshot_id_12()
+) -> {non_neg_integer(), iodata()} | ignore.
 
 encode_partition_data_12_tagged_field(_Key = diverging_epoch, DivergingEpoch) ->
     {0, encode_epoch_end_offset_12(DivergingEpoch)};
@@ -2633,7 +2640,8 @@ decode_partition_data_12(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: partition_data_12().
 
 %% DivergingEpoch
 %% In case divergence is detected based on the `LastFetchedEpoch` and `FetchOffset` in the request, this field indicates the largest epoch and its end offset such that subsequent records are known to diverge
@@ -2700,7 +2708,8 @@ decode_fetchable_topic_response_12(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: fetchable_topic_response_12().
 
 decode_fetchable_topic_response_12_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -2770,7 +2779,8 @@ decode_fetch_response_13(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: fetch_response_13().
 
 decode_fetch_response_13_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -2818,7 +2828,8 @@ decode_epoch_end_offset_13(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: epoch_end_offset_13().
 
 decode_epoch_end_offset_13_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -2868,7 +2879,8 @@ decode_leader_id_and_epoch_13(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: leader_id_and_epoch_13().
 
 decode_leader_id_and_epoch_13_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -2916,7 +2928,8 @@ decode_snapshot_id_13(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: snapshot_id_13().
 
 decode_snapshot_id_13_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -2966,7 +2979,8 @@ decode_aborted_transaction_13(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: aborted_transaction_13().
 
 decode_aborted_transaction_13_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -3029,7 +3043,9 @@ encode_partition_data_13(Args) ->
         records => nullable_records
     }).
 
--spec encode_partition_data_13_tagged_field(Key :: atom(), Value :: term()) -> iodata() | ignore.
+-spec encode_partition_data_13_tagged_field(
+    Key :: atom(), Value :: epoch_end_offset_13() | leader_id_and_epoch_13() | snapshot_id_13()
+) -> {non_neg_integer(), iodata()} | ignore.
 
 encode_partition_data_13_tagged_field(_Key = diverging_epoch, DivergingEpoch) ->
     {0, encode_epoch_end_offset_13(DivergingEpoch)};
@@ -3072,7 +3088,8 @@ decode_partition_data_13(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: partition_data_13().
 
 %% DivergingEpoch
 %% In case divergence is detected based on the `LastFetchedEpoch` and `FetchOffset` in the request, this field indicates the largest epoch and its end offset such that subsequent records are known to diverge
@@ -3139,7 +3156,8 @@ decode_fetchable_topic_response_13(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: fetchable_topic_response_13().
 
 decode_fetchable_topic_response_13_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -3209,7 +3227,8 @@ decode_fetch_response_14(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: fetch_response_14().
 
 decode_fetch_response_14_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -3257,7 +3276,8 @@ decode_epoch_end_offset_14(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: epoch_end_offset_14().
 
 decode_epoch_end_offset_14_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -3307,7 +3327,8 @@ decode_leader_id_and_epoch_14(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: leader_id_and_epoch_14().
 
 decode_leader_id_and_epoch_14_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -3355,7 +3376,8 @@ decode_snapshot_id_14(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: snapshot_id_14().
 
 decode_snapshot_id_14_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -3405,7 +3427,8 @@ decode_aborted_transaction_14(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: aborted_transaction_14().
 
 decode_aborted_transaction_14_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -3468,7 +3491,9 @@ encode_partition_data_14(Args) ->
         records => nullable_records
     }).
 
--spec encode_partition_data_14_tagged_field(Key :: atom(), Value :: term()) -> iodata() | ignore.
+-spec encode_partition_data_14_tagged_field(
+    Key :: atom(), Value :: epoch_end_offset_14() | leader_id_and_epoch_14() | snapshot_id_14()
+) -> {non_neg_integer(), iodata()} | ignore.
 
 encode_partition_data_14_tagged_field(_Key = diverging_epoch, DivergingEpoch) ->
     {0, encode_epoch_end_offset_14(DivergingEpoch)};
@@ -3511,7 +3536,8 @@ decode_partition_data_14(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: partition_data_14().
 
 %% DivergingEpoch
 %% In case divergence is detected based on the `LastFetchedEpoch` and `FetchOffset` in the request, this field indicates the largest epoch and its end offset such that subsequent records are known to diverge
@@ -3578,7 +3604,8 @@ decode_fetchable_topic_response_14(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: fetchable_topic_response_14().
 
 decode_fetchable_topic_response_14_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -3648,7 +3675,8 @@ decode_fetch_response_15(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: fetch_response_15().
 
 decode_fetch_response_15_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -3696,7 +3724,8 @@ decode_epoch_end_offset_15(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: epoch_end_offset_15().
 
 decode_epoch_end_offset_15_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -3746,7 +3775,8 @@ decode_leader_id_and_epoch_15(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: leader_id_and_epoch_15().
 
 decode_leader_id_and_epoch_15_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -3794,7 +3824,8 @@ decode_snapshot_id_15(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: snapshot_id_15().
 
 decode_snapshot_id_15_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -3844,7 +3875,8 @@ decode_aborted_transaction_15(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: aborted_transaction_15().
 
 decode_aborted_transaction_15_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -3907,7 +3939,9 @@ encode_partition_data_15(Args) ->
         records => nullable_records
     }).
 
--spec encode_partition_data_15_tagged_field(Key :: atom(), Value :: term()) -> iodata() | ignore.
+-spec encode_partition_data_15_tagged_field(
+    Key :: atom(), Value :: epoch_end_offset_15() | leader_id_and_epoch_15() | snapshot_id_15()
+) -> {non_neg_integer(), iodata()} | ignore.
 
 encode_partition_data_15_tagged_field(_Key = diverging_epoch, DivergingEpoch) ->
     {0, encode_epoch_end_offset_15(DivergingEpoch)};
@@ -3950,7 +3984,8 @@ decode_partition_data_15(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: partition_data_15().
 
 %% DivergingEpoch
 %% In case divergence is detected based on the `LastFetchedEpoch` and `FetchOffset` in the request, this field indicates the largest epoch and its end offset such that subsequent records are known to diverge
@@ -4017,7 +4052,8 @@ decode_fetchable_topic_response_15(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: fetchable_topic_response_15().
 
 decode_fetchable_topic_response_15_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -4065,7 +4101,9 @@ encode_fetch_response_16(Args) ->
         responses => {array, fetchable_topic_response_16}
     }).
 
--spec encode_fetch_response_16_tagged_field(Key :: atom(), Value :: term()) -> iodata() | ignore.
+-spec encode_fetch_response_16_tagged_field(
+    Key :: atom(), Value :: list(node_endpoint_16())
+) -> {non_neg_integer(), iodata()} | ignore.
 
 encode_fetch_response_16_tagged_field(_Key = node_endpoints, NodeEndpoints) ->
     {0, ?encode_compact_array(NodeEndpoints, fun encode_node_endpoint_16/1)};
@@ -4097,7 +4135,8 @@ decode_fetch_response_16(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: fetch_response_16().
 
 %% NodeEndpoints
 %% Endpoints for all current-leaders enumerated in PartitionData, with errors NOT_LEADER_OR_FOLLOWER & FENCED_LEADER_EPOCH.
@@ -4151,7 +4190,8 @@ decode_epoch_end_offset_16(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: epoch_end_offset_16().
 
 decode_epoch_end_offset_16_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -4201,7 +4241,8 @@ decode_leader_id_and_epoch_16(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: leader_id_and_epoch_16().
 
 decode_leader_id_and_epoch_16_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -4249,7 +4290,8 @@ decode_snapshot_id_16(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: snapshot_id_16().
 
 decode_snapshot_id_16_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -4299,7 +4341,8 @@ decode_aborted_transaction_16(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: aborted_transaction_16().
 
 decode_aborted_transaction_16_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -4362,7 +4405,9 @@ encode_partition_data_16(Args) ->
         records => nullable_records
     }).
 
--spec encode_partition_data_16_tagged_field(Key :: atom(), Value :: term()) -> iodata() | ignore.
+-spec encode_partition_data_16_tagged_field(
+    Key :: atom(), Value :: epoch_end_offset_16() | leader_id_and_epoch_16() | snapshot_id_16()
+) -> {non_neg_integer(), iodata()} | ignore.
 
 encode_partition_data_16_tagged_field(_Key = diverging_epoch, DivergingEpoch) ->
     {0, encode_epoch_end_offset_16(DivergingEpoch)};
@@ -4405,7 +4450,8 @@ decode_partition_data_16(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: partition_data_16().
 
 %% DivergingEpoch
 %% In case divergence is detected based on the `LastFetchedEpoch` and `FetchOffset` in the request, this field indicates the largest epoch and its end offset such that subsequent records are known to diverge
@@ -4472,7 +4518,8 @@ decode_fetchable_topic_response_16(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: fetchable_topic_response_16().
 
 decode_fetchable_topic_response_16_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -4536,7 +4583,8 @@ decode_node_endpoint_16(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: node_endpoint_16().
 
 decode_node_endpoint_16_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -4816,9 +4864,9 @@ decode_node_endpoint_16_tagged_field(_Tag, _Bin0, Acc) ->
     high_watermark := integer(),
     last_stable_offset := integer(),
     log_start_offset := integer(),
-    diverging_epoch := epoch_end_offset_12(),
-    current_leader := leader_id_and_epoch_12(),
-    snapshot_id := snapshot_id_12(),
+    diverging_epoch => epoch_end_offset_12(),
+    current_leader => leader_id_and_epoch_12(),
+    snapshot_id => snapshot_id_12(),
     aborted_transactions := list(aborted_transaction_12()) | null,
     preferred_read_replica := integer(),
     records := kafcod_records:records()
@@ -4856,9 +4904,9 @@ decode_node_endpoint_16_tagged_field(_Tag, _Bin0, Acc) ->
     high_watermark := integer(),
     last_stable_offset := integer(),
     log_start_offset := integer(),
-    diverging_epoch := epoch_end_offset_13(),
-    current_leader := leader_id_and_epoch_13(),
-    snapshot_id := snapshot_id_13(),
+    diverging_epoch => epoch_end_offset_13(),
+    current_leader => leader_id_and_epoch_13(),
+    snapshot_id => snapshot_id_13(),
     aborted_transactions := list(aborted_transaction_13()) | null,
     preferred_read_replica := integer(),
     records := kafcod_records:records()
@@ -4896,9 +4944,9 @@ decode_node_endpoint_16_tagged_field(_Tag, _Bin0, Acc) ->
     high_watermark := integer(),
     last_stable_offset := integer(),
     log_start_offset := integer(),
-    diverging_epoch := epoch_end_offset_14(),
-    current_leader := leader_id_and_epoch_14(),
-    snapshot_id := snapshot_id_14(),
+    diverging_epoch => epoch_end_offset_14(),
+    current_leader => leader_id_and_epoch_14(),
+    snapshot_id => snapshot_id_14(),
     aborted_transactions := list(aborted_transaction_14()) | null,
     preferred_read_replica := integer(),
     records := kafcod_records:records()
@@ -4936,9 +4984,9 @@ decode_node_endpoint_16_tagged_field(_Tag, _Bin0, Acc) ->
     high_watermark := integer(),
     last_stable_offset := integer(),
     log_start_offset := integer(),
-    diverging_epoch := epoch_end_offset_15(),
-    current_leader := leader_id_and_epoch_15(),
-    snapshot_id := snapshot_id_15(),
+    diverging_epoch => epoch_end_offset_15(),
+    current_leader => leader_id_and_epoch_15(),
+    snapshot_id => snapshot_id_15(),
     aborted_transactions := list(aborted_transaction_15()) | null,
     preferred_read_replica := integer(),
     records := kafcod_records:records()
@@ -4953,7 +5001,7 @@ decode_node_endpoint_16_tagged_field(_Tag, _Bin0, Acc) ->
     error_code := integer(),
     session_id := integer(),
     responses := list(fetchable_topic_response_16()),
-    node_endpoints := list(node_endpoint_16())
+    node_endpoints => list(node_endpoint_16())
 }.
 -type epoch_end_offset_16() :: #{
     epoch := integer(),
@@ -4977,9 +5025,9 @@ decode_node_endpoint_16_tagged_field(_Tag, _Bin0, Acc) ->
     high_watermark := integer(),
     last_stable_offset := integer(),
     log_start_offset := integer(),
-    diverging_epoch := epoch_end_offset_16(),
-    current_leader := leader_id_and_epoch_16(),
-    snapshot_id := snapshot_id_16(),
+    diverging_epoch => epoch_end_offset_16(),
+    current_leader => leader_id_and_epoch_16(),
+    snapshot_id => snapshot_id_16(),
     aborted_transactions := list(aborted_transaction_16()) | null,
     preferred_read_replica := integer(),
     records := kafcod_records:records()

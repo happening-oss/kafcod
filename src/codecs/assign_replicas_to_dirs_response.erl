@@ -72,7 +72,8 @@ decode_assign_replicas_to_dirs_response_0(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: assign_replicas_to_dirs_response_0().
 
 decode_assign_replicas_to_dirs_response_0_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -122,7 +123,8 @@ decode_partition_data_0(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: partition_data_0().
 
 decode_partition_data_0_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -171,7 +173,8 @@ decode_topic_data_0(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: topic_data_0().
 
 decode_topic_data_0_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -220,7 +223,8 @@ decode_directory_data_0(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: directory_data_0().
 
 decode_directory_data_0_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.

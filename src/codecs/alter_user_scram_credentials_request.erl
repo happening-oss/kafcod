@@ -70,7 +70,8 @@ decode_alter_user_scram_credentials_request_0(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: alter_user_scram_credentials_request_0().
 
 decode_alter_user_scram_credentials_request_0_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -120,7 +121,8 @@ decode_scram_credential_deletion_0(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: scram_credential_deletion_0().
 
 decode_scram_credential_deletion_0_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -191,7 +193,8 @@ decode_scram_credential_upsertion_0(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: scram_credential_upsertion_0().
 
 decode_scram_credential_upsertion_0_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.

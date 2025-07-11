@@ -82,7 +82,8 @@ decode_update_features_response_0(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: update_features_response_0().
 
 decode_update_features_response_0_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -139,7 +140,8 @@ decode_updatable_feature_result_0(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: updatable_feature_result_0().
 
 decode_updatable_feature_result_0_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -209,7 +211,8 @@ decode_update_features_response_1(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: update_features_response_1().
 
 decode_update_features_response_1_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -266,7 +269,8 @@ decode_updatable_feature_result_1(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: updatable_feature_result_1().
 
 decode_updatable_feature_result_1_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.

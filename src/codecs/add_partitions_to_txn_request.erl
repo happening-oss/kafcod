@@ -405,7 +405,8 @@ decode_add_partitions_to_txn_request_3(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: add_partitions_to_txn_request_3().
 
 decode_add_partitions_to_txn_request_3_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -455,7 +456,8 @@ decode_add_partitions_to_txn_topic_3(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: add_partitions_to_txn_topic_3().
 
 decode_add_partitions_to_txn_topic_3_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -508,7 +510,8 @@ decode_add_partitions_to_txn_request_4(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: add_partitions_to_txn_request_4().
 
 decode_add_partitions_to_txn_request_4_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -579,7 +582,8 @@ decode_add_partitions_to_txn_transaction_4(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: add_partitions_to_txn_transaction_4().
 
 decode_add_partitions_to_txn_transaction_4_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -629,7 +633,8 @@ decode_add_partitions_to_txn_topic_4(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: add_partitions_to_txn_topic_4().
 
 decode_add_partitions_to_txn_topic_4_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -682,7 +687,8 @@ decode_add_partitions_to_txn_request_5(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: add_partitions_to_txn_request_5().
 
 decode_add_partitions_to_txn_request_5_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -753,7 +759,8 @@ decode_add_partitions_to_txn_transaction_5(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: add_partitions_to_txn_transaction_5().
 
 decode_add_partitions_to_txn_transaction_5_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -803,7 +810,8 @@ decode_add_partitions_to_txn_topic_5(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: add_partitions_to_txn_topic_5().
 
 decode_add_partitions_to_txn_topic_5_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.

@@ -907,7 +907,8 @@ decode_describe_configs_response_4(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: describe_configs_response_4().
 
 decode_describe_configs_response_4_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -964,7 +965,8 @@ decode_describe_configs_synonym_4(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: describe_configs_synonym_4().
 
 decode_describe_configs_synonym_4_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -1056,7 +1058,8 @@ decode_describe_configs_resource_result_4(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: describe_configs_resource_result_4().
 
 decode_describe_configs_resource_result_4_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -1127,7 +1130,8 @@ decode_describe_configs_result_4(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: describe_configs_result_4().
 
 decode_describe_configs_result_4_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.

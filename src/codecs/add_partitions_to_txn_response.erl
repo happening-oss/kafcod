@@ -452,7 +452,8 @@ decode_add_partitions_to_txn_response_3(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: add_partitions_to_txn_response_3().
 
 decode_add_partitions_to_txn_response_3_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -502,7 +503,8 @@ decode_add_partitions_to_txn_partition_result_3(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: add_partitions_to_txn_partition_result_3().
 
 decode_add_partitions_to_txn_partition_result_3_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -552,7 +554,8 @@ decode_add_partitions_to_txn_topic_result_3(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: add_partitions_to_txn_topic_result_3().
 
 decode_add_partitions_to_txn_topic_result_3_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -615,7 +618,8 @@ decode_add_partitions_to_txn_response_4(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: add_partitions_to_txn_response_4().
 
 decode_add_partitions_to_txn_response_4_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -665,7 +669,8 @@ decode_add_partitions_to_txn_result_4(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: add_partitions_to_txn_result_4().
 
 decode_add_partitions_to_txn_result_4_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -715,7 +720,8 @@ decode_add_partitions_to_txn_partition_result_4(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: add_partitions_to_txn_partition_result_4().
 
 decode_add_partitions_to_txn_partition_result_4_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -765,7 +771,8 @@ decode_add_partitions_to_txn_topic_result_4(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: add_partitions_to_txn_topic_result_4().
 
 decode_add_partitions_to_txn_topic_result_4_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -828,7 +835,8 @@ decode_add_partitions_to_txn_response_5(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: add_partitions_to_txn_response_5().
 
 decode_add_partitions_to_txn_response_5_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -878,7 +886,8 @@ decode_add_partitions_to_txn_result_5(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: add_partitions_to_txn_result_5().
 
 decode_add_partitions_to_txn_result_5_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -928,7 +937,8 @@ decode_add_partitions_to_txn_partition_result_5(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: add_partitions_to_txn_partition_result_5().
 
 decode_add_partitions_to_txn_partition_result_5_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -978,7 +988,8 @@ decode_add_partitions_to_txn_topic_result_5(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: add_partitions_to_txn_topic_result_5().
 
 decode_add_partitions_to_txn_topic_result_5_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.

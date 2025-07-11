@@ -79,7 +79,8 @@ decode_broker_registration_response_0(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: broker_registration_response_0().
 
 decode_broker_registration_response_0_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -142,7 +143,8 @@ decode_broker_registration_response_1(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: broker_registration_response_1().
 
 decode_broker_registration_response_1_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -205,7 +207,8 @@ decode_broker_registration_response_2(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: broker_registration_response_2().
 
 decode_broker_registration_response_2_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -268,7 +271,8 @@ decode_broker_registration_response_3(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: broker_registration_response_3().
 
 decode_broker_registration_response_3_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.

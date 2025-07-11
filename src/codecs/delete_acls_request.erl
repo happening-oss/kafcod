@@ -295,7 +295,8 @@ decode_delete_acls_request_2(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: delete_acls_request_2().
 
 decode_delete_acls_request_2_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -380,7 +381,8 @@ decode_delete_acls_filter_2(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: delete_acls_filter_2().
 
 decode_delete_acls_filter_2_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -433,7 +435,8 @@ decode_delete_acls_request_3(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: delete_acls_request_3().
 
 decode_delete_acls_request_3_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -518,7 +521,8 @@ decode_delete_acls_filter_3(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: delete_acls_filter_3().
 
 decode_delete_acls_filter_3_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.

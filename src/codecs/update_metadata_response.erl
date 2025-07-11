@@ -302,7 +302,8 @@ decode_update_metadata_response_6(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: update_metadata_response_6().
 
 decode_update_metadata_response_6_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -351,7 +352,8 @@ decode_update_metadata_response_7(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: update_metadata_response_7().
 
 decode_update_metadata_response_7_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -400,7 +402,8 @@ decode_update_metadata_response_8(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: update_metadata_response_8().
 
 decode_update_metadata_response_8_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.

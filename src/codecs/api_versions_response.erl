@@ -346,7 +346,9 @@ encode_api_versions_response_3(Args) ->
         throttle_time_ms => int32
     }).
 
--spec encode_api_versions_response_3_tagged_field(Key :: atom(), Value :: term()) -> iodata() | ignore.
+-spec encode_api_versions_response_3_tagged_field(
+    Key :: atom(), Value :: list(supported_feature_key_3()) | integer() | list(finalized_feature_key_3()) | boolean()
+) -> {non_neg_integer(), iodata()} | ignore.
 
 encode_api_versions_response_3_tagged_field(_Key = supported_features, SupportedFeatures) ->
     {0, ?encode_compact_array(SupportedFeatures, fun encode_supported_feature_key_3/1)};
@@ -382,7 +384,8 @@ decode_api_versions_response_3(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: api_versions_response_3().
 
 %% SupportedFeatures
 %% Features supported by the broker.
@@ -463,7 +466,8 @@ decode_api_version_3(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: api_version_3().
 
 decode_api_version_3_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -520,7 +524,8 @@ decode_supported_feature_key_3(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: supported_feature_key_3().
 
 decode_supported_feature_key_3_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -577,7 +582,8 @@ decode_finalized_feature_key_3(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: finalized_feature_key_3().
 
 decode_finalized_feature_key_3_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -620,10 +626,10 @@ decode_finalized_feature_key_3_tagged_field(_Tag, _Bin0, Acc) ->
     error_code := integer(),
     api_keys := list(api_version_3()),
     throttle_time_ms := integer(),
-    supported_features := list(supported_feature_key_3()),
-    finalized_features_epoch := integer(),
-    finalized_features := list(finalized_feature_key_3()),
-    zk_migration_ready := boolean()
+    supported_features => list(supported_feature_key_3()),
+    finalized_features_epoch => integer(),
+    finalized_features => list(finalized_feature_key_3()),
+    zk_migration_ready => boolean()
 }.
 -type api_version_3() :: #{
     api_key := integer(),

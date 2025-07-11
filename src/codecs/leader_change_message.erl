@@ -72,7 +72,8 @@ decode_leader_change_message_0(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: leader_change_message_0().
 
 decode_leader_change_message_0_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -114,7 +115,8 @@ decode_voter_0(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: voter_0().
 
 decode_voter_0_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.

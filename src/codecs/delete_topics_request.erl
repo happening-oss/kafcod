@@ -279,7 +279,8 @@ decode_delete_topics_request_4(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: delete_topics_request_4().
 
 decode_delete_topics_request_4_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -339,7 +340,8 @@ decode_delete_topics_request_5(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: delete_topics_request_5().
 
 decode_delete_topics_request_5_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -399,7 +401,8 @@ decode_delete_topics_request_6(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: delete_topics_request_6().
 
 decode_delete_topics_request_6_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -449,7 +452,8 @@ decode_delete_topic_state_6(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: delete_topic_state_6().
 
 decode_delete_topic_state_6_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.

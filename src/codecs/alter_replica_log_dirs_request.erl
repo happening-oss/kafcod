@@ -307,7 +307,8 @@ decode_alter_replica_log_dirs_request_2(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: alter_replica_log_dirs_request_2().
 
 decode_alter_replica_log_dirs_request_2_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -357,7 +358,8 @@ decode_alter_replica_log_dir_topic_2(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: alter_replica_log_dir_topic_2().
 
 decode_alter_replica_log_dir_topic_2_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -407,7 +409,8 @@ decode_alter_replica_log_dir_2(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: alter_replica_log_dir_2().
 
 decode_alter_replica_log_dir_2_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.

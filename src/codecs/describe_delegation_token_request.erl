@@ -232,7 +232,8 @@ decode_describe_delegation_token_request_2(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: describe_delegation_token_request_2().
 
 decode_describe_delegation_token_request_2_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -282,7 +283,8 @@ decode_describe_delegation_token_owner_2(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: describe_delegation_token_owner_2().
 
 decode_describe_delegation_token_owner_2_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -335,7 +337,8 @@ decode_describe_delegation_token_request_3(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: describe_delegation_token_request_3().
 
 decode_describe_delegation_token_request_3_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -385,7 +388,8 @@ decode_describe_delegation_token_owner_3(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: describe_delegation_token_owner_3().
 
 decode_describe_delegation_token_owner_3_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.

@@ -58,7 +58,9 @@ encode_fetch_snapshot_request_0(Args) ->
         topics => {array, topic_snapshot_0}
     }).
 
--spec encode_fetch_snapshot_request_0_tagged_field(Key :: atom(), Value :: term()) -> iodata() | ignore.
+-spec encode_fetch_snapshot_request_0_tagged_field(
+    Key :: atom(), Value :: binary() | null
+) -> {non_neg_integer(), iodata()} | ignore.
 
 encode_fetch_snapshot_request_0_tagged_field(_Key = cluster_id, ClusterId) ->
     {0, ?encode_compact_nullable_string(ClusterId)};
@@ -88,7 +90,8 @@ decode_fetch_snapshot_request_0(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: fetch_snapshot_request_0().
 
 %% ClusterId
 %% The clusterId if known, this is used to validate metadata fetches prior to broker registration
@@ -142,7 +145,8 @@ decode_snapshot_id_0(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: snapshot_id_0().
 
 decode_snapshot_id_0_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -206,7 +210,8 @@ decode_partition_snapshot_0(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: partition_snapshot_0().
 
 decode_partition_snapshot_0_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -256,7 +261,8 @@ decode_topic_snapshot_0(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: topic_snapshot_0().
 
 decode_topic_snapshot_0_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -267,7 +273,7 @@ decode_topic_snapshot_0_tagged_field(_Tag, _Bin0, Acc) ->
     api_version => integer(),
     correlation_id => integer(),
     client_id => binary() | null,
-    cluster_id := binary() | null,
+    cluster_id => binary() | null,
     replica_id := integer(),
     max_bytes := integer(),
     topics := list(topic_snapshot_0())

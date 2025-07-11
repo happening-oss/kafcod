@@ -263,7 +263,8 @@ decode_elect_leaders_request_2(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: elect_leaders_request_2().
 
 decode_elect_leaders_request_2_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -313,7 +314,8 @@ decode_topic_partitions_2(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: topic_partitions_2().
 
 decode_topic_partitions_2_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.

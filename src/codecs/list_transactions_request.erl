@@ -71,7 +71,8 @@ decode_list_transactions_request_0(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: list_transactions_request_0().
 
 decode_list_transactions_request_0_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -138,7 +139,8 @@ decode_list_transactions_request_1(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: list_transactions_request_1().
 
 decode_list_transactions_request_1_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.

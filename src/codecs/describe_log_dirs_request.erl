@@ -236,7 +236,8 @@ decode_describe_log_dirs_request_2(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: describe_log_dirs_request_2().
 
 decode_describe_log_dirs_request_2_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -286,7 +287,8 @@ decode_describable_log_dir_topic_2(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: describable_log_dir_topic_2().
 
 decode_describable_log_dir_topic_2_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -339,7 +341,8 @@ decode_describe_log_dirs_request_3(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: describe_log_dirs_request_3().
 
 decode_describe_log_dirs_request_3_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -389,7 +392,8 @@ decode_describable_log_dir_topic_3(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: describable_log_dir_topic_3().
 
 decode_describable_log_dir_topic_3_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -442,7 +446,8 @@ decode_describe_log_dirs_request_4(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: describe_log_dirs_request_4().
 
 decode_describe_log_dirs_request_4_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -492,7 +497,8 @@ decode_describable_log_dir_topic_4(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: describable_log_dir_topic_4().
 
 decode_describable_log_dir_topic_4_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.

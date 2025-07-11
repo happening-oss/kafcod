@@ -73,7 +73,8 @@ decode_describe_topic_partitions_response_0(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: describe_topic_partitions_response_0().
 
 decode_describe_topic_partitions_response_0_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -172,7 +173,8 @@ decode_describe_topic_partitions_response_partition_0(Bin0) when is_binary(Bin0)
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: describe_topic_partitions_response_partition_0().
 
 decode_describe_topic_partitions_response_partition_0_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -250,7 +252,8 @@ decode_describe_topic_partitions_response_topic_0(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: describe_topic_partitions_response_topic_0().
 
 decode_describe_topic_partitions_response_topic_0_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -300,7 +303,8 @@ decode_cursor_0(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: cursor_0().
 
 decode_cursor_0_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.

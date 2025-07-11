@@ -208,7 +208,8 @@ decode_init_producer_id_response_2(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: init_producer_id_response_2().
 
 decode_init_producer_id_response_2_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -278,7 +279,8 @@ decode_init_producer_id_response_3(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: init_producer_id_response_3().
 
 decode_init_producer_id_response_3_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -348,7 +350,8 @@ decode_init_producer_id_response_4(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: init_producer_id_response_4().
 
 decode_init_producer_id_response_4_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -418,7 +421,8 @@ decode_init_producer_id_response_5(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: init_producer_id_response_5().
 
 decode_init_producer_id_response_5_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.

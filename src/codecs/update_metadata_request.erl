@@ -1549,7 +1549,8 @@ decode_update_metadata_request_6(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: update_metadata_request_6().
 
 decode_update_metadata_request_6_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -1599,7 +1600,8 @@ decode_update_metadata_topic_state_6(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: update_metadata_topic_state_6().
 
 decode_update_metadata_topic_state_6_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -1663,7 +1665,8 @@ decode_update_metadata_endpoint_6(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: update_metadata_endpoint_6().
 
 decode_update_metadata_endpoint_6_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -1720,7 +1723,8 @@ decode_update_metadata_broker_6(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: update_metadata_broker_6().
 
 decode_update_metadata_broker_6_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -1812,7 +1816,8 @@ decode_update_metadata_partition_state_6(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: update_metadata_partition_state_6().
 
 decode_update_metadata_partition_state_6_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -1892,7 +1897,8 @@ decode_update_metadata_request_7(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: update_metadata_request_7().
 
 decode_update_metadata_request_7_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -1949,7 +1955,8 @@ decode_update_metadata_topic_state_7(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: update_metadata_topic_state_7().
 
 decode_update_metadata_topic_state_7_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -2013,7 +2020,8 @@ decode_update_metadata_endpoint_7(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: update_metadata_endpoint_7().
 
 decode_update_metadata_endpoint_7_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -2070,7 +2078,8 @@ decode_update_metadata_broker_7(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: update_metadata_broker_7().
 
 decode_update_metadata_broker_7_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -2162,7 +2171,8 @@ decode_update_metadata_partition_state_7(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: update_metadata_partition_state_7().
 
 decode_update_metadata_partition_state_7_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -2223,7 +2233,9 @@ encode_update_metadata_request_8(Args) ->
         live_brokers => {array, update_metadata_broker_8}
     }).
 
--spec encode_update_metadata_request_8_tagged_field(Key :: atom(), Value :: term()) -> iodata() | ignore.
+-spec encode_update_metadata_request_8_tagged_field(
+    Key :: atom(), Value :: integer()
+) -> {non_neg_integer(), iodata()} | ignore.
 
 encode_update_metadata_request_8_tagged_field(_Key = type, Type) ->
     {0, ?encode_int8(Type)};
@@ -2259,7 +2271,8 @@ decode_update_metadata_request_8(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: update_metadata_request_8().
 
 %% Type
 %% Indicates if this request is a Full metadata snapshot (2), Incremental (1), or Unknown (0). Using during ZK migration, see KIP-866
@@ -2322,7 +2335,8 @@ decode_update_metadata_topic_state_8(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: update_metadata_topic_state_8().
 
 decode_update_metadata_topic_state_8_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -2386,7 +2400,8 @@ decode_update_metadata_endpoint_8(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: update_metadata_endpoint_8().
 
 decode_update_metadata_endpoint_8_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -2443,7 +2458,8 @@ decode_update_metadata_broker_8(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: update_metadata_broker_8().
 
 decode_update_metadata_broker_8_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -2535,7 +2551,8 @@ decode_update_metadata_partition_state_8(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: update_metadata_partition_state_8().
 
 decode_update_metadata_partition_state_8_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -2804,7 +2821,7 @@ decode_update_metadata_partition_state_8_tagged_field(_Tag, _Bin0, Acc) ->
     client_id => binary() | null,
     controller_id := integer(),
     is_k_raft_controller := boolean(),
-    type := integer(),
+    type => integer(),
     controller_epoch := integer(),
     broker_epoch := integer(),
     topic_states := list(update_metadata_topic_state_8()),

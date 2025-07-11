@@ -600,7 +600,8 @@ decode_offset_for_leader_epoch_response_4(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: offset_for_leader_epoch_response_4().
 
 decode_offset_for_leader_epoch_response_4_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -664,7 +665,8 @@ decode_epoch_end_offset_4(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: epoch_end_offset_4().
 
 decode_epoch_end_offset_4_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -714,7 +716,8 @@ decode_offset_for_leader_topic_result_4(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: offset_for_leader_topic_result_4().
 
 decode_offset_for_leader_topic_result_4_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.

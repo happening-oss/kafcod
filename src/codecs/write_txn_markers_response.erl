@@ -216,7 +216,8 @@ decode_write_txn_markers_response_1(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: write_txn_markers_response_1().
 
 decode_write_txn_markers_response_1_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -266,7 +267,8 @@ decode_writable_txn_marker_partition_result_1(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: writable_txn_marker_partition_result_1().
 
 decode_writable_txn_marker_partition_result_1_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -316,7 +318,8 @@ decode_writable_txn_marker_topic_result_1(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: writable_txn_marker_topic_result_1().
 
 decode_writable_txn_marker_topic_result_1_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -366,7 +369,8 @@ decode_writable_txn_marker_result_1(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: writable_txn_marker_result_1().
 
 decode_writable_txn_marker_result_1_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.

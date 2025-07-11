@@ -451,7 +451,8 @@ decode_leader_and_isr_response_4(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: leader_and_isr_response_4().
 
 decode_leader_and_isr_response_4_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -508,7 +509,8 @@ decode_leader_and_isr_partition_error_4(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: leader_and_isr_partition_error_4().
 
 decode_leader_and_isr_partition_error_4_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -564,7 +566,8 @@ decode_leader_and_isr_response_5(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: leader_and_isr_response_5().
 
 decode_leader_and_isr_response_5_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -614,7 +617,8 @@ decode_leader_and_isr_topic_error_5(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: leader_and_isr_topic_error_5().
 
 decode_leader_and_isr_topic_error_5_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -664,7 +668,8 @@ decode_leader_and_isr_partition_error_5(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: leader_and_isr_partition_error_5().
 
 decode_leader_and_isr_partition_error_5_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -720,7 +725,8 @@ decode_leader_and_isr_response_6(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: leader_and_isr_response_6().
 
 decode_leader_and_isr_response_6_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -770,7 +776,8 @@ decode_leader_and_isr_topic_error_6(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: leader_and_isr_topic_error_6().
 
 decode_leader_and_isr_topic_error_6_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -820,7 +827,8 @@ decode_leader_and_isr_partition_error_6(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: leader_and_isr_partition_error_6().
 
 decode_leader_and_isr_partition_error_6_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -876,7 +884,8 @@ decode_leader_and_isr_response_7(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: leader_and_isr_response_7().
 
 decode_leader_and_isr_response_7_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -926,7 +935,8 @@ decode_leader_and_isr_topic_error_7(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: leader_and_isr_topic_error_7().
 
 decode_leader_and_isr_topic_error_7_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -976,7 +986,8 @@ decode_leader_and_isr_partition_error_7(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: leader_and_isr_partition_error_7().
 
 decode_leader_and_isr_partition_error_7_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.

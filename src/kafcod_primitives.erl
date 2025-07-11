@@ -369,12 +369,12 @@ decode_uuid(Bin = <<Value:16/binary, Rest/binary>>) when is_binary(Bin) ->
     {<<A/binary, "-", B/binary, "-", C/binary, "-", D/binary, "-", E/binary>>, Rest}.
 
 -spec encode_tagged_fields(Fun, Args) -> iodata() when
-    Fun :: fun((Key, Value) -> {Tag, Data}),
+    Fun :: fun((Key, Value) -> {Tag, Data} | ignore),
     Args :: map(),
     Key :: atom(),
     Value :: binary(),
     Tag :: non_neg_integer(),
-    Data :: binary().
+    Data :: iodata().
 
 encode_tagged_fields(Fun, Args) when is_function(Fun, 2), is_map(Args) ->
     {_, Count, EncodedFields} = maps:fold(fun encode_tagged_field/3, {Fun, 0, []}, Args),

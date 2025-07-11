@@ -567,11 +567,9 @@ format_tagged_field_encoders(_Name, _Version, _IsFlexible = true, _TaggedFields 
 format_tagged_fields_encoder(Name, _Type, Version, TaggedFields = [_ | _], _IsFlexible = true) ->
     [
         ?NL,
-        "-spec ",
-        format_tagged_field_encoder_name(Name, Version),
-        % TODO: Use the correct type for 'Value'. That's tricky, though, because the type varies based on the key, so
-        % we'd need to collect them. This'll do for now.
-        "(Key :: atom(), Value :: term()) -> iodata() | ignore.",
+        ["-spec ", format_tagged_field_encoder_name(Name, Version), "(", ?NL],
+        ["    Key :: atom(), Value :: ", format_tagged_field_value_type_list(TaggedFields), ?NL],
+        [") -> {non_neg_integer(), iodata()} | ignore."],
         ?NL,
 
         ?NL,
@@ -588,6 +586,9 @@ format_tagged_fields_encoder(Name, _Type, Version, TaggedFields = [_ | _], _IsFl
     ];
 format_tagged_fields_encoder(_Name, _Type, _Version, _TaggedFields, _IsFlexible) ->
     [].
+
+format_tagged_field_value_type_list(TaggedFields) ->
+    lists:join(" | ", lists:map(fun(Field) -> format_type_name(Field) end, TaggedFields)).
 
 format_tagged_field_encoder(Name, Version, Field = #{name := FieldName, tag := Tag}) ->
     [
@@ -855,7 +856,9 @@ format_tagged_fields_decoder_spec(Name, Version) ->
         ?NL,
         "    AccIn :: Acc,",
         ?NL,
-        "    AccOut :: Acc.",
+        "    AccOut :: Acc,",
+        ?NL,
+        ["    Acc :: ", io_lib:format("~s_~B()", [casey:underscore(Name), Version]), "."],
         ?NL
     ].
 
@@ -1019,6 +1022,23 @@ format_type_association(
         name := Name0,
         type := Type,
         nullable := IsNullable,
+        version := Version,
+        tag := _
+    }
+) ->
+    Name = casey:underscore(Name0),
+    Indent = "    ",
+    [
+        Indent,
+        Name,
+        " => ",
+        format_type_name(Name, Type, IsNullable, Version)
+    ];
+format_type_association(
+    _Field = #{
+        name := Name0,
+        type := Type,
+        nullable := IsNullable,
         version := Version
     }
 ) ->
@@ -1027,7 +1047,6 @@ format_type_association(
     [
         Indent,
         Name,
-        % TODO: tagged fields are optional.
         " := ",
         format_type_name(Name, Type, IsNullable, Version)
     ].
@@ -1048,6 +1067,17 @@ format_optional_type_association(
         " => ",
         format_type_name(Name, Type, IsNullable, Version)
     ].
+
+format_type_name(
+    _Field = #{
+        name := Name0,
+        type := Type,
+        nullable := IsNullable,
+        version := Version
+    }
+) ->
+    Name = casey:underscore(Name0),
+    format_type_name(Name, Type, IsNullable, Version).
 
 % TODO: Use the field name to specialise 'topic', etc.
 format_type_name(_FieldName, <<"string">>, _IsNullable = false, _Version) ->

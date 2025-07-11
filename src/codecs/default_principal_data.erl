@@ -64,7 +64,8 @@ decode_default_principal_data_0(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: default_principal_data_0().
 
 decode_default_principal_data_0_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.

@@ -1393,7 +1393,8 @@ decode_produce_response_9(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: produce_response_9().
 
 decode_produce_response_9_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -1443,7 +1444,8 @@ decode_batch_index_and_error_message_9(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: batch_index_and_error_message_9().
 
 decode_batch_index_and_error_message_9_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -1528,7 +1530,8 @@ decode_partition_produce_response_9(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: partition_produce_response_9().
 
 decode_partition_produce_response_9_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -1578,7 +1581,8 @@ decode_topic_produce_response_9(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: topic_produce_response_9().
 
 decode_topic_produce_response_9_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -1616,7 +1620,9 @@ encode_produce_response_10(Args) ->
         throttle_time_ms => int32
     }).
 
--spec encode_produce_response_10_tagged_field(Key :: atom(), Value :: term()) -> iodata() | ignore.
+-spec encode_produce_response_10_tagged_field(
+    Key :: atom(), Value :: list(node_endpoint_10())
+) -> {non_neg_integer(), iodata()} | ignore.
 
 encode_produce_response_10_tagged_field(_Key = node_endpoints, NodeEndpoints) ->
     {0, ?encode_compact_array(NodeEndpoints, fun encode_node_endpoint_10/1)};
@@ -1644,7 +1650,8 @@ decode_produce_response_10(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: produce_response_10().
 
 %% NodeEndpoints
 %% Endpoints for all current-leaders enumerated in PartitionProduceResponses, with errors NOT_LEADER_OR_FOLLOWER.
@@ -1700,7 +1707,8 @@ decode_batch_index_and_error_message_10(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: batch_index_and_error_message_10().
 
 decode_batch_index_and_error_message_10_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -1750,7 +1758,8 @@ decode_leader_id_and_epoch_10(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: leader_id_and_epoch_10().
 
 decode_leader_id_and_epoch_10_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -1808,7 +1817,9 @@ encode_partition_produce_response_10(Args) ->
         error_message => nullable_string
     }).
 
--spec encode_partition_produce_response_10_tagged_field(Key :: atom(), Value :: term()) -> iodata() | ignore.
+-spec encode_partition_produce_response_10_tagged_field(
+    Key :: atom(), Value :: leader_id_and_epoch_10()
+) -> {non_neg_integer(), iodata()} | ignore.
 
 encode_partition_produce_response_10_tagged_field(_Key = current_leader, CurrentLeader) ->
     {0, encode_leader_id_and_epoch_10(CurrentLeader)};
@@ -1845,7 +1856,8 @@ decode_partition_produce_response_10(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: partition_produce_response_10().
 
 %% CurrentLeader
 decode_partition_produce_response_10_tagged_field(_Tag = 0, Bin0, Acc) ->
@@ -1900,7 +1912,8 @@ decode_topic_produce_response_10(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: topic_produce_response_10().
 
 decode_topic_produce_response_10_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -1964,7 +1977,8 @@ decode_node_endpoint_10(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: node_endpoint_10().
 
 decode_node_endpoint_10_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -2002,7 +2016,9 @@ encode_produce_response_11(Args) ->
         throttle_time_ms => int32
     }).
 
--spec encode_produce_response_11_tagged_field(Key :: atom(), Value :: term()) -> iodata() | ignore.
+-spec encode_produce_response_11_tagged_field(
+    Key :: atom(), Value :: list(node_endpoint_11())
+) -> {non_neg_integer(), iodata()} | ignore.
 
 encode_produce_response_11_tagged_field(_Key = node_endpoints, NodeEndpoints) ->
     {0, ?encode_compact_array(NodeEndpoints, fun encode_node_endpoint_11/1)};
@@ -2030,7 +2046,8 @@ decode_produce_response_11(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: produce_response_11().
 
 %% NodeEndpoints
 %% Endpoints for all current-leaders enumerated in PartitionProduceResponses, with errors NOT_LEADER_OR_FOLLOWER.
@@ -2086,7 +2103,8 @@ decode_batch_index_and_error_message_11(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: batch_index_and_error_message_11().
 
 decode_batch_index_and_error_message_11_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -2136,7 +2154,8 @@ decode_leader_id_and_epoch_11(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: leader_id_and_epoch_11().
 
 decode_leader_id_and_epoch_11_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -2194,7 +2213,9 @@ encode_partition_produce_response_11(Args) ->
         error_message => nullable_string
     }).
 
--spec encode_partition_produce_response_11_tagged_field(Key :: atom(), Value :: term()) -> iodata() | ignore.
+-spec encode_partition_produce_response_11_tagged_field(
+    Key :: atom(), Value :: leader_id_and_epoch_11()
+) -> {non_neg_integer(), iodata()} | ignore.
 
 encode_partition_produce_response_11_tagged_field(_Key = current_leader, CurrentLeader) ->
     {0, encode_leader_id_and_epoch_11(CurrentLeader)};
@@ -2231,7 +2252,8 @@ decode_partition_produce_response_11(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: partition_produce_response_11().
 
 %% CurrentLeader
 decode_partition_produce_response_11_tagged_field(_Tag = 0, Bin0, Acc) ->
@@ -2286,7 +2308,8 @@ decode_topic_produce_response_11(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: topic_produce_response_11().
 
 decode_topic_produce_response_11_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -2350,7 +2373,8 @@ decode_node_endpoint_11(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: node_endpoint_11().
 
 decode_node_endpoint_11_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -2524,7 +2548,7 @@ decode_node_endpoint_11_tagged_field(_Tag, _Bin0, Acc) ->
     correlation_id => integer(),
     responses := list(topic_produce_response_10()),
     throttle_time_ms := integer(),
-    node_endpoints := list(node_endpoint_10())
+    node_endpoints => list(node_endpoint_10())
 }.
 -type batch_index_and_error_message_10() :: #{
     batch_index := integer(),
@@ -2542,7 +2566,7 @@ decode_node_endpoint_11_tagged_field(_Tag, _Bin0, Acc) ->
     log_start_offset := integer(),
     record_errors := list(batch_index_and_error_message_10()),
     error_message := binary() | null,
-    current_leader := leader_id_and_epoch_10()
+    current_leader => leader_id_and_epoch_10()
 }.
 -type topic_produce_response_10() :: #{
     name := binary(),
@@ -2558,7 +2582,7 @@ decode_node_endpoint_11_tagged_field(_Tag, _Bin0, Acc) ->
     correlation_id => integer(),
     responses := list(topic_produce_response_11()),
     throttle_time_ms := integer(),
-    node_endpoints := list(node_endpoint_11())
+    node_endpoints => list(node_endpoint_11())
 }.
 -type batch_index_and_error_message_11() :: #{
     batch_index := integer(),
@@ -2576,7 +2600,7 @@ decode_node_endpoint_11_tagged_field(_Tag, _Bin0, Acc) ->
     log_start_offset := integer(),
     record_errors := list(batch_index_and_error_message_11()),
     error_message := binary() | null,
-    current_leader := leader_id_and_epoch_11()
+    current_leader => leader_id_and_epoch_11()
 }.
 -type topic_produce_response_11() :: #{
     name := binary(),

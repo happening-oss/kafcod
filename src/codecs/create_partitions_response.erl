@@ -254,7 +254,8 @@ decode_create_partitions_response_2(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: create_partitions_response_2().
 
 decode_create_partitions_response_2_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -311,7 +312,8 @@ decode_create_partitions_topic_result_2(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: create_partitions_topic_result_2().
 
 decode_create_partitions_topic_result_2_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -367,7 +369,8 @@ decode_create_partitions_response_3(Bin) when is_binary(Bin) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: create_partitions_response_3().
 
 decode_create_partitions_response_3_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
@@ -424,7 +427,8 @@ decode_create_partitions_topic_result_3(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: create_partitions_topic_result_3().
 
 decode_create_partitions_topic_result_3_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.

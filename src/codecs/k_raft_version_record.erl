@@ -57,7 +57,8 @@ decode_k_raft_version_record_0(Bin0) when is_binary(Bin0) ->
     Tag :: non_neg_integer(),
     Input :: binary(),
     AccIn :: Acc,
-    AccOut :: Acc.
+    AccOut :: Acc,
+    Acc :: k_raft_version_record_0().
 
 decode_k_raft_version_record_0_tagged_field(_Tag, _Bin0, Acc) ->
     % Unrecognised tag; ignore it.
