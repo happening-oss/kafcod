@@ -1,4 +1,7 @@
 -module(elect_leaders_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_elect_leaders_response_0/1,
     decode_elect_leaders_response_0/1,
@@ -44,7 +47,7 @@ encode_elect_leaders_response_0(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_array(ReplicaElectionResults, fun encode_replica_election_result_0/1)
+        ?encode_array(ReplicaElectionResults, ?encode_element(encode_replica_election_result_0))
     ];
 encode_elect_leaders_response_0(Args) ->
     ?encoder_error(Args, #{
@@ -129,7 +132,7 @@ encode_replica_election_result_0(
 ->
     [
         ?encode_string(Topic),
-        ?encode_array(PartitionResult, fun encode_partition_result_0/1)
+        ?encode_array(PartitionResult, ?encode_element(encode_partition_result_0))
     ];
 encode_replica_election_result_0(Args) ->
     ?encoder_error(Args, #{
@@ -175,7 +178,7 @@ encode_elect_leaders_response_1(
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
         ?encode_int16(ErrorCode),
-        ?encode_array(ReplicaElectionResults, fun encode_replica_election_result_1/1)
+        ?encode_array(ReplicaElectionResults, ?encode_element(encode_replica_election_result_1))
     ];
 encode_elect_leaders_response_1(Args) ->
     ?encoder_error(Args, #{
@@ -263,7 +266,7 @@ encode_replica_election_result_1(
 ->
     [
         ?encode_string(Topic),
-        ?encode_array(PartitionResult, fun encode_partition_result_1/1)
+        ?encode_array(PartitionResult, ?encode_element(encode_partition_result_1))
     ];
 encode_replica_election_result_1(Args) ->
     ?encoder_error(Args, #{
@@ -309,7 +312,7 @@ encode_elect_leaders_response_2(
         ?encode_response_header_1(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
         ?encode_int16(ErrorCode),
-        ?encode_compact_array(ReplicaElectionResults, fun encode_replica_election_result_2/1),
+        ?encode_compact_array(ReplicaElectionResults, ?encode_element(encode_replica_election_result_2)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_elect_leaders_response_2(Args) ->
@@ -423,7 +426,7 @@ encode_replica_election_result_2(
 ->
     [
         ?encode_compact_string(Topic),
-        ?encode_compact_array(PartitionResult, fun encode_partition_result_2/1),
+        ?encode_compact_array(PartitionResult, ?encode_element(encode_partition_result_2)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_replica_election_result_2(Args) ->

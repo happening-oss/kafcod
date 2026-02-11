@@ -19,9 +19,7 @@
 -define(_decode_int32(Variable, Input, Rest), <<Variable:32/big-signed, Rest/binary>> = Input).
 -define(_decode_int64(Variable, Input, Rest), <<Variable:64/big-signed, Rest/binary>> = Input).
 
-% TODO: We're decoding uint and int the same; there are only a few uint-encoded fields in the protocol, so we've not run
-% into any problems (yet).
--define(_decode_uint16(Variable, Input, Rest), <<Variable:16/big-signed, Rest/binary>> = Input).
+-define(_decode_uint16(Variable, Input, Rest), <<Variable:16/big-unsigned, Rest/binary>> = Input).
 
 -define(_decode_float64(Variable, Input, Rest), <<Variable:64/float-big, Rest/binary>> = Input).
 
@@ -107,13 +105,10 @@
 
 -define(_decode_entity(Variable, Input, Rest, Fun), {Variable, Rest} = Fun(Input)).
 
--define(_decode_nullable_records(Variable, Input, Rest),
+-define(_decode_records(Variable, Input, Rest),
     {Variable, Rest} = kafcod_records:decode_records(Input)
 ).
 -define(_decode_compact_records(Variable, Input, Rest),
-    {Variable, Rest} = kafcod_records:decode_compact_records(Input)
-).
--define(_decode_compact_nullable_records(Variable, Input, Rest),
     {Variable, Rest} = kafcod_records:decode_compact_records(Input)
 ).
 
@@ -168,6 +163,14 @@ end).
     ?LOG_DEBUG("{~s, _} = _decode_compact_array(~p, ~s)", [??Variable, Input, ??Fun]),
     {Variable, Rest} = kafcod_primitives:decode_compact_array(Input, Fun),
     ?LOG_DEBUG("_decode_compact_array() => {~s = ~p, ~p}", [??Variable, Variable, Rest])
+end).
+
+-undef(_decode_element).
+-define(_decode_element(Fun), fun(Value_) ->
+    ?LOG_DEBUG("_decode_element(~s, ~p)", [??Fun, Value_]),
+    {Result, Rest} = Fun(Value_),
+    ?LOG_DEBUG("_decode_element(~s) => {~p, ~p}", [??Fun, Result, Rest]),
+    {Result, Rest}
 end).
 
 -undef(_decode_records).

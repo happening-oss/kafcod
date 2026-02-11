@@ -1,5 +1,6 @@
 -module(kafcod_record_batch_tests).
 -include_lib("eunit/include/eunit.hrl").
+-include("catch.hrl").
 
 % Tests for non-null keys and for headers are in fetch_response_tests.
 
@@ -123,8 +124,8 @@ encode_record_batch_error_test() ->
     % ...which doesn't make any sense.
     %
     % This test guards against that.
-    Catch =
-        catch kafcod_record_batch:encode_record_batch(#{
+    {error, Reason = badarg, StackTrace} = ?CATCH(
+        kafcod_record_batch:encode_record_batch(#{
             attributes => #{compression => none},
             % missing producer_id
             producer_epoch => -1,
@@ -155,8 +156,8 @@ encode_record_batch_error_test() ->
             last_offset_delta => 2,
             magic => 2,
             partition_leader_epoch => 0
-        }),
-    {'EXIT', {Reason = badarg, StackTrace}} = Catch,
+        })
+    ),
     ?assertEqual(
         #{1 => "missing 'producer_id' (int64)"}, kafcod_errors:format_error(Reason, StackTrace)
     ),

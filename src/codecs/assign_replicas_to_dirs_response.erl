@@ -1,4 +1,7 @@
 -module(assign_replicas_to_dirs_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_assign_replicas_to_dirs_response_0/1,
     decode_assign_replicas_to_dirs_response_0/1
@@ -38,7 +41,7 @@ encode_assign_replicas_to_dirs_response_0(
         ?encode_response_header_1(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
         ?encode_int16(ErrorCode),
-        ?encode_compact_array(Directories, fun encode_directory_data_0/1),
+        ?encode_compact_array(Directories, ?encode_element(encode_directory_data_0)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_assign_replicas_to_dirs_response_0(Args) ->
@@ -144,7 +147,7 @@ encode_topic_data_0(
 ->
     [
         ?encode_uuid(TopicId),
-        ?encode_compact_array(Partitions, fun encode_partition_data_0/1),
+        ?encode_compact_array(Partitions, ?encode_element(encode_partition_data_0)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_topic_data_0(Args) ->
@@ -194,7 +197,7 @@ encode_directory_data_0(
 ->
     [
         ?encode_uuid(Id),
-        ?encode_compact_array(Topics, fun encode_topic_data_0/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_topic_data_0)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_directory_data_0(Args) ->

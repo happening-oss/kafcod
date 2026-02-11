@@ -1,4 +1,7 @@
 -module(leader_change_message).
+
+%% This file is auto-generated.
+
 -export([
     encode_leader_change_message_0/1,
     decode_leader_change_message_0/1
@@ -36,8 +39,8 @@ encode_leader_change_message_0(
     [
         ?encode_int16(Version),
         ?encode_int32(LeaderId),
-        ?encode_compact_array(Voters, fun encode_voter_0/1),
-        ?encode_compact_array(GrantingVoters, fun encode_voter_0/1),
+        ?encode_compact_array(Voters, ?encode_element(encode_voter_0)),
+        ?encode_compact_array(GrantingVoters, ?encode_element(encode_voter_0)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_leader_change_message_0(Args) ->

@@ -1,4 +1,7 @@
 -module(describe_delegation_token_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_describe_delegation_token_response_0/1,
     decode_describe_delegation_token_response_0/1,
@@ -52,7 +55,7 @@ encode_describe_delegation_token_response_0(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int16(ErrorCode),
-        ?encode_array(Tokens, fun encode_described_delegation_token_0/1),
+        ?encode_array(Tokens, ?encode_element(encode_described_delegation_token_0)),
         ?encode_int32(ThrottleTimeMs)
     ];
 encode_describe_delegation_token_response_0(Args) ->
@@ -158,7 +161,7 @@ encode_described_delegation_token_0(
         ?encode_int64(MaxTimestamp),
         ?encode_string(TokenId),
         ?encode_bytes(Hmac),
-        ?encode_array(Renewers, fun encode_described_delegation_token_renewer_0/1)
+        ?encode_array(Renewers, ?encode_element(encode_described_delegation_token_renewer_0))
     ];
 encode_described_delegation_token_0(Args) ->
     ?encoder_error(Args, #{
@@ -221,7 +224,7 @@ encode_describe_delegation_token_response_1(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int16(ErrorCode),
-        ?encode_array(Tokens, fun encode_described_delegation_token_1/1),
+        ?encode_array(Tokens, ?encode_element(encode_described_delegation_token_1)),
         ?encode_int32(ThrottleTimeMs)
     ];
 encode_describe_delegation_token_response_1(Args) ->
@@ -327,7 +330,7 @@ encode_described_delegation_token_1(
         ?encode_int64(MaxTimestamp),
         ?encode_string(TokenId),
         ?encode_bytes(Hmac),
-        ?encode_array(Renewers, fun encode_described_delegation_token_renewer_1/1)
+        ?encode_array(Renewers, ?encode_element(encode_described_delegation_token_renewer_1))
     ];
 encode_described_delegation_token_1(Args) ->
     ?encoder_error(Args, #{
@@ -390,7 +393,7 @@ encode_describe_delegation_token_response_2(
     [
         ?encode_response_header_1(CorrelationId),
         ?encode_int16(ErrorCode),
-        ?encode_compact_array(Tokens, fun encode_described_delegation_token_2/1),
+        ?encode_compact_array(Tokens, ?encode_element(encode_described_delegation_token_2)),
         ?encode_int32(ThrottleTimeMs),
         ?EMPTY_TAG_BUFFER
     ];
@@ -522,7 +525,7 @@ encode_described_delegation_token_2(
         ?encode_int64(MaxTimestamp),
         ?encode_compact_string(TokenId),
         ?encode_compact_bytes(Hmac),
-        ?encode_compact_array(Renewers, fun encode_described_delegation_token_renewer_2/1),
+        ?encode_compact_array(Renewers, ?encode_element(encode_described_delegation_token_renewer_2)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_described_delegation_token_2(Args) ->
@@ -598,7 +601,7 @@ encode_describe_delegation_token_response_3(
     [
         ?encode_response_header_1(CorrelationId),
         ?encode_int16(ErrorCode),
-        ?encode_compact_array(Tokens, fun encode_described_delegation_token_3/1),
+        ?encode_compact_array(Tokens, ?encode_element(encode_described_delegation_token_3)),
         ?encode_int32(ThrottleTimeMs),
         ?EMPTY_TAG_BUFFER
     ];
@@ -738,7 +741,7 @@ encode_described_delegation_token_3(
         ?encode_int64(MaxTimestamp),
         ?encode_compact_string(TokenId),
         ?encode_compact_bytes(Hmac),
-        ?encode_compact_array(Renewers, fun encode_described_delegation_token_renewer_3/1),
+        ?encode_compact_array(Renewers, ?encode_element(encode_described_delegation_token_renewer_3)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_described_delegation_token_3(Args) ->

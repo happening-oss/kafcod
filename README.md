@@ -77,6 +77,12 @@ Squash the generated codecs back to a single commit once you're happy, though --
 Changes to the generators should *not* be squashed into the codec commit, though -- it makes the diffs really hard to
 read.
 
+## Tags and versioning
+
+The tag scheme is `0.WW.X`, where `WW` is the week of the year, as reported by `date +%W`. `X` is usually zero, but can
+be incremented if there are multiple releases in the same week. If we get to 2026 without hitting version 1, add 52 to
+the year.
+
 ## Unit tests
 
 The unit tests can't cover every type of request and response message, but they attempt to exercise a mixture of field
@@ -88,7 +94,7 @@ Where they assert the result of a message encoder, or form the input to a decode
 1. by writing a test harness that encodes the message and sends it to Kafka and checking that the message decodes
    correctly in Wireshark.
 2. by using Wireshark to snoop on "normal" (kcat, e.g.) requests and responses and capturing the messages from
-   Wireshark.
+   Wireshark. See [docs/wireshark-captures.md].
 
 ## Examples
 
@@ -100,9 +106,10 @@ to take a look.
 Near the bottom of the `src/decoders.hrl` file, there's an example of how to implement tracing for the compact array
 decoder. Implementing other tracing is left as an exercise. PRs are accepted :-)
 
-To run the unit tests with tracing, enable debug logging in `eunit.config`, and then run something like the following:
+To run the unit tests with tracing, run the following (for example):
 
 ```sh
+rebar3 as trace eunit --test=metadata_request_tests:v1_with_topics_test
 rebar3 as trace eunit --test=metadata_response_tests:v9_test
 ```
 

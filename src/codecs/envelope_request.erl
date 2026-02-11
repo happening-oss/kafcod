@@ -1,4 +1,7 @@
 -module(envelope_request).
+
+%% This file is auto-generated.
+
 -export([
     encode_envelope_request_0/1,
     decode_envelope_request_0/1

@@ -1,4 +1,7 @@
 -module(controlled_shutdown_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_controlled_shutdown_response_0/1,
     decode_controlled_shutdown_response_0/1,
@@ -45,7 +48,7 @@ encode_controlled_shutdown_response_0(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int16(ErrorCode),
-        ?encode_array(RemainingPartitions, fun encode_remaining_partition_0/1)
+        ?encode_array(RemainingPartitions, ?encode_element(encode_remaining_partition_0))
     ];
 encode_controlled_shutdown_response_0(Args) ->
     ?encoder_error(Args, #{
@@ -127,7 +130,7 @@ encode_controlled_shutdown_response_1(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int16(ErrorCode),
-        ?encode_array(RemainingPartitions, fun encode_remaining_partition_1/1)
+        ?encode_array(RemainingPartitions, ?encode_element(encode_remaining_partition_1))
     ];
 encode_controlled_shutdown_response_1(Args) ->
     ?encoder_error(Args, #{
@@ -209,7 +212,7 @@ encode_controlled_shutdown_response_2(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int16(ErrorCode),
-        ?encode_array(RemainingPartitions, fun encode_remaining_partition_2/1)
+        ?encode_array(RemainingPartitions, ?encode_element(encode_remaining_partition_2))
     ];
 encode_controlled_shutdown_response_2(Args) ->
     ?encoder_error(Args, #{
@@ -291,7 +294,7 @@ encode_controlled_shutdown_response_3(
     [
         ?encode_response_header_1(CorrelationId),
         ?encode_int16(ErrorCode),
-        ?encode_compact_array(RemainingPartitions, fun encode_remaining_partition_3/1),
+        ?encode_compact_array(RemainingPartitions, ?encode_element(encode_remaining_partition_3)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_controlled_shutdown_response_3(Args) ->

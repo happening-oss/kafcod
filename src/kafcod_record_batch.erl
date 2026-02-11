@@ -1,9 +1,11 @@
 -module(kafcod_record_batch).
 
-% "records" are collected into "record batches". The per-partition data in a Produce request or a Fetch response
-% contains zero or more record batches. Confusingly, this is referred to with the type name "RECORDS" or
+% "records" are collected into "record batches". The per-partition data in a Produce request contains a single record
+% batch; in a Fetch response, it contains zero-or-more record batches.
+
+% Confusingly, in the message schemas, a collection of record batches is referred to with the type name "RECORDS" or
 % "COMPACT_RECORDS".
-%
+
 % Here's some pseudo-grammar:
 %
 % fetch_response :: {..., [fetchable_topic_response[T], ...]}
@@ -20,7 +22,8 @@
 ]).
 -export_type([
     record_batch/0,
-    batch_attributes/0
+    batch_attributes/0,
+    compression/0
 ]).
 
 % Exported for testing. See kafcod_record_batch_tests.
@@ -30,10 +33,12 @@
     decode_records/2
 ]).
 -endif.
+
 -include("guards.hrl").
 -include("error.hrl").
 -include("compression.hrl").
 
+% 'kafcod_crc32c' uses the 'crc32cer' NIF; 'kafcod_crc32c_erl' is a pure Erlang implementation.
 -define(CRC(X), kafcod_crc32c:value(X)).
 %-define(CRC(X), kafcod_crc32c_erl:value(X)).
 
@@ -142,21 +147,29 @@ compress_records(_Compression = gzip, Records) ->
     Count = length(Records),
     EncodedRecords = iolist_to_binary(encode_records(Records)),
     CompressedRecords = zlib:gzip(EncodedRecords),
-    telemetry:execute([kafcod, record_batch, compress_records], #{
-        compression => gzip,
-        uncompressed_byte_size => byte_size(EncodedRecords),
-        compressed_byte_size => iolist_size(CompressedRecords)
-    }),
+    telemetry:execute(
+        [kafcod, record_batch, compress_records],
+        #{
+            compression => gzip,
+            uncompressed_byte_size => byte_size(EncodedRecords),
+            compressed_byte_size => iolist_size(CompressedRecords)
+        },
+        #{}
+    ),
     [<<Count:32/big-signed>>, CompressedRecords];
 compress_records(_Compression = snappy, Records) ->
     Count = length(Records),
     EncodedRecords = iolist_to_binary(encode_records(Records)),
     {ok, CompressedRecords} = kafcod_snappy:compress(EncodedRecords),
-    telemetry:execute([kafcod, record_batch, compress_records], #{
-        compression => snappy,
-        uncompressed_byte_size => byte_size(EncodedRecords),
-        compressed_byte_size => iolist_size(CompressedRecords)
-    }),
+    telemetry:execute(
+        [kafcod, record_batch, compress_records],
+        #{
+            compression => snappy,
+            uncompressed_byte_size => byte_size(EncodedRecords),
+            compressed_byte_size => iolist_size(CompressedRecords)
+        },
+        #{}
+    ),
     [<<Count:32/big-signed>>, CompressedRecords].
 
 -spec encode_records([kafcod_record:record()]) -> iodata().
@@ -230,21 +243,29 @@ decompress_records(_Compression = gzip, Count, CompressedRecords) when
     is_integer(Count), is_binary(CompressedRecords)
 ->
     Records = zlib:gunzip(CompressedRecords),
-    telemetry:execute([kafcod, record_batch, decompress_records], #{
-        compression => gzip,
-        compressed_byte_size => byte_size(CompressedRecords),
-        decompressed_byte_size => byte_size(Records)
-    }),
+    telemetry:execute(
+        [kafcod, record_batch, decompress_records],
+        #{
+            compression => gzip,
+            compressed_byte_size => byte_size(CompressedRecords),
+            decompressed_byte_size => byte_size(Records)
+        },
+        #{}
+    ),
     decode_records(Count, Records);
 decompress_records(_Compression = snappy, Count, CompressedRecords) when
     is_integer(Count), is_binary(CompressedRecords)
 ->
     {ok, Records} = kafcod_snappy:decompress(CompressedRecords),
-    telemetry:execute([kafcod, record_batch, decompress_records], #{
-        compression => snappy,
-        compressed_byte_size => byte_size(CompressedRecords),
-        decompressed_byte_size => byte_size(Records)
-    }),
+    telemetry:execute(
+        [kafcod, record_batch, decompress_records],
+        #{
+            compression => snappy,
+            compressed_byte_size => byte_size(CompressedRecords),
+            decompressed_byte_size => byte_size(Records)
+        },
+        #{}
+    ),
     decode_records(Count, Records);
 decompress_records(Compression, Count, Records) ->
     error(badarg, [Compression, Count, Records]).

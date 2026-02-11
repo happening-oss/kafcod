@@ -1,4 +1,7 @@
 -module(list_client_metrics_resources_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_list_client_metrics_resources_response_0/1,
     decode_list_client_metrics_resources_response_0/1
@@ -37,7 +40,7 @@ encode_list_client_metrics_resources_response_0(
         ?encode_response_header_1(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
         ?encode_int16(ErrorCode),
-        ?encode_compact_array(ClientMetricsResources, fun encode_client_metrics_resource_0/1),
+        ?encode_compact_array(ClientMetricsResources, ?encode_element(encode_client_metrics_resource_0)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_list_client_metrics_resources_response_0(Args) ->

@@ -1,4 +1,7 @@
 -module(alter_partition_reassignments_request).
+
+%% This file is auto-generated.
+
 -export([
     encode_alter_partition_reassignments_request_0/1,
     decode_alter_partition_reassignments_request_0/1
@@ -38,7 +41,7 @@ encode_alter_partition_reassignments_request_0(
     [
         ?encode_request_header_2(?ALTER_PARTITION_REASSIGNMENTS_REQUEST, 0, CorrelationId, ClientId),
         ?encode_int32(TimeoutMs),
-        ?encode_compact_array(Topics, fun encode_reassignable_topic_0/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_reassignable_topic_0)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_alter_partition_reassignments_request_0(Args) ->
@@ -143,7 +146,7 @@ encode_reassignable_topic_0(
 ->
     [
         ?encode_compact_string(Name),
-        ?encode_compact_array(Partitions, fun encode_reassignable_partition_0/1),
+        ?encode_compact_array(Partitions, ?encode_element(encode_reassignable_partition_0)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_reassignable_topic_0(Args) ->

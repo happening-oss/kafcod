@@ -1,4 +1,7 @@
 -module(create_topics_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_create_topics_response_0/1,
     decode_create_topics_response_0/1,
@@ -60,7 +63,7 @@ encode_create_topics_response_0(
 ->
     [
         ?encode_response_header_0(CorrelationId),
-        ?encode_array(Topics, fun encode_creatable_topic_result_0/1)
+        ?encode_array(Topics, ?encode_element(encode_creatable_topic_result_0))
     ];
 encode_create_topics_response_0(Args) ->
     ?encoder_error(Args, #{
@@ -135,7 +138,7 @@ encode_create_topics_response_1(
 ->
     [
         ?encode_response_header_0(CorrelationId),
-        ?encode_array(Topics, fun encode_creatable_topic_result_1/1)
+        ?encode_array(Topics, ?encode_element(encode_creatable_topic_result_1))
     ];
 encode_create_topics_response_1(Args) ->
     ?encoder_error(Args, #{
@@ -221,7 +224,7 @@ encode_create_topics_response_2(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_array(Topics, fun encode_creatable_topic_result_2/1)
+        ?encode_array(Topics, ?encode_element(encode_creatable_topic_result_2))
     ];
 encode_create_topics_response_2(Args) ->
     ?encoder_error(Args, #{
@@ -310,7 +313,7 @@ encode_create_topics_response_3(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_array(Topics, fun encode_creatable_topic_result_3/1)
+        ?encode_array(Topics, ?encode_element(encode_creatable_topic_result_3))
     ];
 encode_create_topics_response_3(Args) ->
     ?encoder_error(Args, #{
@@ -399,7 +402,7 @@ encode_create_topics_response_4(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_array(Topics, fun encode_creatable_topic_result_4/1)
+        ?encode_array(Topics, ?encode_element(encode_creatable_topic_result_4))
     ];
 encode_create_topics_response_4(Args) ->
     ?encoder_error(Args, #{
@@ -488,7 +491,7 @@ encode_create_topics_response_5(
     [
         ?encode_response_header_1(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_compact_array(Topics, fun encode_creatable_topic_result_5/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_creatable_topic_result_5)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_create_topics_response_5(Args) ->
@@ -629,7 +632,7 @@ encode_creatable_topic_result_5(
         ?encode_compact_nullable_string(ErrorMessage),
         ?encode_int32(NumPartitions),
         ?encode_int16(ReplicationFactor),
-        ?encode_compact_nullable_array(Configs, fun encode_creatable_topic_configs_5/1),
+        ?encode_compact_nullable_array(Configs, ?encode_element(encode_creatable_topic_configs_5)),
         ?encode_tagged_fields(
             fun encode_creatable_topic_result_5_tagged_field/2,
             Args
@@ -714,7 +717,7 @@ encode_create_topics_response_6(
     [
         ?encode_response_header_1(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_compact_array(Topics, fun encode_creatable_topic_result_6/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_creatable_topic_result_6)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_create_topics_response_6(Args) ->
@@ -855,7 +858,7 @@ encode_creatable_topic_result_6(
         ?encode_compact_nullable_string(ErrorMessage),
         ?encode_int32(NumPartitions),
         ?encode_int16(ReplicationFactor),
-        ?encode_compact_nullable_array(Configs, fun encode_creatable_topic_configs_6/1),
+        ?encode_compact_nullable_array(Configs, ?encode_element(encode_creatable_topic_configs_6)),
         ?encode_tagged_fields(
             fun encode_creatable_topic_result_6_tagged_field/2,
             Args
@@ -940,7 +943,7 @@ encode_create_topics_response_7(
     [
         ?encode_response_header_1(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_compact_array(Topics, fun encode_creatable_topic_result_7/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_creatable_topic_result_7)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_create_topics_response_7(Args) ->
@@ -1085,7 +1088,7 @@ encode_creatable_topic_result_7(
         ?encode_compact_nullable_string(ErrorMessage),
         ?encode_int32(NumPartitions),
         ?encode_int16(ReplicationFactor),
-        ?encode_compact_nullable_array(Configs, fun encode_creatable_topic_configs_7/1),
+        ?encode_compact_nullable_array(Configs, ?encode_element(encode_creatable_topic_configs_7)),
         ?encode_tagged_fields(
             fun encode_creatable_topic_result_7_tagged_field/2,
             Args

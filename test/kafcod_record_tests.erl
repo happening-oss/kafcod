@@ -1,5 +1,6 @@
 -module(kafcod_record_tests).
 -include_lib("eunit/include/eunit.hrl").
+-include("catch.hrl").
 
 empty_headers_test_() ->
     Encoded = iolist_to_binary([
@@ -88,8 +89,8 @@ null_key_and_value_test_() ->
     ].
 
 encode_record_headers_wrong_type_test() ->
-    Catch =
-        catch kafcod_record:encode_record(#{
+    {error, Reason = badarg, StackTrace} = ?CATCH(
+        kafcod_record:encode_record(#{
             attributes => 0,
             % headers must be empty, rather than null
             headers => null,
@@ -97,8 +98,8 @@ encode_record_headers_wrong_type_test() ->
             offset_delta => 0,
             timestamp_delta => 0,
             value => <<"hello">>
-        }),
-    {'EXIT', {Reason = badarg, StackTrace}} = Catch,
+        })
+    ),
     ?assertEqual(
         #{
             1 =>
@@ -135,8 +136,7 @@ encode_headers_test() ->
 
 encode_headers_error_test() ->
     Headers = [{an_atom, another_atom}],
-    Catch = catch kafcod_record:encode_headers(Headers),
-    {'EXIT', {Reason = badarg, StackTrace}} = Catch,
+    {error, Reason = badarg, StackTrace} = ?CATCH(kafcod_record:encode_headers(Headers)),
     ?assertEqual(
         #{
             1 =>

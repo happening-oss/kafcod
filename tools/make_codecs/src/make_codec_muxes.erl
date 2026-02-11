@@ -13,6 +13,7 @@ format_decoder_muxes(InputFiles) ->
 format_muxes(InputFiles, ModuleName, Direction) ->
     [
         io_lib:format("-module(~s).~n", [ModuleName]),
+        io_lib:format("~n%% This file is auto-generated.~n~n", []),
         io_lib:format("-export([~s/4]).~n", [Direction]),
 
         begin

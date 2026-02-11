@@ -1,4 +1,7 @@
 -module(join_group_request).
+
+%% This file is auto-generated.
+
 -export([
     encode_join_group_request_0/1,
     decode_join_group_request_0/1,
@@ -85,7 +88,7 @@ encode_join_group_request_0(
         ?encode_int32(SessionTimeoutMs),
         ?encode_string(MemberId),
         ?encode_string(ProtocolType),
-        ?encode_array(Protocols, fun encode_join_group_request_protocol_0/1)
+        ?encode_array(Protocols, ?encode_element(encode_join_group_request_protocol_0))
     ];
 encode_join_group_request_0(Args) ->
     ?encoder_error(Args, #{
@@ -196,7 +199,7 @@ encode_join_group_request_1(
         ?encode_int32(RebalanceTimeoutMs),
         ?encode_string(MemberId),
         ?encode_string(ProtocolType),
-        ?encode_array(Protocols, fun encode_join_group_request_protocol_1/1)
+        ?encode_array(Protocols, ?encode_element(encode_join_group_request_protocol_1))
     ];
 encode_join_group_request_1(Args) ->
     ?encoder_error(Args, #{
@@ -310,7 +313,7 @@ encode_join_group_request_2(
         ?encode_int32(RebalanceTimeoutMs),
         ?encode_string(MemberId),
         ?encode_string(ProtocolType),
-        ?encode_array(Protocols, fun encode_join_group_request_protocol_2/1)
+        ?encode_array(Protocols, ?encode_element(encode_join_group_request_protocol_2))
     ];
 encode_join_group_request_2(Args) ->
     ?encoder_error(Args, #{
@@ -424,7 +427,7 @@ encode_join_group_request_3(
         ?encode_int32(RebalanceTimeoutMs),
         ?encode_string(MemberId),
         ?encode_string(ProtocolType),
-        ?encode_array(Protocols, fun encode_join_group_request_protocol_3/1)
+        ?encode_array(Protocols, ?encode_element(encode_join_group_request_protocol_3))
     ];
 encode_join_group_request_3(Args) ->
     ?encoder_error(Args, #{
@@ -538,7 +541,7 @@ encode_join_group_request_4(
         ?encode_int32(RebalanceTimeoutMs),
         ?encode_string(MemberId),
         ?encode_string(ProtocolType),
-        ?encode_array(Protocols, fun encode_join_group_request_protocol_4/1)
+        ?encode_array(Protocols, ?encode_element(encode_join_group_request_protocol_4))
     ];
 encode_join_group_request_4(Args) ->
     ?encoder_error(Args, #{
@@ -656,7 +659,7 @@ encode_join_group_request_5(
         ?encode_string(MemberId),
         ?encode_nullable_string(GroupInstanceId),
         ?encode_string(ProtocolType),
-        ?encode_array(Protocols, fun encode_join_group_request_protocol_5/1)
+        ?encode_array(Protocols, ?encode_element(encode_join_group_request_protocol_5))
     ];
 encode_join_group_request_5(Args) ->
     ?encoder_error(Args, #{
@@ -777,7 +780,7 @@ encode_join_group_request_6(
         ?encode_compact_string(MemberId),
         ?encode_compact_nullable_string(GroupInstanceId),
         ?encode_compact_string(ProtocolType),
-        ?encode_compact_array(Protocols, fun encode_join_group_request_protocol_6/1),
+        ?encode_compact_array(Protocols, ?encode_element(encode_join_group_request_protocol_6)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_join_group_request_6(Args) ->
@@ -924,7 +927,7 @@ encode_join_group_request_7(
         ?encode_compact_string(MemberId),
         ?encode_compact_nullable_string(GroupInstanceId),
         ?encode_compact_string(ProtocolType),
-        ?encode_compact_array(Protocols, fun encode_join_group_request_protocol_7/1),
+        ?encode_compact_array(Protocols, ?encode_element(encode_join_group_request_protocol_7)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_join_group_request_7(Args) ->
@@ -1074,7 +1077,7 @@ encode_join_group_request_8(
         ?encode_compact_string(MemberId),
         ?encode_compact_nullable_string(GroupInstanceId),
         ?encode_compact_string(ProtocolType),
-        ?encode_compact_array(Protocols, fun encode_join_group_request_protocol_8/1),
+        ?encode_compact_array(Protocols, ?encode_element(encode_join_group_request_protocol_8)),
         ?encode_compact_nullable_string(Reason),
         ?EMPTY_TAG_BUFFER
     ];
@@ -1228,7 +1231,7 @@ encode_join_group_request_9(
         ?encode_compact_string(MemberId),
         ?encode_compact_nullable_string(GroupInstanceId),
         ?encode_compact_string(ProtocolType),
-        ?encode_compact_array(Protocols, fun encode_join_group_request_protocol_9/1),
+        ?encode_compact_array(Protocols, ?encode_element(encode_join_group_request_protocol_9)),
         ?encode_compact_nullable_string(Reason),
         ?EMPTY_TAG_BUFFER
     ];

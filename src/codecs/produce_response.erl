@@ -1,4 +1,7 @@
 -module(produce_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_produce_response_0/1,
     decode_produce_response_0/1,
@@ -93,7 +96,7 @@ encode_produce_response_0(
 ->
     [
         ?encode_response_header_0(CorrelationId),
-        ?encode_array(Responses, fun encode_topic_produce_response_0/1)
+        ?encode_array(Responses, ?encode_element(encode_topic_produce_response_0))
     ];
 encode_produce_response_0(Args) ->
     ?encoder_error(Args, #{
@@ -175,7 +178,7 @@ encode_topic_produce_response_0(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(PartitionResponses, fun encode_partition_produce_response_0/1)
+        ?encode_array(PartitionResponses, ?encode_element(encode_partition_produce_response_0))
     ];
 encode_topic_produce_response_0(Args) ->
     ?encoder_error(Args, #{
@@ -216,7 +219,7 @@ encode_produce_response_1(
 ->
     [
         ?encode_response_header_0(CorrelationId),
-        ?encode_array(Responses, fun encode_topic_produce_response_1/1),
+        ?encode_array(Responses, ?encode_element(encode_topic_produce_response_1)),
         ?encode_int32(ThrottleTimeMs)
     ];
 encode_produce_response_1(Args) ->
@@ -302,7 +305,7 @@ encode_topic_produce_response_1(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(PartitionResponses, fun encode_partition_produce_response_1/1)
+        ?encode_array(PartitionResponses, ?encode_element(encode_partition_produce_response_1))
     ];
 encode_topic_produce_response_1(Args) ->
     ?encoder_error(Args, #{
@@ -343,7 +346,7 @@ encode_produce_response_2(
 ->
     [
         ?encode_response_header_0(CorrelationId),
-        ?encode_array(Responses, fun encode_topic_produce_response_2/1),
+        ?encode_array(Responses, ?encode_element(encode_topic_produce_response_2)),
         ?encode_int32(ThrottleTimeMs)
     ];
 encode_produce_response_2(Args) ->
@@ -436,7 +439,7 @@ encode_topic_produce_response_2(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(PartitionResponses, fun encode_partition_produce_response_2/1)
+        ?encode_array(PartitionResponses, ?encode_element(encode_partition_produce_response_2))
     ];
 encode_topic_produce_response_2(Args) ->
     ?encoder_error(Args, #{
@@ -477,7 +480,7 @@ encode_produce_response_3(
 ->
     [
         ?encode_response_header_0(CorrelationId),
-        ?encode_array(Responses, fun encode_topic_produce_response_3/1),
+        ?encode_array(Responses, ?encode_element(encode_topic_produce_response_3)),
         ?encode_int32(ThrottleTimeMs)
     ];
 encode_produce_response_3(Args) ->
@@ -570,7 +573,7 @@ encode_topic_produce_response_3(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(PartitionResponses, fun encode_partition_produce_response_3/1)
+        ?encode_array(PartitionResponses, ?encode_element(encode_partition_produce_response_3))
     ];
 encode_topic_produce_response_3(Args) ->
     ?encoder_error(Args, #{
@@ -611,7 +614,7 @@ encode_produce_response_4(
 ->
     [
         ?encode_response_header_0(CorrelationId),
-        ?encode_array(Responses, fun encode_topic_produce_response_4/1),
+        ?encode_array(Responses, ?encode_element(encode_topic_produce_response_4)),
         ?encode_int32(ThrottleTimeMs)
     ];
 encode_produce_response_4(Args) ->
@@ -704,7 +707,7 @@ encode_topic_produce_response_4(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(PartitionResponses, fun encode_partition_produce_response_4/1)
+        ?encode_array(PartitionResponses, ?encode_element(encode_partition_produce_response_4))
     ];
 encode_topic_produce_response_4(Args) ->
     ?encoder_error(Args, #{
@@ -745,7 +748,7 @@ encode_produce_response_5(
 ->
     [
         ?encode_response_header_0(CorrelationId),
-        ?encode_array(Responses, fun encode_topic_produce_response_5/1),
+        ?encode_array(Responses, ?encode_element(encode_topic_produce_response_5)),
         ?encode_int32(ThrottleTimeMs)
     ];
 encode_produce_response_5(Args) ->
@@ -845,7 +848,7 @@ encode_topic_produce_response_5(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(PartitionResponses, fun encode_partition_produce_response_5/1)
+        ?encode_array(PartitionResponses, ?encode_element(encode_partition_produce_response_5))
     ];
 encode_topic_produce_response_5(Args) ->
     ?encoder_error(Args, #{
@@ -886,7 +889,7 @@ encode_produce_response_6(
 ->
     [
         ?encode_response_header_0(CorrelationId),
-        ?encode_array(Responses, fun encode_topic_produce_response_6/1),
+        ?encode_array(Responses, ?encode_element(encode_topic_produce_response_6)),
         ?encode_int32(ThrottleTimeMs)
     ];
 encode_produce_response_6(Args) ->
@@ -986,7 +989,7 @@ encode_topic_produce_response_6(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(PartitionResponses, fun encode_partition_produce_response_6/1)
+        ?encode_array(PartitionResponses, ?encode_element(encode_partition_produce_response_6))
     ];
 encode_topic_produce_response_6(Args) ->
     ?encoder_error(Args, #{
@@ -1027,7 +1030,7 @@ encode_produce_response_7(
 ->
     [
         ?encode_response_header_0(CorrelationId),
-        ?encode_array(Responses, fun encode_topic_produce_response_7/1),
+        ?encode_array(Responses, ?encode_element(encode_topic_produce_response_7)),
         ?encode_int32(ThrottleTimeMs)
     ];
 encode_produce_response_7(Args) ->
@@ -1127,7 +1130,7 @@ encode_topic_produce_response_7(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(PartitionResponses, fun encode_partition_produce_response_7/1)
+        ?encode_array(PartitionResponses, ?encode_element(encode_partition_produce_response_7))
     ];
 encode_topic_produce_response_7(Args) ->
     ?encoder_error(Args, #{
@@ -1168,7 +1171,7 @@ encode_produce_response_8(
 ->
     [
         ?encode_response_header_0(CorrelationId),
-        ?encode_array(Responses, fun encode_topic_produce_response_8/1),
+        ?encode_array(Responses, ?encode_element(encode_topic_produce_response_8)),
         ?encode_int32(ThrottleTimeMs)
     ];
 encode_produce_response_8(Args) ->
@@ -1266,7 +1269,7 @@ encode_partition_produce_response_8(
         ?encode_int64(BaseOffset),
         ?encode_int64(LogAppendTimeMs),
         ?encode_int64(LogStartOffset),
-        ?encode_array(RecordErrors, fun encode_batch_index_and_error_message_8/1),
+        ?encode_array(RecordErrors, ?encode_element(encode_batch_index_and_error_message_8)),
         ?encode_nullable_string(ErrorMessage)
     ];
 encode_partition_produce_response_8(Args) ->
@@ -1320,7 +1323,7 @@ encode_topic_produce_response_8(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(PartitionResponses, fun encode_partition_produce_response_8/1)
+        ?encode_array(PartitionResponses, ?encode_element(encode_partition_produce_response_8))
     ];
 encode_topic_produce_response_8(Args) ->
     ?encoder_error(Args, #{
@@ -1361,7 +1364,7 @@ encode_produce_response_9(
 ->
     [
         ?encode_response_header_1(CorrelationId),
-        ?encode_compact_array(Responses, fun encode_topic_produce_response_9/1),
+        ?encode_compact_array(Responses, ?encode_element(encode_topic_produce_response_9)),
         ?encode_int32(ThrottleTimeMs),
         ?EMPTY_TAG_BUFFER
     ];
@@ -1485,7 +1488,7 @@ encode_partition_produce_response_9(
         ?encode_int64(BaseOffset),
         ?encode_int64(LogAppendTimeMs),
         ?encode_int64(LogStartOffset),
-        ?encode_compact_array(RecordErrors, fun encode_batch_index_and_error_message_9/1),
+        ?encode_compact_array(RecordErrors, ?encode_element(encode_batch_index_and_error_message_9)),
         ?encode_compact_nullable_string(ErrorMessage),
         ?EMPTY_TAG_BUFFER
     ];
@@ -1552,7 +1555,7 @@ encode_topic_produce_response_9(
 ->
     [
         ?encode_compact_string(Name),
-        ?encode_compact_array(PartitionResponses, fun encode_partition_produce_response_9/1),
+        ?encode_compact_array(PartitionResponses, ?encode_element(encode_partition_produce_response_9)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_topic_produce_response_9(Args) ->
@@ -1606,7 +1609,7 @@ encode_produce_response_10(
 ->
     [
         ?encode_response_header_1(CorrelationId),
-        ?encode_compact_array(Responses, fun encode_topic_produce_response_10/1),
+        ?encode_compact_array(Responses, ?encode_element(encode_topic_produce_response_10)),
         ?encode_int32(ThrottleTimeMs),
         ?encode_tagged_fields(
             fun encode_produce_response_10_tagged_field/2,
@@ -1625,7 +1628,7 @@ encode_produce_response_10(Args) ->
 ) -> {non_neg_integer(), iodata()} | ignore.
 
 encode_produce_response_10_tagged_field(_Key = node_endpoints, NodeEndpoints) ->
-    {0, ?encode_compact_array(NodeEndpoints, fun encode_node_endpoint_10/1)};
+    {0, ?encode_compact_array(NodeEndpoints, ?encode_element(encode_node_endpoint_10))};
 encode_produce_response_10_tagged_field(_Key, _Value) ->
     ignore.
 
@@ -1799,7 +1802,7 @@ encode_partition_produce_response_10(
         ?encode_int64(BaseOffset),
         ?encode_int64(LogAppendTimeMs),
         ?encode_int64(LogStartOffset),
-        ?encode_compact_array(RecordErrors, fun encode_batch_index_and_error_message_10/1),
+        ?encode_compact_array(RecordErrors, ?encode_element(encode_batch_index_and_error_message_10)),
         ?encode_compact_nullable_string(ErrorMessage),
         ?encode_tagged_fields(
             fun encode_partition_produce_response_10_tagged_field/2,
@@ -1883,7 +1886,7 @@ encode_topic_produce_response_10(
 ->
     [
         ?encode_compact_string(Name),
-        ?encode_compact_array(PartitionResponses, fun encode_partition_produce_response_10/1),
+        ?encode_compact_array(PartitionResponses, ?encode_element(encode_partition_produce_response_10)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_topic_produce_response_10(Args) ->
@@ -2002,7 +2005,7 @@ encode_produce_response_11(
 ->
     [
         ?encode_response_header_1(CorrelationId),
-        ?encode_compact_array(Responses, fun encode_topic_produce_response_11/1),
+        ?encode_compact_array(Responses, ?encode_element(encode_topic_produce_response_11)),
         ?encode_int32(ThrottleTimeMs),
         ?encode_tagged_fields(
             fun encode_produce_response_11_tagged_field/2,
@@ -2021,7 +2024,7 @@ encode_produce_response_11(Args) ->
 ) -> {non_neg_integer(), iodata()} | ignore.
 
 encode_produce_response_11_tagged_field(_Key = node_endpoints, NodeEndpoints) ->
-    {0, ?encode_compact_array(NodeEndpoints, fun encode_node_endpoint_11/1)};
+    {0, ?encode_compact_array(NodeEndpoints, ?encode_element(encode_node_endpoint_11))};
 encode_produce_response_11_tagged_field(_Key, _Value) ->
     ignore.
 
@@ -2195,7 +2198,7 @@ encode_partition_produce_response_11(
         ?encode_int64(BaseOffset),
         ?encode_int64(LogAppendTimeMs),
         ?encode_int64(LogStartOffset),
-        ?encode_compact_array(RecordErrors, fun encode_batch_index_and_error_message_11/1),
+        ?encode_compact_array(RecordErrors, ?encode_element(encode_batch_index_and_error_message_11)),
         ?encode_compact_nullable_string(ErrorMessage),
         ?encode_tagged_fields(
             fun encode_partition_produce_response_11_tagged_field/2,
@@ -2279,7 +2282,7 @@ encode_topic_produce_response_11(
 ->
     [
         ?encode_compact_string(Name),
-        ?encode_compact_array(PartitionResponses, fun encode_partition_produce_response_11/1),
+        ?encode_compact_array(PartitionResponses, ?encode_element(encode_partition_produce_response_11)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_topic_produce_response_11(Args) ->

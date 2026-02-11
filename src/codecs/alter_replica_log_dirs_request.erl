@@ -1,4 +1,7 @@
 -module(alter_replica_log_dirs_request).
+
+%% This file is auto-generated.
+
 -export([
     encode_alter_replica_log_dirs_request_0/1,
     decode_alter_replica_log_dirs_request_0/1,
@@ -44,7 +47,7 @@ encode_alter_replica_log_dirs_request_0(
 ->
     [
         ?encode_request_header_1(?ALTER_REPLICA_LOG_DIRS_REQUEST, 0, CorrelationId, ClientId),
-        ?encode_array(Dirs, fun encode_alter_replica_log_dir_0/1)
+        ?encode_array(Dirs, ?encode_element(encode_alter_replica_log_dir_0))
     ];
 encode_alter_replica_log_dirs_request_0(Args) ->
     ?encoder_error(Args, #{
@@ -120,7 +123,7 @@ encode_alter_replica_log_dir_0(
 ->
     [
         ?encode_string(Path),
-        ?encode_array(Topics, fun encode_alter_replica_log_dir_topic_0/1)
+        ?encode_array(Topics, ?encode_element(encode_alter_replica_log_dir_topic_0))
     ];
 encode_alter_replica_log_dir_0(Args) ->
     ?encoder_error(Args, #{
@@ -161,7 +164,7 @@ encode_alter_replica_log_dirs_request_1(
 ->
     [
         ?encode_request_header_1(?ALTER_REPLICA_LOG_DIRS_REQUEST, 1, CorrelationId, ClientId),
-        ?encode_array(Dirs, fun encode_alter_replica_log_dir_1/1)
+        ?encode_array(Dirs, ?encode_element(encode_alter_replica_log_dir_1))
     ];
 encode_alter_replica_log_dirs_request_1(Args) ->
     ?encoder_error(Args, #{
@@ -237,7 +240,7 @@ encode_alter_replica_log_dir_1(
 ->
     [
         ?encode_string(Path),
-        ?encode_array(Topics, fun encode_alter_replica_log_dir_topic_1/1)
+        ?encode_array(Topics, ?encode_element(encode_alter_replica_log_dir_topic_1))
     ];
 encode_alter_replica_log_dir_1(Args) ->
     ?encoder_error(Args, #{
@@ -278,7 +281,7 @@ encode_alter_replica_log_dirs_request_2(
 ->
     [
         ?encode_request_header_2(?ALTER_REPLICA_LOG_DIRS_REQUEST, 2, CorrelationId, ClientId),
-        ?encode_compact_array(Dirs, fun encode_alter_replica_log_dir_2/1),
+        ?encode_compact_array(Dirs, ?encode_element(encode_alter_replica_log_dir_2)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_alter_replica_log_dirs_request_2(Args) ->
@@ -380,7 +383,7 @@ encode_alter_replica_log_dir_2(
 ->
     [
         ?encode_compact_string(Path),
-        ?encode_compact_array(Topics, fun encode_alter_replica_log_dir_topic_2/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_alter_replica_log_dir_topic_2)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_alter_replica_log_dir_2(Args) ->

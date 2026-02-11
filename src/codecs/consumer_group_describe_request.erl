@@ -1,4 +1,7 @@
 -module(consumer_group_describe_request).
+
+%% This file is auto-generated.
+
 -export([
     encode_consumer_group_describe_request_0/1,
     decode_consumer_group_describe_request_0/1

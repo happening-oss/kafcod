@@ -15,7 +15,6 @@
 -define(is_nullable_bytes(V), (is_binary(V) orelse V =:= null)).
 
 -define(is_records(V), is_list(V)).
--define(is_nullable_records(V), is_list(V)).
 
 % TODO: Assert the length
 -define(is_uuid(V), is_binary(V)).

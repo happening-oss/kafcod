@@ -1,4 +1,7 @@
 -module(sasl_handshake_request).
+
+%% This file is auto-generated.
+
 -export([
     encode_sasl_handshake_request_0/1,
     decode_sasl_handshake_request_0/1,

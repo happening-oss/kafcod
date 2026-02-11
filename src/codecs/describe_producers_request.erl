@@ -1,4 +1,7 @@
 -module(describe_producers_request).
+
+%% This file is auto-generated.
+
 -export([
     encode_describe_producers_request_0/1,
     decode_describe_producers_request_0/1
@@ -32,7 +35,7 @@ encode_describe_producers_request_0(
 ->
     [
         ?encode_request_header_2(?DESCRIBE_PRODUCERS_REQUEST, 0, CorrelationId, ClientId),
-        ?encode_compact_array(Topics, fun encode_topic_request_0/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_topic_request_0)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_describe_producers_request_0(Args) ->

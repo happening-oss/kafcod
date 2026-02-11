@@ -1,4 +1,7 @@
 -module(describe_client_quotas_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_describe_client_quotas_response_0/1,
     decode_describe_client_quotas_response_0/1,
@@ -49,7 +52,7 @@ encode_describe_client_quotas_response_0(
         ?encode_int32(ThrottleTimeMs),
         ?encode_int16(ErrorCode),
         ?encode_nullable_string(ErrorMessage),
-        ?encode_nullable_array(Entries, fun encode_entry_data_0/1)
+        ?encode_nullable_array(Entries, ?encode_element(encode_entry_data_0))
     ];
 encode_describe_client_quotas_response_0(Args) ->
     ?encoder_error(Args, #{
@@ -170,8 +173,8 @@ encode_entry_data_0(
     ?is_array(Values)
 ->
     [
-        ?encode_array(Entity, fun encode_entity_data_0/1),
-        ?encode_array(Values, fun encode_value_data_0/1)
+        ?encode_array(Entity, ?encode_element(encode_entity_data_0)),
+        ?encode_array(Values, ?encode_element(encode_value_data_0))
     ];
 encode_entry_data_0(Args) ->
     ?encoder_error(Args, #{
@@ -221,7 +224,7 @@ encode_describe_client_quotas_response_1(
         ?encode_int32(ThrottleTimeMs),
         ?encode_int16(ErrorCode),
         ?encode_compact_nullable_string(ErrorMessage),
-        ?encode_compact_nullable_array(Entries, fun encode_entry_data_1/1),
+        ?encode_compact_nullable_array(Entries, ?encode_element(encode_entry_data_1)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_describe_client_quotas_response_1(Args) ->
@@ -381,8 +384,8 @@ encode_entry_data_1(
     ?is_array(Values)
 ->
     [
-        ?encode_compact_array(Entity, fun encode_entity_data_1/1),
-        ?encode_compact_array(Values, fun encode_value_data_1/1),
+        ?encode_compact_array(Entity, ?encode_element(encode_entity_data_1)),
+        ?encode_compact_array(Values, ?encode_element(encode_value_data_1)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_entry_data_1(Args) ->

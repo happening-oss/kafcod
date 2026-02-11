@@ -1,4 +1,7 @@
 -module(consumer_group_heartbeat_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_consumer_group_heartbeat_response_0/1,
     decode_consumer_group_heartbeat_response_0/1
@@ -118,7 +121,7 @@ encode_assignment_0(
     ?is_array(TopicPartitions)
 ->
     [
-        ?encode_compact_array(TopicPartitions, fun encode_topic_partitions_0/1),
+        ?encode_compact_array(TopicPartitions, ?encode_element(encode_topic_partitions_0)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_assignment_0(Args) ->

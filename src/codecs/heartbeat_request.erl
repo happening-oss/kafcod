@@ -1,4 +1,7 @@
 -module(heartbeat_request).
+
+%% This file is auto-generated.
+
 -export([
     encode_heartbeat_request_0/1,
     decode_heartbeat_request_0/1,

@@ -58,7 +58,7 @@ init({ConsumerSup, {BootstrapHost, BootstrapPort}, ClientId, {GroupId, Topics}})
     % or do we just die?
     % Note: In each of the failure cases, there's a difference between "lost the connection", "broker died" and
     % "broker is no longer coordinator". Maybe more.
-    {ok, Bootstrap} = kafka_connection:start_link(BootstrapHost, BootstrapPort, ClientId),
+    {ok, Bootstrap} = kafcod_connection:start_link(#{host => BootstrapHost, port => BootstrapPort}, #{client_id => ClientId}),
 
     % TODO: Can we find some guidance about how much to put in the state, and how much in the event?
     StateData = #state{
@@ -85,10 +85,10 @@ handle_event(
         {ok, #{error_code := ?NONE, host := Host, port := Port, node_id := NodeId}} ->
             ?LOG_DEBUG("Coordinator is node ~B, at ~s:~B", [NodeId, Host, Port]),
 
-            {ok, Coordinator} = kafka_connection:start_link(Host, Port, ClientId),
+            {ok, Coordinator} = kafcod_connection:start_link(#{host => Host, port => Port}, #{client_id => ClientId}),
 
             unlink(Bootstrap),
-            kafka_connection:stop(Bootstrap),
+            kafcod_connection:stop(Bootstrap),
 
             StateData2 = StateData#state{broker = Coordinator},
 
@@ -545,7 +545,7 @@ metadata(Connection, Topics) when is_pid(Connection), is_list(Topics) ->
         include_cluster_authorized_operations => false,
         include_topic_authorized_operations => false
     },
-    kafka_connection:call(
+    kafcod_connection:call(
         Connection,
         fun metadata_request:encode_metadata_request_9/1,
         MetadataRequest,
@@ -558,7 +558,7 @@ find_coordinator(Connection, GroupId) when is_pid(Connection), is_binary(GroupId
         key_type => 0,
         key => GroupId
     },
-    kafka_connection:call(
+    kafcod_connection:call(
         Connection,
         fun find_coordinator_request:encode_find_coordinator_request_3/1,
         FindCoordinatorRequest,
@@ -577,7 +577,7 @@ join_group(Connection, GroupId, MemberId, Protocols) when
         group_instance_id => null,
         group_id => GroupId
     },
-    kafka_connection:call(
+    kafcod_connection:call(
         Connection,
         fun join_group_request:encode_join_group_request_7/1,
         JoinGroupRequest,
@@ -598,7 +598,7 @@ sync_group(Connection, GroupId, GenerationId, MemberId, Assignments) when
         group_instance_id => null,
         assignments => Assignments
     },
-    kafka_connection:call(
+    kafcod_connection:call(
         Connection,
         fun sync_group_request:encode_sync_group_request_3/1,
         SyncGroupRequest,
@@ -614,7 +614,7 @@ leave_group(Connection, GroupId, MemberId) when
         group_id => GroupId,
         member_id => MemberId
     },
-    kafka_connection:call(
+    kafcod_connection:call(
         Connection,
         fun leave_group_request:encode_leave_group_request_0/1,
         LeaveGroupRequest,
@@ -633,7 +633,7 @@ heartbeat(Connection, GroupId, GenerationId, MemberId) when
         member_id => MemberId,
         group_instance_id => null
     },
-    kafka_connection:call(
+    kafcod_connection:call(
         Connection,
         fun heartbeat_request:encode_heartbeat_request_3/1,
         HeartbeatRequest,
@@ -650,7 +650,7 @@ heartbeat(Connection, GroupId, GenerationId, MemberId) when
 offset_fetch(Connection, GroupId, Topics) when
     is_pid(Connection), is_binary(GroupId), is_list(Topics)
 ->
-    kafka_connection:call(
+    kafcod_connection:call(
         Connection,
         fun offset_fetch_request:encode_offset_fetch_request_4/1,
         #{

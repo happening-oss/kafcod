@@ -1,4 +1,7 @@
 -module(stop_replica_request).
+
+%% This file is auto-generated.
+
 -export([
     encode_stop_replica_request_0/1,
     decode_stop_replica_request_0/1,
@@ -63,7 +66,7 @@ encode_stop_replica_request_0(
         ?encode_int32(ControllerId),
         ?encode_int32(ControllerEpoch),
         ?encode_bool(DeletePartitions),
-        ?encode_array(UngroupedPartitions, fun encode_stop_replica_partition_v0_0/1)
+        ?encode_array(UngroupedPartitions, ?encode_element(encode_stop_replica_partition_v0_0))
     ];
 encode_stop_replica_request_0(Args) ->
     ?encoder_error(Args, #{
@@ -167,7 +170,7 @@ encode_stop_replica_request_1(
         ?encode_int32(ControllerEpoch),
         ?encode_int64(BrokerEpoch),
         ?encode_bool(DeletePartitions),
-        ?encode_array(Topics, fun encode_stop_replica_topic_v1_1/1)
+        ?encode_array(Topics, ?encode_element(encode_stop_replica_topic_v1_1))
     ];
 encode_stop_replica_request_1(Args) ->
     ?encoder_error(Args, #{
@@ -274,7 +277,7 @@ encode_stop_replica_request_2(
         ?encode_int32(ControllerEpoch),
         ?encode_int64(BrokerEpoch),
         ?encode_bool(DeletePartitions),
-        ?encode_compact_array(Topics, fun encode_stop_replica_topic_v1_2/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_stop_replica_topic_v1_2)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_stop_replica_request_2(Args) ->
@@ -403,7 +406,7 @@ encode_stop_replica_request_3(
         ?encode_int32(ControllerId),
         ?encode_int32(ControllerEpoch),
         ?encode_int64(BrokerEpoch),
-        ?encode_compact_array(TopicStates, fun encode_stop_replica_topic_state_3/1),
+        ?encode_compact_array(TopicStates, ?encode_element(encode_stop_replica_topic_state_3)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_stop_replica_request_3(Args) ->
@@ -521,7 +524,7 @@ encode_stop_replica_topic_state_3(
 ->
     [
         ?encode_compact_string(TopicName),
-        ?encode_compact_array(PartitionStates, fun encode_stop_replica_partition_state_3/1),
+        ?encode_compact_array(PartitionStates, ?encode_element(encode_stop_replica_partition_state_3)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_stop_replica_topic_state_3(Args) ->
@@ -591,7 +594,7 @@ encode_stop_replica_request_4(
         ?encode_bool(IsKRaftController),
         ?encode_int32(ControllerEpoch),
         ?encode_int64(BrokerEpoch),
-        ?encode_compact_array(TopicStates, fun encode_stop_replica_topic_state_4/1),
+        ?encode_compact_array(TopicStates, ?encode_element(encode_stop_replica_topic_state_4)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_stop_replica_request_4(Args) ->
@@ -712,7 +715,7 @@ encode_stop_replica_topic_state_4(
 ->
     [
         ?encode_compact_string(TopicName),
-        ?encode_compact_array(PartitionStates, fun encode_stop_replica_partition_state_4/1),
+        ?encode_compact_array(PartitionStates, ?encode_element(encode_stop_replica_partition_state_4)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_stop_replica_topic_state_4(Args) ->

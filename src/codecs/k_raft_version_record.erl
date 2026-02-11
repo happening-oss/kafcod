@@ -1,4 +1,7 @@
 -module(k_raft_version_record).
+
+%% This file is auto-generated.
+
 -export([
     encode_k_raft_version_record_0/1,
     decode_k_raft_version_record_0/1

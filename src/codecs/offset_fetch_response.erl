@@ -1,4 +1,7 @@
 -module(offset_fetch_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_offset_fetch_response_0/1,
     decode_offset_fetch_response_0/1,
@@ -77,7 +80,7 @@ encode_offset_fetch_response_0(
 ->
     [
         ?encode_response_header_0(CorrelationId),
-        ?encode_array(Topics, fun encode_offset_fetch_response_topic_0/1)
+        ?encode_array(Topics, ?encode_element(encode_offset_fetch_response_topic_0))
     ];
 encode_offset_fetch_response_0(Args) ->
     ?encoder_error(Args, #{
@@ -166,7 +169,7 @@ encode_offset_fetch_response_topic_0(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(Partitions, fun encode_offset_fetch_response_partition_0/1)
+        ?encode_array(Partitions, ?encode_element(encode_offset_fetch_response_partition_0))
     ];
 encode_offset_fetch_response_topic_0(Args) ->
     ?encoder_error(Args, #{
@@ -204,7 +207,7 @@ encode_offset_fetch_response_1(
 ->
     [
         ?encode_response_header_0(CorrelationId),
-        ?encode_array(Topics, fun encode_offset_fetch_response_topic_1/1)
+        ?encode_array(Topics, ?encode_element(encode_offset_fetch_response_topic_1))
     ];
 encode_offset_fetch_response_1(Args) ->
     ?encoder_error(Args, #{
@@ -293,7 +296,7 @@ encode_offset_fetch_response_topic_1(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(Partitions, fun encode_offset_fetch_response_partition_1/1)
+        ?encode_array(Partitions, ?encode_element(encode_offset_fetch_response_partition_1))
     ];
 encode_offset_fetch_response_topic_1(Args) ->
     ?encoder_error(Args, #{
@@ -334,7 +337,7 @@ encode_offset_fetch_response_2(
 ->
     [
         ?encode_response_header_0(CorrelationId),
-        ?encode_array(Topics, fun encode_offset_fetch_response_topic_2/1),
+        ?encode_array(Topics, ?encode_element(encode_offset_fetch_response_topic_2)),
         ?encode_int16(ErrorCode)
     ];
 encode_offset_fetch_response_2(Args) ->
@@ -427,7 +430,7 @@ encode_offset_fetch_response_topic_2(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(Partitions, fun encode_offset_fetch_response_partition_2/1)
+        ?encode_array(Partitions, ?encode_element(encode_offset_fetch_response_partition_2))
     ];
 encode_offset_fetch_response_topic_2(Args) ->
     ?encoder_error(Args, #{
@@ -472,7 +475,7 @@ encode_offset_fetch_response_3(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_array(Topics, fun encode_offset_fetch_response_topic_3/1),
+        ?encode_array(Topics, ?encode_element(encode_offset_fetch_response_topic_3)),
         ?encode_int16(ErrorCode)
     ];
 encode_offset_fetch_response_3(Args) ->
@@ -568,7 +571,7 @@ encode_offset_fetch_response_topic_3(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(Partitions, fun encode_offset_fetch_response_partition_3/1)
+        ?encode_array(Partitions, ?encode_element(encode_offset_fetch_response_partition_3))
     ];
 encode_offset_fetch_response_topic_3(Args) ->
     ?encoder_error(Args, #{
@@ -613,7 +616,7 @@ encode_offset_fetch_response_4(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_array(Topics, fun encode_offset_fetch_response_topic_4/1),
+        ?encode_array(Topics, ?encode_element(encode_offset_fetch_response_topic_4)),
         ?encode_int16(ErrorCode)
     ];
 encode_offset_fetch_response_4(Args) ->
@@ -709,7 +712,7 @@ encode_offset_fetch_response_topic_4(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(Partitions, fun encode_offset_fetch_response_partition_4/1)
+        ?encode_array(Partitions, ?encode_element(encode_offset_fetch_response_partition_4))
     ];
 encode_offset_fetch_response_topic_4(Args) ->
     ?encoder_error(Args, #{
@@ -754,7 +757,7 @@ encode_offset_fetch_response_5(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_array(Topics, fun encode_offset_fetch_response_topic_5/1),
+        ?encode_array(Topics, ?encode_element(encode_offset_fetch_response_topic_5)),
         ?encode_int16(ErrorCode)
     ];
 encode_offset_fetch_response_5(Args) ->
@@ -857,7 +860,7 @@ encode_offset_fetch_response_topic_5(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(Partitions, fun encode_offset_fetch_response_partition_5/1)
+        ?encode_array(Partitions, ?encode_element(encode_offset_fetch_response_partition_5))
     ];
 encode_offset_fetch_response_topic_5(Args) ->
     ?encoder_error(Args, #{
@@ -902,7 +905,7 @@ encode_offset_fetch_response_6(
     [
         ?encode_response_header_1(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_compact_array(Topics, fun encode_offset_fetch_response_topic_6/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_offset_fetch_response_topic_6)),
         ?encode_int16(ErrorCode),
         ?EMPTY_TAG_BUFFER
     ];
@@ -1031,7 +1034,7 @@ encode_offset_fetch_response_topic_6(
 ->
     [
         ?encode_compact_string(Name),
-        ?encode_compact_array(Partitions, fun encode_offset_fetch_response_partition_6/1),
+        ?encode_compact_array(Partitions, ?encode_element(encode_offset_fetch_response_partition_6)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_offset_fetch_response_topic_6(Args) ->
@@ -1089,7 +1092,7 @@ encode_offset_fetch_response_7(
     [
         ?encode_response_header_1(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_compact_array(Topics, fun encode_offset_fetch_response_topic_7/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_offset_fetch_response_topic_7)),
         ?encode_int16(ErrorCode),
         ?EMPTY_TAG_BUFFER
     ];
@@ -1218,7 +1221,7 @@ encode_offset_fetch_response_topic_7(
 ->
     [
         ?encode_compact_string(Name),
-        ?encode_compact_array(Partitions, fun encode_offset_fetch_response_partition_7/1),
+        ?encode_compact_array(Partitions, ?encode_element(encode_offset_fetch_response_partition_7)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_offset_fetch_response_topic_7(Args) ->
@@ -1273,7 +1276,7 @@ encode_offset_fetch_response_8(
     [
         ?encode_response_header_1(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_compact_array(Groups, fun encode_offset_fetch_response_group_8/1),
+        ?encode_compact_array(Groups, ?encode_element(encode_offset_fetch_response_group_8)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_offset_fetch_response_8(Args) ->
@@ -1398,7 +1401,7 @@ encode_offset_fetch_response_topics_8(
 ->
     [
         ?encode_compact_string(Name),
-        ?encode_compact_array(Partitions, fun encode_offset_fetch_response_partitions_8/1),
+        ?encode_compact_array(Partitions, ?encode_element(encode_offset_fetch_response_partitions_8)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_offset_fetch_response_topics_8(Args) ->
@@ -1452,7 +1455,7 @@ encode_offset_fetch_response_group_8(
 ->
     [
         ?encode_compact_string(GroupId),
-        ?encode_compact_array(Topics, fun encode_offset_fetch_response_topics_8/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_offset_fetch_response_topics_8)),
         ?encode_int16(ErrorCode),
         ?EMPTY_TAG_BUFFER
     ];
@@ -1511,7 +1514,7 @@ encode_offset_fetch_response_9(
     [
         ?encode_response_header_1(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_compact_array(Groups, fun encode_offset_fetch_response_group_9/1),
+        ?encode_compact_array(Groups, ?encode_element(encode_offset_fetch_response_group_9)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_offset_fetch_response_9(Args) ->
@@ -1636,7 +1639,7 @@ encode_offset_fetch_response_topics_9(
 ->
     [
         ?encode_compact_string(Name),
-        ?encode_compact_array(Partitions, fun encode_offset_fetch_response_partitions_9/1),
+        ?encode_compact_array(Partitions, ?encode_element(encode_offset_fetch_response_partitions_9)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_offset_fetch_response_topics_9(Args) ->
@@ -1690,7 +1693,7 @@ encode_offset_fetch_response_group_9(
 ->
     [
         ?encode_compact_string(GroupId),
-        ?encode_compact_array(Topics, fun encode_offset_fetch_response_topics_9/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_offset_fetch_response_topics_9)),
         ?encode_int16(ErrorCode),
         ?EMPTY_TAG_BUFFER
     ];

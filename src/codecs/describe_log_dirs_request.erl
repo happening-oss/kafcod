@@ -1,4 +1,7 @@
 -module(describe_log_dirs_request).
+
+%% This file is auto-generated.
+
 -export([
     encode_describe_log_dirs_request_0/1,
     decode_describe_log_dirs_request_0/1,
@@ -49,7 +52,7 @@ encode_describe_log_dirs_request_0(
 ->
     [
         ?encode_request_header_1(?DESCRIBE_LOG_DIRS_REQUEST, 0, CorrelationId, ClientId),
-        ?encode_nullable_array(Topics, fun encode_describable_log_dir_topic_0/1)
+        ?encode_nullable_array(Topics, ?encode_element(encode_describable_log_dir_topic_0))
     ];
 encode_describe_log_dirs_request_0(Args) ->
     ?encoder_error(Args, #{
@@ -128,7 +131,7 @@ encode_describe_log_dirs_request_1(
 ->
     [
         ?encode_request_header_1(?DESCRIBE_LOG_DIRS_REQUEST, 1, CorrelationId, ClientId),
-        ?encode_nullable_array(Topics, fun encode_describable_log_dir_topic_1/1)
+        ?encode_nullable_array(Topics, ?encode_element(encode_describable_log_dir_topic_1))
     ];
 encode_describe_log_dirs_request_1(Args) ->
     ?encoder_error(Args, #{
@@ -207,7 +210,7 @@ encode_describe_log_dirs_request_2(
 ->
     [
         ?encode_request_header_2(?DESCRIBE_LOG_DIRS_REQUEST, 2, CorrelationId, ClientId),
-        ?encode_compact_nullable_array(Topics, fun encode_describable_log_dir_topic_2/1),
+        ?encode_compact_nullable_array(Topics, ?encode_element(encode_describable_log_dir_topic_2)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_describe_log_dirs_request_2(Args) ->
@@ -312,7 +315,7 @@ encode_describe_log_dirs_request_3(
 ->
     [
         ?encode_request_header_2(?DESCRIBE_LOG_DIRS_REQUEST, 3, CorrelationId, ClientId),
-        ?encode_compact_nullable_array(Topics, fun encode_describable_log_dir_topic_3/1),
+        ?encode_compact_nullable_array(Topics, ?encode_element(encode_describable_log_dir_topic_3)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_describe_log_dirs_request_3(Args) ->
@@ -417,7 +420,7 @@ encode_describe_log_dirs_request_4(
 ->
     [
         ?encode_request_header_2(?DESCRIBE_LOG_DIRS_REQUEST, 4, CorrelationId, ClientId),
-        ?encode_compact_nullable_array(Topics, fun encode_describable_log_dir_topic_4/1),
+        ?encode_compact_nullable_array(Topics, ?encode_element(encode_describable_log_dir_topic_4)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_describe_log_dirs_request_4(Args) ->

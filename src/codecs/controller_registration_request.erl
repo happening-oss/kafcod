@@ -1,4 +1,7 @@
 -module(controller_registration_request).
+
+%% This file is auto-generated.
+
 -export([
     encode_controller_registration_request_0/1,
     decode_controller_registration_request_0/1
@@ -49,8 +52,8 @@ encode_controller_registration_request_0(
         ?encode_int32(ControllerId),
         ?encode_uuid(IncarnationId),
         ?encode_bool(ZkMigrationReady),
-        ?encode_compact_array(Listeners, fun encode_listener_0/1),
-        ?encode_compact_array(Features, fun encode_feature_0/1),
+        ?encode_compact_array(Listeners, ?encode_element(encode_listener_0)),
+        ?encode_compact_array(Features, ?encode_element(encode_feature_0)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_controller_registration_request_0(Args) ->

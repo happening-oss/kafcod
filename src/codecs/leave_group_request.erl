@@ -1,4 +1,7 @@
 -module(leave_group_request).
+
+%% This file is auto-generated.
+
 -export([
     encode_leave_group_request_0/1,
     decode_leave_group_request_0/1,
@@ -198,7 +201,7 @@ encode_leave_group_request_3(
     [
         ?encode_request_header_1(?LEAVE_GROUP_REQUEST, 3, CorrelationId, ClientId),
         ?encode_string(GroupId),
-        ?encode_array(Members, fun encode_member_identity_3/1)
+        ?encode_array(Members, ?encode_element(encode_member_identity_3))
     ];
 encode_leave_group_request_3(Args) ->
     ?encoder_error(Args, #{
@@ -284,7 +287,7 @@ encode_leave_group_request_4(
     [
         ?encode_request_header_2(?LEAVE_GROUP_REQUEST, 4, CorrelationId, ClientId),
         ?encode_compact_string(GroupId),
-        ?encode_compact_array(Members, fun encode_member_identity_4/1),
+        ?encode_compact_array(Members, ?encode_element(encode_member_identity_4)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_leave_group_request_4(Args) ->
@@ -396,7 +399,7 @@ encode_leave_group_request_5(
     [
         ?encode_request_header_2(?LEAVE_GROUP_REQUEST, 5, CorrelationId, ClientId),
         ?encode_compact_string(GroupId),
-        ?encode_compact_array(Members, fun encode_member_identity_5/1),
+        ?encode_compact_array(Members, ?encode_element(encode_member_identity_5)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_leave_group_request_5(Args) ->

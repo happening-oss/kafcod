@@ -1,4 +1,7 @@
 -module(describe_acls_request).
+
+%% This file is auto-generated.
+
 -export([
     encode_describe_acls_request_0/1,
     decode_describe_acls_request_0/1,

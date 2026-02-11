@@ -1,4 +1,7 @@
 -module(delete_acls_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_delete_acls_response_0/1,
     decode_delete_acls_response_0/1,
@@ -49,7 +52,7 @@ encode_delete_acls_response_0(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_array(FilterResults, fun encode_delete_acls_filter_result_0/1)
+        ?encode_array(FilterResults, ?encode_element(encode_delete_acls_filter_result_0))
     ];
 encode_delete_acls_response_0(Args) ->
     ?encoder_error(Args, #{
@@ -173,7 +176,7 @@ encode_delete_acls_filter_result_0(
     [
         ?encode_int16(ErrorCode),
         ?encode_nullable_string(ErrorMessage),
-        ?encode_array(MatchingAcls, fun encode_delete_acls_matching_acl_0/1)
+        ?encode_array(MatchingAcls, ?encode_element(encode_delete_acls_matching_acl_0))
     ];
 encode_delete_acls_filter_result_0(Args) ->
     ?encoder_error(Args, #{
@@ -218,7 +221,7 @@ encode_delete_acls_response_1(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_array(FilterResults, fun encode_delete_acls_filter_result_1/1)
+        ?encode_array(FilterResults, ?encode_element(encode_delete_acls_filter_result_1))
     ];
 encode_delete_acls_response_1(Args) ->
     ?encoder_error(Args, #{
@@ -349,7 +352,7 @@ encode_delete_acls_filter_result_1(
     [
         ?encode_int16(ErrorCode),
         ?encode_nullable_string(ErrorMessage),
-        ?encode_array(MatchingAcls, fun encode_delete_acls_matching_acl_1/1)
+        ?encode_array(MatchingAcls, ?encode_element(encode_delete_acls_matching_acl_1))
     ];
 encode_delete_acls_filter_result_1(Args) ->
     ?encoder_error(Args, #{
@@ -394,7 +397,7 @@ encode_delete_acls_response_2(
     [
         ?encode_response_header_1(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_compact_array(FilterResults, fun encode_delete_acls_filter_result_2/1),
+        ?encode_compact_array(FilterResults, ?encode_element(encode_delete_acls_filter_result_2)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_delete_acls_response_2(Args) ->
@@ -551,7 +554,7 @@ encode_delete_acls_filter_result_2(
     [
         ?encode_int16(ErrorCode),
         ?encode_compact_nullable_string(ErrorMessage),
-        ?encode_compact_array(MatchingAcls, fun encode_delete_acls_matching_acl_2/1),
+        ?encode_compact_array(MatchingAcls, ?encode_element(encode_delete_acls_matching_acl_2)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_delete_acls_filter_result_2(Args) ->
@@ -609,7 +612,7 @@ encode_delete_acls_response_3(
     [
         ?encode_response_header_1(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_compact_array(FilterResults, fun encode_delete_acls_filter_result_3/1),
+        ?encode_compact_array(FilterResults, ?encode_element(encode_delete_acls_filter_result_3)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_delete_acls_response_3(Args) ->
@@ -766,7 +769,7 @@ encode_delete_acls_filter_result_3(
     [
         ?encode_int16(ErrorCode),
         ?encode_compact_nullable_string(ErrorMessage),
-        ?encode_compact_array(MatchingAcls, fun encode_delete_acls_matching_acl_3/1),
+        ?encode_compact_array(MatchingAcls, ?encode_element(encode_delete_acls_matching_acl_3)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_delete_acls_filter_result_3(Args) ->

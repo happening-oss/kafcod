@@ -1,4 +1,7 @@
 -module(alter_partition_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_alter_partition_response_0/1,
     decode_alter_partition_response_0/1,
@@ -52,7 +55,7 @@ encode_alter_partition_response_0(
         ?encode_response_header_1(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
         ?encode_int16(ErrorCode),
-        ?encode_compact_array(Topics, fun encode_topic_data_0/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_topic_data_0)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_alter_partition_response_0(Args) ->
@@ -186,7 +189,7 @@ encode_topic_data_0(
 ->
     [
         ?encode_compact_string(TopicName),
-        ?encode_compact_array(Partitions, fun encode_partition_data_0/1),
+        ?encode_compact_array(Partitions, ?encode_element(encode_partition_data_0)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_topic_data_0(Args) ->
@@ -244,7 +247,7 @@ encode_alter_partition_response_1(
         ?encode_response_header_1(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
         ?encode_int16(ErrorCode),
-        ?encode_compact_array(Topics, fun encode_topic_data_1/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_topic_data_1)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_alter_partition_response_1(Args) ->
@@ -385,7 +388,7 @@ encode_topic_data_1(
 ->
     [
         ?encode_compact_string(TopicName),
-        ?encode_compact_array(Partitions, fun encode_partition_data_1/1),
+        ?encode_compact_array(Partitions, ?encode_element(encode_partition_data_1)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_topic_data_1(Args) ->
@@ -443,7 +446,7 @@ encode_alter_partition_response_2(
         ?encode_response_header_1(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
         ?encode_int16(ErrorCode),
-        ?encode_compact_array(Topics, fun encode_topic_data_2/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_topic_data_2)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_alter_partition_response_2(Args) ->
@@ -584,7 +587,7 @@ encode_topic_data_2(
 ->
     [
         ?encode_uuid(TopicId),
-        ?encode_compact_array(Partitions, fun encode_partition_data_2/1),
+        ?encode_compact_array(Partitions, ?encode_element(encode_partition_data_2)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_topic_data_2(Args) ->
@@ -642,7 +645,7 @@ encode_alter_partition_response_3(
         ?encode_response_header_1(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
         ?encode_int16(ErrorCode),
-        ?encode_compact_array(Topics, fun encode_topic_data_3/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_topic_data_3)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_alter_partition_response_3(Args) ->
@@ -783,7 +786,7 @@ encode_topic_data_3(
 ->
     [
         ?encode_uuid(TopicId),
-        ?encode_compact_array(Partitions, fun encode_partition_data_3/1),
+        ?encode_compact_array(Partitions, ?encode_element(encode_partition_data_3)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_topic_data_3(Args) ->

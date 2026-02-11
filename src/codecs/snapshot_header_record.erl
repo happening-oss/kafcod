@@ -1,4 +1,7 @@
 -module(snapshot_header_record).
+
+%% This file is auto-generated.
+
 -export([
     encode_snapshot_header_record_0/1,
     decode_snapshot_header_record_0/1

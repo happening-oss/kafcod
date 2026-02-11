@@ -1,4 +1,7 @@
 -module(alter_partition_request).
+
+%% This file is auto-generated.
+
 -export([
     encode_alter_partition_request_0/1,
     decode_alter_partition_request_0/1,
@@ -57,7 +60,7 @@ encode_alter_partition_request_0(
         ?encode_request_header_2(?ALTER_PARTITION_REQUEST, 0, CorrelationId, ClientId),
         ?encode_int32(BrokerId),
         ?encode_int64(BrokerEpoch),
-        ?encode_compact_array(Topics, fun encode_topic_data_0/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_topic_data_0)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_alter_partition_request_0(Args) ->
@@ -178,7 +181,7 @@ encode_topic_data_0(
 ->
     [
         ?encode_compact_string(TopicName),
-        ?encode_compact_array(Partitions, fun encode_partition_data_0/1),
+        ?encode_compact_array(Partitions, ?encode_element(encode_partition_data_0)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_topic_data_0(Args) ->
@@ -239,7 +242,7 @@ encode_alter_partition_request_1(
         ?encode_request_header_2(?ALTER_PARTITION_REQUEST, 1, CorrelationId, ClientId),
         ?encode_int32(BrokerId),
         ?encode_int64(BrokerEpoch),
-        ?encode_compact_array(Topics, fun encode_topic_data_1/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_topic_data_1)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_alter_partition_request_1(Args) ->
@@ -367,7 +370,7 @@ encode_topic_data_1(
 ->
     [
         ?encode_compact_string(TopicName),
-        ?encode_compact_array(Partitions, fun encode_partition_data_1/1),
+        ?encode_compact_array(Partitions, ?encode_element(encode_partition_data_1)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_topic_data_1(Args) ->
@@ -428,7 +431,7 @@ encode_alter_partition_request_2(
         ?encode_request_header_2(?ALTER_PARTITION_REQUEST, 2, CorrelationId, ClientId),
         ?encode_int32(BrokerId),
         ?encode_int64(BrokerEpoch),
-        ?encode_compact_array(Topics, fun encode_topic_data_2/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_topic_data_2)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_alter_partition_request_2(Args) ->
@@ -556,7 +559,7 @@ encode_topic_data_2(
 ->
     [
         ?encode_uuid(TopicId),
-        ?encode_compact_array(Partitions, fun encode_partition_data_2/1),
+        ?encode_compact_array(Partitions, ?encode_element(encode_partition_data_2)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_topic_data_2(Args) ->
@@ -617,7 +620,7 @@ encode_alter_partition_request_3(
         ?encode_request_header_2(?ALTER_PARTITION_REQUEST, 3, CorrelationId, ClientId),
         ?encode_int32(BrokerId),
         ?encode_int64(BrokerEpoch),
-        ?encode_compact_array(Topics, fun encode_topic_data_3/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_topic_data_3)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_alter_partition_request_3(Args) ->
@@ -734,7 +737,7 @@ encode_partition_data_3(
     [
         ?encode_int32(PartitionIndex),
         ?encode_int32(LeaderEpoch),
-        ?encode_compact_array(NewIsrWithEpochs, fun encode_broker_state_3/1),
+        ?encode_compact_array(NewIsrWithEpochs, ?encode_element(encode_broker_state_3)),
         ?encode_int8(LeaderRecoveryState),
         ?encode_int32(PartitionEpoch),
         ?EMPTY_TAG_BUFFER
@@ -795,7 +798,7 @@ encode_topic_data_3(
 ->
     [
         ?encode_uuid(TopicId),
-        ?encode_compact_array(Partitions, fun encode_partition_data_3/1),
+        ?encode_compact_array(Partitions, ?encode_element(encode_partition_data_3)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_topic_data_3(Args) ->

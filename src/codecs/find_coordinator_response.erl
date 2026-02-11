@@ -1,4 +1,7 @@
 -module(find_coordinator_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_find_coordinator_response_0/1,
     decode_find_coordinator_response_0/1,
@@ -336,7 +339,7 @@ encode_find_coordinator_response_4(
     [
         ?encode_response_header_1(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_compact_array(Coordinators, fun encode_coordinator_4/1),
+        ?encode_compact_array(Coordinators, ?encode_element(encode_coordinator_4)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_find_coordinator_response_4(Args) ->
@@ -472,7 +475,7 @@ encode_find_coordinator_response_5(
     [
         ?encode_response_header_1(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_compact_array(Coordinators, fun encode_coordinator_5/1),
+        ?encode_compact_array(Coordinators, ?encode_element(encode_coordinator_5)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_find_coordinator_response_5(Args) ->

@@ -1,4 +1,7 @@
 -module(create_delegation_token_request).
+
+%% This file is auto-generated.
+
 -export([
     encode_create_delegation_token_request_0/1,
     decode_create_delegation_token_request_0/1,
@@ -48,7 +51,7 @@ encode_create_delegation_token_request_0(
 ->
     [
         ?encode_request_header_1(?CREATE_DELEGATION_TOKEN_REQUEST, 0, CorrelationId, ClientId),
-        ?encode_array(Renewers, fun encode_creatable_renewers_0/1),
+        ?encode_array(Renewers, ?encode_element(encode_creatable_renewers_0)),
         ?encode_int64(MaxLifetimeMs)
     ];
 encode_create_delegation_token_request_0(Args) ->
@@ -134,7 +137,7 @@ encode_create_delegation_token_request_1(
 ->
     [
         ?encode_request_header_1(?CREATE_DELEGATION_TOKEN_REQUEST, 1, CorrelationId, ClientId),
-        ?encode_array(Renewers, fun encode_creatable_renewers_1/1),
+        ?encode_array(Renewers, ?encode_element(encode_creatable_renewers_1)),
         ?encode_int64(MaxLifetimeMs)
     ];
 encode_create_delegation_token_request_1(Args) ->
@@ -220,7 +223,7 @@ encode_create_delegation_token_request_2(
 ->
     [
         ?encode_request_header_2(?CREATE_DELEGATION_TOKEN_REQUEST, 2, CorrelationId, ClientId),
-        ?encode_compact_array(Renewers, fun encode_creatable_renewers_2/1),
+        ?encode_compact_array(Renewers, ?encode_element(encode_creatable_renewers_2)),
         ?encode_int64(MaxLifetimeMs),
         ?EMPTY_TAG_BUFFER
     ];
@@ -340,7 +343,7 @@ encode_create_delegation_token_request_3(
         ?encode_request_header_2(?CREATE_DELEGATION_TOKEN_REQUEST, 3, CorrelationId, ClientId),
         ?encode_compact_nullable_string(OwnerPrincipalType),
         ?encode_compact_nullable_string(OwnerPrincipalName),
-        ?encode_compact_array(Renewers, fun encode_creatable_renewers_3/1),
+        ?encode_compact_array(Renewers, ?encode_element(encode_creatable_renewers_3)),
         ?encode_int64(MaxLifetimeMs),
         ?EMPTY_TAG_BUFFER
     ];

@@ -1,4 +1,7 @@
 -module(fetch_request).
+
+%% This file is auto-generated.
+
 -export([
     encode_fetch_request_0/1,
     decode_fetch_request_0/1,
@@ -138,7 +141,7 @@ encode_fetch_request_0(
         ?encode_int32(ReplicaId),
         ?encode_int32(MaxWaitMs),
         ?encode_int32(MinBytes),
-        ?encode_array(Topics, fun encode_fetch_topic_0/1)
+        ?encode_array(Topics, ?encode_element(encode_fetch_topic_0))
     ];
 encode_fetch_request_0(Args) ->
     ?encoder_error(Args, #{
@@ -230,7 +233,7 @@ encode_fetch_topic_0(
 ->
     [
         ?encode_string(Topic),
-        ?encode_array(Partitions, fun encode_fetch_partition_0/1)
+        ?encode_array(Partitions, ?encode_element(encode_fetch_partition_0))
     ];
 encode_fetch_topic_0(Args) ->
     ?encoder_error(Args, #{
@@ -283,7 +286,7 @@ encode_fetch_request_1(
         ?encode_int32(ReplicaId),
         ?encode_int32(MaxWaitMs),
         ?encode_int32(MinBytes),
-        ?encode_array(Topics, fun encode_fetch_topic_1/1)
+        ?encode_array(Topics, ?encode_element(encode_fetch_topic_1))
     ];
 encode_fetch_request_1(Args) ->
     ?encoder_error(Args, #{
@@ -375,7 +378,7 @@ encode_fetch_topic_1(
 ->
     [
         ?encode_string(Topic),
-        ?encode_array(Partitions, fun encode_fetch_partition_1/1)
+        ?encode_array(Partitions, ?encode_element(encode_fetch_partition_1))
     ];
 encode_fetch_topic_1(Args) ->
     ?encoder_error(Args, #{
@@ -428,7 +431,7 @@ encode_fetch_request_2(
         ?encode_int32(ReplicaId),
         ?encode_int32(MaxWaitMs),
         ?encode_int32(MinBytes),
-        ?encode_array(Topics, fun encode_fetch_topic_2/1)
+        ?encode_array(Topics, ?encode_element(encode_fetch_topic_2))
     ];
 encode_fetch_request_2(Args) ->
     ?encoder_error(Args, #{
@@ -520,7 +523,7 @@ encode_fetch_topic_2(
 ->
     [
         ?encode_string(Topic),
-        ?encode_array(Partitions, fun encode_fetch_partition_2/1)
+        ?encode_array(Partitions, ?encode_element(encode_fetch_partition_2))
     ];
 encode_fetch_topic_2(Args) ->
     ?encoder_error(Args, #{
@@ -577,7 +580,7 @@ encode_fetch_request_3(
         ?encode_int32(MaxWaitMs),
         ?encode_int32(MinBytes),
         ?encode_int32(MaxBytes),
-        ?encode_array(Topics, fun encode_fetch_topic_3/1)
+        ?encode_array(Topics, ?encode_element(encode_fetch_topic_3))
     ];
 encode_fetch_request_3(Args) ->
     ?encoder_error(Args, #{
@@ -672,7 +675,7 @@ encode_fetch_topic_3(
 ->
     [
         ?encode_string(Topic),
-        ?encode_array(Partitions, fun encode_fetch_partition_3/1)
+        ?encode_array(Partitions, ?encode_element(encode_fetch_partition_3))
     ];
 encode_fetch_topic_3(Args) ->
     ?encoder_error(Args, #{
@@ -733,7 +736,7 @@ encode_fetch_request_4(
         ?encode_int32(MinBytes),
         ?encode_int32(MaxBytes),
         ?encode_int8(IsolationLevel),
-        ?encode_array(Topics, fun encode_fetch_topic_4/1)
+        ?encode_array(Topics, ?encode_element(encode_fetch_topic_4))
     ];
 encode_fetch_request_4(Args) ->
     ?encoder_error(Args, #{
@@ -831,7 +834,7 @@ encode_fetch_topic_4(
 ->
     [
         ?encode_string(Topic),
-        ?encode_array(Partitions, fun encode_fetch_partition_4/1)
+        ?encode_array(Partitions, ?encode_element(encode_fetch_partition_4))
     ];
 encode_fetch_topic_4(Args) ->
     ?encoder_error(Args, #{
@@ -892,7 +895,7 @@ encode_fetch_request_5(
         ?encode_int32(MinBytes),
         ?encode_int32(MaxBytes),
         ?encode_int8(IsolationLevel),
-        ?encode_array(Topics, fun encode_fetch_topic_5/1)
+        ?encode_array(Topics, ?encode_element(encode_fetch_topic_5))
     ];
 encode_fetch_request_5(Args) ->
     ?encoder_error(Args, #{
@@ -997,7 +1000,7 @@ encode_fetch_topic_5(
 ->
     [
         ?encode_string(Topic),
-        ?encode_array(Partitions, fun encode_fetch_partition_5/1)
+        ?encode_array(Partitions, ?encode_element(encode_fetch_partition_5))
     ];
 encode_fetch_topic_5(Args) ->
     ?encoder_error(Args, #{
@@ -1058,7 +1061,7 @@ encode_fetch_request_6(
         ?encode_int32(MinBytes),
         ?encode_int32(MaxBytes),
         ?encode_int8(IsolationLevel),
-        ?encode_array(Topics, fun encode_fetch_topic_6/1)
+        ?encode_array(Topics, ?encode_element(encode_fetch_topic_6))
     ];
 encode_fetch_request_6(Args) ->
     ?encoder_error(Args, #{
@@ -1163,7 +1166,7 @@ encode_fetch_topic_6(
 ->
     [
         ?encode_string(Topic),
-        ?encode_array(Partitions, fun encode_fetch_partition_6/1)
+        ?encode_array(Partitions, ?encode_element(encode_fetch_partition_6))
     ];
 encode_fetch_topic_6(Args) ->
     ?encoder_error(Args, #{
@@ -1235,8 +1238,8 @@ encode_fetch_request_7(
         ?encode_int8(IsolationLevel),
         ?encode_int32(SessionId),
         ?encode_int32(SessionEpoch),
-        ?encode_array(Topics, fun encode_fetch_topic_7/1),
-        ?encode_array(ForgottenTopicsData, fun encode_forgotten_topic_7/1)
+        ?encode_array(Topics, ?encode_element(encode_fetch_topic_7)),
+        ?encode_array(ForgottenTopicsData, ?encode_element(encode_forgotten_topic_7))
     ];
 encode_fetch_request_7(Args) ->
     ?encoder_error(Args, #{
@@ -1350,7 +1353,7 @@ encode_fetch_topic_7(
 ->
     [
         ?encode_string(Topic),
-        ?encode_array(Partitions, fun encode_fetch_partition_7/1)
+        ?encode_array(Partitions, ?encode_element(encode_fetch_partition_7))
     ];
 encode_fetch_topic_7(Args) ->
     ?encoder_error(Args, #{
@@ -1460,8 +1463,8 @@ encode_fetch_request_8(
         ?encode_int8(IsolationLevel),
         ?encode_int32(SessionId),
         ?encode_int32(SessionEpoch),
-        ?encode_array(Topics, fun encode_fetch_topic_8/1),
-        ?encode_array(ForgottenTopicsData, fun encode_forgotten_topic_8/1)
+        ?encode_array(Topics, ?encode_element(encode_fetch_topic_8)),
+        ?encode_array(ForgottenTopicsData, ?encode_element(encode_forgotten_topic_8))
     ];
 encode_fetch_request_8(Args) ->
     ?encoder_error(Args, #{
@@ -1575,7 +1578,7 @@ encode_fetch_topic_8(
 ->
     [
         ?encode_string(Topic),
-        ?encode_array(Partitions, fun encode_fetch_partition_8/1)
+        ?encode_array(Partitions, ?encode_element(encode_fetch_partition_8))
     ];
 encode_fetch_topic_8(Args) ->
     ?encoder_error(Args, #{
@@ -1685,8 +1688,8 @@ encode_fetch_request_9(
         ?encode_int8(IsolationLevel),
         ?encode_int32(SessionId),
         ?encode_int32(SessionEpoch),
-        ?encode_array(Topics, fun encode_fetch_topic_9/1),
-        ?encode_array(ForgottenTopicsData, fun encode_forgotten_topic_9/1)
+        ?encode_array(Topics, ?encode_element(encode_fetch_topic_9)),
+        ?encode_array(ForgottenTopicsData, ?encode_element(encode_forgotten_topic_9))
     ];
 encode_fetch_request_9(Args) ->
     ?encoder_error(Args, #{
@@ -1807,7 +1810,7 @@ encode_fetch_topic_9(
 ->
     [
         ?encode_string(Topic),
-        ?encode_array(Partitions, fun encode_fetch_partition_9/1)
+        ?encode_array(Partitions, ?encode_element(encode_fetch_partition_9))
     ];
 encode_fetch_topic_9(Args) ->
     ?encoder_error(Args, #{
@@ -1917,8 +1920,8 @@ encode_fetch_request_10(
         ?encode_int8(IsolationLevel),
         ?encode_int32(SessionId),
         ?encode_int32(SessionEpoch),
-        ?encode_array(Topics, fun encode_fetch_topic_10/1),
-        ?encode_array(ForgottenTopicsData, fun encode_forgotten_topic_10/1)
+        ?encode_array(Topics, ?encode_element(encode_fetch_topic_10)),
+        ?encode_array(ForgottenTopicsData, ?encode_element(encode_forgotten_topic_10))
     ];
 encode_fetch_request_10(Args) ->
     ?encoder_error(Args, #{
@@ -2039,7 +2042,7 @@ encode_fetch_topic_10(
 ->
     [
         ?encode_string(Topic),
-        ?encode_array(Partitions, fun encode_fetch_partition_10/1)
+        ?encode_array(Partitions, ?encode_element(encode_fetch_partition_10))
     ];
 encode_fetch_topic_10(Args) ->
     ?encoder_error(Args, #{
@@ -2152,8 +2155,8 @@ encode_fetch_request_11(
         ?encode_int8(IsolationLevel),
         ?encode_int32(SessionId),
         ?encode_int32(SessionEpoch),
-        ?encode_array(Topics, fun encode_fetch_topic_11/1),
-        ?encode_array(ForgottenTopicsData, fun encode_forgotten_topic_11/1),
+        ?encode_array(Topics, ?encode_element(encode_fetch_topic_11)),
+        ?encode_array(ForgottenTopicsData, ?encode_element(encode_forgotten_topic_11)),
         ?encode_string(RackId)
     ];
 encode_fetch_request_11(Args) ->
@@ -2278,7 +2281,7 @@ encode_fetch_topic_11(
 ->
     [
         ?encode_string(Topic),
-        ?encode_array(Partitions, fun encode_fetch_partition_11/1)
+        ?encode_array(Partitions, ?encode_element(encode_fetch_partition_11))
     ];
 encode_fetch_topic_11(Args) ->
     ?encoder_error(Args, #{
@@ -2391,8 +2394,8 @@ encode_fetch_request_12(
         ?encode_int8(IsolationLevel),
         ?encode_int32(SessionId),
         ?encode_int32(SessionEpoch),
-        ?encode_compact_array(Topics, fun encode_fetch_topic_12/1),
-        ?encode_compact_array(ForgottenTopicsData, fun encode_forgotten_topic_12/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_fetch_topic_12)),
+        ?encode_compact_array(ForgottenTopicsData, ?encode_element(encode_forgotten_topic_12)),
         ?encode_compact_string(RackId),
         ?encode_tagged_fields(
             fun encode_fetch_request_12_tagged_field/2,
@@ -2568,7 +2571,7 @@ encode_fetch_topic_12(
 ->
     [
         ?encode_compact_string(Topic),
-        ?encode_compact_array(Partitions, fun encode_fetch_partition_12/1),
+        ?encode_compact_array(Partitions, ?encode_element(encode_fetch_partition_12)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_fetch_topic_12(Args) ->
@@ -2707,8 +2710,8 @@ encode_fetch_request_13(
         ?encode_int8(IsolationLevel),
         ?encode_int32(SessionId),
         ?encode_int32(SessionEpoch),
-        ?encode_compact_array(Topics, fun encode_fetch_topic_13/1),
-        ?encode_compact_array(ForgottenTopicsData, fun encode_forgotten_topic_13/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_fetch_topic_13)),
+        ?encode_compact_array(ForgottenTopicsData, ?encode_element(encode_forgotten_topic_13)),
         ?encode_compact_string(RackId),
         ?encode_tagged_fields(
             fun encode_fetch_request_13_tagged_field/2,
@@ -2884,7 +2887,7 @@ encode_fetch_topic_13(
 ->
     [
         ?encode_uuid(TopicId),
-        ?encode_compact_array(Partitions, fun encode_fetch_partition_13/1),
+        ?encode_compact_array(Partitions, ?encode_element(encode_fetch_partition_13)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_fetch_topic_13(Args) ->
@@ -3023,8 +3026,8 @@ encode_fetch_request_14(
         ?encode_int8(IsolationLevel),
         ?encode_int32(SessionId),
         ?encode_int32(SessionEpoch),
-        ?encode_compact_array(Topics, fun encode_fetch_topic_14/1),
-        ?encode_compact_array(ForgottenTopicsData, fun encode_forgotten_topic_14/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_fetch_topic_14)),
+        ?encode_compact_array(ForgottenTopicsData, ?encode_element(encode_forgotten_topic_14)),
         ?encode_compact_string(RackId),
         ?encode_tagged_fields(
             fun encode_fetch_request_14_tagged_field/2,
@@ -3200,7 +3203,7 @@ encode_fetch_topic_14(
 ->
     [
         ?encode_uuid(TopicId),
-        ?encode_compact_array(Partitions, fun encode_fetch_partition_14/1),
+        ?encode_compact_array(Partitions, ?encode_element(encode_fetch_partition_14)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_fetch_topic_14(Args) ->
@@ -3335,8 +3338,8 @@ encode_fetch_request_15(
         ?encode_int8(IsolationLevel),
         ?encode_int32(SessionId),
         ?encode_int32(SessionEpoch),
-        ?encode_compact_array(Topics, fun encode_fetch_topic_15/1),
-        ?encode_compact_array(ForgottenTopicsData, fun encode_forgotten_topic_15/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_fetch_topic_15)),
+        ?encode_compact_array(ForgottenTopicsData, ?encode_element(encode_forgotten_topic_15)),
         ?encode_compact_string(RackId),
         ?encode_tagged_fields(
             fun encode_fetch_request_15_tagged_field/2,
@@ -3567,7 +3570,7 @@ encode_fetch_topic_15(
 ->
     [
         ?encode_uuid(TopicId),
-        ?encode_compact_array(Partitions, fun encode_fetch_partition_15/1),
+        ?encode_compact_array(Partitions, ?encode_element(encode_fetch_partition_15)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_fetch_topic_15(Args) ->
@@ -3702,8 +3705,8 @@ encode_fetch_request_16(
         ?encode_int8(IsolationLevel),
         ?encode_int32(SessionId),
         ?encode_int32(SessionEpoch),
-        ?encode_compact_array(Topics, fun encode_fetch_topic_16/1),
-        ?encode_compact_array(ForgottenTopicsData, fun encode_forgotten_topic_16/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_fetch_topic_16)),
+        ?encode_compact_array(ForgottenTopicsData, ?encode_element(encode_forgotten_topic_16)),
         ?encode_compact_string(RackId),
         ?encode_tagged_fields(
             fun encode_fetch_request_16_tagged_field/2,
@@ -3934,7 +3937,7 @@ encode_fetch_topic_16(
 ->
     [
         ?encode_uuid(TopicId),
-        ?encode_compact_array(Partitions, fun encode_fetch_partition_16/1),
+        ?encode_compact_array(Partitions, ?encode_element(encode_fetch_partition_16)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_fetch_topic_16(Args) ->

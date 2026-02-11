@@ -1,4 +1,7 @@
 -module(alter_configs_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_alter_configs_response_0/1,
     decode_alter_configs_response_0/1,
@@ -41,7 +44,7 @@ encode_alter_configs_response_0(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_array(Responses, fun encode_alter_configs_resource_response_0/1)
+        ?encode_array(Responses, ?encode_element(encode_alter_configs_resource_response_0))
     ];
 encode_alter_configs_response_0(Args) ->
     ?encoder_error(Args, #{
@@ -137,7 +140,7 @@ encode_alter_configs_response_1(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_array(Responses, fun encode_alter_configs_resource_response_1/1)
+        ?encode_array(Responses, ?encode_element(encode_alter_configs_resource_response_1))
     ];
 encode_alter_configs_response_1(Args) ->
     ?encoder_error(Args, #{
@@ -233,7 +236,7 @@ encode_alter_configs_response_2(
     [
         ?encode_response_header_1(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_compact_array(Responses, fun encode_alter_configs_resource_response_2/1),
+        ?encode_compact_array(Responses, ?encode_element(encode_alter_configs_resource_response_2)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_alter_configs_response_2(Args) ->

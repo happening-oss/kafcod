@@ -15,12 +15,11 @@
     kafcod_request_header:encode_request_header_2(K, V, C, I)
 ).
 
-% Note: these functions don't actually exist (because we're not writing a broker here).
--define(encode_response_header_0(C),
-    kafcod_response_header:encode_response_header_0(C)
+-define(encode_response_header_0(CorrelationId),
+    kafcod_response_header:encode_response_header_0(CorrelationId)
 ).
--define(encode_response_header_1(C),
-    kafcod_response_header:encode_response_header_1(C)
+-define(encode_response_header_1(CorrelationId),
+    kafcod_response_header:encode_response_header_1(CorrelationId)
 ).
 
 -define(encode_bool(V),
@@ -46,6 +45,7 @@
 -define(encode_compact_nullable_array(Arr, Enc),
     kafcod_primitives:encode_compact_nullable_array(Arr, Enc)
 ).
+-define(encode_element(Fun), fun Fun/1).
 
 -define(encode_string(S), kafcod_primitives:encode_string(S)).
 -define(encode_nullable_string(S), kafcod_primitives:encode_nullable_string(S)).
@@ -65,10 +65,8 @@
 
 -define(encode_tagged_fields(F, A), kafcod_primitives:encode_tagged_fields(F, A)).
 
--define(encode_nullable_records(R), kafcod_records:encode_records(R)).
-
+-define(encode_records(R), kafcod_records:encode_records(R)).
 -define(encode_compact_records(R), kafcod_records:encode_compact_records(R)).
--define(encode_compact_nullable_records(R), kafcod_records:encode_compact_records(R)).
 
 -define(encode_int8_, fun(V) -> <<V:8/big-signed>> end).
 -define(encode_int32_, fun(V) -> <<V:32/big-signed>> end).
@@ -76,3 +74,42 @@
 -define(encode_string_, fun kafcod_primitives:encode_string/1).
 -define(encode_compact_string_, fun kafcod_primitives:encode_compact_string/1).
 -define(encode_uuid_, fun kafcod_primitives:encode_uuid/1).
+
+-ifdef(ENCODER_TRACING).
+% Encoder tracing replaces (some of) the encoding macros with variants that write to the Erlang logger.
+% It's a long way from being a complete set; feel free to write some more.
+
+-include_lib("kernel/include/logger.hrl").
+
+-undef(encode_array).
+-define(encode_array(Arr, Enc), begin
+    ?LOG_DEBUG("encode_array(~s = ~p, ~s)", [??Arr, Arr, ??Enc]),
+    Result = kafcod_primitives:encode_array(Arr, Enc),
+    ?LOG_DEBUG("encode_array(~s) => ~p", [??Arr, Result]),
+    Result
+end).
+
+-undef(encode_nullable_array).
+-define(encode_nullable_array(Arr, Enc), begin
+    ?LOG_DEBUG("encode_nullable_array(~s = ~p, ~s)", [??Arr, Arr, ??Enc]),
+    Result = kafcod_primitives:encode_nullable_array(Arr, Enc),
+    ?LOG_DEBUG("encode_nullable_array(~s) => ~p", [??Arr, Result]),
+    Result
+end).
+
+-undef(encode_compact_array).
+-define(encode_compact_array(Arr, Enc), begin
+    ?LOG_DEBUG("encode_compact_array(~s = ~p, ~s)", [??Arr, Arr, ??Enc]),
+    Result = kafcod_primitives:encode_compact_array(Arr, Enc),
+    ?LOG_DEBUG("encode_compact_array(~s) => ~p", [??Arr, Result]),
+    Result
+end).
+
+-undef(encode_compact_nullable_array).
+-define(encode_compact_nullable_array(Arr, Enc), begin
+    ?LOG_DEBUG("encode_compact_nullable_array(~s = ~p, ~s)", [??Arr, Arr, ??Enc]),
+    Result = kafcod_primitives:encode_compact_nullable_array(Arr, Enc),
+    ?LOG_DEBUG("encode_compact_nullable_array(~s) => ~p", [??Arr, Result]),
+    Result
+end).
+-endif.

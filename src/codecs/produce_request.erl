@@ -1,4 +1,7 @@
 -module(produce_request).
+
+%% This file is auto-generated.
+
 -export([
     encode_produce_request_0/1,
     decode_produce_request_0/1,
@@ -97,7 +100,7 @@ encode_produce_request_0(
         ?encode_request_header_1(?PRODUCE_REQUEST, 0, CorrelationId, ClientId),
         ?encode_int16(Acks),
         ?encode_int32(TimeoutMs),
-        ?encode_array(TopicData, fun encode_topic_produce_data_0/1)
+        ?encode_array(TopicData, ?encode_element(encode_topic_produce_data_0))
     ];
 encode_produce_request_0(Args) ->
     ?encoder_error(Args, #{
@@ -137,16 +140,16 @@ encode_partition_produce_data_0(
     }
 ) when
     ?is_int32(Index),
-    ?is_nullable_records(Records)
+    ?is_records(Records)
 ->
     [
         ?encode_int32(Index),
-        ?encode_nullable_records(Records)
+        ?encode_records(Records)
     ];
 encode_partition_produce_data_0(Args) ->
     ?encoder_error(Args, #{
         index => int32,
-        records => nullable_records
+        records => records
     }).
 
 -spec decode_partition_produce_data_0(binary()) -> {Decoded, Rest} when
@@ -155,7 +158,7 @@ encode_partition_produce_data_0(Args) ->
 
 decode_partition_produce_data_0(Bin0) when is_binary(Bin0) ->
     ?_decode_int32(Index, Bin0, Bin1),
-    ?_decode_nullable_records(Records, Bin1, Bin2),
+    ?_decode_records(Records, Bin1, Bin2),
     {
         #{
             index => Index,
@@ -179,7 +182,7 @@ encode_topic_produce_data_0(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(PartitionData, fun encode_partition_produce_data_0/1)
+        ?encode_array(PartitionData, ?encode_element(encode_partition_produce_data_0))
     ];
 encode_topic_produce_data_0(Args) ->
     ?encoder_error(Args, #{
@@ -228,7 +231,7 @@ encode_produce_request_1(
         ?encode_request_header_1(?PRODUCE_REQUEST, 1, CorrelationId, ClientId),
         ?encode_int16(Acks),
         ?encode_int32(TimeoutMs),
-        ?encode_array(TopicData, fun encode_topic_produce_data_1/1)
+        ?encode_array(TopicData, ?encode_element(encode_topic_produce_data_1))
     ];
 encode_produce_request_1(Args) ->
     ?encoder_error(Args, #{
@@ -268,16 +271,16 @@ encode_partition_produce_data_1(
     }
 ) when
     ?is_int32(Index),
-    ?is_nullable_records(Records)
+    ?is_records(Records)
 ->
     [
         ?encode_int32(Index),
-        ?encode_nullable_records(Records)
+        ?encode_records(Records)
     ];
 encode_partition_produce_data_1(Args) ->
     ?encoder_error(Args, #{
         index => int32,
-        records => nullable_records
+        records => records
     }).
 
 -spec decode_partition_produce_data_1(binary()) -> {Decoded, Rest} when
@@ -286,7 +289,7 @@ encode_partition_produce_data_1(Args) ->
 
 decode_partition_produce_data_1(Bin0) when is_binary(Bin0) ->
     ?_decode_int32(Index, Bin0, Bin1),
-    ?_decode_nullable_records(Records, Bin1, Bin2),
+    ?_decode_records(Records, Bin1, Bin2),
     {
         #{
             index => Index,
@@ -310,7 +313,7 @@ encode_topic_produce_data_1(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(PartitionData, fun encode_partition_produce_data_1/1)
+        ?encode_array(PartitionData, ?encode_element(encode_partition_produce_data_1))
     ];
 encode_topic_produce_data_1(Args) ->
     ?encoder_error(Args, #{
@@ -359,7 +362,7 @@ encode_produce_request_2(
         ?encode_request_header_1(?PRODUCE_REQUEST, 2, CorrelationId, ClientId),
         ?encode_int16(Acks),
         ?encode_int32(TimeoutMs),
-        ?encode_array(TopicData, fun encode_topic_produce_data_2/1)
+        ?encode_array(TopicData, ?encode_element(encode_topic_produce_data_2))
     ];
 encode_produce_request_2(Args) ->
     ?encoder_error(Args, #{
@@ -399,16 +402,16 @@ encode_partition_produce_data_2(
     }
 ) when
     ?is_int32(Index),
-    ?is_nullable_records(Records)
+    ?is_records(Records)
 ->
     [
         ?encode_int32(Index),
-        ?encode_nullable_records(Records)
+        ?encode_records(Records)
     ];
 encode_partition_produce_data_2(Args) ->
     ?encoder_error(Args, #{
         index => int32,
-        records => nullable_records
+        records => records
     }).
 
 -spec decode_partition_produce_data_2(binary()) -> {Decoded, Rest} when
@@ -417,7 +420,7 @@ encode_partition_produce_data_2(Args) ->
 
 decode_partition_produce_data_2(Bin0) when is_binary(Bin0) ->
     ?_decode_int32(Index, Bin0, Bin1),
-    ?_decode_nullable_records(Records, Bin1, Bin2),
+    ?_decode_records(Records, Bin1, Bin2),
     {
         #{
             index => Index,
@@ -441,7 +444,7 @@ encode_topic_produce_data_2(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(PartitionData, fun encode_partition_produce_data_2/1)
+        ?encode_array(PartitionData, ?encode_element(encode_partition_produce_data_2))
     ];
 encode_topic_produce_data_2(Args) ->
     ?encoder_error(Args, #{
@@ -494,7 +497,7 @@ encode_produce_request_3(
         ?encode_nullable_string(TransactionalId),
         ?encode_int16(Acks),
         ?encode_int32(TimeoutMs),
-        ?encode_array(TopicData, fun encode_topic_produce_data_3/1)
+        ?encode_array(TopicData, ?encode_element(encode_topic_produce_data_3))
     ];
 encode_produce_request_3(Args) ->
     ?encoder_error(Args, #{
@@ -537,16 +540,16 @@ encode_partition_produce_data_3(
     }
 ) when
     ?is_int32(Index),
-    ?is_nullable_records(Records)
+    ?is_records(Records)
 ->
     [
         ?encode_int32(Index),
-        ?encode_nullable_records(Records)
+        ?encode_records(Records)
     ];
 encode_partition_produce_data_3(Args) ->
     ?encoder_error(Args, #{
         index => int32,
-        records => nullable_records
+        records => records
     }).
 
 -spec decode_partition_produce_data_3(binary()) -> {Decoded, Rest} when
@@ -555,7 +558,7 @@ encode_partition_produce_data_3(Args) ->
 
 decode_partition_produce_data_3(Bin0) when is_binary(Bin0) ->
     ?_decode_int32(Index, Bin0, Bin1),
-    ?_decode_nullable_records(Records, Bin1, Bin2),
+    ?_decode_records(Records, Bin1, Bin2),
     {
         #{
             index => Index,
@@ -579,7 +582,7 @@ encode_topic_produce_data_3(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(PartitionData, fun encode_partition_produce_data_3/1)
+        ?encode_array(PartitionData, ?encode_element(encode_partition_produce_data_3))
     ];
 encode_topic_produce_data_3(Args) ->
     ?encoder_error(Args, #{
@@ -632,7 +635,7 @@ encode_produce_request_4(
         ?encode_nullable_string(TransactionalId),
         ?encode_int16(Acks),
         ?encode_int32(TimeoutMs),
-        ?encode_array(TopicData, fun encode_topic_produce_data_4/1)
+        ?encode_array(TopicData, ?encode_element(encode_topic_produce_data_4))
     ];
 encode_produce_request_4(Args) ->
     ?encoder_error(Args, #{
@@ -675,16 +678,16 @@ encode_partition_produce_data_4(
     }
 ) when
     ?is_int32(Index),
-    ?is_nullable_records(Records)
+    ?is_records(Records)
 ->
     [
         ?encode_int32(Index),
-        ?encode_nullable_records(Records)
+        ?encode_records(Records)
     ];
 encode_partition_produce_data_4(Args) ->
     ?encoder_error(Args, #{
         index => int32,
-        records => nullable_records
+        records => records
     }).
 
 -spec decode_partition_produce_data_4(binary()) -> {Decoded, Rest} when
@@ -693,7 +696,7 @@ encode_partition_produce_data_4(Args) ->
 
 decode_partition_produce_data_4(Bin0) when is_binary(Bin0) ->
     ?_decode_int32(Index, Bin0, Bin1),
-    ?_decode_nullable_records(Records, Bin1, Bin2),
+    ?_decode_records(Records, Bin1, Bin2),
     {
         #{
             index => Index,
@@ -717,7 +720,7 @@ encode_topic_produce_data_4(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(PartitionData, fun encode_partition_produce_data_4/1)
+        ?encode_array(PartitionData, ?encode_element(encode_partition_produce_data_4))
     ];
 encode_topic_produce_data_4(Args) ->
     ?encoder_error(Args, #{
@@ -770,7 +773,7 @@ encode_produce_request_5(
         ?encode_nullable_string(TransactionalId),
         ?encode_int16(Acks),
         ?encode_int32(TimeoutMs),
-        ?encode_array(TopicData, fun encode_topic_produce_data_5/1)
+        ?encode_array(TopicData, ?encode_element(encode_topic_produce_data_5))
     ];
 encode_produce_request_5(Args) ->
     ?encoder_error(Args, #{
@@ -813,16 +816,16 @@ encode_partition_produce_data_5(
     }
 ) when
     ?is_int32(Index),
-    ?is_nullable_records(Records)
+    ?is_records(Records)
 ->
     [
         ?encode_int32(Index),
-        ?encode_nullable_records(Records)
+        ?encode_records(Records)
     ];
 encode_partition_produce_data_5(Args) ->
     ?encoder_error(Args, #{
         index => int32,
-        records => nullable_records
+        records => records
     }).
 
 -spec decode_partition_produce_data_5(binary()) -> {Decoded, Rest} when
@@ -831,7 +834,7 @@ encode_partition_produce_data_5(Args) ->
 
 decode_partition_produce_data_5(Bin0) when is_binary(Bin0) ->
     ?_decode_int32(Index, Bin0, Bin1),
-    ?_decode_nullable_records(Records, Bin1, Bin2),
+    ?_decode_records(Records, Bin1, Bin2),
     {
         #{
             index => Index,
@@ -855,7 +858,7 @@ encode_topic_produce_data_5(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(PartitionData, fun encode_partition_produce_data_5/1)
+        ?encode_array(PartitionData, ?encode_element(encode_partition_produce_data_5))
     ];
 encode_topic_produce_data_5(Args) ->
     ?encoder_error(Args, #{
@@ -908,7 +911,7 @@ encode_produce_request_6(
         ?encode_nullable_string(TransactionalId),
         ?encode_int16(Acks),
         ?encode_int32(TimeoutMs),
-        ?encode_array(TopicData, fun encode_topic_produce_data_6/1)
+        ?encode_array(TopicData, ?encode_element(encode_topic_produce_data_6))
     ];
 encode_produce_request_6(Args) ->
     ?encoder_error(Args, #{
@@ -951,16 +954,16 @@ encode_partition_produce_data_6(
     }
 ) when
     ?is_int32(Index),
-    ?is_nullable_records(Records)
+    ?is_records(Records)
 ->
     [
         ?encode_int32(Index),
-        ?encode_nullable_records(Records)
+        ?encode_records(Records)
     ];
 encode_partition_produce_data_6(Args) ->
     ?encoder_error(Args, #{
         index => int32,
-        records => nullable_records
+        records => records
     }).
 
 -spec decode_partition_produce_data_6(binary()) -> {Decoded, Rest} when
@@ -969,7 +972,7 @@ encode_partition_produce_data_6(Args) ->
 
 decode_partition_produce_data_6(Bin0) when is_binary(Bin0) ->
     ?_decode_int32(Index, Bin0, Bin1),
-    ?_decode_nullable_records(Records, Bin1, Bin2),
+    ?_decode_records(Records, Bin1, Bin2),
     {
         #{
             index => Index,
@@ -993,7 +996,7 @@ encode_topic_produce_data_6(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(PartitionData, fun encode_partition_produce_data_6/1)
+        ?encode_array(PartitionData, ?encode_element(encode_partition_produce_data_6))
     ];
 encode_topic_produce_data_6(Args) ->
     ?encoder_error(Args, #{
@@ -1046,7 +1049,7 @@ encode_produce_request_7(
         ?encode_nullable_string(TransactionalId),
         ?encode_int16(Acks),
         ?encode_int32(TimeoutMs),
-        ?encode_array(TopicData, fun encode_topic_produce_data_7/1)
+        ?encode_array(TopicData, ?encode_element(encode_topic_produce_data_7))
     ];
 encode_produce_request_7(Args) ->
     ?encoder_error(Args, #{
@@ -1089,16 +1092,16 @@ encode_partition_produce_data_7(
     }
 ) when
     ?is_int32(Index),
-    ?is_nullable_records(Records)
+    ?is_records(Records)
 ->
     [
         ?encode_int32(Index),
-        ?encode_nullable_records(Records)
+        ?encode_records(Records)
     ];
 encode_partition_produce_data_7(Args) ->
     ?encoder_error(Args, #{
         index => int32,
-        records => nullable_records
+        records => records
     }).
 
 -spec decode_partition_produce_data_7(binary()) -> {Decoded, Rest} when
@@ -1107,7 +1110,7 @@ encode_partition_produce_data_7(Args) ->
 
 decode_partition_produce_data_7(Bin0) when is_binary(Bin0) ->
     ?_decode_int32(Index, Bin0, Bin1),
-    ?_decode_nullable_records(Records, Bin1, Bin2),
+    ?_decode_records(Records, Bin1, Bin2),
     {
         #{
             index => Index,
@@ -1131,7 +1134,7 @@ encode_topic_produce_data_7(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(PartitionData, fun encode_partition_produce_data_7/1)
+        ?encode_array(PartitionData, ?encode_element(encode_partition_produce_data_7))
     ];
 encode_topic_produce_data_7(Args) ->
     ?encoder_error(Args, #{
@@ -1184,7 +1187,7 @@ encode_produce_request_8(
         ?encode_nullable_string(TransactionalId),
         ?encode_int16(Acks),
         ?encode_int32(TimeoutMs),
-        ?encode_array(TopicData, fun encode_topic_produce_data_8/1)
+        ?encode_array(TopicData, ?encode_element(encode_topic_produce_data_8))
     ];
 encode_produce_request_8(Args) ->
     ?encoder_error(Args, #{
@@ -1227,16 +1230,16 @@ encode_partition_produce_data_8(
     }
 ) when
     ?is_int32(Index),
-    ?is_nullable_records(Records)
+    ?is_records(Records)
 ->
     [
         ?encode_int32(Index),
-        ?encode_nullable_records(Records)
+        ?encode_records(Records)
     ];
 encode_partition_produce_data_8(Args) ->
     ?encoder_error(Args, #{
         index => int32,
-        records => nullable_records
+        records => records
     }).
 
 -spec decode_partition_produce_data_8(binary()) -> {Decoded, Rest} when
@@ -1245,7 +1248,7 @@ encode_partition_produce_data_8(Args) ->
 
 decode_partition_produce_data_8(Bin0) when is_binary(Bin0) ->
     ?_decode_int32(Index, Bin0, Bin1),
-    ?_decode_nullable_records(Records, Bin1, Bin2),
+    ?_decode_records(Records, Bin1, Bin2),
     {
         #{
             index => Index,
@@ -1269,7 +1272,7 @@ encode_topic_produce_data_8(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(PartitionData, fun encode_partition_produce_data_8/1)
+        ?encode_array(PartitionData, ?encode_element(encode_partition_produce_data_8))
     ];
 encode_topic_produce_data_8(Args) ->
     ?encoder_error(Args, #{
@@ -1322,7 +1325,7 @@ encode_produce_request_9(
         ?encode_compact_nullable_string(TransactionalId),
         ?encode_int16(Acks),
         ?encode_int32(TimeoutMs),
-        ?encode_compact_array(TopicData, fun encode_topic_produce_data_9/1),
+        ?encode_compact_array(TopicData, ?encode_element(encode_topic_produce_data_9)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_produce_request_9(Args) ->
@@ -1378,17 +1381,17 @@ encode_partition_produce_data_9(
     }
 ) when
     ?is_int32(Index),
-    ?is_nullable_records(Records)
+    ?is_records(Records)
 ->
     [
         ?encode_int32(Index),
-        ?encode_compact_nullable_records(Records),
+        ?encode_compact_records(Records),
         ?EMPTY_TAG_BUFFER
     ];
 encode_partition_produce_data_9(Args) ->
     ?encoder_error(Args, #{
         index => int32,
-        records => nullable_records
+        records => records
     }).
 
 -spec decode_partition_produce_data_9(binary()) -> {Decoded, Rest} when
@@ -1397,7 +1400,7 @@ encode_partition_produce_data_9(Args) ->
 
 decode_partition_produce_data_9(Bin0) when is_binary(Bin0) ->
     ?_decode_int32(Index, Bin0, Bin1),
-    ?_decode_compact_nullable_records(Records, Bin1, Bin2),
+    ?_decode_compact_records(Records, Bin1, Bin2),
     ?decode_tagged_fields(
         fun decode_partition_produce_data_9_tagged_field/3,
         #{
@@ -1433,7 +1436,7 @@ encode_topic_produce_data_9(
 ->
     [
         ?encode_compact_string(Name),
-        ?encode_compact_array(PartitionData, fun encode_partition_produce_data_9/1),
+        ?encode_compact_array(PartitionData, ?encode_element(encode_partition_produce_data_9)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_topic_produce_data_9(Args) ->
@@ -1499,7 +1502,7 @@ encode_produce_request_10(
         ?encode_compact_nullable_string(TransactionalId),
         ?encode_int16(Acks),
         ?encode_int32(TimeoutMs),
-        ?encode_compact_array(TopicData, fun encode_topic_produce_data_10/1),
+        ?encode_compact_array(TopicData, ?encode_element(encode_topic_produce_data_10)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_produce_request_10(Args) ->
@@ -1555,17 +1558,17 @@ encode_partition_produce_data_10(
     }
 ) when
     ?is_int32(Index),
-    ?is_nullable_records(Records)
+    ?is_records(Records)
 ->
     [
         ?encode_int32(Index),
-        ?encode_compact_nullable_records(Records),
+        ?encode_compact_records(Records),
         ?EMPTY_TAG_BUFFER
     ];
 encode_partition_produce_data_10(Args) ->
     ?encoder_error(Args, #{
         index => int32,
-        records => nullable_records
+        records => records
     }).
 
 -spec decode_partition_produce_data_10(binary()) -> {Decoded, Rest} when
@@ -1574,7 +1577,7 @@ encode_partition_produce_data_10(Args) ->
 
 decode_partition_produce_data_10(Bin0) when is_binary(Bin0) ->
     ?_decode_int32(Index, Bin0, Bin1),
-    ?_decode_compact_nullable_records(Records, Bin1, Bin2),
+    ?_decode_compact_records(Records, Bin1, Bin2),
     ?decode_tagged_fields(
         fun decode_partition_produce_data_10_tagged_field/3,
         #{
@@ -1610,7 +1613,7 @@ encode_topic_produce_data_10(
 ->
     [
         ?encode_compact_string(Name),
-        ?encode_compact_array(PartitionData, fun encode_partition_produce_data_10/1),
+        ?encode_compact_array(PartitionData, ?encode_element(encode_partition_produce_data_10)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_topic_produce_data_10(Args) ->
@@ -1676,7 +1679,7 @@ encode_produce_request_11(
         ?encode_compact_nullable_string(TransactionalId),
         ?encode_int16(Acks),
         ?encode_int32(TimeoutMs),
-        ?encode_compact_array(TopicData, fun encode_topic_produce_data_11/1),
+        ?encode_compact_array(TopicData, ?encode_element(encode_topic_produce_data_11)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_produce_request_11(Args) ->
@@ -1732,17 +1735,17 @@ encode_partition_produce_data_11(
     }
 ) when
     ?is_int32(Index),
-    ?is_nullable_records(Records)
+    ?is_records(Records)
 ->
     [
         ?encode_int32(Index),
-        ?encode_compact_nullable_records(Records),
+        ?encode_compact_records(Records),
         ?EMPTY_TAG_BUFFER
     ];
 encode_partition_produce_data_11(Args) ->
     ?encoder_error(Args, #{
         index => int32,
-        records => nullable_records
+        records => records
     }).
 
 -spec decode_partition_produce_data_11(binary()) -> {Decoded, Rest} when
@@ -1751,7 +1754,7 @@ encode_partition_produce_data_11(Args) ->
 
 decode_partition_produce_data_11(Bin0) when is_binary(Bin0) ->
     ?_decode_int32(Index, Bin0, Bin1),
-    ?_decode_compact_nullable_records(Records, Bin1, Bin2),
+    ?_decode_compact_records(Records, Bin1, Bin2),
     ?decode_tagged_fields(
         fun decode_partition_produce_data_11_tagged_field/3,
         #{
@@ -1787,7 +1790,7 @@ encode_topic_produce_data_11(
 ->
     [
         ?encode_compact_string(Name),
-        ?encode_compact_array(PartitionData, fun encode_partition_produce_data_11/1),
+        ?encode_compact_array(PartitionData, ?encode_element(encode_partition_produce_data_11)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_topic_produce_data_11(Args) ->

@@ -1,4 +1,7 @@
 -module(create_partitions_request).
+
+%% This file is auto-generated.
+
 -export([
     encode_create_partitions_request_0/1,
     decode_create_partitions_request_0/1,
@@ -55,7 +58,7 @@ encode_create_partitions_request_0(
 ->
     [
         ?encode_request_header_1(?CREATE_PARTITIONS_REQUEST, 0, CorrelationId, ClientId),
-        ?encode_array(Topics, fun encode_create_partitions_topic_0/1),
+        ?encode_array(Topics, ?encode_element(encode_create_partitions_topic_0)),
         ?encode_int32(TimeoutMs),
         ?encode_bool(ValidateOnly)
     ];
@@ -136,7 +139,7 @@ encode_create_partitions_topic_0(
     [
         ?encode_string(Name),
         ?encode_int32(Count),
-        ?encode_nullable_array(Assignments, fun encode_create_partitions_assignment_0/1)
+        ?encode_nullable_array(Assignments, ?encode_element(encode_create_partitions_assignment_0))
     ];
 encode_create_partitions_topic_0(Args) ->
     ?encoder_error(Args, #{
@@ -186,7 +189,7 @@ encode_create_partitions_request_1(
 ->
     [
         ?encode_request_header_1(?CREATE_PARTITIONS_REQUEST, 1, CorrelationId, ClientId),
-        ?encode_array(Topics, fun encode_create_partitions_topic_1/1),
+        ?encode_array(Topics, ?encode_element(encode_create_partitions_topic_1)),
         ?encode_int32(TimeoutMs),
         ?encode_bool(ValidateOnly)
     ];
@@ -267,7 +270,7 @@ encode_create_partitions_topic_1(
     [
         ?encode_string(Name),
         ?encode_int32(Count),
-        ?encode_nullable_array(Assignments, fun encode_create_partitions_assignment_1/1)
+        ?encode_nullable_array(Assignments, ?encode_element(encode_create_partitions_assignment_1))
     ];
 encode_create_partitions_topic_1(Args) ->
     ?encoder_error(Args, #{
@@ -317,7 +320,7 @@ encode_create_partitions_request_2(
 ->
     [
         ?encode_request_header_2(?CREATE_PARTITIONS_REQUEST, 2, CorrelationId, ClientId),
-        ?encode_compact_array(Topics, fun encode_create_partitions_topic_2/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_create_partitions_topic_2)),
         ?encode_int32(TimeoutMs),
         ?encode_bool(ValidateOnly),
         ?EMPTY_TAG_BUFFER
@@ -424,7 +427,7 @@ encode_create_partitions_topic_2(
     [
         ?encode_compact_string(Name),
         ?encode_int32(Count),
-        ?encode_compact_nullable_array(Assignments, fun encode_create_partitions_assignment_2/1),
+        ?encode_compact_nullable_array(Assignments, ?encode_element(encode_create_partitions_assignment_2)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_create_partitions_topic_2(Args) ->
@@ -487,7 +490,7 @@ encode_create_partitions_request_3(
 ->
     [
         ?encode_request_header_2(?CREATE_PARTITIONS_REQUEST, 3, CorrelationId, ClientId),
-        ?encode_compact_array(Topics, fun encode_create_partitions_topic_3/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_create_partitions_topic_3)),
         ?encode_int32(TimeoutMs),
         ?encode_bool(ValidateOnly),
         ?EMPTY_TAG_BUFFER
@@ -594,7 +597,7 @@ encode_create_partitions_topic_3(
     [
         ?encode_compact_string(Name),
         ?encode_int32(Count),
-        ?encode_compact_nullable_array(Assignments, fun encode_create_partitions_assignment_3/1),
+        ?encode_compact_nullable_array(Assignments, ?encode_element(encode_create_partitions_assignment_3)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_create_partitions_topic_3(Args) ->

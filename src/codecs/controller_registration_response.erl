@@ -1,4 +1,7 @@
 -module(controller_registration_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_controller_registration_response_0/1,
     decode_controller_registration_response_0/1

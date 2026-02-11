@@ -32,15 +32,15 @@
 }.
 
 -type assignments() :: #{
-    member_id() := member_assignment()
+    member_id() => member_assignment()
 }.
 -type member_id() :: binary().
 -type member_assignment() :: #{
     assigned_partitions := assigned_partitions(),
-    user_data := binary()
+    user_data := kafcod:nullable_bytes()
 }.
 -type assigned_partitions() :: #{
-    Topic :: binary() := [Partition :: non_neg_integer()]
+    Topic :: binary() => [Partition :: non_neg_integer()]
 }.
 
 -spec encode_metadata(
@@ -115,4 +115,8 @@ decode_assignment(<<Version:16/big-signed, Rest/binary>>) when Version =:= 0 ->
         #{},
         AssignedPartitions0
     ),
-    #{assigned_partitions => AssignedTopicPartitions, user_data => UserData}.
+    #{assigned_partitions => AssignedTopicPartitions, user_data => UserData};
+decode_assignment(<<>>) ->
+    % If the leader completely omits the member from the assignments, the broker returns an empty binary. Treat that as
+    % if we've been assigned nothing.
+    #{assigned_partitions => #{}, user_data => <<>>}.

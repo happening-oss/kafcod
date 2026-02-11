@@ -1,4 +1,7 @@
 -module(voters_record).
+
+%% This file is auto-generated.
+
 -export([
     encode_voters_record_0/1,
     decode_voters_record_0/1
@@ -30,7 +33,7 @@ encode_voters_record_0(
 ->
     [
         ?encode_int16(Version),
-        ?encode_compact_array(Voters, fun encode_voter_0/1),
+        ?encode_compact_array(Voters, ?encode_element(encode_voter_0)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_voters_record_0(Args) ->
@@ -197,7 +200,7 @@ encode_voter_0(
     [
         ?encode_int32(VoterId),
         ?encode_uuid(VoterDirectoryId),
-        ?encode_compact_array(Endpoints, fun encode_endpoint_0/1),
+        ?encode_compact_array(Endpoints, ?encode_element(encode_endpoint_0)),
         encode_k_raft_version_feature_0(KRaftVersionFeature),
         ?EMPTY_TAG_BUFFER
     ];

@@ -1,4 +1,7 @@
 -module(add_partitions_to_txn_request).
+
+%% This file is auto-generated.
+
 -export([
     encode_add_partitions_to_txn_request_0/1,
     decode_add_partitions_to_txn_request_0/1,
@@ -67,7 +70,7 @@ encode_add_partitions_to_txn_request_0(
         ?encode_string(V3AndBelowTransactionalId),
         ?encode_int64(V3AndBelowProducerId),
         ?encode_int16(V3AndBelowProducerEpoch),
-        ?encode_array(V3AndBelowTopics, fun encode_add_partitions_to_txn_topic_0/1)
+        ?encode_array(V3AndBelowTopics, ?encode_element(encode_add_partitions_to_txn_topic_0))
     ];
 encode_add_partitions_to_txn_request_0(Args) ->
     ?encoder_error(Args, #{
@@ -167,7 +170,7 @@ encode_add_partitions_to_txn_request_1(
         ?encode_string(V3AndBelowTransactionalId),
         ?encode_int64(V3AndBelowProducerId),
         ?encode_int16(V3AndBelowProducerEpoch),
-        ?encode_array(V3AndBelowTopics, fun encode_add_partitions_to_txn_topic_1/1)
+        ?encode_array(V3AndBelowTopics, ?encode_element(encode_add_partitions_to_txn_topic_1))
     ];
 encode_add_partitions_to_txn_request_1(Args) ->
     ?encoder_error(Args, #{
@@ -267,7 +270,7 @@ encode_add_partitions_to_txn_request_2(
         ?encode_string(V3AndBelowTransactionalId),
         ?encode_int64(V3AndBelowProducerId),
         ?encode_int16(V3AndBelowProducerEpoch),
-        ?encode_array(V3AndBelowTopics, fun encode_add_partitions_to_txn_topic_2/1)
+        ?encode_array(V3AndBelowTopics, ?encode_element(encode_add_partitions_to_txn_topic_2))
     ];
 encode_add_partitions_to_txn_request_2(Args) ->
     ?encoder_error(Args, #{
@@ -367,7 +370,7 @@ encode_add_partitions_to_txn_request_3(
         ?encode_compact_string(V3AndBelowTransactionalId),
         ?encode_int64(V3AndBelowProducerId),
         ?encode_int16(V3AndBelowProducerEpoch),
-        ?encode_compact_array(V3AndBelowTopics, fun encode_add_partitions_to_txn_topic_3/1),
+        ?encode_compact_array(V3AndBelowTopics, ?encode_element(encode_add_partitions_to_txn_topic_3)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_add_partitions_to_txn_request_3(Args) ->
@@ -481,7 +484,7 @@ encode_add_partitions_to_txn_request_4(
 ->
     [
         ?encode_request_header_2(?ADD_PARTITIONS_TO_TXN_REQUEST, 4, CorrelationId, ClientId),
-        ?encode_compact_array(Transactions, fun encode_add_partitions_to_txn_transaction_4/1),
+        ?encode_compact_array(Transactions, ?encode_element(encode_add_partitions_to_txn_transaction_4)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_add_partitions_to_txn_request_4(Args) ->
@@ -544,7 +547,7 @@ encode_add_partitions_to_txn_transaction_4(
         ?encode_int64(ProducerId),
         ?encode_int16(ProducerEpoch),
         ?encode_bool(VerifyOnly),
-        ?encode_compact_array(Topics, fun encode_add_partitions_to_txn_topic_4/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_add_partitions_to_txn_topic_4)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_add_partitions_to_txn_transaction_4(Args) ->
@@ -658,7 +661,7 @@ encode_add_partitions_to_txn_request_5(
 ->
     [
         ?encode_request_header_2(?ADD_PARTITIONS_TO_TXN_REQUEST, 5, CorrelationId, ClientId),
-        ?encode_compact_array(Transactions, fun encode_add_partitions_to_txn_transaction_5/1),
+        ?encode_compact_array(Transactions, ?encode_element(encode_add_partitions_to_txn_transaction_5)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_add_partitions_to_txn_request_5(Args) ->
@@ -721,7 +724,7 @@ encode_add_partitions_to_txn_transaction_5(
         ?encode_int64(ProducerId),
         ?encode_int16(ProducerEpoch),
         ?encode_bool(VerifyOnly),
-        ?encode_compact_array(Topics, fun encode_add_partitions_to_txn_topic_5/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_add_partitions_to_txn_topic_5)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_add_partitions_to_txn_transaction_5(Args) ->

@@ -1,4 +1,7 @@
 -module(expire_delegation_token_request).
+
+%% This file is auto-generated.
+
 -export([
     encode_expire_delegation_token_request_0/1,
     decode_expire_delegation_token_request_0/1,

@@ -1,4 +1,7 @@
 -module(list_partition_reassignments_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_list_partition_reassignments_response_0/1,
     decode_list_partition_reassignments_response_0/1
@@ -42,7 +45,7 @@ encode_list_partition_reassignments_response_0(
         ?encode_int32(ThrottleTimeMs),
         ?encode_int16(ErrorCode),
         ?encode_compact_nullable_string(ErrorMessage),
-        ?encode_compact_array(Topics, fun encode_ongoing_topic_reassignment_0/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_ongoing_topic_reassignment_0)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_list_partition_reassignments_response_0(Args) ->
@@ -166,7 +169,7 @@ encode_ongoing_topic_reassignment_0(
 ->
     [
         ?encode_compact_string(Name),
-        ?encode_compact_array(Partitions, fun encode_ongoing_partition_reassignment_0/1),
+        ?encode_compact_array(Partitions, ?encode_element(encode_ongoing_partition_reassignment_0)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_ongoing_topic_reassignment_0(Args) ->

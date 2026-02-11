@@ -1,4 +1,7 @@
 -module(txn_offset_commit_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_txn_offset_commit_response_0/1,
     decode_txn_offset_commit_response_0/1,
@@ -54,7 +57,7 @@ encode_txn_offset_commit_response_0(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_array(Topics, fun encode_txn_offset_commit_response_topic_0/1)
+        ?encode_array(Topics, ?encode_element(encode_txn_offset_commit_response_topic_0))
     ];
 encode_txn_offset_commit_response_0(Args) ->
     ?encoder_error(Args, #{
@@ -132,7 +135,7 @@ encode_txn_offset_commit_response_topic_0(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(Partitions, fun encode_txn_offset_commit_response_partition_0/1)
+        ?encode_array(Partitions, ?encode_element(encode_txn_offset_commit_response_partition_0))
     ];
 encode_txn_offset_commit_response_topic_0(Args) ->
     ?encoder_error(Args, #{
@@ -174,7 +177,7 @@ encode_txn_offset_commit_response_1(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_array(Topics, fun encode_txn_offset_commit_response_topic_1/1)
+        ?encode_array(Topics, ?encode_element(encode_txn_offset_commit_response_topic_1))
     ];
 encode_txn_offset_commit_response_1(Args) ->
     ?encoder_error(Args, #{
@@ -252,7 +255,7 @@ encode_txn_offset_commit_response_topic_1(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(Partitions, fun encode_txn_offset_commit_response_partition_1/1)
+        ?encode_array(Partitions, ?encode_element(encode_txn_offset_commit_response_partition_1))
     ];
 encode_txn_offset_commit_response_topic_1(Args) ->
     ?encoder_error(Args, #{
@@ -294,7 +297,7 @@ encode_txn_offset_commit_response_2(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_array(Topics, fun encode_txn_offset_commit_response_topic_2/1)
+        ?encode_array(Topics, ?encode_element(encode_txn_offset_commit_response_topic_2))
     ];
 encode_txn_offset_commit_response_2(Args) ->
     ?encoder_error(Args, #{
@@ -372,7 +375,7 @@ encode_txn_offset_commit_response_topic_2(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(Partitions, fun encode_txn_offset_commit_response_partition_2/1)
+        ?encode_array(Partitions, ?encode_element(encode_txn_offset_commit_response_partition_2))
     ];
 encode_txn_offset_commit_response_topic_2(Args) ->
     ?encoder_error(Args, #{
@@ -414,7 +417,7 @@ encode_txn_offset_commit_response_3(
     [
         ?encode_response_header_1(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_compact_array(Topics, fun encode_txn_offset_commit_response_topic_3/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_txn_offset_commit_response_topic_3)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_txn_offset_commit_response_3(Args) ->
@@ -518,7 +521,7 @@ encode_txn_offset_commit_response_topic_3(
 ->
     [
         ?encode_compact_string(Name),
-        ?encode_compact_array(Partitions, fun encode_txn_offset_commit_response_partition_3/1),
+        ?encode_compact_array(Partitions, ?encode_element(encode_txn_offset_commit_response_partition_3)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_txn_offset_commit_response_topic_3(Args) ->
@@ -573,7 +576,7 @@ encode_txn_offset_commit_response_4(
     [
         ?encode_response_header_1(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_compact_array(Topics, fun encode_txn_offset_commit_response_topic_4/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_txn_offset_commit_response_topic_4)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_txn_offset_commit_response_4(Args) ->
@@ -677,7 +680,7 @@ encode_txn_offset_commit_response_topic_4(
 ->
     [
         ?encode_compact_string(Name),
-        ?encode_compact_array(Partitions, fun encode_txn_offset_commit_response_partition_4/1),
+        ?encode_compact_array(Partitions, ?encode_element(encode_txn_offset_commit_response_partition_4)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_txn_offset_commit_response_topic_4(Args) ->

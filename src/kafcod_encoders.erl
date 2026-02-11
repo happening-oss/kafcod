@@ -1,4 +1,7 @@
 -module(kafcod_encoders).
+
+%% This file is auto-generated.
+
 -export([encode/4]).
 encode(_ApiKey = 0, _ApiVersion = 0, request, Payload) -> produce_request:encode_produce_request_0(Payload);
 encode(_ApiKey = 0, _ApiVersion = 1, request, Payload) -> produce_request:encode_produce_request_1(Payload);

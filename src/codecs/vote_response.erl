@@ -1,4 +1,7 @@
 -module(vote_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_vote_response_0/1,
     decode_vote_response_0/1
@@ -33,7 +36,7 @@ encode_vote_response_0(
     [
         ?encode_response_header_1(CorrelationId),
         ?encode_int16(ErrorCode),
-        ?encode_compact_array(Topics, fun encode_topic_data_0/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_topic_data_0)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_vote_response_0(Args) ->
@@ -156,7 +159,7 @@ encode_topic_data_0(
 ->
     [
         ?encode_compact_string(TopicName),
-        ?encode_compact_array(Partitions, fun encode_partition_data_0/1),
+        ?encode_compact_array(Partitions, ?encode_element(encode_partition_data_0)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_topic_data_0(Args) ->

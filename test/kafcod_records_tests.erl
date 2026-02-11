@@ -305,3 +305,23 @@ v11_v12_comparison_test_() ->
             iolist_to_binary(kafcod_records:encode_compact_records(Records))
         )
     ].
+
+encode_all_nulls_test() ->
+    Messages = [
+        #{key => null, value => null, headers => []}
+    ],
+    [RecordBatch0] = kafcod_message_set:prepare_message_set(
+        #{compression => none}, Messages
+    ),
+
+    % Force the timestamp to a known value, to keep the test repeatable.
+    RecordBatch = RecordBatch0#{base_timestamp => 1768996477082, max_timestamp => 1768996477082},
+
+    ?assertEqual(
+        <<0, 0, 0, 68, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 56, 0, 0, 0, 0, 2, 179, 95, 111, 228, 0, 0,
+            0, 0, 0, 0, 0, 0, 1, 155, 224, 104, 24, 154, 0, 0, 1, 155, 224, 104, 24, 154, 255, 255,
+            255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 0, 0, 0, 1, 12, 0, 0, 0, 1,
+            1, 0>>,
+        iolist_to_binary(kafcod_records:encode_records([RecordBatch]))
+    ),
+    ok.

@@ -1,4 +1,7 @@
 -module(list_offsets_request).
+
+%% This file is auto-generated.
+
 -export([
     encode_list_offsets_request_0/1,
     decode_list_offsets_request_0/1,
@@ -78,7 +81,7 @@ encode_list_offsets_request_0(
     [
         ?encode_request_header_1(?LIST_OFFSETS_REQUEST, 0, CorrelationId, ClientId),
         ?encode_int32(ReplicaId),
-        ?encode_array(Topics, fun encode_list_offsets_topic_0/1)
+        ?encode_array(Topics, ?encode_element(encode_list_offsets_topic_0))
     ];
 encode_list_offsets_request_0(Args) ->
     ?encoder_error(Args, #{
@@ -164,7 +167,7 @@ encode_list_offsets_topic_0(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(Partitions, fun encode_list_offsets_partition_0/1)
+        ?encode_array(Partitions, ?encode_element(encode_list_offsets_partition_0))
     ];
 encode_list_offsets_topic_0(Args) ->
     ?encoder_error(Args, #{
@@ -209,7 +212,7 @@ encode_list_offsets_request_1(
     [
         ?encode_request_header_1(?LIST_OFFSETS_REQUEST, 1, CorrelationId, ClientId),
         ?encode_int32(ReplicaId),
-        ?encode_array(Topics, fun encode_list_offsets_topic_1/1)
+        ?encode_array(Topics, ?encode_element(encode_list_offsets_topic_1))
     ];
 encode_list_offsets_request_1(Args) ->
     ?encoder_error(Args, #{
@@ -288,7 +291,7 @@ encode_list_offsets_topic_1(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(Partitions, fun encode_list_offsets_partition_1/1)
+        ?encode_array(Partitions, ?encode_element(encode_list_offsets_partition_1))
     ];
 encode_list_offsets_topic_1(Args) ->
     ?encoder_error(Args, #{
@@ -337,7 +340,7 @@ encode_list_offsets_request_2(
         ?encode_request_header_1(?LIST_OFFSETS_REQUEST, 2, CorrelationId, ClientId),
         ?encode_int32(ReplicaId),
         ?encode_int8(IsolationLevel),
-        ?encode_array(Topics, fun encode_list_offsets_topic_2/1)
+        ?encode_array(Topics, ?encode_element(encode_list_offsets_topic_2))
     ];
 encode_list_offsets_request_2(Args) ->
     ?encoder_error(Args, #{
@@ -419,7 +422,7 @@ encode_list_offsets_topic_2(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(Partitions, fun encode_list_offsets_partition_2/1)
+        ?encode_array(Partitions, ?encode_element(encode_list_offsets_partition_2))
     ];
 encode_list_offsets_topic_2(Args) ->
     ?encoder_error(Args, #{
@@ -468,7 +471,7 @@ encode_list_offsets_request_3(
         ?encode_request_header_1(?LIST_OFFSETS_REQUEST, 3, CorrelationId, ClientId),
         ?encode_int32(ReplicaId),
         ?encode_int8(IsolationLevel),
-        ?encode_array(Topics, fun encode_list_offsets_topic_3/1)
+        ?encode_array(Topics, ?encode_element(encode_list_offsets_topic_3))
     ];
 encode_list_offsets_request_3(Args) ->
     ?encoder_error(Args, #{
@@ -550,7 +553,7 @@ encode_list_offsets_topic_3(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(Partitions, fun encode_list_offsets_partition_3/1)
+        ?encode_array(Partitions, ?encode_element(encode_list_offsets_partition_3))
     ];
 encode_list_offsets_topic_3(Args) ->
     ?encoder_error(Args, #{
@@ -599,7 +602,7 @@ encode_list_offsets_request_4(
         ?encode_request_header_1(?LIST_OFFSETS_REQUEST, 4, CorrelationId, ClientId),
         ?encode_int32(ReplicaId),
         ?encode_int8(IsolationLevel),
-        ?encode_array(Topics, fun encode_list_offsets_topic_4/1)
+        ?encode_array(Topics, ?encode_element(encode_list_offsets_topic_4))
     ];
 encode_list_offsets_request_4(Args) ->
     ?encoder_error(Args, #{
@@ -688,7 +691,7 @@ encode_list_offsets_topic_4(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(Partitions, fun encode_list_offsets_partition_4/1)
+        ?encode_array(Partitions, ?encode_element(encode_list_offsets_partition_4))
     ];
 encode_list_offsets_topic_4(Args) ->
     ?encoder_error(Args, #{
@@ -737,7 +740,7 @@ encode_list_offsets_request_5(
         ?encode_request_header_1(?LIST_OFFSETS_REQUEST, 5, CorrelationId, ClientId),
         ?encode_int32(ReplicaId),
         ?encode_int8(IsolationLevel),
-        ?encode_array(Topics, fun encode_list_offsets_topic_5/1)
+        ?encode_array(Topics, ?encode_element(encode_list_offsets_topic_5))
     ];
 encode_list_offsets_request_5(Args) ->
     ?encoder_error(Args, #{
@@ -826,7 +829,7 @@ encode_list_offsets_topic_5(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(Partitions, fun encode_list_offsets_partition_5/1)
+        ?encode_array(Partitions, ?encode_element(encode_list_offsets_partition_5))
     ];
 encode_list_offsets_topic_5(Args) ->
     ?encoder_error(Args, #{
@@ -875,7 +878,7 @@ encode_list_offsets_request_6(
         ?encode_request_header_2(?LIST_OFFSETS_REQUEST, 6, CorrelationId, ClientId),
         ?encode_int32(ReplicaId),
         ?encode_int8(IsolationLevel),
-        ?encode_compact_array(Topics, fun encode_list_offsets_topic_6/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_list_offsets_topic_6)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_list_offsets_request_6(Args) ->
@@ -990,7 +993,7 @@ encode_list_offsets_topic_6(
 ->
     [
         ?encode_compact_string(Name),
-        ?encode_compact_array(Partitions, fun encode_list_offsets_partition_6/1),
+        ?encode_compact_array(Partitions, ?encode_element(encode_list_offsets_partition_6)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_list_offsets_topic_6(Args) ->
@@ -1052,7 +1055,7 @@ encode_list_offsets_request_7(
         ?encode_request_header_2(?LIST_OFFSETS_REQUEST, 7, CorrelationId, ClientId),
         ?encode_int32(ReplicaId),
         ?encode_int8(IsolationLevel),
-        ?encode_compact_array(Topics, fun encode_list_offsets_topic_7/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_list_offsets_topic_7)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_list_offsets_request_7(Args) ->
@@ -1167,7 +1170,7 @@ encode_list_offsets_topic_7(
 ->
     [
         ?encode_compact_string(Name),
-        ?encode_compact_array(Partitions, fun encode_list_offsets_partition_7/1),
+        ?encode_compact_array(Partitions, ?encode_element(encode_list_offsets_partition_7)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_list_offsets_topic_7(Args) ->
@@ -1229,7 +1232,7 @@ encode_list_offsets_request_8(
         ?encode_request_header_2(?LIST_OFFSETS_REQUEST, 8, CorrelationId, ClientId),
         ?encode_int32(ReplicaId),
         ?encode_int8(IsolationLevel),
-        ?encode_compact_array(Topics, fun encode_list_offsets_topic_8/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_list_offsets_topic_8)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_list_offsets_request_8(Args) ->
@@ -1344,7 +1347,7 @@ encode_list_offsets_topic_8(
 ->
     [
         ?encode_compact_string(Name),
-        ?encode_compact_array(Partitions, fun encode_list_offsets_partition_8/1),
+        ?encode_compact_array(Partitions, ?encode_element(encode_list_offsets_partition_8)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_list_offsets_topic_8(Args) ->

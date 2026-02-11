@@ -1,4 +1,7 @@
 -module(unregister_broker_request).
+
+%% This file is auto-generated.
+
 -export([
     encode_unregister_broker_request_0/1,
     decode_unregister_broker_request_0/1

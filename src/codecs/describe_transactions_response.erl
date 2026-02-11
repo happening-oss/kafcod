@@ -1,4 +1,7 @@
 -module(describe_transactions_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_describe_transactions_response_0/1,
     decode_describe_transactions_response_0/1
@@ -33,7 +36,7 @@ encode_describe_transactions_response_0(
     [
         ?encode_response_header_1(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_compact_array(TransactionStates, fun encode_transaction_state_0/1),
+        ?encode_compact_array(TransactionStates, ?encode_element(encode_transaction_state_0)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_describe_transactions_response_0(Args) ->
@@ -152,7 +155,7 @@ encode_transaction_state_0(
         ?encode_int64(TransactionStartTimeMs),
         ?encode_int64(ProducerId),
         ?encode_int16(ProducerEpoch),
-        ?encode_compact_array(Topics, fun encode_topic_data_0/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_topic_data_0)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_transaction_state_0(Args) ->

@@ -1,4 +1,7 @@
 -module(broker_heartbeat_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_broker_heartbeat_response_0/1,
     decode_broker_heartbeat_response_0/1,

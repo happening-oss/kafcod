@@ -1,4 +1,7 @@
 -module(create_delegation_token_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_create_delegation_token_response_0/1,
     decode_create_delegation_token_response_0/1,

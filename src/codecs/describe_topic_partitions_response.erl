@@ -1,4 +1,7 @@
 -module(describe_topic_partitions_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_describe_topic_partitions_response_0/1,
     decode_describe_topic_partitions_response_0/1
@@ -38,7 +41,7 @@ encode_describe_topic_partitions_response_0(
     [
         ?encode_response_header_1(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_compact_array(Topics, fun encode_describe_topic_partitions_response_topic_0/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_describe_topic_partitions_response_topic_0)),
         encode_cursor_0(NextCursor),
         ?EMPTY_TAG_BUFFER
     ];
@@ -210,7 +213,7 @@ encode_describe_topic_partitions_response_topic_0(
         ?encode_compact_nullable_string(Name),
         ?encode_uuid(TopicId),
         ?encode_bool(IsInternal),
-        ?encode_compact_array(Partitions, fun encode_describe_topic_partitions_response_partition_0/1),
+        ?encode_compact_array(Partitions, ?encode_element(encode_describe_topic_partitions_response_partition_0)),
         ?encode_int32(TopicAuthorizedOperations),
         ?EMPTY_TAG_BUFFER
     ];

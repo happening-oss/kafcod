@@ -1,4 +1,7 @@
 -module(update_metadata_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_update_metadata_response_0/1,
     decode_update_metadata_response_0/1,

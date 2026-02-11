@@ -1,4 +1,7 @@
 -module(describe_client_quotas_request).
+
+%% This file is auto-generated.
+
 -export([
     encode_describe_client_quotas_request_0/1,
     decode_describe_client_quotas_request_0/1,
@@ -40,7 +43,7 @@ encode_describe_client_quotas_request_0(
 ->
     [
         ?encode_request_header_1(?DESCRIBE_CLIENT_QUOTAS_REQUEST, 0, CorrelationId, ClientId),
-        ?encode_array(Components, fun encode_component_data_0/1),
+        ?encode_array(Components, ?encode_element(encode_component_data_0)),
         ?encode_bool(Strict)
     ];
 encode_describe_client_quotas_request_0(Args) ->
@@ -133,7 +136,7 @@ encode_describe_client_quotas_request_1(
 ->
     [
         ?encode_request_header_2(?DESCRIBE_CLIENT_QUOTAS_REQUEST, 1, CorrelationId, ClientId),
-        ?encode_compact_array(Components, fun encode_component_data_1/1),
+        ?encode_compact_array(Components, ?encode_element(encode_component_data_1)),
         ?encode_bool(Strict),
         ?EMPTY_TAG_BUFFER
     ];

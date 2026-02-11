@@ -1,4 +1,7 @@
 -module(offset_commit_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_offset_commit_response_0/1,
     decode_offset_commit_response_0/1,
@@ -75,7 +78,7 @@ encode_offset_commit_response_0(
 ->
     [
         ?encode_response_header_0(CorrelationId),
-        ?encode_array(Topics, fun encode_offset_commit_response_topic_0/1)
+        ?encode_array(Topics, ?encode_element(encode_offset_commit_response_topic_0))
     ];
 encode_offset_commit_response_0(Args) ->
     ?encoder_error(Args, #{
@@ -150,7 +153,7 @@ encode_offset_commit_response_topic_0(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(Partitions, fun encode_offset_commit_response_partition_0/1)
+        ?encode_array(Partitions, ?encode_element(encode_offset_commit_response_partition_0))
     ];
 encode_offset_commit_response_topic_0(Args) ->
     ?encoder_error(Args, #{
@@ -188,7 +191,7 @@ encode_offset_commit_response_1(
 ->
     [
         ?encode_response_header_0(CorrelationId),
-        ?encode_array(Topics, fun encode_offset_commit_response_topic_1/1)
+        ?encode_array(Topics, ?encode_element(encode_offset_commit_response_topic_1))
     ];
 encode_offset_commit_response_1(Args) ->
     ?encoder_error(Args, #{
@@ -263,7 +266,7 @@ encode_offset_commit_response_topic_1(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(Partitions, fun encode_offset_commit_response_partition_1/1)
+        ?encode_array(Partitions, ?encode_element(encode_offset_commit_response_partition_1))
     ];
 encode_offset_commit_response_topic_1(Args) ->
     ?encoder_error(Args, #{
@@ -301,7 +304,7 @@ encode_offset_commit_response_2(
 ->
     [
         ?encode_response_header_0(CorrelationId),
-        ?encode_array(Topics, fun encode_offset_commit_response_topic_2/1)
+        ?encode_array(Topics, ?encode_element(encode_offset_commit_response_topic_2))
     ];
 encode_offset_commit_response_2(Args) ->
     ?encoder_error(Args, #{
@@ -376,7 +379,7 @@ encode_offset_commit_response_topic_2(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(Partitions, fun encode_offset_commit_response_partition_2/1)
+        ?encode_array(Partitions, ?encode_element(encode_offset_commit_response_partition_2))
     ];
 encode_offset_commit_response_topic_2(Args) ->
     ?encoder_error(Args, #{
@@ -418,7 +421,7 @@ encode_offset_commit_response_3(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_array(Topics, fun encode_offset_commit_response_topic_3/1)
+        ?encode_array(Topics, ?encode_element(encode_offset_commit_response_topic_3))
     ];
 encode_offset_commit_response_3(Args) ->
     ?encoder_error(Args, #{
@@ -496,7 +499,7 @@ encode_offset_commit_response_topic_3(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(Partitions, fun encode_offset_commit_response_partition_3/1)
+        ?encode_array(Partitions, ?encode_element(encode_offset_commit_response_partition_3))
     ];
 encode_offset_commit_response_topic_3(Args) ->
     ?encoder_error(Args, #{
@@ -538,7 +541,7 @@ encode_offset_commit_response_4(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_array(Topics, fun encode_offset_commit_response_topic_4/1)
+        ?encode_array(Topics, ?encode_element(encode_offset_commit_response_topic_4))
     ];
 encode_offset_commit_response_4(Args) ->
     ?encoder_error(Args, #{
@@ -616,7 +619,7 @@ encode_offset_commit_response_topic_4(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(Partitions, fun encode_offset_commit_response_partition_4/1)
+        ?encode_array(Partitions, ?encode_element(encode_offset_commit_response_partition_4))
     ];
 encode_offset_commit_response_topic_4(Args) ->
     ?encoder_error(Args, #{
@@ -658,7 +661,7 @@ encode_offset_commit_response_5(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_array(Topics, fun encode_offset_commit_response_topic_5/1)
+        ?encode_array(Topics, ?encode_element(encode_offset_commit_response_topic_5))
     ];
 encode_offset_commit_response_5(Args) ->
     ?encoder_error(Args, #{
@@ -736,7 +739,7 @@ encode_offset_commit_response_topic_5(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(Partitions, fun encode_offset_commit_response_partition_5/1)
+        ?encode_array(Partitions, ?encode_element(encode_offset_commit_response_partition_5))
     ];
 encode_offset_commit_response_topic_5(Args) ->
     ?encoder_error(Args, #{
@@ -778,7 +781,7 @@ encode_offset_commit_response_6(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_array(Topics, fun encode_offset_commit_response_topic_6/1)
+        ?encode_array(Topics, ?encode_element(encode_offset_commit_response_topic_6))
     ];
 encode_offset_commit_response_6(Args) ->
     ?encoder_error(Args, #{
@@ -856,7 +859,7 @@ encode_offset_commit_response_topic_6(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(Partitions, fun encode_offset_commit_response_partition_6/1)
+        ?encode_array(Partitions, ?encode_element(encode_offset_commit_response_partition_6))
     ];
 encode_offset_commit_response_topic_6(Args) ->
     ?encoder_error(Args, #{
@@ -898,7 +901,7 @@ encode_offset_commit_response_7(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_array(Topics, fun encode_offset_commit_response_topic_7/1)
+        ?encode_array(Topics, ?encode_element(encode_offset_commit_response_topic_7))
     ];
 encode_offset_commit_response_7(Args) ->
     ?encoder_error(Args, #{
@@ -976,7 +979,7 @@ encode_offset_commit_response_topic_7(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(Partitions, fun encode_offset_commit_response_partition_7/1)
+        ?encode_array(Partitions, ?encode_element(encode_offset_commit_response_partition_7))
     ];
 encode_offset_commit_response_topic_7(Args) ->
     ?encoder_error(Args, #{
@@ -1018,7 +1021,7 @@ encode_offset_commit_response_8(
     [
         ?encode_response_header_1(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_compact_array(Topics, fun encode_offset_commit_response_topic_8/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_offset_commit_response_topic_8)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_offset_commit_response_8(Args) ->
@@ -1122,7 +1125,7 @@ encode_offset_commit_response_topic_8(
 ->
     [
         ?encode_compact_string(Name),
-        ?encode_compact_array(Partitions, fun encode_offset_commit_response_partition_8/1),
+        ?encode_compact_array(Partitions, ?encode_element(encode_offset_commit_response_partition_8)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_offset_commit_response_topic_8(Args) ->
@@ -1177,7 +1180,7 @@ encode_offset_commit_response_9(
     [
         ?encode_response_header_1(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_compact_array(Topics, fun encode_offset_commit_response_topic_9/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_offset_commit_response_topic_9)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_offset_commit_response_9(Args) ->
@@ -1281,7 +1284,7 @@ encode_offset_commit_response_topic_9(
 ->
     [
         ?encode_compact_string(Name),
-        ?encode_compact_array(Partitions, fun encode_offset_commit_response_partition_9/1),
+        ?encode_compact_array(Partitions, ?encode_element(encode_offset_commit_response_partition_9)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_offset_commit_response_topic_9(Args) ->

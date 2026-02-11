@@ -72,7 +72,11 @@ decode_request_header_0(Bin) when is_binary(Bin) ->
 %
 % It gives an example: "booking-events-processor".
 %
+% Thus: in Kubernetes terms, it should probably be set to the deployment name, or the value of the 'app' label or
+% equivalent.
+%
 % Kafire hard-codes it to "kafire"; this is *wrong*.
+%
 % The 'kcat' utility defaults to 'rdkafka', but allows you to set it with (e.g.) -X client.id=booking-events-processor
 
 -spec encode_request_header_1(

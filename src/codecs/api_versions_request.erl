@@ -1,4 +1,7 @@
 -module(api_versions_request).
+
+%% This file is auto-generated.
+
 -export([
     encode_api_versions_request_0/1,
     decode_api_versions_request_0/1,

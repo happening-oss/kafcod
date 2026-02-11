@@ -1,4 +1,7 @@
 -module(delete_topics_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_delete_topics_response_0/1,
     decode_delete_topics_response_0/1,
@@ -53,7 +56,7 @@ encode_delete_topics_response_0(
 ->
     [
         ?encode_response_header_0(CorrelationId),
-        ?encode_array(Responses, fun encode_deletable_topic_result_0/1)
+        ?encode_array(Responses, ?encode_element(encode_deletable_topic_result_0))
     ];
 encode_delete_topics_response_0(Args) ->
     ?encoder_error(Args, #{
@@ -132,7 +135,7 @@ encode_delete_topics_response_1(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_array(Responses, fun encode_deletable_topic_result_1/1)
+        ?encode_array(Responses, ?encode_element(encode_deletable_topic_result_1))
     ];
 encode_delete_topics_response_1(Args) ->
     ?encoder_error(Args, #{
@@ -214,7 +217,7 @@ encode_delete_topics_response_2(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_array(Responses, fun encode_deletable_topic_result_2/1)
+        ?encode_array(Responses, ?encode_element(encode_deletable_topic_result_2))
     ];
 encode_delete_topics_response_2(Args) ->
     ?encoder_error(Args, #{
@@ -296,7 +299,7 @@ encode_delete_topics_response_3(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_array(Responses, fun encode_deletable_topic_result_3/1)
+        ?encode_array(Responses, ?encode_element(encode_deletable_topic_result_3))
     ];
 encode_delete_topics_response_3(Args) ->
     ?encoder_error(Args, #{
@@ -378,7 +381,7 @@ encode_delete_topics_response_4(
     [
         ?encode_response_header_1(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_compact_array(Responses, fun encode_deletable_topic_result_4/1),
+        ?encode_compact_array(Responses, ?encode_element(encode_deletable_topic_result_4)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_delete_topics_response_4(Args) ->
@@ -486,7 +489,7 @@ encode_delete_topics_response_5(
     [
         ?encode_response_header_1(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_compact_array(Responses, fun encode_deletable_topic_result_5/1),
+        ?encode_compact_array(Responses, ?encode_element(encode_deletable_topic_result_5)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_delete_topics_response_5(Args) ->
@@ -601,7 +604,7 @@ encode_delete_topics_response_6(
     [
         ?encode_response_header_1(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_compact_array(Responses, fun encode_deletable_topic_result_6/1),
+        ?encode_compact_array(Responses, ?encode_element(encode_deletable_topic_result_6)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_delete_topics_response_6(Args) ->

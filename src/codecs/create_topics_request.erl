@@ -1,4 +1,7 @@
 -module(create_topics_request).
+
+%% This file is auto-generated.
+
 -export([
     encode_create_topics_request_0/1,
     decode_create_topics_request_0/1,
@@ -80,7 +83,7 @@ encode_create_topics_request_0(
 ->
     [
         ?encode_request_header_1(?CREATE_TOPICS_REQUEST, 0, CorrelationId, ClientId),
-        ?encode_array(Topics, fun encode_creatable_topic_0/1),
+        ?encode_array(Topics, ?encode_element(encode_creatable_topic_0)),
         ?encode_int32(TimeoutMs)
     ];
 encode_create_topics_request_0(Args) ->
@@ -209,8 +212,8 @@ encode_creatable_topic_0(
         ?encode_string(Name),
         ?encode_int32(NumPartitions),
         ?encode_int16(ReplicationFactor),
-        ?encode_array(Assignments, fun encode_creatable_replica_assignment_0/1),
-        ?encode_array(Configs, fun encode_createable_topic_config_0/1)
+        ?encode_array(Assignments, ?encode_element(encode_creatable_replica_assignment_0)),
+        ?encode_array(Configs, ?encode_element(encode_createable_topic_config_0))
     ];
 encode_creatable_topic_0(Args) ->
     ?encoder_error(Args, #{
@@ -266,7 +269,7 @@ encode_create_topics_request_1(
 ->
     [
         ?encode_request_header_1(?CREATE_TOPICS_REQUEST, 1, CorrelationId, ClientId),
-        ?encode_array(Topics, fun encode_creatable_topic_1/1),
+        ?encode_array(Topics, ?encode_element(encode_creatable_topic_1)),
         ?encode_int32(TimeoutMs),
         ?encode_bool(ValidateOnly)
     ];
@@ -399,8 +402,8 @@ encode_creatable_topic_1(
         ?encode_string(Name),
         ?encode_int32(NumPartitions),
         ?encode_int16(ReplicationFactor),
-        ?encode_array(Assignments, fun encode_creatable_replica_assignment_1/1),
-        ?encode_array(Configs, fun encode_createable_topic_config_1/1)
+        ?encode_array(Assignments, ?encode_element(encode_creatable_replica_assignment_1)),
+        ?encode_array(Configs, ?encode_element(encode_createable_topic_config_1))
     ];
 encode_creatable_topic_1(Args) ->
     ?encoder_error(Args, #{
@@ -456,7 +459,7 @@ encode_create_topics_request_2(
 ->
     [
         ?encode_request_header_1(?CREATE_TOPICS_REQUEST, 2, CorrelationId, ClientId),
-        ?encode_array(Topics, fun encode_creatable_topic_2/1),
+        ?encode_array(Topics, ?encode_element(encode_creatable_topic_2)),
         ?encode_int32(TimeoutMs),
         ?encode_bool(ValidateOnly)
     ];
@@ -589,8 +592,8 @@ encode_creatable_topic_2(
         ?encode_string(Name),
         ?encode_int32(NumPartitions),
         ?encode_int16(ReplicationFactor),
-        ?encode_array(Assignments, fun encode_creatable_replica_assignment_2/1),
-        ?encode_array(Configs, fun encode_createable_topic_config_2/1)
+        ?encode_array(Assignments, ?encode_element(encode_creatable_replica_assignment_2)),
+        ?encode_array(Configs, ?encode_element(encode_createable_topic_config_2))
     ];
 encode_creatable_topic_2(Args) ->
     ?encoder_error(Args, #{
@@ -646,7 +649,7 @@ encode_create_topics_request_3(
 ->
     [
         ?encode_request_header_1(?CREATE_TOPICS_REQUEST, 3, CorrelationId, ClientId),
-        ?encode_array(Topics, fun encode_creatable_topic_3/1),
+        ?encode_array(Topics, ?encode_element(encode_creatable_topic_3)),
         ?encode_int32(TimeoutMs),
         ?encode_bool(ValidateOnly)
     ];
@@ -779,8 +782,8 @@ encode_creatable_topic_3(
         ?encode_string(Name),
         ?encode_int32(NumPartitions),
         ?encode_int16(ReplicationFactor),
-        ?encode_array(Assignments, fun encode_creatable_replica_assignment_3/1),
-        ?encode_array(Configs, fun encode_createable_topic_config_3/1)
+        ?encode_array(Assignments, ?encode_element(encode_creatable_replica_assignment_3)),
+        ?encode_array(Configs, ?encode_element(encode_createable_topic_config_3))
     ];
 encode_creatable_topic_3(Args) ->
     ?encoder_error(Args, #{
@@ -836,7 +839,7 @@ encode_create_topics_request_4(
 ->
     [
         ?encode_request_header_1(?CREATE_TOPICS_REQUEST, 4, CorrelationId, ClientId),
-        ?encode_array(Topics, fun encode_creatable_topic_4/1),
+        ?encode_array(Topics, ?encode_element(encode_creatable_topic_4)),
         ?encode_int32(TimeoutMs),
         ?encode_bool(ValidateOnly)
     ];
@@ -969,8 +972,8 @@ encode_creatable_topic_4(
         ?encode_string(Name),
         ?encode_int32(NumPartitions),
         ?encode_int16(ReplicationFactor),
-        ?encode_array(Assignments, fun encode_creatable_replica_assignment_4/1),
-        ?encode_array(Configs, fun encode_createable_topic_config_4/1)
+        ?encode_array(Assignments, ?encode_element(encode_creatable_replica_assignment_4)),
+        ?encode_array(Configs, ?encode_element(encode_createable_topic_config_4))
     ];
 encode_creatable_topic_4(Args) ->
     ?encoder_error(Args, #{
@@ -1026,7 +1029,7 @@ encode_create_topics_request_5(
 ->
     [
         ?encode_request_header_2(?CREATE_TOPICS_REQUEST, 5, CorrelationId, ClientId),
-        ?encode_compact_array(Topics, fun encode_creatable_topic_5/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_creatable_topic_5)),
         ?encode_int32(TimeoutMs),
         ?encode_bool(ValidateOnly),
         ?EMPTY_TAG_BUFFER
@@ -1198,8 +1201,8 @@ encode_creatable_topic_5(
         ?encode_compact_string(Name),
         ?encode_int32(NumPartitions),
         ?encode_int16(ReplicationFactor),
-        ?encode_compact_array(Assignments, fun encode_creatable_replica_assignment_5/1),
-        ?encode_compact_array(Configs, fun encode_createable_topic_config_5/1),
+        ?encode_compact_array(Assignments, ?encode_element(encode_creatable_replica_assignment_5)),
+        ?encode_compact_array(Configs, ?encode_element(encode_createable_topic_config_5)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_creatable_topic_5(Args) ->
@@ -1268,7 +1271,7 @@ encode_create_topics_request_6(
 ->
     [
         ?encode_request_header_2(?CREATE_TOPICS_REQUEST, 6, CorrelationId, ClientId),
-        ?encode_compact_array(Topics, fun encode_creatable_topic_6/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_creatable_topic_6)),
         ?encode_int32(TimeoutMs),
         ?encode_bool(ValidateOnly),
         ?EMPTY_TAG_BUFFER
@@ -1440,8 +1443,8 @@ encode_creatable_topic_6(
         ?encode_compact_string(Name),
         ?encode_int32(NumPartitions),
         ?encode_int16(ReplicationFactor),
-        ?encode_compact_array(Assignments, fun encode_creatable_replica_assignment_6/1),
-        ?encode_compact_array(Configs, fun encode_createable_topic_config_6/1),
+        ?encode_compact_array(Assignments, ?encode_element(encode_creatable_replica_assignment_6)),
+        ?encode_compact_array(Configs, ?encode_element(encode_createable_topic_config_6)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_creatable_topic_6(Args) ->
@@ -1510,7 +1513,7 @@ encode_create_topics_request_7(
 ->
     [
         ?encode_request_header_2(?CREATE_TOPICS_REQUEST, 7, CorrelationId, ClientId),
-        ?encode_compact_array(Topics, fun encode_creatable_topic_7/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_creatable_topic_7)),
         ?encode_int32(TimeoutMs),
         ?encode_bool(ValidateOnly),
         ?EMPTY_TAG_BUFFER
@@ -1682,8 +1685,8 @@ encode_creatable_topic_7(
         ?encode_compact_string(Name),
         ?encode_int32(NumPartitions),
         ?encode_int16(ReplicationFactor),
-        ?encode_compact_array(Assignments, fun encode_creatable_replica_assignment_7/1),
-        ?encode_compact_array(Configs, fun encode_createable_topic_config_7/1),
+        ?encode_compact_array(Assignments, ?encode_element(encode_creatable_replica_assignment_7)),
+        ?encode_compact_array(Configs, ?encode_element(encode_createable_topic_config_7)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_creatable_topic_7(Args) ->

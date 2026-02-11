@@ -1,4 +1,7 @@
 -module(list_transactions_request).
+
+%% This file is auto-generated.
+
 -export([
     encode_list_transactions_request_0/1,
     decode_list_transactions_request_0/1,

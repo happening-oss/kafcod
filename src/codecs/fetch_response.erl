@@ -1,4 +1,7 @@
 -module(fetch_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_fetch_response_0/1,
     decode_fetch_response_0/1,
@@ -139,7 +142,7 @@ encode_fetch_response_0(
 ->
     [
         ?encode_response_header_0(CorrelationId),
-        ?encode_array(Responses, fun encode_fetchable_topic_response_0/1)
+        ?encode_array(Responses, ?encode_element(encode_fetchable_topic_response_0))
     ];
 encode_fetch_response_0(Args) ->
     ?encoder_error(Args, #{
@@ -178,20 +181,20 @@ encode_partition_data_0(
     ?is_int32(PartitionIndex),
     ?is_int16(ErrorCode),
     ?is_int64(HighWatermark),
-    ?is_nullable_records(Records)
+    ?is_records(Records)
 ->
     [
         ?encode_int32(PartitionIndex),
         ?encode_int16(ErrorCode),
         ?encode_int64(HighWatermark),
-        ?encode_nullable_records(Records)
+        ?encode_records(Records)
     ];
 encode_partition_data_0(Args) ->
     ?encoder_error(Args, #{
         partition_index => int32,
         error_code => int16,
         high_watermark => int64,
-        records => nullable_records
+        records => records
     }).
 
 -spec decode_partition_data_0(binary()) -> {Decoded, Rest} when
@@ -202,7 +205,7 @@ decode_partition_data_0(Bin0) when is_binary(Bin0) ->
     ?_decode_int32(PartitionIndex, Bin0, Bin1),
     ?_decode_int16(ErrorCode, Bin1, Bin2),
     ?_decode_int64(HighWatermark, Bin2, Bin3),
-    ?_decode_nullable_records(Records, Bin3, Bin4),
+    ?_decode_records(Records, Bin3, Bin4),
     {
         #{
             partition_index => PartitionIndex,
@@ -228,7 +231,7 @@ encode_fetchable_topic_response_0(
 ->
     [
         ?encode_string(Topic),
-        ?encode_array(Partitions, fun encode_partition_data_0/1)
+        ?encode_array(Partitions, ?encode_element(encode_partition_data_0))
     ];
 encode_fetchable_topic_response_0(Args) ->
     ?encoder_error(Args, #{
@@ -270,7 +273,7 @@ encode_fetch_response_1(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_array(Responses, fun encode_fetchable_topic_response_1/1)
+        ?encode_array(Responses, ?encode_element(encode_fetchable_topic_response_1))
     ];
 encode_fetch_response_1(Args) ->
     ?encoder_error(Args, #{
@@ -312,20 +315,20 @@ encode_partition_data_1(
     ?is_int32(PartitionIndex),
     ?is_int16(ErrorCode),
     ?is_int64(HighWatermark),
-    ?is_nullable_records(Records)
+    ?is_records(Records)
 ->
     [
         ?encode_int32(PartitionIndex),
         ?encode_int16(ErrorCode),
         ?encode_int64(HighWatermark),
-        ?encode_nullable_records(Records)
+        ?encode_records(Records)
     ];
 encode_partition_data_1(Args) ->
     ?encoder_error(Args, #{
         partition_index => int32,
         error_code => int16,
         high_watermark => int64,
-        records => nullable_records
+        records => records
     }).
 
 -spec decode_partition_data_1(binary()) -> {Decoded, Rest} when
@@ -336,7 +339,7 @@ decode_partition_data_1(Bin0) when is_binary(Bin0) ->
     ?_decode_int32(PartitionIndex, Bin0, Bin1),
     ?_decode_int16(ErrorCode, Bin1, Bin2),
     ?_decode_int64(HighWatermark, Bin2, Bin3),
-    ?_decode_nullable_records(Records, Bin3, Bin4),
+    ?_decode_records(Records, Bin3, Bin4),
     {
         #{
             partition_index => PartitionIndex,
@@ -362,7 +365,7 @@ encode_fetchable_topic_response_1(
 ->
     [
         ?encode_string(Topic),
-        ?encode_array(Partitions, fun encode_partition_data_1/1)
+        ?encode_array(Partitions, ?encode_element(encode_partition_data_1))
     ];
 encode_fetchable_topic_response_1(Args) ->
     ?encoder_error(Args, #{
@@ -404,7 +407,7 @@ encode_fetch_response_2(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_array(Responses, fun encode_fetchable_topic_response_2/1)
+        ?encode_array(Responses, ?encode_element(encode_fetchable_topic_response_2))
     ];
 encode_fetch_response_2(Args) ->
     ?encoder_error(Args, #{
@@ -446,20 +449,20 @@ encode_partition_data_2(
     ?is_int32(PartitionIndex),
     ?is_int16(ErrorCode),
     ?is_int64(HighWatermark),
-    ?is_nullable_records(Records)
+    ?is_records(Records)
 ->
     [
         ?encode_int32(PartitionIndex),
         ?encode_int16(ErrorCode),
         ?encode_int64(HighWatermark),
-        ?encode_nullable_records(Records)
+        ?encode_records(Records)
     ];
 encode_partition_data_2(Args) ->
     ?encoder_error(Args, #{
         partition_index => int32,
         error_code => int16,
         high_watermark => int64,
-        records => nullable_records
+        records => records
     }).
 
 -spec decode_partition_data_2(binary()) -> {Decoded, Rest} when
@@ -470,7 +473,7 @@ decode_partition_data_2(Bin0) when is_binary(Bin0) ->
     ?_decode_int32(PartitionIndex, Bin0, Bin1),
     ?_decode_int16(ErrorCode, Bin1, Bin2),
     ?_decode_int64(HighWatermark, Bin2, Bin3),
-    ?_decode_nullable_records(Records, Bin3, Bin4),
+    ?_decode_records(Records, Bin3, Bin4),
     {
         #{
             partition_index => PartitionIndex,
@@ -496,7 +499,7 @@ encode_fetchable_topic_response_2(
 ->
     [
         ?encode_string(Topic),
-        ?encode_array(Partitions, fun encode_partition_data_2/1)
+        ?encode_array(Partitions, ?encode_element(encode_partition_data_2))
     ];
 encode_fetchable_topic_response_2(Args) ->
     ?encoder_error(Args, #{
@@ -538,7 +541,7 @@ encode_fetch_response_3(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_array(Responses, fun encode_fetchable_topic_response_3/1)
+        ?encode_array(Responses, ?encode_element(encode_fetchable_topic_response_3))
     ];
 encode_fetch_response_3(Args) ->
     ?encoder_error(Args, #{
@@ -580,20 +583,20 @@ encode_partition_data_3(
     ?is_int32(PartitionIndex),
     ?is_int16(ErrorCode),
     ?is_int64(HighWatermark),
-    ?is_nullable_records(Records)
+    ?is_records(Records)
 ->
     [
         ?encode_int32(PartitionIndex),
         ?encode_int16(ErrorCode),
         ?encode_int64(HighWatermark),
-        ?encode_nullable_records(Records)
+        ?encode_records(Records)
     ];
 encode_partition_data_3(Args) ->
     ?encoder_error(Args, #{
         partition_index => int32,
         error_code => int16,
         high_watermark => int64,
-        records => nullable_records
+        records => records
     }).
 
 -spec decode_partition_data_3(binary()) -> {Decoded, Rest} when
@@ -604,7 +607,7 @@ decode_partition_data_3(Bin0) when is_binary(Bin0) ->
     ?_decode_int32(PartitionIndex, Bin0, Bin1),
     ?_decode_int16(ErrorCode, Bin1, Bin2),
     ?_decode_int64(HighWatermark, Bin2, Bin3),
-    ?_decode_nullable_records(Records, Bin3, Bin4),
+    ?_decode_records(Records, Bin3, Bin4),
     {
         #{
             partition_index => PartitionIndex,
@@ -630,7 +633,7 @@ encode_fetchable_topic_response_3(
 ->
     [
         ?encode_string(Topic),
-        ?encode_array(Partitions, fun encode_partition_data_3/1)
+        ?encode_array(Partitions, ?encode_element(encode_partition_data_3))
     ];
 encode_fetchable_topic_response_3(Args) ->
     ?encoder_error(Args, #{
@@ -672,7 +675,7 @@ encode_fetch_response_4(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_array(Responses, fun encode_fetchable_topic_response_4/1)
+        ?encode_array(Responses, ?encode_element(encode_fetchable_topic_response_4))
     ];
 encode_fetch_response_4(Args) ->
     ?encoder_error(Args, #{
@@ -758,15 +761,15 @@ encode_partition_data_4(
     ?is_int64(HighWatermark),
     ?is_int64(LastStableOffset),
     ?is_nullable_array(AbortedTransactions),
-    ?is_nullable_records(Records)
+    ?is_records(Records)
 ->
     [
         ?encode_int32(PartitionIndex),
         ?encode_int16(ErrorCode),
         ?encode_int64(HighWatermark),
         ?encode_int64(LastStableOffset),
-        ?encode_nullable_array(AbortedTransactions, fun encode_aborted_transaction_4/1),
-        ?encode_nullable_records(Records)
+        ?encode_nullable_array(AbortedTransactions, ?encode_element(encode_aborted_transaction_4)),
+        ?encode_records(Records)
     ];
 encode_partition_data_4(Args) ->
     ?encoder_error(Args, #{
@@ -775,7 +778,7 @@ encode_partition_data_4(Args) ->
         high_watermark => int64,
         last_stable_offset => int64,
         aborted_transactions => {nullable_array, aborted_transaction_4},
-        records => nullable_records
+        records => records
     }).
 
 -spec decode_partition_data_4(binary()) -> {Decoded, Rest} when
@@ -788,7 +791,7 @@ decode_partition_data_4(Bin0) when is_binary(Bin0) ->
     ?_decode_int64(HighWatermark, Bin2, Bin3),
     ?_decode_int64(LastStableOffset, Bin3, Bin4),
     ?_decode_nullable_array(AbortedTransactions, Bin4, Bin5, ?_decode_element(decode_aborted_transaction_4)),
-    ?_decode_nullable_records(Records, Bin5, Bin6),
+    ?_decode_records(Records, Bin5, Bin6),
     {
         #{
             partition_index => PartitionIndex,
@@ -816,7 +819,7 @@ encode_fetchable_topic_response_4(
 ->
     [
         ?encode_string(Topic),
-        ?encode_array(Partitions, fun encode_partition_data_4/1)
+        ?encode_array(Partitions, ?encode_element(encode_partition_data_4))
     ];
 encode_fetchable_topic_response_4(Args) ->
     ?encoder_error(Args, #{
@@ -858,7 +861,7 @@ encode_fetch_response_5(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_array(Responses, fun encode_fetchable_topic_response_5/1)
+        ?encode_array(Responses, ?encode_element(encode_fetchable_topic_response_5))
     ];
 encode_fetch_response_5(Args) ->
     ?encoder_error(Args, #{
@@ -947,7 +950,7 @@ encode_partition_data_5(
     ?is_int64(LastStableOffset),
     ?is_int64(LogStartOffset),
     ?is_nullable_array(AbortedTransactions),
-    ?is_nullable_records(Records)
+    ?is_records(Records)
 ->
     [
         ?encode_int32(PartitionIndex),
@@ -955,8 +958,8 @@ encode_partition_data_5(
         ?encode_int64(HighWatermark),
         ?encode_int64(LastStableOffset),
         ?encode_int64(LogStartOffset),
-        ?encode_nullable_array(AbortedTransactions, fun encode_aborted_transaction_5/1),
-        ?encode_nullable_records(Records)
+        ?encode_nullable_array(AbortedTransactions, ?encode_element(encode_aborted_transaction_5)),
+        ?encode_records(Records)
     ];
 encode_partition_data_5(Args) ->
     ?encoder_error(Args, #{
@@ -966,7 +969,7 @@ encode_partition_data_5(Args) ->
         last_stable_offset => int64,
         log_start_offset => int64,
         aborted_transactions => {nullable_array, aborted_transaction_5},
-        records => nullable_records
+        records => records
     }).
 
 -spec decode_partition_data_5(binary()) -> {Decoded, Rest} when
@@ -980,7 +983,7 @@ decode_partition_data_5(Bin0) when is_binary(Bin0) ->
     ?_decode_int64(LastStableOffset, Bin3, Bin4),
     ?_decode_int64(LogStartOffset, Bin4, Bin5),
     ?_decode_nullable_array(AbortedTransactions, Bin5, Bin6, ?_decode_element(decode_aborted_transaction_5)),
-    ?_decode_nullable_records(Records, Bin6, Bin7),
+    ?_decode_records(Records, Bin6, Bin7),
     {
         #{
             partition_index => PartitionIndex,
@@ -1009,7 +1012,7 @@ encode_fetchable_topic_response_5(
 ->
     [
         ?encode_string(Topic),
-        ?encode_array(Partitions, fun encode_partition_data_5/1)
+        ?encode_array(Partitions, ?encode_element(encode_partition_data_5))
     ];
 encode_fetchable_topic_response_5(Args) ->
     ?encoder_error(Args, #{
@@ -1051,7 +1054,7 @@ encode_fetch_response_6(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_array(Responses, fun encode_fetchable_topic_response_6/1)
+        ?encode_array(Responses, ?encode_element(encode_fetchable_topic_response_6))
     ];
 encode_fetch_response_6(Args) ->
     ?encoder_error(Args, #{
@@ -1140,7 +1143,7 @@ encode_partition_data_6(
     ?is_int64(LastStableOffset),
     ?is_int64(LogStartOffset),
     ?is_nullable_array(AbortedTransactions),
-    ?is_nullable_records(Records)
+    ?is_records(Records)
 ->
     [
         ?encode_int32(PartitionIndex),
@@ -1148,8 +1151,8 @@ encode_partition_data_6(
         ?encode_int64(HighWatermark),
         ?encode_int64(LastStableOffset),
         ?encode_int64(LogStartOffset),
-        ?encode_nullable_array(AbortedTransactions, fun encode_aborted_transaction_6/1),
-        ?encode_nullable_records(Records)
+        ?encode_nullable_array(AbortedTransactions, ?encode_element(encode_aborted_transaction_6)),
+        ?encode_records(Records)
     ];
 encode_partition_data_6(Args) ->
     ?encoder_error(Args, #{
@@ -1159,7 +1162,7 @@ encode_partition_data_6(Args) ->
         last_stable_offset => int64,
         log_start_offset => int64,
         aborted_transactions => {nullable_array, aborted_transaction_6},
-        records => nullable_records
+        records => records
     }).
 
 -spec decode_partition_data_6(binary()) -> {Decoded, Rest} when
@@ -1173,7 +1176,7 @@ decode_partition_data_6(Bin0) when is_binary(Bin0) ->
     ?_decode_int64(LastStableOffset, Bin3, Bin4),
     ?_decode_int64(LogStartOffset, Bin4, Bin5),
     ?_decode_nullable_array(AbortedTransactions, Bin5, Bin6, ?_decode_element(decode_aborted_transaction_6)),
-    ?_decode_nullable_records(Records, Bin6, Bin7),
+    ?_decode_records(Records, Bin6, Bin7),
     {
         #{
             partition_index => PartitionIndex,
@@ -1202,7 +1205,7 @@ encode_fetchable_topic_response_6(
 ->
     [
         ?encode_string(Topic),
-        ?encode_array(Partitions, fun encode_partition_data_6/1)
+        ?encode_array(Partitions, ?encode_element(encode_partition_data_6))
     ];
 encode_fetchable_topic_response_6(Args) ->
     ?encoder_error(Args, #{
@@ -1252,7 +1255,7 @@ encode_fetch_response_7(
         ?encode_int32(ThrottleTimeMs),
         ?encode_int16(ErrorCode),
         ?encode_int32(SessionId),
-        ?encode_array(Responses, fun encode_fetchable_topic_response_7/1)
+        ?encode_array(Responses, ?encode_element(encode_fetchable_topic_response_7))
     ];
 encode_fetch_response_7(Args) ->
     ?encoder_error(Args, #{
@@ -1347,7 +1350,7 @@ encode_partition_data_7(
     ?is_int64(LastStableOffset),
     ?is_int64(LogStartOffset),
     ?is_nullable_array(AbortedTransactions),
-    ?is_nullable_records(Records)
+    ?is_records(Records)
 ->
     [
         ?encode_int32(PartitionIndex),
@@ -1355,8 +1358,8 @@ encode_partition_data_7(
         ?encode_int64(HighWatermark),
         ?encode_int64(LastStableOffset),
         ?encode_int64(LogStartOffset),
-        ?encode_nullable_array(AbortedTransactions, fun encode_aborted_transaction_7/1),
-        ?encode_nullable_records(Records)
+        ?encode_nullable_array(AbortedTransactions, ?encode_element(encode_aborted_transaction_7)),
+        ?encode_records(Records)
     ];
 encode_partition_data_7(Args) ->
     ?encoder_error(Args, #{
@@ -1366,7 +1369,7 @@ encode_partition_data_7(Args) ->
         last_stable_offset => int64,
         log_start_offset => int64,
         aborted_transactions => {nullable_array, aborted_transaction_7},
-        records => nullable_records
+        records => records
     }).
 
 -spec decode_partition_data_7(binary()) -> {Decoded, Rest} when
@@ -1380,7 +1383,7 @@ decode_partition_data_7(Bin0) when is_binary(Bin0) ->
     ?_decode_int64(LastStableOffset, Bin3, Bin4),
     ?_decode_int64(LogStartOffset, Bin4, Bin5),
     ?_decode_nullable_array(AbortedTransactions, Bin5, Bin6, ?_decode_element(decode_aborted_transaction_7)),
-    ?_decode_nullable_records(Records, Bin6, Bin7),
+    ?_decode_records(Records, Bin6, Bin7),
     {
         #{
             partition_index => PartitionIndex,
@@ -1409,7 +1412,7 @@ encode_fetchable_topic_response_7(
 ->
     [
         ?encode_string(Topic),
-        ?encode_array(Partitions, fun encode_partition_data_7/1)
+        ?encode_array(Partitions, ?encode_element(encode_partition_data_7))
     ];
 encode_fetchable_topic_response_7(Args) ->
     ?encoder_error(Args, #{
@@ -1459,7 +1462,7 @@ encode_fetch_response_8(
         ?encode_int32(ThrottleTimeMs),
         ?encode_int16(ErrorCode),
         ?encode_int32(SessionId),
-        ?encode_array(Responses, fun encode_fetchable_topic_response_8/1)
+        ?encode_array(Responses, ?encode_element(encode_fetchable_topic_response_8))
     ];
 encode_fetch_response_8(Args) ->
     ?encoder_error(Args, #{
@@ -1554,7 +1557,7 @@ encode_partition_data_8(
     ?is_int64(LastStableOffset),
     ?is_int64(LogStartOffset),
     ?is_nullable_array(AbortedTransactions),
-    ?is_nullable_records(Records)
+    ?is_records(Records)
 ->
     [
         ?encode_int32(PartitionIndex),
@@ -1562,8 +1565,8 @@ encode_partition_data_8(
         ?encode_int64(HighWatermark),
         ?encode_int64(LastStableOffset),
         ?encode_int64(LogStartOffset),
-        ?encode_nullable_array(AbortedTransactions, fun encode_aborted_transaction_8/1),
-        ?encode_nullable_records(Records)
+        ?encode_nullable_array(AbortedTransactions, ?encode_element(encode_aborted_transaction_8)),
+        ?encode_records(Records)
     ];
 encode_partition_data_8(Args) ->
     ?encoder_error(Args, #{
@@ -1573,7 +1576,7 @@ encode_partition_data_8(Args) ->
         last_stable_offset => int64,
         log_start_offset => int64,
         aborted_transactions => {nullable_array, aborted_transaction_8},
-        records => nullable_records
+        records => records
     }).
 
 -spec decode_partition_data_8(binary()) -> {Decoded, Rest} when
@@ -1587,7 +1590,7 @@ decode_partition_data_8(Bin0) when is_binary(Bin0) ->
     ?_decode_int64(LastStableOffset, Bin3, Bin4),
     ?_decode_int64(LogStartOffset, Bin4, Bin5),
     ?_decode_nullable_array(AbortedTransactions, Bin5, Bin6, ?_decode_element(decode_aborted_transaction_8)),
-    ?_decode_nullable_records(Records, Bin6, Bin7),
+    ?_decode_records(Records, Bin6, Bin7),
     {
         #{
             partition_index => PartitionIndex,
@@ -1616,7 +1619,7 @@ encode_fetchable_topic_response_8(
 ->
     [
         ?encode_string(Topic),
-        ?encode_array(Partitions, fun encode_partition_data_8/1)
+        ?encode_array(Partitions, ?encode_element(encode_partition_data_8))
     ];
 encode_fetchable_topic_response_8(Args) ->
     ?encoder_error(Args, #{
@@ -1666,7 +1669,7 @@ encode_fetch_response_9(
         ?encode_int32(ThrottleTimeMs),
         ?encode_int16(ErrorCode),
         ?encode_int32(SessionId),
-        ?encode_array(Responses, fun encode_fetchable_topic_response_9/1)
+        ?encode_array(Responses, ?encode_element(encode_fetchable_topic_response_9))
     ];
 encode_fetch_response_9(Args) ->
     ?encoder_error(Args, #{
@@ -1761,7 +1764,7 @@ encode_partition_data_9(
     ?is_int64(LastStableOffset),
     ?is_int64(LogStartOffset),
     ?is_nullable_array(AbortedTransactions),
-    ?is_nullable_records(Records)
+    ?is_records(Records)
 ->
     [
         ?encode_int32(PartitionIndex),
@@ -1769,8 +1772,8 @@ encode_partition_data_9(
         ?encode_int64(HighWatermark),
         ?encode_int64(LastStableOffset),
         ?encode_int64(LogStartOffset),
-        ?encode_nullable_array(AbortedTransactions, fun encode_aborted_transaction_9/1),
-        ?encode_nullable_records(Records)
+        ?encode_nullable_array(AbortedTransactions, ?encode_element(encode_aborted_transaction_9)),
+        ?encode_records(Records)
     ];
 encode_partition_data_9(Args) ->
     ?encoder_error(Args, #{
@@ -1780,7 +1783,7 @@ encode_partition_data_9(Args) ->
         last_stable_offset => int64,
         log_start_offset => int64,
         aborted_transactions => {nullable_array, aborted_transaction_9},
-        records => nullable_records
+        records => records
     }).
 
 -spec decode_partition_data_9(binary()) -> {Decoded, Rest} when
@@ -1794,7 +1797,7 @@ decode_partition_data_9(Bin0) when is_binary(Bin0) ->
     ?_decode_int64(LastStableOffset, Bin3, Bin4),
     ?_decode_int64(LogStartOffset, Bin4, Bin5),
     ?_decode_nullable_array(AbortedTransactions, Bin5, Bin6, ?_decode_element(decode_aborted_transaction_9)),
-    ?_decode_nullable_records(Records, Bin6, Bin7),
+    ?_decode_records(Records, Bin6, Bin7),
     {
         #{
             partition_index => PartitionIndex,
@@ -1823,7 +1826,7 @@ encode_fetchable_topic_response_9(
 ->
     [
         ?encode_string(Topic),
-        ?encode_array(Partitions, fun encode_partition_data_9/1)
+        ?encode_array(Partitions, ?encode_element(encode_partition_data_9))
     ];
 encode_fetchable_topic_response_9(Args) ->
     ?encoder_error(Args, #{
@@ -1873,7 +1876,7 @@ encode_fetch_response_10(
         ?encode_int32(ThrottleTimeMs),
         ?encode_int16(ErrorCode),
         ?encode_int32(SessionId),
-        ?encode_array(Responses, fun encode_fetchable_topic_response_10/1)
+        ?encode_array(Responses, ?encode_element(encode_fetchable_topic_response_10))
     ];
 encode_fetch_response_10(Args) ->
     ?encoder_error(Args, #{
@@ -1968,7 +1971,7 @@ encode_partition_data_10(
     ?is_int64(LastStableOffset),
     ?is_int64(LogStartOffset),
     ?is_nullable_array(AbortedTransactions),
-    ?is_nullable_records(Records)
+    ?is_records(Records)
 ->
     [
         ?encode_int32(PartitionIndex),
@@ -1976,8 +1979,8 @@ encode_partition_data_10(
         ?encode_int64(HighWatermark),
         ?encode_int64(LastStableOffset),
         ?encode_int64(LogStartOffset),
-        ?encode_nullable_array(AbortedTransactions, fun encode_aborted_transaction_10/1),
-        ?encode_nullable_records(Records)
+        ?encode_nullable_array(AbortedTransactions, ?encode_element(encode_aborted_transaction_10)),
+        ?encode_records(Records)
     ];
 encode_partition_data_10(Args) ->
     ?encoder_error(Args, #{
@@ -1987,7 +1990,7 @@ encode_partition_data_10(Args) ->
         last_stable_offset => int64,
         log_start_offset => int64,
         aborted_transactions => {nullable_array, aborted_transaction_10},
-        records => nullable_records
+        records => records
     }).
 
 -spec decode_partition_data_10(binary()) -> {Decoded, Rest} when
@@ -2001,7 +2004,7 @@ decode_partition_data_10(Bin0) when is_binary(Bin0) ->
     ?_decode_int64(LastStableOffset, Bin3, Bin4),
     ?_decode_int64(LogStartOffset, Bin4, Bin5),
     ?_decode_nullable_array(AbortedTransactions, Bin5, Bin6, ?_decode_element(decode_aborted_transaction_10)),
-    ?_decode_nullable_records(Records, Bin6, Bin7),
+    ?_decode_records(Records, Bin6, Bin7),
     {
         #{
             partition_index => PartitionIndex,
@@ -2030,7 +2033,7 @@ encode_fetchable_topic_response_10(
 ->
     [
         ?encode_string(Topic),
-        ?encode_array(Partitions, fun encode_partition_data_10/1)
+        ?encode_array(Partitions, ?encode_element(encode_partition_data_10))
     ];
 encode_fetchable_topic_response_10(Args) ->
     ?encoder_error(Args, #{
@@ -2080,7 +2083,7 @@ encode_fetch_response_11(
         ?encode_int32(ThrottleTimeMs),
         ?encode_int16(ErrorCode),
         ?encode_int32(SessionId),
-        ?encode_array(Responses, fun encode_fetchable_topic_response_11/1)
+        ?encode_array(Responses, ?encode_element(encode_fetchable_topic_response_11))
     ];
 encode_fetch_response_11(Args) ->
     ?encoder_error(Args, #{
@@ -2178,7 +2181,7 @@ encode_partition_data_11(
     ?is_int64(LogStartOffset),
     ?is_nullable_array(AbortedTransactions),
     ?is_int32(PreferredReadReplica),
-    ?is_nullable_records(Records)
+    ?is_records(Records)
 ->
     [
         ?encode_int32(PartitionIndex),
@@ -2186,9 +2189,9 @@ encode_partition_data_11(
         ?encode_int64(HighWatermark),
         ?encode_int64(LastStableOffset),
         ?encode_int64(LogStartOffset),
-        ?encode_nullable_array(AbortedTransactions, fun encode_aborted_transaction_11/1),
+        ?encode_nullable_array(AbortedTransactions, ?encode_element(encode_aborted_transaction_11)),
         ?encode_int32(PreferredReadReplica),
-        ?encode_nullable_records(Records)
+        ?encode_records(Records)
     ];
 encode_partition_data_11(Args) ->
     ?encoder_error(Args, #{
@@ -2199,7 +2202,7 @@ encode_partition_data_11(Args) ->
         log_start_offset => int64,
         aborted_transactions => {nullable_array, aborted_transaction_11},
         preferred_read_replica => int32,
-        records => nullable_records
+        records => records
     }).
 
 -spec decode_partition_data_11(binary()) -> {Decoded, Rest} when
@@ -2214,7 +2217,7 @@ decode_partition_data_11(Bin0) when is_binary(Bin0) ->
     ?_decode_int64(LogStartOffset, Bin4, Bin5),
     ?_decode_nullable_array(AbortedTransactions, Bin5, Bin6, ?_decode_element(decode_aborted_transaction_11)),
     ?_decode_int32(PreferredReadReplica, Bin6, Bin7),
-    ?_decode_nullable_records(Records, Bin7, Bin8),
+    ?_decode_records(Records, Bin7, Bin8),
     {
         #{
             partition_index => PartitionIndex,
@@ -2244,7 +2247,7 @@ encode_fetchable_topic_response_11(
 ->
     [
         ?encode_string(Topic),
-        ?encode_array(Partitions, fun encode_partition_data_11/1)
+        ?encode_array(Partitions, ?encode_element(encode_partition_data_11))
     ];
 encode_fetchable_topic_response_11(Args) ->
     ?encoder_error(Args, #{
@@ -2294,7 +2297,7 @@ encode_fetch_response_12(
         ?encode_int32(ThrottleTimeMs),
         ?encode_int16(ErrorCode),
         ?encode_int32(SessionId),
-        ?encode_compact_array(Responses, fun encode_fetchable_topic_response_12/1),
+        ?encode_compact_array(Responses, ?encode_element(encode_fetchable_topic_response_12)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_fetch_response_12(Args) ->
@@ -2567,7 +2570,7 @@ encode_partition_data_12(
     ?is_int64(LogStartOffset),
     ?is_nullable_array(AbortedTransactions),
     ?is_int32(PreferredReadReplica),
-    ?is_nullable_records(Records)
+    ?is_records(Records)
 ->
     [
         ?encode_int32(PartitionIndex),
@@ -2575,9 +2578,9 @@ encode_partition_data_12(
         ?encode_int64(HighWatermark),
         ?encode_int64(LastStableOffset),
         ?encode_int64(LogStartOffset),
-        ?encode_compact_nullable_array(AbortedTransactions, fun encode_aborted_transaction_12/1),
+        ?encode_compact_nullable_array(AbortedTransactions, ?encode_element(encode_aborted_transaction_12)),
         ?encode_int32(PreferredReadReplica),
-        ?encode_compact_nullable_records(Records),
+        ?encode_compact_records(Records),
         ?encode_tagged_fields(
             fun encode_partition_data_12_tagged_field/2,
             Args
@@ -2592,7 +2595,7 @@ encode_partition_data_12(Args) ->
         log_start_offset => int64,
         aborted_transactions => {nullable_array, aborted_transaction_12},
         preferred_read_replica => int32,
-        records => nullable_records
+        records => records
     }).
 
 -spec encode_partition_data_12_tagged_field(
@@ -2620,7 +2623,7 @@ decode_partition_data_12(Bin0) when is_binary(Bin0) ->
     ?_decode_int64(LogStartOffset, Bin4, Bin5),
     ?_decode_compact_nullable_array(AbortedTransactions, Bin5, Bin6, ?_decode_element(decode_aborted_transaction_12)),
     ?_decode_int32(PreferredReadReplica, Bin6, Bin7),
-    ?_decode_compact_nullable_records(Records, Bin7, Bin8),
+    ?_decode_compact_records(Records, Bin7, Bin8),
     ?decode_tagged_fields(
         fun decode_partition_data_12_tagged_field/3,
         #{
@@ -2679,7 +2682,7 @@ encode_fetchable_topic_response_12(
 ->
     [
         ?encode_compact_string(Topic),
-        ?encode_compact_array(Partitions, fun encode_partition_data_12/1),
+        ?encode_compact_array(Partitions, ?encode_element(encode_partition_data_12)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_fetchable_topic_response_12(Args) ->
@@ -2742,7 +2745,7 @@ encode_fetch_response_13(
         ?encode_int32(ThrottleTimeMs),
         ?encode_int16(ErrorCode),
         ?encode_int32(SessionId),
-        ?encode_compact_array(Responses, fun encode_fetchable_topic_response_13/1),
+        ?encode_compact_array(Responses, ?encode_element(encode_fetchable_topic_response_13)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_fetch_response_13(Args) ->
@@ -3015,7 +3018,7 @@ encode_partition_data_13(
     ?is_int64(LogStartOffset),
     ?is_nullable_array(AbortedTransactions),
     ?is_int32(PreferredReadReplica),
-    ?is_nullable_records(Records)
+    ?is_records(Records)
 ->
     [
         ?encode_int32(PartitionIndex),
@@ -3023,9 +3026,9 @@ encode_partition_data_13(
         ?encode_int64(HighWatermark),
         ?encode_int64(LastStableOffset),
         ?encode_int64(LogStartOffset),
-        ?encode_compact_nullable_array(AbortedTransactions, fun encode_aborted_transaction_13/1),
+        ?encode_compact_nullable_array(AbortedTransactions, ?encode_element(encode_aborted_transaction_13)),
         ?encode_int32(PreferredReadReplica),
-        ?encode_compact_nullable_records(Records),
+        ?encode_compact_records(Records),
         ?encode_tagged_fields(
             fun encode_partition_data_13_tagged_field/2,
             Args
@@ -3040,7 +3043,7 @@ encode_partition_data_13(Args) ->
         log_start_offset => int64,
         aborted_transactions => {nullable_array, aborted_transaction_13},
         preferred_read_replica => int32,
-        records => nullable_records
+        records => records
     }).
 
 -spec encode_partition_data_13_tagged_field(
@@ -3068,7 +3071,7 @@ decode_partition_data_13(Bin0) when is_binary(Bin0) ->
     ?_decode_int64(LogStartOffset, Bin4, Bin5),
     ?_decode_compact_nullable_array(AbortedTransactions, Bin5, Bin6, ?_decode_element(decode_aborted_transaction_13)),
     ?_decode_int32(PreferredReadReplica, Bin6, Bin7),
-    ?_decode_compact_nullable_records(Records, Bin7, Bin8),
+    ?_decode_compact_records(Records, Bin7, Bin8),
     ?decode_tagged_fields(
         fun decode_partition_data_13_tagged_field/3,
         #{
@@ -3127,7 +3130,7 @@ encode_fetchable_topic_response_13(
 ->
     [
         ?encode_uuid(TopicId),
-        ?encode_compact_array(Partitions, fun encode_partition_data_13/1),
+        ?encode_compact_array(Partitions, ?encode_element(encode_partition_data_13)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_fetchable_topic_response_13(Args) ->
@@ -3190,7 +3193,7 @@ encode_fetch_response_14(
         ?encode_int32(ThrottleTimeMs),
         ?encode_int16(ErrorCode),
         ?encode_int32(SessionId),
-        ?encode_compact_array(Responses, fun encode_fetchable_topic_response_14/1),
+        ?encode_compact_array(Responses, ?encode_element(encode_fetchable_topic_response_14)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_fetch_response_14(Args) ->
@@ -3463,7 +3466,7 @@ encode_partition_data_14(
     ?is_int64(LogStartOffset),
     ?is_nullable_array(AbortedTransactions),
     ?is_int32(PreferredReadReplica),
-    ?is_nullable_records(Records)
+    ?is_records(Records)
 ->
     [
         ?encode_int32(PartitionIndex),
@@ -3471,9 +3474,9 @@ encode_partition_data_14(
         ?encode_int64(HighWatermark),
         ?encode_int64(LastStableOffset),
         ?encode_int64(LogStartOffset),
-        ?encode_compact_nullable_array(AbortedTransactions, fun encode_aborted_transaction_14/1),
+        ?encode_compact_nullable_array(AbortedTransactions, ?encode_element(encode_aborted_transaction_14)),
         ?encode_int32(PreferredReadReplica),
-        ?encode_compact_nullable_records(Records),
+        ?encode_compact_records(Records),
         ?encode_tagged_fields(
             fun encode_partition_data_14_tagged_field/2,
             Args
@@ -3488,7 +3491,7 @@ encode_partition_data_14(Args) ->
         log_start_offset => int64,
         aborted_transactions => {nullable_array, aborted_transaction_14},
         preferred_read_replica => int32,
-        records => nullable_records
+        records => records
     }).
 
 -spec encode_partition_data_14_tagged_field(
@@ -3516,7 +3519,7 @@ decode_partition_data_14(Bin0) when is_binary(Bin0) ->
     ?_decode_int64(LogStartOffset, Bin4, Bin5),
     ?_decode_compact_nullable_array(AbortedTransactions, Bin5, Bin6, ?_decode_element(decode_aborted_transaction_14)),
     ?_decode_int32(PreferredReadReplica, Bin6, Bin7),
-    ?_decode_compact_nullable_records(Records, Bin7, Bin8),
+    ?_decode_compact_records(Records, Bin7, Bin8),
     ?decode_tagged_fields(
         fun decode_partition_data_14_tagged_field/3,
         #{
@@ -3575,7 +3578,7 @@ encode_fetchable_topic_response_14(
 ->
     [
         ?encode_uuid(TopicId),
-        ?encode_compact_array(Partitions, fun encode_partition_data_14/1),
+        ?encode_compact_array(Partitions, ?encode_element(encode_partition_data_14)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_fetchable_topic_response_14(Args) ->
@@ -3638,7 +3641,7 @@ encode_fetch_response_15(
         ?encode_int32(ThrottleTimeMs),
         ?encode_int16(ErrorCode),
         ?encode_int32(SessionId),
-        ?encode_compact_array(Responses, fun encode_fetchable_topic_response_15/1),
+        ?encode_compact_array(Responses, ?encode_element(encode_fetchable_topic_response_15)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_fetch_response_15(Args) ->
@@ -3911,7 +3914,7 @@ encode_partition_data_15(
     ?is_int64(LogStartOffset),
     ?is_nullable_array(AbortedTransactions),
     ?is_int32(PreferredReadReplica),
-    ?is_nullable_records(Records)
+    ?is_records(Records)
 ->
     [
         ?encode_int32(PartitionIndex),
@@ -3919,9 +3922,9 @@ encode_partition_data_15(
         ?encode_int64(HighWatermark),
         ?encode_int64(LastStableOffset),
         ?encode_int64(LogStartOffset),
-        ?encode_compact_nullable_array(AbortedTransactions, fun encode_aborted_transaction_15/1),
+        ?encode_compact_nullable_array(AbortedTransactions, ?encode_element(encode_aborted_transaction_15)),
         ?encode_int32(PreferredReadReplica),
-        ?encode_compact_nullable_records(Records),
+        ?encode_compact_records(Records),
         ?encode_tagged_fields(
             fun encode_partition_data_15_tagged_field/2,
             Args
@@ -3936,7 +3939,7 @@ encode_partition_data_15(Args) ->
         log_start_offset => int64,
         aborted_transactions => {nullable_array, aborted_transaction_15},
         preferred_read_replica => int32,
-        records => nullable_records
+        records => records
     }).
 
 -spec encode_partition_data_15_tagged_field(
@@ -3964,7 +3967,7 @@ decode_partition_data_15(Bin0) when is_binary(Bin0) ->
     ?_decode_int64(LogStartOffset, Bin4, Bin5),
     ?_decode_compact_nullable_array(AbortedTransactions, Bin5, Bin6, ?_decode_element(decode_aborted_transaction_15)),
     ?_decode_int32(PreferredReadReplica, Bin6, Bin7),
-    ?_decode_compact_nullable_records(Records, Bin7, Bin8),
+    ?_decode_compact_records(Records, Bin7, Bin8),
     ?decode_tagged_fields(
         fun decode_partition_data_15_tagged_field/3,
         #{
@@ -4023,7 +4026,7 @@ encode_fetchable_topic_response_15(
 ->
     [
         ?encode_uuid(TopicId),
-        ?encode_compact_array(Partitions, fun encode_partition_data_15/1),
+        ?encode_compact_array(Partitions, ?encode_element(encode_partition_data_15)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_fetchable_topic_response_15(Args) ->
@@ -4086,7 +4089,7 @@ encode_fetch_response_16(
         ?encode_int32(ThrottleTimeMs),
         ?encode_int16(ErrorCode),
         ?encode_int32(SessionId),
-        ?encode_compact_array(Responses, fun encode_fetchable_topic_response_16/1),
+        ?encode_compact_array(Responses, ?encode_element(encode_fetchable_topic_response_16)),
         ?encode_tagged_fields(
             fun encode_fetch_response_16_tagged_field/2,
             Args
@@ -4106,7 +4109,7 @@ encode_fetch_response_16(Args) ->
 ) -> {non_neg_integer(), iodata()} | ignore.
 
 encode_fetch_response_16_tagged_field(_Key = node_endpoints, NodeEndpoints) ->
-    {0, ?encode_compact_array(NodeEndpoints, fun encode_node_endpoint_16/1)};
+    {0, ?encode_compact_array(NodeEndpoints, ?encode_element(encode_node_endpoint_16))};
 encode_fetch_response_16_tagged_field(_Key, _Value) ->
     ignore.
 
@@ -4377,7 +4380,7 @@ encode_partition_data_16(
     ?is_int64(LogStartOffset),
     ?is_nullable_array(AbortedTransactions),
     ?is_int32(PreferredReadReplica),
-    ?is_nullable_records(Records)
+    ?is_records(Records)
 ->
     [
         ?encode_int32(PartitionIndex),
@@ -4385,9 +4388,9 @@ encode_partition_data_16(
         ?encode_int64(HighWatermark),
         ?encode_int64(LastStableOffset),
         ?encode_int64(LogStartOffset),
-        ?encode_compact_nullable_array(AbortedTransactions, fun encode_aborted_transaction_16/1),
+        ?encode_compact_nullable_array(AbortedTransactions, ?encode_element(encode_aborted_transaction_16)),
         ?encode_int32(PreferredReadReplica),
-        ?encode_compact_nullable_records(Records),
+        ?encode_compact_records(Records),
         ?encode_tagged_fields(
             fun encode_partition_data_16_tagged_field/2,
             Args
@@ -4402,7 +4405,7 @@ encode_partition_data_16(Args) ->
         log_start_offset => int64,
         aborted_transactions => {nullable_array, aborted_transaction_16},
         preferred_read_replica => int32,
-        records => nullable_records
+        records => records
     }).
 
 -spec encode_partition_data_16_tagged_field(
@@ -4430,7 +4433,7 @@ decode_partition_data_16(Bin0) when is_binary(Bin0) ->
     ?_decode_int64(LogStartOffset, Bin4, Bin5),
     ?_decode_compact_nullable_array(AbortedTransactions, Bin5, Bin6, ?_decode_element(decode_aborted_transaction_16)),
     ?_decode_int32(PreferredReadReplica, Bin6, Bin7),
-    ?_decode_compact_nullable_records(Records, Bin7, Bin8),
+    ?_decode_compact_records(Records, Bin7, Bin8),
     ?decode_tagged_fields(
         fun decode_partition_data_16_tagged_field/3,
         #{
@@ -4489,7 +4492,7 @@ encode_fetchable_topic_response_16(
 ->
     [
         ?encode_uuid(TopicId),
-        ?encode_compact_array(Partitions, fun encode_partition_data_16/1),
+        ?encode_compact_array(Partitions, ?encode_element(encode_partition_data_16)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_fetchable_topic_response_16(Args) ->

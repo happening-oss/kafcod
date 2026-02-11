@@ -1,4 +1,7 @@
 -module(offset_fetch_request).
+
+%% This file is auto-generated.
+
 -export([
     encode_offset_fetch_request_0/1,
     decode_offset_fetch_request_0/1,
@@ -75,7 +78,7 @@ encode_offset_fetch_request_0(
     [
         ?encode_request_header_1(?OFFSET_FETCH_REQUEST, 0, CorrelationId, ClientId),
         ?encode_string(GroupId),
-        ?encode_array(Topics, fun encode_offset_fetch_request_topic_0/1)
+        ?encode_array(Topics, ?encode_element(encode_offset_fetch_request_topic_0))
     ];
 encode_offset_fetch_request_0(Args) ->
     ?encoder_error(Args, #{
@@ -161,7 +164,7 @@ encode_offset_fetch_request_1(
     [
         ?encode_request_header_1(?OFFSET_FETCH_REQUEST, 1, CorrelationId, ClientId),
         ?encode_string(GroupId),
-        ?encode_array(Topics, fun encode_offset_fetch_request_topic_1/1)
+        ?encode_array(Topics, ?encode_element(encode_offset_fetch_request_topic_1))
     ];
 encode_offset_fetch_request_1(Args) ->
     ?encoder_error(Args, #{
@@ -247,7 +250,7 @@ encode_offset_fetch_request_2(
     [
         ?encode_request_header_1(?OFFSET_FETCH_REQUEST, 2, CorrelationId, ClientId),
         ?encode_string(GroupId),
-        ?encode_nullable_array(Topics, fun encode_offset_fetch_request_topic_2/1)
+        ?encode_nullable_array(Topics, ?encode_element(encode_offset_fetch_request_topic_2))
     ];
 encode_offset_fetch_request_2(Args) ->
     ?encoder_error(Args, #{
@@ -333,7 +336,7 @@ encode_offset_fetch_request_3(
     [
         ?encode_request_header_1(?OFFSET_FETCH_REQUEST, 3, CorrelationId, ClientId),
         ?encode_string(GroupId),
-        ?encode_nullable_array(Topics, fun encode_offset_fetch_request_topic_3/1)
+        ?encode_nullable_array(Topics, ?encode_element(encode_offset_fetch_request_topic_3))
     ];
 encode_offset_fetch_request_3(Args) ->
     ?encoder_error(Args, #{
@@ -419,7 +422,7 @@ encode_offset_fetch_request_4(
     [
         ?encode_request_header_1(?OFFSET_FETCH_REQUEST, 4, CorrelationId, ClientId),
         ?encode_string(GroupId),
-        ?encode_nullable_array(Topics, fun encode_offset_fetch_request_topic_4/1)
+        ?encode_nullable_array(Topics, ?encode_element(encode_offset_fetch_request_topic_4))
     ];
 encode_offset_fetch_request_4(Args) ->
     ?encoder_error(Args, #{
@@ -505,7 +508,7 @@ encode_offset_fetch_request_5(
     [
         ?encode_request_header_1(?OFFSET_FETCH_REQUEST, 5, CorrelationId, ClientId),
         ?encode_string(GroupId),
-        ?encode_nullable_array(Topics, fun encode_offset_fetch_request_topic_5/1)
+        ?encode_nullable_array(Topics, ?encode_element(encode_offset_fetch_request_topic_5))
     ];
 encode_offset_fetch_request_5(Args) ->
     ?encoder_error(Args, #{
@@ -591,7 +594,7 @@ encode_offset_fetch_request_6(
     [
         ?encode_request_header_2(?OFFSET_FETCH_REQUEST, 6, CorrelationId, ClientId),
         ?encode_compact_string(GroupId),
-        ?encode_compact_nullable_array(Topics, fun encode_offset_fetch_request_topic_6/1),
+        ?encode_compact_nullable_array(Topics, ?encode_element(encode_offset_fetch_request_topic_6)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_offset_fetch_request_6(Args) ->
@@ -706,7 +709,7 @@ encode_offset_fetch_request_7(
     [
         ?encode_request_header_2(?OFFSET_FETCH_REQUEST, 7, CorrelationId, ClientId),
         ?encode_compact_string(GroupId),
-        ?encode_compact_nullable_array(Topics, fun encode_offset_fetch_request_topic_7/1),
+        ?encode_compact_nullable_array(Topics, ?encode_element(encode_offset_fetch_request_topic_7)),
         ?encode_bool(RequireStable),
         ?EMPTY_TAG_BUFFER
     ];
@@ -821,7 +824,7 @@ encode_offset_fetch_request_8(
 ->
     [
         ?encode_request_header_2(?OFFSET_FETCH_REQUEST, 8, CorrelationId, ClientId),
-        ?encode_compact_array(Groups, fun encode_offset_fetch_request_group_8/1),
+        ?encode_compact_array(Groups, ?encode_element(encode_offset_fetch_request_group_8)),
         ?encode_bool(RequireStable),
         ?EMPTY_TAG_BUFFER
     ];
@@ -927,7 +930,7 @@ encode_offset_fetch_request_group_8(
 ->
     [
         ?encode_compact_string(GroupId),
-        ?encode_compact_nullable_array(Topics, fun encode_offset_fetch_request_topics_8/1),
+        ?encode_compact_nullable_array(Topics, ?encode_element(encode_offset_fetch_request_topics_8)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_offset_fetch_request_group_8(Args) ->
@@ -984,7 +987,7 @@ encode_offset_fetch_request_9(
 ->
     [
         ?encode_request_header_2(?OFFSET_FETCH_REQUEST, 9, CorrelationId, ClientId),
-        ?encode_compact_array(Groups, fun encode_offset_fetch_request_group_9/1),
+        ?encode_compact_array(Groups, ?encode_element(encode_offset_fetch_request_group_9)),
         ?encode_bool(RequireStable),
         ?EMPTY_TAG_BUFFER
     ];
@@ -1098,7 +1101,7 @@ encode_offset_fetch_request_group_9(
         ?encode_compact_string(GroupId),
         ?encode_compact_nullable_string(MemberId),
         ?encode_int32(MemberEpoch),
-        ?encode_compact_nullable_array(Topics, fun encode_offset_fetch_request_topics_9/1),
+        ?encode_compact_nullable_array(Topics, ?encode_element(encode_offset_fetch_request_topics_9)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_offset_fetch_request_group_9(Args) ->

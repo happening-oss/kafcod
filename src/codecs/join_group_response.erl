@@ -1,4 +1,7 @@
 -module(join_group_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_join_group_response_0/1,
     decode_join_group_response_0/1,
@@ -84,7 +87,7 @@ encode_join_group_response_0(
         ?encode_string(ProtocolName),
         ?encode_string(Leader),
         ?encode_string(MemberId),
-        ?encode_array(Members, fun encode_join_group_response_member_0/1)
+        ?encode_array(Members, ?encode_element(encode_join_group_response_member_0))
     ];
 encode_join_group_response_0(Args) ->
     ?encoder_error(Args, #{
@@ -193,7 +196,7 @@ encode_join_group_response_1(
         ?encode_string(ProtocolName),
         ?encode_string(Leader),
         ?encode_string(MemberId),
-        ?encode_array(Members, fun encode_join_group_response_member_1/1)
+        ?encode_array(Members, ?encode_element(encode_join_group_response_member_1))
     ];
 encode_join_group_response_1(Args) ->
     ?encoder_error(Args, #{
@@ -306,7 +309,7 @@ encode_join_group_response_2(
         ?encode_string(ProtocolName),
         ?encode_string(Leader),
         ?encode_string(MemberId),
-        ?encode_array(Members, fun encode_join_group_response_member_2/1)
+        ?encode_array(Members, ?encode_element(encode_join_group_response_member_2))
     ];
 encode_join_group_response_2(Args) ->
     ?encoder_error(Args, #{
@@ -422,7 +425,7 @@ encode_join_group_response_3(
         ?encode_string(ProtocolName),
         ?encode_string(Leader),
         ?encode_string(MemberId),
-        ?encode_array(Members, fun encode_join_group_response_member_3/1)
+        ?encode_array(Members, ?encode_element(encode_join_group_response_member_3))
     ];
 encode_join_group_response_3(Args) ->
     ?encoder_error(Args, #{
@@ -538,7 +541,7 @@ encode_join_group_response_4(
         ?encode_string(ProtocolName),
         ?encode_string(Leader),
         ?encode_string(MemberId),
-        ?encode_array(Members, fun encode_join_group_response_member_4/1)
+        ?encode_array(Members, ?encode_element(encode_join_group_response_member_4))
     ];
 encode_join_group_response_4(Args) ->
     ?encoder_error(Args, #{
@@ -654,7 +657,7 @@ encode_join_group_response_5(
         ?encode_string(ProtocolName),
         ?encode_string(Leader),
         ?encode_string(MemberId),
-        ?encode_array(Members, fun encode_join_group_response_member_5/1)
+        ?encode_array(Members, ?encode_element(encode_join_group_response_member_5))
     ];
 encode_join_group_response_5(Args) ->
     ?encoder_error(Args, #{
@@ -777,7 +780,7 @@ encode_join_group_response_6(
         ?encode_compact_string(ProtocolName),
         ?encode_compact_string(Leader),
         ?encode_compact_string(MemberId),
-        ?encode_compact_array(Members, fun encode_join_group_response_member_6/1),
+        ?encode_compact_array(Members, ?encode_element(encode_join_group_response_member_6)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_join_group_response_6(Args) ->
@@ -930,7 +933,7 @@ encode_join_group_response_7(
         ?encode_compact_nullable_string(ProtocolName),
         ?encode_compact_string(Leader),
         ?encode_compact_string(MemberId),
-        ?encode_compact_array(Members, fun encode_join_group_response_member_7/1),
+        ?encode_compact_array(Members, ?encode_element(encode_join_group_response_member_7)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_join_group_response_7(Args) ->
@@ -1086,7 +1089,7 @@ encode_join_group_response_8(
         ?encode_compact_nullable_string(ProtocolName),
         ?encode_compact_string(Leader),
         ?encode_compact_string(MemberId),
-        ?encode_compact_array(Members, fun encode_join_group_response_member_8/1),
+        ?encode_compact_array(Members, ?encode_element(encode_join_group_response_member_8)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_join_group_response_8(Args) ->
@@ -1246,7 +1249,7 @@ encode_join_group_response_9(
         ?encode_compact_string(Leader),
         ?encode_bool(SkipAssignment),
         ?encode_compact_string(MemberId),
-        ?encode_compact_array(Members, fun encode_join_group_response_member_9/1),
+        ?encode_compact_array(Members, ?encode_element(encode_join_group_response_member_9)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_join_group_response_9(Args) ->

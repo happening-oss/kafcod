@@ -7,7 +7,7 @@
 -include_lib("eunit/include/eunit.hrl").
 -endif.
 
--spec create_error_info(Arg :: map(), Expected :: #{Key := Type}) ->
+-spec create_error_info(Arg :: map(), Expected :: #{Key => Type}) ->
     {error_info, #{module => module(), function => atom(), cause => term()}}
 when
     Key :: atom(), Type :: expected_type().
@@ -21,6 +21,7 @@ create_error_info(Arg, Expected) ->
     | int16
     | int32
     | int64
+    | uint16
     | varint
     | bool
     | string
@@ -31,7 +32,6 @@ create_error_info(Arg, Expected) ->
     | bytes
     | nullable_bytes
     | records
-    | nullable_records
     | uuid.
 
 % Erlang types (vaguely).
@@ -44,6 +44,7 @@ create_error_info(Arg, Expected) ->
     | map
     | null
     | tuple
+    | string
     | todo.
 
 -type error() ::
@@ -51,16 +52,14 @@ create_error_info(Arg, Expected) ->
     | {missing, Key :: atom(), ExpectedType :: expected_type()}
     | {wrong_type, Key :: atom(), {expected, ExpectedType :: expected_type()}, {value, term()}}.
 
--spec get_errors(Arg :: map(), Expected :: #{Key := Type}) -> [error()] when
+-spec get_errors(Arg :: map(), Expected :: #{Key => Type}) -> [error()] when
     Key :: atom(), Type :: expected_type().
 
 get_errors(Arg, Expected) when is_map(Arg) ->
     Errors = maps:fold(
         fun(Key, ExpectedType, Acc) ->
-            case maps:find(Key, Arg) of
-                error ->
-                    [{missing, Key, ExpectedType} | Acc];
-                {ok, Value} ->
+            case Arg of
+                #{Key := Value} ->
                     case value_conforms_to_type(Value, ExpectedType) of
                         true ->
                             Acc;
@@ -69,7 +68,9 @@ get_errors(Arg, Expected) when is_map(Arg) ->
                                 {wrong_type, Key, {expected, ExpectedType}, {value, Value}}
                                 | Acc
                             ]
-                    end
+                    end;
+                #{} ->
+                    [{missing, Key, ExpectedType} | Acc]
             end
         end,
         [],
@@ -99,7 +100,7 @@ sort_errors(Errors) ->
 
 format_error(_Reason, _StackTrace = [{_M, _F, [_Arg], Info} | _]) ->
     ErrorInfo = proplists:get_value(error_info, Info, #{}),
-    Errors = maps:get(cause, ErrorInfo, #{}),
+    Errors = maps:get(cause, ErrorInfo, []),
     #{
         1 => format_errors(Errors)
     }.
@@ -159,6 +160,7 @@ guess_actual_type(_, Value) when is_atom(Value) -> atom;
 guess_actual_type(_, Value) when is_tuple(Value) -> tuple;
 % TODO: guess at the intended int size?
 guess_actual_type(_, Value) when is_integer(Value) -> integer;
+guess_actual_type(_, Value) when is_binary(Value) -> string;
 guess_actual_type(_, _) -> todo.
 
 % TODO: Improve error reporting for arrays of complex types, similar to the above. See create_topics_request_N (which also has the timeoutMs thing going on)
@@ -177,6 +179,7 @@ value_conforms_to_type(Value, string) when ?is_string(Value) -> true;
 value_conforms_to_type(Value, nullable_string) when ?is_nullable_string(Value) -> true;
 value_conforms_to_type(Value, bytes) when ?is_bytes(Value) -> true;
 value_conforms_to_type(Value, nullable_bytes) when ?is_nullable_bytes(Value) -> true;
+value_conforms_to_type(Value, records) when ?is_records(Value) -> true;
 value_conforms_to_type(Value, {array, _}) when ?is_array(Value) -> true;
 value_conforms_to_type(Value, {nullable_array, _}) when ?is_nullable_array(Value) -> true;
 value_conforms_to_type(Value, map) when is_map(Value) -> true;

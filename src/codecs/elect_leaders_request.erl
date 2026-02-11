@@ -1,4 +1,7 @@
 -module(elect_leaders_request).
+
+%% This file is auto-generated.
+
 -export([
     encode_elect_leaders_request_0/1,
     decode_elect_leaders_request_0/1,
@@ -44,7 +47,7 @@ encode_elect_leaders_request_0(
 ->
     [
         ?encode_request_header_1(?ELECT_LEADERS_REQUEST, 0, CorrelationId, ClientId),
-        ?encode_nullable_array(TopicPartitions, fun encode_topic_partitions_0/1),
+        ?encode_nullable_array(TopicPartitions, ?encode_element(encode_topic_partitions_0)),
         ?encode_int32(TimeoutMs)
     ];
 encode_elect_leaders_request_0(Args) ->
@@ -134,7 +137,7 @@ encode_elect_leaders_request_1(
     [
         ?encode_request_header_1(?ELECT_LEADERS_REQUEST, 1, CorrelationId, ClientId),
         ?encode_int8(ElectionType),
-        ?encode_nullable_array(TopicPartitions, fun encode_topic_partitions_1/1),
+        ?encode_nullable_array(TopicPartitions, ?encode_element(encode_topic_partitions_1)),
         ?encode_int32(TimeoutMs)
     ];
 encode_elect_leaders_request_1(Args) ->
@@ -227,7 +230,7 @@ encode_elect_leaders_request_2(
     [
         ?encode_request_header_2(?ELECT_LEADERS_REQUEST, 2, CorrelationId, ClientId),
         ?encode_int8(ElectionType),
-        ?encode_compact_nullable_array(TopicPartitions, fun encode_topic_partitions_2/1),
+        ?encode_compact_nullable_array(TopicPartitions, ?encode_element(encode_topic_partitions_2)),
         ?encode_int32(TimeoutMs),
         ?EMPTY_TAG_BUFFER
     ];

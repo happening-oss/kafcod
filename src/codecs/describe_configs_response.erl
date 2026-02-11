@@ -1,4 +1,7 @@
 -module(describe_configs_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_describe_configs_response_0/1,
     decode_describe_configs_response_0/1,
@@ -58,7 +61,7 @@ encode_describe_configs_response_0(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_array(Results, fun encode_describe_configs_result_0/1)
+        ?encode_array(Results, ?encode_element(encode_describe_configs_result_0))
     ];
 encode_describe_configs_response_0(Args) ->
     ?encoder_error(Args, #{
@@ -169,7 +172,7 @@ encode_describe_configs_result_0(
         ?encode_nullable_string(ErrorMessage),
         ?encode_int8(ResourceType),
         ?encode_string(ResourceName),
-        ?encode_array(Configs, fun encode_describe_configs_resource_result_0/1)
+        ?encode_array(Configs, ?encode_element(encode_describe_configs_resource_result_0))
     ];
 encode_describe_configs_result_0(Args) ->
     ?encoder_error(Args, #{
@@ -220,7 +223,7 @@ encode_describe_configs_response_1(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_array(Results, fun encode_describe_configs_result_1/1)
+        ?encode_array(Results, ?encode_element(encode_describe_configs_result_1))
     ];
 encode_describe_configs_response_1(Args) ->
     ?encoder_error(Args, #{
@@ -321,7 +324,7 @@ encode_describe_configs_resource_result_1(
         ?encode_bool(ReadOnly),
         ?encode_int8(ConfigSource),
         ?encode_bool(IsSensitive),
-        ?encode_array(Synonyms, fun encode_describe_configs_synonym_1/1)
+        ?encode_array(Synonyms, ?encode_element(encode_describe_configs_synonym_1))
     ];
 encode_describe_configs_resource_result_1(Args) ->
     ?encoder_error(Args, #{
@@ -383,7 +386,7 @@ encode_describe_configs_result_1(
         ?encode_nullable_string(ErrorMessage),
         ?encode_int8(ResourceType),
         ?encode_string(ResourceName),
-        ?encode_array(Configs, fun encode_describe_configs_resource_result_1/1)
+        ?encode_array(Configs, ?encode_element(encode_describe_configs_resource_result_1))
     ];
 encode_describe_configs_result_1(Args) ->
     ?encoder_error(Args, #{
@@ -434,7 +437,7 @@ encode_describe_configs_response_2(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_array(Results, fun encode_describe_configs_result_2/1)
+        ?encode_array(Results, ?encode_element(encode_describe_configs_result_2))
     ];
 encode_describe_configs_response_2(Args) ->
     ?encoder_error(Args, #{
@@ -535,7 +538,7 @@ encode_describe_configs_resource_result_2(
         ?encode_bool(ReadOnly),
         ?encode_int8(ConfigSource),
         ?encode_bool(IsSensitive),
-        ?encode_array(Synonyms, fun encode_describe_configs_synonym_2/1)
+        ?encode_array(Synonyms, ?encode_element(encode_describe_configs_synonym_2))
     ];
 encode_describe_configs_resource_result_2(Args) ->
     ?encoder_error(Args, #{
@@ -597,7 +600,7 @@ encode_describe_configs_result_2(
         ?encode_nullable_string(ErrorMessage),
         ?encode_int8(ResourceType),
         ?encode_string(ResourceName),
-        ?encode_array(Configs, fun encode_describe_configs_resource_result_2/1)
+        ?encode_array(Configs, ?encode_element(encode_describe_configs_resource_result_2))
     ];
 encode_describe_configs_result_2(Args) ->
     ?encoder_error(Args, #{
@@ -648,7 +651,7 @@ encode_describe_configs_response_3(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_array(Results, fun encode_describe_configs_result_3/1)
+        ?encode_array(Results, ?encode_element(encode_describe_configs_result_3))
     ];
 encode_describe_configs_response_3(Args) ->
     ?encoder_error(Args, #{
@@ -755,7 +758,7 @@ encode_describe_configs_resource_result_3(
         ?encode_bool(ReadOnly),
         ?encode_int8(ConfigSource),
         ?encode_bool(IsSensitive),
-        ?encode_array(Synonyms, fun encode_describe_configs_synonym_3/1),
+        ?encode_array(Synonyms, ?encode_element(encode_describe_configs_synonym_3)),
         ?encode_int8(ConfigType),
         ?encode_nullable_string(Documentation)
     ];
@@ -825,7 +828,7 @@ encode_describe_configs_result_3(
         ?encode_nullable_string(ErrorMessage),
         ?encode_int8(ResourceType),
         ?encode_string(ResourceName),
-        ?encode_array(Configs, fun encode_describe_configs_resource_result_3/1)
+        ?encode_array(Configs, ?encode_element(encode_describe_configs_resource_result_3))
     ];
 encode_describe_configs_result_3(Args) ->
     ?encoder_error(Args, #{
@@ -876,7 +879,7 @@ encode_describe_configs_response_4(
     [
         ?encode_response_header_1(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_compact_array(Results, fun encode_describe_configs_result_4/1),
+        ?encode_compact_array(Results, ?encode_element(encode_describe_configs_result_4)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_describe_configs_response_4(Args) ->
@@ -1009,7 +1012,7 @@ encode_describe_configs_resource_result_4(
         ?encode_bool(ReadOnly),
         ?encode_int8(ConfigSource),
         ?encode_bool(IsSensitive),
-        ?encode_compact_array(Synonyms, fun encode_describe_configs_synonym_4/1),
+        ?encode_compact_array(Synonyms, ?encode_element(encode_describe_configs_synonym_4)),
         ?encode_int8(ConfigType),
         ?encode_compact_nullable_string(Documentation),
         ?EMPTY_TAG_BUFFER
@@ -1092,7 +1095,7 @@ encode_describe_configs_result_4(
         ?encode_compact_nullable_string(ErrorMessage),
         ?encode_int8(ResourceType),
         ?encode_compact_string(ResourceName),
-        ?encode_compact_array(Configs, fun encode_describe_configs_resource_result_4/1),
+        ?encode_compact_array(Configs, ?encode_element(encode_describe_configs_resource_result_4)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_describe_configs_result_4(Args) ->

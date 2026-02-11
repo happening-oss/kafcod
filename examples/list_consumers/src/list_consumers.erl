@@ -32,11 +32,11 @@ parse_broker(Arg) when is_list(Arg) ->
     end.
 
 list_consumers(#{broker := {BootstrapHost, BootstrapPort}}) ->
-    {ok, C} = kafka_connection:start_link(BootstrapHost, BootstrapPort, ?CLIENT_ID),
+    {ok, C} = kafcod_connection:start_link(#{host => BootstrapHost, port => BootstrapPort}, #{client_id => ?CLIENT_ID}),
 
     % To get the full list of groups, we have to ask each broker and combine the results. So, first, we need a list of
     % brokers.
-    {ok, #{brokers := Brokers}} = kafka_connection:call(
+    {ok, #{brokers := Brokers}} = kafcod_connection:call(
         C,
         fun metadata_request:encode_metadata_request_9/1,
         #{
@@ -51,8 +51,8 @@ list_consumers(#{broker := {BootstrapHost, BootstrapPort}}) ->
 
     Groups = lists:foldl(
         fun(_Broker = #{host := Host, port := Port}, Acc) ->
-            {ok, B} = kafka_connection:start_link(Host, Port, ?CLIENT_ID),
-            {ok, #{error_code := 0, groups := Groups}} = kafka_connection:call(
+            {ok, B} = kafcod_connection:start_link(#{host => Host, port => Port}, #{client_id => ?CLIENT_ID}),
+            {ok, #{error_code := 0, groups := Groups}} = kafcod_connection:call(
                 B,
                 fun list_groups_request:encode_list_groups_request_3/1,
                 #{},
@@ -72,7 +72,7 @@ list_consumers(#{broker := {BootstrapHost, BootstrapPort}}) ->
     % Coordinators :: [Coordinator]
     Coordinators = lists:foldl(
         fun(#{group_id := GroupId}, Acc) ->
-            {ok, Coordinator} = kafka_connection:call(
+            {ok, Coordinator} = kafcod_connection:call(
                 C,
                 fun find_coordinator_request:encode_find_coordinator_request_3/1,
                 #{
@@ -97,8 +97,8 @@ list_consumers(#{broker := {BootstrapHost, BootstrapPort}}) ->
 
     GroupDescriptions = maps:fold(
         fun({_NodeId, Host, Port}, GroupNames, Acc) ->
-            {ok, B} = kafka_connection:start_link(Host, Port, ?CLIENT_ID),
-            {ok, #{groups := GDs}} = kafka_connection:call(
+            {ok, B} = kafcod_connection:start_link(#{host => Host, port => Port}, #{client_id => ?CLIENT_ID}),
+            {ok, #{groups := GDs}} = kafcod_connection:call(
                 B,
                 fun describe_groups_request:encode_describe_groups_request_5/1,
                 #{

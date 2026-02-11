@@ -1,4 +1,7 @@
 -module(offset_commit_request).
+
+%% This file is auto-generated.
+
 -export([
     encode_offset_commit_request_0/1,
     decode_offset_commit_request_0/1,
@@ -83,7 +86,7 @@ encode_offset_commit_request_0(
     [
         ?encode_request_header_1(?OFFSET_COMMIT_REQUEST, 0, CorrelationId, ClientId),
         ?encode_string(GroupId),
-        ?encode_array(Topics, fun encode_offset_commit_request_topic_0/1)
+        ?encode_array(Topics, ?encode_element(encode_offset_commit_request_topic_0))
     ];
 encode_offset_commit_request_0(Args) ->
     ?encoder_error(Args, #{
@@ -169,7 +172,7 @@ encode_offset_commit_request_topic_0(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(Partitions, fun encode_offset_commit_request_partition_0/1)
+        ?encode_array(Partitions, ?encode_element(encode_offset_commit_request_partition_0))
     ];
 encode_offset_commit_request_topic_0(Args) ->
     ?encoder_error(Args, #{
@@ -222,7 +225,7 @@ encode_offset_commit_request_1(
         ?encode_string(GroupId),
         ?encode_int32(GenerationIdOrMemberEpoch),
         ?encode_string(MemberId),
-        ?encode_array(Topics, fun encode_offset_commit_request_topic_1/1)
+        ?encode_array(Topics, ?encode_element(encode_offset_commit_request_topic_1))
     ];
 encode_offset_commit_request_1(Args) ->
     ?encoder_error(Args, #{
@@ -321,7 +324,7 @@ encode_offset_commit_request_topic_1(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(Partitions, fun encode_offset_commit_request_partition_1/1)
+        ?encode_array(Partitions, ?encode_element(encode_offset_commit_request_partition_1))
     ];
 encode_offset_commit_request_topic_1(Args) ->
     ?encoder_error(Args, #{
@@ -378,7 +381,7 @@ encode_offset_commit_request_2(
         ?encode_int32(GenerationIdOrMemberEpoch),
         ?encode_string(MemberId),
         ?encode_int64(RetentionTimeMs),
-        ?encode_array(Topics, fun encode_offset_commit_request_topic_2/1)
+        ?encode_array(Topics, ?encode_element(encode_offset_commit_request_topic_2))
     ];
 encode_offset_commit_request_2(Args) ->
     ?encoder_error(Args, #{
@@ -473,7 +476,7 @@ encode_offset_commit_request_topic_2(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(Partitions, fun encode_offset_commit_request_partition_2/1)
+        ?encode_array(Partitions, ?encode_element(encode_offset_commit_request_partition_2))
     ];
 encode_offset_commit_request_topic_2(Args) ->
     ?encoder_error(Args, #{
@@ -530,7 +533,7 @@ encode_offset_commit_request_3(
         ?encode_int32(GenerationIdOrMemberEpoch),
         ?encode_string(MemberId),
         ?encode_int64(RetentionTimeMs),
-        ?encode_array(Topics, fun encode_offset_commit_request_topic_3/1)
+        ?encode_array(Topics, ?encode_element(encode_offset_commit_request_topic_3))
     ];
 encode_offset_commit_request_3(Args) ->
     ?encoder_error(Args, #{
@@ -625,7 +628,7 @@ encode_offset_commit_request_topic_3(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(Partitions, fun encode_offset_commit_request_partition_3/1)
+        ?encode_array(Partitions, ?encode_element(encode_offset_commit_request_partition_3))
     ];
 encode_offset_commit_request_topic_3(Args) ->
     ?encoder_error(Args, #{
@@ -682,7 +685,7 @@ encode_offset_commit_request_4(
         ?encode_int32(GenerationIdOrMemberEpoch),
         ?encode_string(MemberId),
         ?encode_int64(RetentionTimeMs),
-        ?encode_array(Topics, fun encode_offset_commit_request_topic_4/1)
+        ?encode_array(Topics, ?encode_element(encode_offset_commit_request_topic_4))
     ];
 encode_offset_commit_request_4(Args) ->
     ?encoder_error(Args, #{
@@ -777,7 +780,7 @@ encode_offset_commit_request_topic_4(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(Partitions, fun encode_offset_commit_request_partition_4/1)
+        ?encode_array(Partitions, ?encode_element(encode_offset_commit_request_partition_4))
     ];
 encode_offset_commit_request_topic_4(Args) ->
     ?encoder_error(Args, #{
@@ -830,7 +833,7 @@ encode_offset_commit_request_5(
         ?encode_string(GroupId),
         ?encode_int32(GenerationIdOrMemberEpoch),
         ?encode_string(MemberId),
-        ?encode_array(Topics, fun encode_offset_commit_request_topic_5/1)
+        ?encode_array(Topics, ?encode_element(encode_offset_commit_request_topic_5))
     ];
 encode_offset_commit_request_5(Args) ->
     ?encoder_error(Args, #{
@@ -922,7 +925,7 @@ encode_offset_commit_request_topic_5(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(Partitions, fun encode_offset_commit_request_partition_5/1)
+        ?encode_array(Partitions, ?encode_element(encode_offset_commit_request_partition_5))
     ];
 encode_offset_commit_request_topic_5(Args) ->
     ?encoder_error(Args, #{
@@ -975,7 +978,7 @@ encode_offset_commit_request_6(
         ?encode_string(GroupId),
         ?encode_int32(GenerationIdOrMemberEpoch),
         ?encode_string(MemberId),
-        ?encode_array(Topics, fun encode_offset_commit_request_topic_6/1)
+        ?encode_array(Topics, ?encode_element(encode_offset_commit_request_topic_6))
     ];
 encode_offset_commit_request_6(Args) ->
     ?encoder_error(Args, #{
@@ -1074,7 +1077,7 @@ encode_offset_commit_request_topic_6(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(Partitions, fun encode_offset_commit_request_partition_6/1)
+        ?encode_array(Partitions, ?encode_element(encode_offset_commit_request_partition_6))
     ];
 encode_offset_commit_request_topic_6(Args) ->
     ?encoder_error(Args, #{
@@ -1131,7 +1134,7 @@ encode_offset_commit_request_7(
         ?encode_int32(GenerationIdOrMemberEpoch),
         ?encode_string(MemberId),
         ?encode_nullable_string(GroupInstanceId),
-        ?encode_array(Topics, fun encode_offset_commit_request_topic_7/1)
+        ?encode_array(Topics, ?encode_element(encode_offset_commit_request_topic_7))
     ];
 encode_offset_commit_request_7(Args) ->
     ?encoder_error(Args, #{
@@ -1233,7 +1236,7 @@ encode_offset_commit_request_topic_7(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(Partitions, fun encode_offset_commit_request_partition_7/1)
+        ?encode_array(Partitions, ?encode_element(encode_offset_commit_request_partition_7))
     ];
 encode_offset_commit_request_topic_7(Args) ->
     ?encoder_error(Args, #{
@@ -1290,7 +1293,7 @@ encode_offset_commit_request_8(
         ?encode_int32(GenerationIdOrMemberEpoch),
         ?encode_compact_string(MemberId),
         ?encode_compact_nullable_string(GroupInstanceId),
-        ?encode_compact_array(Topics, fun encode_offset_commit_request_topic_8/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_offset_commit_request_topic_8)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_offset_commit_request_8(Args) ->
@@ -1418,7 +1421,7 @@ encode_offset_commit_request_topic_8(
 ->
     [
         ?encode_compact_string(Name),
-        ?encode_compact_array(Partitions, fun encode_offset_commit_request_partition_8/1),
+        ?encode_compact_array(Partitions, ?encode_element(encode_offset_commit_request_partition_8)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_offset_commit_request_topic_8(Args) ->
@@ -1488,7 +1491,7 @@ encode_offset_commit_request_9(
         ?encode_int32(GenerationIdOrMemberEpoch),
         ?encode_compact_string(MemberId),
         ?encode_compact_nullable_string(GroupInstanceId),
-        ?encode_compact_array(Topics, fun encode_offset_commit_request_topic_9/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_offset_commit_request_topic_9)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_offset_commit_request_9(Args) ->
@@ -1616,7 +1619,7 @@ encode_offset_commit_request_topic_9(
 ->
     [
         ?encode_compact_string(Name),
-        ?encode_compact_array(Partitions, fun encode_offset_commit_request_partition_9/1),
+        ?encode_compact_array(Partitions, ?encode_element(encode_offset_commit_request_partition_9)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_offset_commit_request_topic_9(Args) ->

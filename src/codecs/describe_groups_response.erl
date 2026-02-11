@@ -1,4 +1,7 @@
 -module(describe_groups_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_describe_groups_response_0/1,
     decode_describe_groups_response_0/1,
@@ -55,7 +58,7 @@ encode_describe_groups_response_0(
 ->
     [
         ?encode_response_header_0(CorrelationId),
-        ?encode_array(Groups, fun encode_described_group_0/1)
+        ?encode_array(Groups, ?encode_element(encode_described_group_0))
     ];
 encode_describe_groups_response_0(Args) ->
     ?encoder_error(Args, #{
@@ -167,7 +170,7 @@ encode_described_group_0(
         ?encode_string(GroupState),
         ?encode_string(ProtocolType),
         ?encode_string(ProtocolData),
-        ?encode_array(Members, fun encode_described_group_member_0/1)
+        ?encode_array(Members, ?encode_element(encode_described_group_member_0))
     ];
 encode_described_group_0(Args) ->
     ?encoder_error(Args, #{
@@ -221,7 +224,7 @@ encode_describe_groups_response_1(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_array(Groups, fun encode_described_group_1/1)
+        ?encode_array(Groups, ?encode_element(encode_described_group_1))
     ];
 encode_describe_groups_response_1(Args) ->
     ?encoder_error(Args, #{
@@ -336,7 +339,7 @@ encode_described_group_1(
         ?encode_string(GroupState),
         ?encode_string(ProtocolType),
         ?encode_string(ProtocolData),
-        ?encode_array(Members, fun encode_described_group_member_1/1)
+        ?encode_array(Members, ?encode_element(encode_described_group_member_1))
     ];
 encode_described_group_1(Args) ->
     ?encoder_error(Args, #{
@@ -390,7 +393,7 @@ encode_describe_groups_response_2(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_array(Groups, fun encode_described_group_2/1)
+        ?encode_array(Groups, ?encode_element(encode_described_group_2))
     ];
 encode_describe_groups_response_2(Args) ->
     ?encoder_error(Args, #{
@@ -505,7 +508,7 @@ encode_described_group_2(
         ?encode_string(GroupState),
         ?encode_string(ProtocolType),
         ?encode_string(ProtocolData),
-        ?encode_array(Members, fun encode_described_group_member_2/1)
+        ?encode_array(Members, ?encode_element(encode_described_group_member_2))
     ];
 encode_described_group_2(Args) ->
     ?encoder_error(Args, #{
@@ -559,7 +562,7 @@ encode_describe_groups_response_3(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_array(Groups, fun encode_described_group_3/1)
+        ?encode_array(Groups, ?encode_element(encode_described_group_3))
     ];
 encode_describe_groups_response_3(Args) ->
     ?encoder_error(Args, #{
@@ -677,7 +680,7 @@ encode_described_group_3(
         ?encode_string(GroupState),
         ?encode_string(ProtocolType),
         ?encode_string(ProtocolData),
-        ?encode_array(Members, fun encode_described_group_member_3/1),
+        ?encode_array(Members, ?encode_element(encode_described_group_member_3)),
         ?encode_int32(AuthorizedOperations)
     ];
 encode_described_group_3(Args) ->
@@ -735,7 +738,7 @@ encode_describe_groups_response_4(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_array(Groups, fun encode_described_group_4/1)
+        ?encode_array(Groups, ?encode_element(encode_described_group_4))
     ];
 encode_describe_groups_response_4(Args) ->
     ?encoder_error(Args, #{
@@ -860,7 +863,7 @@ encode_described_group_4(
         ?encode_string(GroupState),
         ?encode_string(ProtocolType),
         ?encode_string(ProtocolData),
-        ?encode_array(Members, fun encode_described_group_member_4/1),
+        ?encode_array(Members, ?encode_element(encode_described_group_member_4)),
         ?encode_int32(AuthorizedOperations)
     ];
 encode_described_group_4(Args) ->
@@ -918,7 +921,7 @@ encode_describe_groups_response_5(
     [
         ?encode_response_header_1(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_compact_array(Groups, fun encode_described_group_5/1),
+        ?encode_compact_array(Groups, ?encode_element(encode_described_group_5)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_describe_groups_response_5(Args) ->
@@ -1069,7 +1072,7 @@ encode_described_group_5(
         ?encode_compact_string(GroupState),
         ?encode_compact_string(ProtocolType),
         ?encode_compact_string(ProtocolData),
-        ?encode_compact_array(Members, fun encode_described_group_member_5/1),
+        ?encode_compact_array(Members, ?encode_element(encode_described_group_member_5)),
         ?encode_int32(AuthorizedOperations),
         ?EMPTY_TAG_BUFFER
     ];

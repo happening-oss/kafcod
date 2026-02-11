@@ -1,4 +1,7 @@
 -module(delete_groups_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_delete_groups_response_0/1,
     decode_delete_groups_response_0/1,
@@ -41,7 +44,7 @@ encode_delete_groups_response_0(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_array(Results, fun encode_deletable_group_result_0/1)
+        ?encode_array(Results, ?encode_element(encode_deletable_group_result_0))
     ];
 encode_delete_groups_response_0(Args) ->
     ?encoder_error(Args, #{
@@ -123,7 +126,7 @@ encode_delete_groups_response_1(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_array(Results, fun encode_deletable_group_result_1/1)
+        ?encode_array(Results, ?encode_element(encode_deletable_group_result_1))
     ];
 encode_delete_groups_response_1(Args) ->
     ?encoder_error(Args, #{
@@ -205,7 +208,7 @@ encode_delete_groups_response_2(
     [
         ?encode_response_header_1(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_compact_array(Results, fun encode_deletable_group_result_2/1),
+        ?encode_compact_array(Results, ?encode_element(encode_deletable_group_result_2)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_delete_groups_response_2(Args) ->

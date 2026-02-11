@@ -1,5 +1,10 @@
 {"1.2.0",
 [{<<"crc32cer">>,{pkg,<<"crc32cer">>,<<"0.1.11">>},0},
+ {<<"eqwalizer_support">>,
+  {git_subdir,"https://github.com/whatsapp/eqwalizer.git",
+              {ref,"c4d1098174cec06bd124855f3a28dfd6eda0a581"},
+              "eqwalizer_support"},
+  0},
  {<<"snappyer">>,{pkg,<<"snappyer">>,<<"1.2.9">>},0},
  {<<"telemetry">>,{pkg,<<"telemetry">>,<<"1.3.0">>},0},
  {<<"vsn_transform">>,{pkg,<<"vsn_transform">>,<<"1.0.2">>},0}]}.

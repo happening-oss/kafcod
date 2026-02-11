@@ -1,4 +1,7 @@
 -module(end_txn_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_end_txn_response_0/1,
     decode_end_txn_response_0/1,

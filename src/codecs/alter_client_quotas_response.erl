@@ -1,4 +1,7 @@
 -module(alter_client_quotas_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_alter_client_quotas_response_0/1,
     decode_alter_client_quotas_response_0/1,
@@ -39,7 +42,7 @@ encode_alter_client_quotas_response_0(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_array(Entries, fun encode_entry_data_0/1)
+        ?encode_array(Entries, ?encode_element(encode_entry_data_0))
     ];
 encode_alter_client_quotas_response_0(Args) ->
     ?encoder_error(Args, #{
@@ -121,7 +124,7 @@ encode_entry_data_0(
     [
         ?encode_int16(ErrorCode),
         ?encode_nullable_string(ErrorMessage),
-        ?encode_array(Entity, fun encode_entity_data_0/1)
+        ?encode_array(Entity, ?encode_element(encode_entity_data_0))
     ];
 encode_entry_data_0(Args) ->
     ?encoder_error(Args, #{
@@ -166,7 +169,7 @@ encode_alter_client_quotas_response_1(
     [
         ?encode_response_header_1(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_compact_array(Entries, fun encode_entry_data_1/1),
+        ?encode_compact_array(Entries, ?encode_element(encode_entry_data_1)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_alter_client_quotas_response_1(Args) ->
@@ -274,7 +277,7 @@ encode_entry_data_1(
     [
         ?encode_int16(ErrorCode),
         ?encode_compact_nullable_string(ErrorMessage),
-        ?encode_compact_array(Entity, fun encode_entity_data_1/1),
+        ?encode_compact_array(Entity, ?encode_element(encode_entity_data_1)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_entry_data_1(Args) ->

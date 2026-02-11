@@ -1,4 +1,7 @@
 -module(list_groups_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_list_groups_response_0/1,
     decode_list_groups_response_0/1,
@@ -53,7 +56,7 @@ encode_list_groups_response_0(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int16(ErrorCode),
-        ?encode_array(Groups, fun encode_listed_group_0/1)
+        ?encode_array(Groups, ?encode_element(encode_listed_group_0))
     ];
 encode_list_groups_response_0(Args) ->
     ?encoder_error(Args, #{
@@ -139,7 +142,7 @@ encode_list_groups_response_1(
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
         ?encode_int16(ErrorCode),
-        ?encode_array(Groups, fun encode_listed_group_1/1)
+        ?encode_array(Groups, ?encode_element(encode_listed_group_1))
     ];
 encode_list_groups_response_1(Args) ->
     ?encoder_error(Args, #{
@@ -228,7 +231,7 @@ encode_list_groups_response_2(
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
         ?encode_int16(ErrorCode),
-        ?encode_array(Groups, fun encode_listed_group_2/1)
+        ?encode_array(Groups, ?encode_element(encode_listed_group_2))
     ];
 encode_list_groups_response_2(Args) ->
     ?encoder_error(Args, #{
@@ -317,7 +320,7 @@ encode_list_groups_response_3(
         ?encode_response_header_1(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
         ?encode_int16(ErrorCode),
-        ?encode_compact_array(Groups, fun encode_listed_group_3/1),
+        ?encode_compact_array(Groups, ?encode_element(encode_listed_group_3)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_list_groups_response_3(Args) ->
@@ -432,7 +435,7 @@ encode_list_groups_response_4(
         ?encode_response_header_1(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
         ?encode_int16(ErrorCode),
-        ?encode_compact_array(Groups, fun encode_listed_group_4/1),
+        ?encode_compact_array(Groups, ?encode_element(encode_listed_group_4)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_list_groups_response_4(Args) ->
@@ -554,7 +557,7 @@ encode_list_groups_response_5(
         ?encode_response_header_1(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
         ?encode_int16(ErrorCode),
-        ?encode_compact_array(Groups, fun encode_listed_group_5/1),
+        ?encode_compact_array(Groups, ?encode_element(encode_listed_group_5)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_list_groups_response_5(Args) ->

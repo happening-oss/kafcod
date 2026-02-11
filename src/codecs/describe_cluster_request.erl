@@ -1,4 +1,7 @@
 -module(describe_cluster_request).
+
+%% This file is auto-generated.
+
 -export([
     encode_describe_cluster_request_0/1,
     decode_describe_cluster_request_0/1,

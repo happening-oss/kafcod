@@ -1,4 +1,7 @@
 -module(leave_group_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_leave_group_response_0/1,
     decode_leave_group_response_0/1,
@@ -179,7 +182,7 @@ encode_leave_group_response_3(
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
         ?encode_int16(ErrorCode),
-        ?encode_array(Members, fun encode_member_response_3/1)
+        ?encode_array(Members, ?encode_element(encode_member_response_3))
     ];
 encode_leave_group_response_3(Args) ->
     ?encoder_error(Args, #{
@@ -275,7 +278,7 @@ encode_leave_group_response_4(
         ?encode_response_header_1(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
         ?encode_int16(ErrorCode),
-        ?encode_compact_array(Members, fun encode_member_response_4/1),
+        ?encode_compact_array(Members, ?encode_element(encode_member_response_4)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_leave_group_response_4(Args) ->
@@ -397,7 +400,7 @@ encode_leave_group_response_5(
         ?encode_response_header_1(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
         ?encode_int16(ErrorCode),
-        ?encode_compact_array(Members, fun encode_member_response_5/1),
+        ?encode_compact_array(Members, ?encode_element(encode_member_response_5)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_leave_group_response_5(Args) ->

@@ -1,4 +1,7 @@
 -module(find_coordinator_request).
+
+%% This file is auto-generated.
+
 -export([
     encode_find_coordinator_request_0/1,
     decode_find_coordinator_request_0/1,

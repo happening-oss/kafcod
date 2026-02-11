@@ -1,4 +1,7 @@
 -module(sync_group_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_sync_group_response_0/1,
     decode_sync_group_response_0/1,

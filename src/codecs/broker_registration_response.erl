@@ -1,4 +1,7 @@
 -module(broker_registration_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_broker_registration_response_0/1,
     decode_broker_registration_response_0/1,

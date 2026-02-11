@@ -1,4 +1,7 @@
 -module(add_offsets_to_txn_request).
+
+%% This file is auto-generated.
+
 -export([
     encode_add_offsets_to_txn_request_0/1,
     decode_add_offsets_to_txn_request_0/1,

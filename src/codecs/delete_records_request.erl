@@ -1,4 +1,7 @@
 -module(delete_records_request).
+
+%% This file is auto-generated.
+
 -export([
     encode_delete_records_request_0/1,
     decode_delete_records_request_0/1,
@@ -47,7 +50,7 @@ encode_delete_records_request_0(
 ->
     [
         ?encode_request_header_1(?DELETE_RECORDS_REQUEST, 0, CorrelationId, ClientId),
-        ?encode_array(Topics, fun encode_delete_records_topic_0/1),
+        ?encode_array(Topics, ?encode_element(encode_delete_records_topic_0)),
         ?encode_int32(TimeoutMs)
     ];
 encode_delete_records_request_0(Args) ->
@@ -127,7 +130,7 @@ encode_delete_records_topic_0(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(Partitions, fun encode_delete_records_partition_0/1)
+        ?encode_array(Partitions, ?encode_element(encode_delete_records_partition_0))
     ];
 encode_delete_records_topic_0(Args) ->
     ?encoder_error(Args, #{
@@ -171,7 +174,7 @@ encode_delete_records_request_1(
 ->
     [
         ?encode_request_header_1(?DELETE_RECORDS_REQUEST, 1, CorrelationId, ClientId),
-        ?encode_array(Topics, fun encode_delete_records_topic_1/1),
+        ?encode_array(Topics, ?encode_element(encode_delete_records_topic_1)),
         ?encode_int32(TimeoutMs)
     ];
 encode_delete_records_request_1(Args) ->
@@ -251,7 +254,7 @@ encode_delete_records_topic_1(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(Partitions, fun encode_delete_records_partition_1/1)
+        ?encode_array(Partitions, ?encode_element(encode_delete_records_partition_1))
     ];
 encode_delete_records_topic_1(Args) ->
     ?encoder_error(Args, #{
@@ -295,7 +298,7 @@ encode_delete_records_request_2(
 ->
     [
         ?encode_request_header_2(?DELETE_RECORDS_REQUEST, 2, CorrelationId, ClientId),
-        ?encode_compact_array(Topics, fun encode_delete_records_topic_2/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_delete_records_topic_2)),
         ?encode_int32(TimeoutMs),
         ?EMPTY_TAG_BUFFER
     ];
@@ -401,7 +404,7 @@ encode_delete_records_topic_2(
 ->
     [
         ?encode_compact_string(Name),
-        ?encode_compact_array(Partitions, fun encode_delete_records_partition_2/1),
+        ?encode_compact_array(Partitions, ?encode_element(encode_delete_records_partition_2)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_delete_records_topic_2(Args) ->

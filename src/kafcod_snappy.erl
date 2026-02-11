@@ -9,7 +9,7 @@
 compress(Input) ->
     snappyer:compress(Input).
 
--spec decompress(Input :: iodata()) -> {ok, binary()} | {error, binary()}.
+-spec decompress(Input :: binary()) -> {ok, binary()} | {error, binary()}.
 
 % Kafka uses a non-standard framing format, as defined by the xerial Java library; see
 % https://github.com/xerial/snappy-java/blob/develop/src/main/java/org/xerial/snappy/SnappyCodec.java#L51

@@ -1,4 +1,7 @@
 -module(end_quorum_epoch_request).
+
+%% This file is auto-generated.
+
 -export([
     encode_end_quorum_epoch_request_0/1,
     decode_end_quorum_epoch_request_0/1
@@ -36,7 +39,7 @@ encode_end_quorum_epoch_request_0(
     [
         ?encode_request_header_1(?END_QUORUM_EPOCH_REQUEST, 0, CorrelationId, ClientId),
         ?encode_nullable_string(ClusterId),
-        ?encode_array(Topics, fun encode_topic_data_0/1)
+        ?encode_array(Topics, ?encode_element(encode_topic_data_0))
     ];
 encode_end_quorum_epoch_request_0(Args) ->
     ?encoder_error(Args, #{
@@ -128,7 +131,7 @@ encode_topic_data_0(
 ->
     [
         ?encode_string(TopicName),
-        ?encode_array(Partitions, fun encode_partition_data_0/1)
+        ?encode_array(Partitions, ?encode_element(encode_partition_data_0))
     ];
 encode_topic_data_0(Args) ->
     ?encoder_error(Args, #{

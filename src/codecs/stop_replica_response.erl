@@ -1,4 +1,7 @@
 -module(stop_replica_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_stop_replica_response_0/1,
     decode_stop_replica_response_0/1,
@@ -49,7 +52,7 @@ encode_stop_replica_response_0(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int16(ErrorCode),
-        ?encode_array(PartitionErrors, fun encode_stop_replica_partition_error_0/1)
+        ?encode_array(PartitionErrors, ?encode_element(encode_stop_replica_partition_error_0))
     ];
 encode_stop_replica_response_0(Args) ->
     ?encoder_error(Args, #{
@@ -138,7 +141,7 @@ encode_stop_replica_response_1(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int16(ErrorCode),
-        ?encode_array(PartitionErrors, fun encode_stop_replica_partition_error_1/1)
+        ?encode_array(PartitionErrors, ?encode_element(encode_stop_replica_partition_error_1))
     ];
 encode_stop_replica_response_1(Args) ->
     ?encoder_error(Args, #{
@@ -227,7 +230,7 @@ encode_stop_replica_response_2(
     [
         ?encode_response_header_1(CorrelationId),
         ?encode_int16(ErrorCode),
-        ?encode_compact_array(PartitionErrors, fun encode_stop_replica_partition_error_2/1),
+        ?encode_compact_array(PartitionErrors, ?encode_element(encode_stop_replica_partition_error_2)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_stop_replica_response_2(Args) ->
@@ -342,7 +345,7 @@ encode_stop_replica_response_3(
     [
         ?encode_response_header_1(CorrelationId),
         ?encode_int16(ErrorCode),
-        ?encode_compact_array(PartitionErrors, fun encode_stop_replica_partition_error_3/1),
+        ?encode_compact_array(PartitionErrors, ?encode_element(encode_stop_replica_partition_error_3)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_stop_replica_response_3(Args) ->
@@ -457,7 +460,7 @@ encode_stop_replica_response_4(
     [
         ?encode_response_header_1(CorrelationId),
         ?encode_int16(ErrorCode),
-        ?encode_compact_array(PartitionErrors, fun encode_stop_replica_partition_error_4/1),
+        ?encode_compact_array(PartitionErrors, ?encode_element(encode_stop_replica_partition_error_4)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_stop_replica_response_4(Args) ->

@@ -1,4 +1,7 @@
 -module(consumer_group_heartbeat_request).
+
+%% This file is auto-generated.
+
 -export([
     encode_consumer_group_heartbeat_request_0/1,
     decode_consumer_group_heartbeat_request_0/1
@@ -65,7 +68,7 @@ encode_consumer_group_heartbeat_request_0(
         ?encode_int32(RebalanceTimeoutMs),
         ?encode_compact_nullable_array(SubscribedTopicNames, ?encode_compact_string_),
         ?encode_compact_nullable_string(ServerAssignor),
-        ?encode_compact_nullable_array(TopicPartitions, fun encode_topic_partitions_0/1),
+        ?encode_compact_nullable_array(TopicPartitions, ?encode_element(encode_topic_partitions_0)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_consumer_group_heartbeat_request_0(Args) ->

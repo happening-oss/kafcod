@@ -1,4 +1,7 @@
 -module(init_producer_id_request).
+
+%% This file is auto-generated.
+
 -export([
     encode_init_producer_id_request_0/1,
     decode_init_producer_id_request_0/1,

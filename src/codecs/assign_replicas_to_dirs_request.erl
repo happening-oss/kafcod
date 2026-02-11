@@ -1,4 +1,7 @@
 -module(assign_replicas_to_dirs_request).
+
+%% This file is auto-generated.
+
 -export([
     encode_assign_replicas_to_dirs_request_0/1,
     decode_assign_replicas_to_dirs_request_0/1
@@ -42,7 +45,7 @@ encode_assign_replicas_to_dirs_request_0(
         ?encode_request_header_2(?ASSIGN_REPLICAS_TO_DIRS_REQUEST, 0, CorrelationId, ClientId),
         ?encode_int32(BrokerId),
         ?encode_int64(BrokerEpoch),
-        ?encode_compact_array(Directories, fun encode_directory_data_0/1),
+        ?encode_compact_array(Directories, ?encode_element(encode_directory_data_0)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_assign_replicas_to_dirs_request_0(Args) ->
@@ -142,7 +145,7 @@ encode_topic_data_0(
 ->
     [
         ?encode_uuid(TopicId),
-        ?encode_compact_array(Partitions, fun encode_partition_data_0/1),
+        ?encode_compact_array(Partitions, ?encode_element(encode_partition_data_0)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_topic_data_0(Args) ->
@@ -192,7 +195,7 @@ encode_directory_data_0(
 ->
     [
         ?encode_uuid(Id),
-        ?encode_compact_array(Topics, fun encode_topic_data_0/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_topic_data_0)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_directory_data_0(Args) ->

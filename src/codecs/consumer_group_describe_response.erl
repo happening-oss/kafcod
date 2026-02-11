@@ -1,4 +1,7 @@
 -module(consumer_group_describe_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_consumer_group_describe_response_0/1,
     decode_consumer_group_describe_response_0/1
@@ -36,7 +39,7 @@ encode_consumer_group_describe_response_0(
     [
         ?encode_response_header_1(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_compact_array(Groups, fun encode_described_group_0/1),
+        ?encode_compact_array(Groups, ?encode_element(encode_described_group_0)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_consumer_group_describe_response_0(Args) ->
@@ -223,7 +226,7 @@ encode_described_group_0(
         ?encode_int32(GroupEpoch),
         ?encode_int32(AssignmentEpoch),
         ?encode_compact_string(AssignorName),
-        ?encode_compact_array(Members, fun encode_member_0/1),
+        ?encode_compact_array(Members, ?encode_element(encode_member_0)),
         ?encode_int32(AuthorizedOperations),
         ?EMPTY_TAG_BUFFER
     ];
@@ -292,7 +295,7 @@ encode_assignment_0(
     ?is_array(TopicPartitions)
 ->
     [
-        ?encode_compact_array(TopicPartitions, fun encode_topic_partitions_0/1),
+        ?encode_compact_array(TopicPartitions, ?encode_element(encode_topic_partitions_0)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_assignment_0(Args) ->

@@ -1,4 +1,7 @@
 -module(describe_cluster_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_describe_cluster_response_0/1,
     decode_describe_cluster_response_0/1,
@@ -56,7 +59,7 @@ encode_describe_cluster_response_0(
         ?encode_compact_nullable_string(ErrorMessage),
         ?encode_compact_string(ClusterId),
         ?encode_int32(ControllerId),
-        ?encode_compact_array(Brokers, fun encode_describe_cluster_broker_0/1),
+        ?encode_compact_array(Brokers, ?encode_element(encode_describe_cluster_broker_0)),
         ?encode_int32(ClusterAuthorizedOperations),
         ?EMPTY_TAG_BUFFER
     ];
@@ -217,7 +220,7 @@ encode_describe_cluster_response_1(
         ?encode_int8(EndpointType),
         ?encode_compact_string(ClusterId),
         ?encode_int32(ControllerId),
-        ?encode_compact_array(Brokers, fun encode_describe_cluster_broker_1/1),
+        ?encode_compact_array(Brokers, ?encode_element(encode_describe_cluster_broker_1)),
         ?encode_int32(ClusterAuthorizedOperations),
         ?EMPTY_TAG_BUFFER
     ];

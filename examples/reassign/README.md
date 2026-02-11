@@ -6,15 +6,30 @@ The `reassign` script shows how to use the `AlterPartitionReassignments`, `ListP
 More importantly, it provides an alternative to `kafka-reassign-partitions.sh`, where you don't need to generate a JSON
 file with the reassignment plan.
 
-## Building it
+## Building
 
-In the `examples/reassign` directory, run `make`. It will generate an escript.
+```bash
+# Automated setup (creates _checkouts/kafcod symlink and builds)
+./setup.sh
 
-## Examples
+# Or using Make
+make
+```
 
-Move the listed partitions of a particular topic to different brokers:
+**First-time setup**: The build requires a `_checkouts/kafcod` symlink to the parent directory. The `setup.sh` script creates this automatically. If building manually, create it with:
+```bash
+mkdir -p _checkouts && ln -sf ../../.. _checkouts/kafcod
+```
 
-```sh
+## Usage
+
+### List active reassignments
+```bash
+./reassign --bootstrap localhost:9092 list-partition-reassignments
+```
+
+### Reassign partitions
+```bash
 ./reassign \
     --bootstrap localhost:9092 reassign-partitions \
     --topic customer_campaign \
@@ -24,6 +39,7 @@ Move the listed partitions of a particular topic to different brokers:
     --shuffle \
     --keep-leader
 ```
+
 
 ## Details
 
@@ -38,6 +54,3 @@ Move the listed partitions of a particular topic to different brokers:
 - `--shuffle`: for each partition, shuffle the list of replicas. Without this, all of the partitions will be assigned
   directly, meaning that they'll all have the same leader and the same replicas (you probably don't want this).
 - `--keep-leader`: keep the existing leader, even if it's not in the `--to` list.
-
-Note that Kafka reassigns the partitions in the background. To see the list of outstanding requests, use `./reassign
-list-partition-reassignments`.

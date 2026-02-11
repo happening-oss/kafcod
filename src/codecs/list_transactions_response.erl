@@ -1,4 +1,7 @@
 -module(list_transactions_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_list_transactions_response_0/1,
     decode_list_transactions_response_0/1,
@@ -43,7 +46,7 @@ encode_list_transactions_response_0(
         ?encode_int32(ThrottleTimeMs),
         ?encode_int16(ErrorCode),
         ?encode_compact_array(UnknownStateFilters, ?encode_compact_string_),
-        ?encode_compact_array(TransactionStates, fun encode_transaction_state_0/1),
+        ?encode_compact_array(TransactionStates, ?encode_element(encode_transaction_state_0)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_list_transactions_response_0(Args) ->
@@ -168,7 +171,7 @@ encode_list_transactions_response_1(
         ?encode_int32(ThrottleTimeMs),
         ?encode_int16(ErrorCode),
         ?encode_compact_array(UnknownStateFilters, ?encode_compact_string_),
-        ?encode_compact_array(TransactionStates, fun encode_transaction_state_1/1),
+        ?encode_compact_array(TransactionStates, ?encode_element(encode_transaction_state_1)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_list_transactions_response_1(Args) ->

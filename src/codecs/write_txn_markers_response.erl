@@ -1,4 +1,7 @@
 -module(write_txn_markers_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_write_txn_markers_response_0/1,
     decode_write_txn_markers_response_0/1,
@@ -37,7 +40,7 @@ encode_write_txn_markers_response_0(
 ->
     [
         ?encode_response_header_0(CorrelationId),
-        ?encode_array(Markers, fun encode_writable_txn_marker_result_0/1)
+        ?encode_array(Markers, ?encode_element(encode_writable_txn_marker_result_0))
     ];
 encode_write_txn_markers_response_0(Args) ->
     ?encoder_error(Args, #{
@@ -112,7 +115,7 @@ encode_writable_txn_marker_topic_result_0(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(Partitions, fun encode_writable_txn_marker_partition_result_0/1)
+        ?encode_array(Partitions, ?encode_element(encode_writable_txn_marker_partition_result_0))
     ];
 encode_writable_txn_marker_topic_result_0(Args) ->
     ?encoder_error(Args, #{
@@ -150,7 +153,7 @@ encode_writable_txn_marker_result_0(
 ->
     [
         ?encode_int64(ProducerId),
-        ?encode_array(Topics, fun encode_writable_txn_marker_topic_result_0/1)
+        ?encode_array(Topics, ?encode_element(encode_writable_txn_marker_topic_result_0))
     ];
 encode_writable_txn_marker_result_0(Args) ->
     ?encoder_error(Args, #{
@@ -188,7 +191,7 @@ encode_write_txn_markers_response_1(
 ->
     [
         ?encode_response_header_1(CorrelationId),
-        ?encode_compact_array(Markers, fun encode_writable_txn_marker_result_1/1),
+        ?encode_compact_array(Markers, ?encode_element(encode_writable_txn_marker_result_1)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_write_txn_markers_response_1(Args) ->
@@ -289,7 +292,7 @@ encode_writable_txn_marker_topic_result_1(
 ->
     [
         ?encode_compact_string(Name),
-        ?encode_compact_array(Partitions, fun encode_writable_txn_marker_partition_result_1/1),
+        ?encode_compact_array(Partitions, ?encode_element(encode_writable_txn_marker_partition_result_1)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_writable_txn_marker_topic_result_1(Args) ->
@@ -340,7 +343,7 @@ encode_writable_txn_marker_result_1(
 ->
     [
         ?encode_int64(ProducerId),
-        ?encode_compact_array(Topics, fun encode_writable_txn_marker_topic_result_1/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_writable_txn_marker_topic_result_1)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_writable_txn_marker_result_1(Args) ->

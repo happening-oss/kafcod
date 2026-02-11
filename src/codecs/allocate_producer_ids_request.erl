@@ -1,4 +1,7 @@
 -module(allocate_producer_ids_request).
+
+%% This file is auto-generated.
+
 -export([
     encode_allocate_producer_ids_request_0/1,
     decode_allocate_producer_ids_request_0/1

@@ -1,4 +1,7 @@
 -module(describe_quorum_request).
+
+%% This file is auto-generated.
+
 -export([
     encode_describe_quorum_request_0/1,
     decode_describe_quorum_request_0/1,
@@ -38,7 +41,7 @@ encode_describe_quorum_request_0(
 ->
     [
         ?encode_request_header_2(?DESCRIBE_QUORUM_REQUEST, 0, CorrelationId, ClientId),
-        ?encode_compact_array(Topics, fun encode_topic_data_0/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_topic_data_0)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_describe_quorum_request_0(Args) ->
@@ -132,7 +135,7 @@ encode_topic_data_0(
 ->
     [
         ?encode_compact_string(TopicName),
-        ?encode_compact_array(Partitions, fun encode_partition_data_0/1),
+        ?encode_compact_array(Partitions, ?encode_element(encode_partition_data_0)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_topic_data_0(Args) ->
@@ -185,7 +188,7 @@ encode_describe_quorum_request_1(
 ->
     [
         ?encode_request_header_2(?DESCRIBE_QUORUM_REQUEST, 1, CorrelationId, ClientId),
-        ?encode_compact_array(Topics, fun encode_topic_data_1/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_topic_data_1)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_describe_quorum_request_1(Args) ->
@@ -279,7 +282,7 @@ encode_topic_data_1(
 ->
     [
         ?encode_compact_string(TopicName),
-        ?encode_compact_array(Partitions, fun encode_partition_data_1/1),
+        ?encode_compact_array(Partitions, ?encode_element(encode_partition_data_1)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_topic_data_1(Args) ->

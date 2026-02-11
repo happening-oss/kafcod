@@ -1,4 +1,7 @@
 -module(incremental_alter_configs_request).
+
+%% This file is auto-generated.
+
 -export([
     encode_incremental_alter_configs_request_0/1,
     decode_incremental_alter_configs_request_0/1,
@@ -42,7 +45,7 @@ encode_incremental_alter_configs_request_0(
 ->
     [
         ?encode_request_header_1(?INCREMENTAL_ALTER_CONFIGS_REQUEST, 0, CorrelationId, ClientId),
-        ?encode_array(Resources, fun encode_alter_configs_resource_0/1),
+        ?encode_array(Resources, ?encode_element(encode_alter_configs_resource_0)),
         ?encode_bool(ValidateOnly)
     ];
 encode_incremental_alter_configs_request_0(Args) ->
@@ -133,7 +136,7 @@ encode_alter_configs_resource_0(
     [
         ?encode_int8(ResourceType),
         ?encode_string(ResourceName),
-        ?encode_array(Configs, fun encode_alterable_config_0/1)
+        ?encode_array(Configs, ?encode_element(encode_alterable_config_0))
     ];
 encode_alter_configs_resource_0(Args) ->
     ?encoder_error(Args, #{
@@ -180,7 +183,7 @@ encode_incremental_alter_configs_request_1(
 ->
     [
         ?encode_request_header_2(?INCREMENTAL_ALTER_CONFIGS_REQUEST, 1, CorrelationId, ClientId),
-        ?encode_compact_array(Resources, fun encode_alter_configs_resource_1/1),
+        ?encode_compact_array(Resources, ?encode_element(encode_alter_configs_resource_1)),
         ?encode_bool(ValidateOnly),
         ?EMPTY_TAG_BUFFER
     ];
@@ -297,7 +300,7 @@ encode_alter_configs_resource_1(
     [
         ?encode_int8(ResourceType),
         ?encode_compact_string(ResourceName),
-        ?encode_compact_array(Configs, fun encode_alterable_config_1/1),
+        ?encode_compact_array(Configs, ?encode_element(encode_alterable_config_1)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_alter_configs_resource_1(Args) ->

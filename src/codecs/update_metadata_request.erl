@@ -1,4 +1,7 @@
 -module(update_metadata_request).
+
+%% This file is auto-generated.
+
 -export([
     encode_update_metadata_request_0/1,
     decode_update_metadata_request_0/1,
@@ -96,8 +99,8 @@ encode_update_metadata_request_0(
         ?encode_request_header_1(?UPDATE_METADATA_REQUEST, 0, CorrelationId, ClientId),
         ?encode_int32(ControllerId),
         ?encode_int32(ControllerEpoch),
-        ?encode_array(UngroupedPartitionStates, fun encode_update_metadata_partition_state_0/1),
-        ?encode_array(LiveBrokers, fun encode_update_metadata_broker_0/1)
+        ?encode_array(UngroupedPartitionStates, ?encode_element(encode_update_metadata_partition_state_0)),
+        ?encode_array(LiveBrokers, ?encode_element(encode_update_metadata_broker_0))
     ];
 encode_update_metadata_request_0(Args) ->
     ?encoder_error(Args, #{
@@ -282,8 +285,8 @@ encode_update_metadata_request_1(
         ?encode_request_header_1(?UPDATE_METADATA_REQUEST, 1, CorrelationId, ClientId),
         ?encode_int32(ControllerId),
         ?encode_int32(ControllerEpoch),
-        ?encode_array(UngroupedPartitionStates, fun encode_update_metadata_partition_state_1/1),
-        ?encode_array(LiveBrokers, fun encode_update_metadata_broker_1/1)
+        ?encode_array(UngroupedPartitionStates, ?encode_element(encode_update_metadata_partition_state_1)),
+        ?encode_array(LiveBrokers, ?encode_element(encode_update_metadata_broker_1))
     ];
 encode_update_metadata_request_1(Args) ->
     ?encoder_error(Args, #{
@@ -375,7 +378,7 @@ encode_update_metadata_broker_1(
 ->
     [
         ?encode_int32(Id),
-        ?encode_array(Endpoints, fun encode_update_metadata_endpoint_1/1)
+        ?encode_array(Endpoints, ?encode_element(encode_update_metadata_endpoint_1))
     ];
 encode_update_metadata_broker_1(Args) ->
     ?encoder_error(Args, #{
@@ -506,8 +509,8 @@ encode_update_metadata_request_2(
         ?encode_request_header_1(?UPDATE_METADATA_REQUEST, 2, CorrelationId, ClientId),
         ?encode_int32(ControllerId),
         ?encode_int32(ControllerEpoch),
-        ?encode_array(UngroupedPartitionStates, fun encode_update_metadata_partition_state_2/1),
-        ?encode_array(LiveBrokers, fun encode_update_metadata_broker_2/1)
+        ?encode_array(UngroupedPartitionStates, ?encode_element(encode_update_metadata_partition_state_2)),
+        ?encode_array(LiveBrokers, ?encode_element(encode_update_metadata_broker_2))
     ];
 encode_update_metadata_request_2(Args) ->
     ?encoder_error(Args, #{
@@ -602,7 +605,7 @@ encode_update_metadata_broker_2(
 ->
     [
         ?encode_int32(Id),
-        ?encode_array(Endpoints, fun encode_update_metadata_endpoint_2/1),
+        ?encode_array(Endpoints, ?encode_element(encode_update_metadata_endpoint_2)),
         ?encode_nullable_string(Rack)
     ];
 encode_update_metadata_broker_2(Args) ->
@@ -737,8 +740,8 @@ encode_update_metadata_request_3(
         ?encode_request_header_1(?UPDATE_METADATA_REQUEST, 3, CorrelationId, ClientId),
         ?encode_int32(ControllerId),
         ?encode_int32(ControllerEpoch),
-        ?encode_array(UngroupedPartitionStates, fun encode_update_metadata_partition_state_3/1),
-        ?encode_array(LiveBrokers, fun encode_update_metadata_broker_3/1)
+        ?encode_array(UngroupedPartitionStates, ?encode_element(encode_update_metadata_partition_state_3)),
+        ?encode_array(LiveBrokers, ?encode_element(encode_update_metadata_broker_3))
     ];
 encode_update_metadata_request_3(Args) ->
     ?encoder_error(Args, #{
@@ -840,7 +843,7 @@ encode_update_metadata_broker_3(
 ->
     [
         ?encode_int32(Id),
-        ?encode_array(Endpoints, fun encode_update_metadata_endpoint_3/1),
+        ?encode_array(Endpoints, ?encode_element(encode_update_metadata_endpoint_3)),
         ?encode_nullable_string(Rack)
     ];
 encode_update_metadata_broker_3(Args) ->
@@ -975,8 +978,8 @@ encode_update_metadata_request_4(
         ?encode_request_header_1(?UPDATE_METADATA_REQUEST, 4, CorrelationId, ClientId),
         ?encode_int32(ControllerId),
         ?encode_int32(ControllerEpoch),
-        ?encode_array(UngroupedPartitionStates, fun encode_update_metadata_partition_state_4/1),
-        ?encode_array(LiveBrokers, fun encode_update_metadata_broker_4/1)
+        ?encode_array(UngroupedPartitionStates, ?encode_element(encode_update_metadata_partition_state_4)),
+        ?encode_array(LiveBrokers, ?encode_element(encode_update_metadata_broker_4))
     ];
 encode_update_metadata_request_4(Args) ->
     ?encoder_error(Args, #{
@@ -1078,7 +1081,7 @@ encode_update_metadata_broker_4(
 ->
     [
         ?encode_int32(Id),
-        ?encode_array(Endpoints, fun encode_update_metadata_endpoint_4/1),
+        ?encode_array(Endpoints, ?encode_element(encode_update_metadata_endpoint_4)),
         ?encode_nullable_string(Rack)
     ];
 encode_update_metadata_broker_4(Args) ->
@@ -1224,8 +1227,8 @@ encode_update_metadata_request_5(
         ?encode_int32(ControllerId),
         ?encode_int32(ControllerEpoch),
         ?encode_int64(BrokerEpoch),
-        ?encode_array(TopicStates, fun encode_update_metadata_topic_state_5/1),
-        ?encode_array(LiveBrokers, fun encode_update_metadata_broker_5/1)
+        ?encode_array(TopicStates, ?encode_element(encode_update_metadata_topic_state_5)),
+        ?encode_array(LiveBrokers, ?encode_element(encode_update_metadata_broker_5))
     ];
 encode_update_metadata_request_5(Args) ->
     ?encoder_error(Args, #{
@@ -1275,7 +1278,7 @@ encode_update_metadata_topic_state_5(
 ->
     [
         ?encode_string(TopicName),
-        ?encode_array(PartitionStates, fun encode_update_metadata_partition_state_5/1)
+        ?encode_array(PartitionStates, ?encode_element(encode_update_metadata_partition_state_5))
     ];
 encode_update_metadata_topic_state_5(Args) ->
     ?encoder_error(Args, #{
@@ -1368,7 +1371,7 @@ encode_update_metadata_broker_5(
 ->
     [
         ?encode_int32(Id),
-        ?encode_array(Endpoints, fun encode_update_metadata_endpoint_5/1),
+        ?encode_array(Endpoints, ?encode_element(encode_update_metadata_endpoint_5)),
         ?encode_nullable_string(Rack)
     ];
 encode_update_metadata_broker_5(Args) ->
@@ -1507,8 +1510,8 @@ encode_update_metadata_request_6(
         ?encode_int32(ControllerId),
         ?encode_int32(ControllerEpoch),
         ?encode_int64(BrokerEpoch),
-        ?encode_compact_array(TopicStates, fun encode_update_metadata_topic_state_6/1),
-        ?encode_compact_array(LiveBrokers, fun encode_update_metadata_broker_6/1),
+        ?encode_compact_array(TopicStates, ?encode_element(encode_update_metadata_topic_state_6)),
+        ?encode_compact_array(LiveBrokers, ?encode_element(encode_update_metadata_broker_6)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_update_metadata_request_6(Args) ->
@@ -1571,7 +1574,7 @@ encode_update_metadata_topic_state_6(
 ->
     [
         ?encode_compact_string(TopicName),
-        ?encode_compact_array(PartitionStates, fun encode_update_metadata_partition_state_6/1),
+        ?encode_compact_array(PartitionStates, ?encode_element(encode_update_metadata_partition_state_6)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_update_metadata_topic_state_6(Args) ->
@@ -1690,7 +1693,7 @@ encode_update_metadata_broker_6(
 ->
     [
         ?encode_int32(Id),
-        ?encode_compact_array(Endpoints, fun encode_update_metadata_endpoint_6/1),
+        ?encode_compact_array(Endpoints, ?encode_element(encode_update_metadata_endpoint_6)),
         ?encode_compact_nullable_string(Rack),
         ?EMPTY_TAG_BUFFER
     ];
@@ -1855,8 +1858,8 @@ encode_update_metadata_request_7(
         ?encode_int32(ControllerId),
         ?encode_int32(ControllerEpoch),
         ?encode_int64(BrokerEpoch),
-        ?encode_compact_array(TopicStates, fun encode_update_metadata_topic_state_7/1),
-        ?encode_compact_array(LiveBrokers, fun encode_update_metadata_broker_7/1),
+        ?encode_compact_array(TopicStates, ?encode_element(encode_update_metadata_topic_state_7)),
+        ?encode_compact_array(LiveBrokers, ?encode_element(encode_update_metadata_broker_7)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_update_metadata_request_7(Args) ->
@@ -1923,7 +1926,7 @@ encode_update_metadata_topic_state_7(
     [
         ?encode_compact_string(TopicName),
         ?encode_uuid(TopicId),
-        ?encode_compact_array(PartitionStates, fun encode_update_metadata_partition_state_7/1),
+        ?encode_compact_array(PartitionStates, ?encode_element(encode_update_metadata_partition_state_7)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_update_metadata_topic_state_7(Args) ->
@@ -2045,7 +2048,7 @@ encode_update_metadata_broker_7(
 ->
     [
         ?encode_int32(Id),
-        ?encode_compact_array(Endpoints, fun encode_update_metadata_endpoint_7/1),
+        ?encode_compact_array(Endpoints, ?encode_element(encode_update_metadata_endpoint_7)),
         ?encode_compact_nullable_string(Rack),
         ?EMPTY_TAG_BUFFER
     ];
@@ -2214,8 +2217,8 @@ encode_update_metadata_request_8(
         ?encode_bool(IsKRaftController),
         ?encode_int32(ControllerEpoch),
         ?encode_int64(BrokerEpoch),
-        ?encode_compact_array(TopicStates, fun encode_update_metadata_topic_state_8/1),
-        ?encode_compact_array(LiveBrokers, fun encode_update_metadata_broker_8/1),
+        ?encode_compact_array(TopicStates, ?encode_element(encode_update_metadata_topic_state_8)),
+        ?encode_compact_array(LiveBrokers, ?encode_element(encode_update_metadata_broker_8)),
         ?encode_tagged_fields(
             fun encode_update_metadata_request_8_tagged_field/2,
             Args
@@ -2303,7 +2306,7 @@ encode_update_metadata_topic_state_8(
     [
         ?encode_compact_string(TopicName),
         ?encode_uuid(TopicId),
-        ?encode_compact_array(PartitionStates, fun encode_update_metadata_partition_state_8/1),
+        ?encode_compact_array(PartitionStates, ?encode_element(encode_update_metadata_partition_state_8)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_update_metadata_topic_state_8(Args) ->
@@ -2425,7 +2428,7 @@ encode_update_metadata_broker_8(
 ->
     [
         ?encode_int32(Id),
-        ?encode_compact_array(Endpoints, fun encode_update_metadata_endpoint_8/1),
+        ?encode_compact_array(Endpoints, ?encode_element(encode_update_metadata_endpoint_8)),
         ?encode_compact_nullable_string(Rack),
         ?EMPTY_TAG_BUFFER
     ];

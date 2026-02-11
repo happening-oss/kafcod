@@ -1,4 +1,7 @@
 -module(leader_and_isr_request).
+
+%% This file is auto-generated.
+
 -export([
     encode_leader_and_isr_request_0/1,
     decode_leader_and_isr_request_0/1,
@@ -86,8 +89,8 @@ encode_leader_and_isr_request_0(
         ?encode_request_header_1(?LEADER_AND_ISR_REQUEST, 0, CorrelationId, ClientId),
         ?encode_int32(ControllerId),
         ?encode_int32(ControllerEpoch),
-        ?encode_array(UngroupedPartitionStates, fun encode_leader_and_isr_partition_state_0/1),
-        ?encode_array(LiveLeaders, fun encode_leader_and_isr_live_leader_0/1)
+        ?encode_array(UngroupedPartitionStates, ?encode_element(encode_leader_and_isr_partition_state_0)),
+        ?encode_array(LiveLeaders, ?encode_element(encode_leader_and_isr_live_leader_0))
     ];
 encode_leader_and_isr_request_0(Args) ->
     ?encoder_error(Args, #{
@@ -273,8 +276,8 @@ encode_leader_and_isr_request_1(
         ?encode_request_header_1(?LEADER_AND_ISR_REQUEST, 1, CorrelationId, ClientId),
         ?encode_int32(ControllerId),
         ?encode_int32(ControllerEpoch),
-        ?encode_array(UngroupedPartitionStates, fun encode_leader_and_isr_partition_state_1/1),
-        ?encode_array(LiveLeaders, fun encode_leader_and_isr_live_leader_1/1)
+        ?encode_array(UngroupedPartitionStates, ?encode_element(encode_leader_and_isr_partition_state_1)),
+        ?encode_array(LiveLeaders, ?encode_element(encode_leader_and_isr_live_leader_1))
     ];
 encode_leader_and_isr_request_1(Args) ->
     ?encoder_error(Args, #{
@@ -471,8 +474,8 @@ encode_leader_and_isr_request_2(
         ?encode_int32(ControllerId),
         ?encode_int32(ControllerEpoch),
         ?encode_int64(BrokerEpoch),
-        ?encode_array(TopicStates, fun encode_leader_and_isr_topic_state_2/1),
-        ?encode_array(LiveLeaders, fun encode_leader_and_isr_live_leader_2/1)
+        ?encode_array(TopicStates, ?encode_element(encode_leader_and_isr_topic_state_2)),
+        ?encode_array(LiveLeaders, ?encode_element(encode_leader_and_isr_live_leader_2))
     ];
 encode_leader_and_isr_request_2(Args) ->
     ?encoder_error(Args, #{
@@ -522,7 +525,7 @@ encode_leader_and_isr_topic_state_2(
 ->
     [
         ?encode_string(TopicName),
-        ?encode_array(PartitionStates, fun encode_leader_and_isr_partition_state_2/1)
+        ?encode_array(PartitionStates, ?encode_element(encode_leader_and_isr_partition_state_2))
     ];
 encode_leader_and_isr_topic_state_2(Args) ->
     ?encoder_error(Args, #{
@@ -703,8 +706,8 @@ encode_leader_and_isr_request_3(
         ?encode_int32(ControllerId),
         ?encode_int32(ControllerEpoch),
         ?encode_int64(BrokerEpoch),
-        ?encode_array(TopicStates, fun encode_leader_and_isr_topic_state_3/1),
-        ?encode_array(LiveLeaders, fun encode_leader_and_isr_live_leader_3/1)
+        ?encode_array(TopicStates, ?encode_element(encode_leader_and_isr_topic_state_3)),
+        ?encode_array(LiveLeaders, ?encode_element(encode_leader_and_isr_live_leader_3))
     ];
 encode_leader_and_isr_request_3(Args) ->
     ?encoder_error(Args, #{
@@ -754,7 +757,7 @@ encode_leader_and_isr_topic_state_3(
 ->
     [
         ?encode_string(TopicName),
-        ?encode_array(PartitionStates, fun encode_leader_and_isr_partition_state_3/1)
+        ?encode_array(PartitionStates, ?encode_element(encode_leader_and_isr_partition_state_3))
     ];
 encode_leader_and_isr_topic_state_3(Args) ->
     ?encoder_error(Args, #{
@@ -949,8 +952,8 @@ encode_leader_and_isr_request_4(
         ?encode_int32(ControllerId),
         ?encode_int32(ControllerEpoch),
         ?encode_int64(BrokerEpoch),
-        ?encode_compact_array(TopicStates, fun encode_leader_and_isr_topic_state_4/1),
-        ?encode_compact_array(LiveLeaders, fun encode_leader_and_isr_live_leader_4/1),
+        ?encode_compact_array(TopicStates, ?encode_element(encode_leader_and_isr_topic_state_4)),
+        ?encode_compact_array(LiveLeaders, ?encode_element(encode_leader_and_isr_live_leader_4)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_leader_and_isr_request_4(Args) ->
@@ -1013,7 +1016,7 @@ encode_leader_and_isr_topic_state_4(
 ->
     [
         ?encode_compact_string(TopicName),
-        ?encode_compact_array(PartitionStates, fun encode_leader_and_isr_partition_state_4/1),
+        ?encode_compact_array(PartitionStates, ?encode_element(encode_leader_and_isr_partition_state_4)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_leader_and_isr_topic_state_4(Args) ->
@@ -1251,8 +1254,8 @@ encode_leader_and_isr_request_5(
         ?encode_int32(ControllerEpoch),
         ?encode_int64(BrokerEpoch),
         ?encode_int8(Type),
-        ?encode_compact_array(TopicStates, fun encode_leader_and_isr_topic_state_5/1),
-        ?encode_compact_array(LiveLeaders, fun encode_leader_and_isr_live_leader_5/1),
+        ?encode_compact_array(TopicStates, ?encode_element(encode_leader_and_isr_topic_state_5)),
+        ?encode_compact_array(LiveLeaders, ?encode_element(encode_leader_and_isr_live_leader_5)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_leader_and_isr_request_5(Args) ->
@@ -1322,7 +1325,7 @@ encode_leader_and_isr_topic_state_5(
     [
         ?encode_compact_string(TopicName),
         ?encode_uuid(TopicId),
-        ?encode_compact_array(PartitionStates, fun encode_leader_and_isr_partition_state_5/1),
+        ?encode_compact_array(PartitionStates, ?encode_element(encode_leader_and_isr_partition_state_5)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_leader_and_isr_topic_state_5(Args) ->
@@ -1563,8 +1566,8 @@ encode_leader_and_isr_request_6(
         ?encode_int32(ControllerEpoch),
         ?encode_int64(BrokerEpoch),
         ?encode_int8(Type),
-        ?encode_compact_array(TopicStates, fun encode_leader_and_isr_topic_state_6/1),
-        ?encode_compact_array(LiveLeaders, fun encode_leader_and_isr_live_leader_6/1),
+        ?encode_compact_array(TopicStates, ?encode_element(encode_leader_and_isr_topic_state_6)),
+        ?encode_compact_array(LiveLeaders, ?encode_element(encode_leader_and_isr_live_leader_6)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_leader_and_isr_request_6(Args) ->
@@ -1634,7 +1637,7 @@ encode_leader_and_isr_topic_state_6(
     [
         ?encode_compact_string(TopicName),
         ?encode_uuid(TopicId),
-        ?encode_compact_array(PartitionStates, fun encode_leader_and_isr_partition_state_6/1),
+        ?encode_compact_array(PartitionStates, ?encode_element(encode_leader_and_isr_partition_state_6)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_leader_and_isr_topic_state_6(Args) ->
@@ -1886,8 +1889,8 @@ encode_leader_and_isr_request_7(
         ?encode_int32(ControllerEpoch),
         ?encode_int64(BrokerEpoch),
         ?encode_int8(Type),
-        ?encode_compact_array(TopicStates, fun encode_leader_and_isr_topic_state_7/1),
-        ?encode_compact_array(LiveLeaders, fun encode_leader_and_isr_live_leader_7/1),
+        ?encode_compact_array(TopicStates, ?encode_element(encode_leader_and_isr_topic_state_7)),
+        ?encode_compact_array(LiveLeaders, ?encode_element(encode_leader_and_isr_live_leader_7)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_leader_and_isr_request_7(Args) ->
@@ -1960,7 +1963,7 @@ encode_leader_and_isr_topic_state_7(
     [
         ?encode_compact_string(TopicName),
         ?encode_uuid(TopicId),
-        ?encode_compact_array(PartitionStates, fun encode_leader_and_isr_partition_state_7/1),
+        ?encode_compact_array(PartitionStates, ?encode_element(encode_leader_and_isr_partition_state_7)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_leader_and_isr_topic_state_7(Args) ->

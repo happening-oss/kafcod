@@ -1,4 +1,7 @@
 -module(offset_delete_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_offset_delete_response_0/1,
     decode_offset_delete_response_0/1
@@ -38,7 +41,7 @@ encode_offset_delete_response_0(
         ?encode_response_header_0(CorrelationId),
         ?encode_int16(ErrorCode),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_array(Topics, fun encode_offset_delete_response_topic_0/1)
+        ?encode_array(Topics, ?encode_element(encode_offset_delete_response_topic_0))
     ];
 encode_offset_delete_response_0(Args) ->
     ?encoder_error(Args, #{
@@ -119,7 +122,7 @@ encode_offset_delete_response_topic_0(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(Partitions, fun encode_offset_delete_response_partition_0/1)
+        ?encode_array(Partitions, ?encode_element(encode_offset_delete_response_partition_0))
     ];
 encode_offset_delete_response_topic_0(Args) ->
     ?encoder_error(Args, #{

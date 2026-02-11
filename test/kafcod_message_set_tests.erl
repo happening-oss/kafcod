@@ -46,3 +46,38 @@ prepare_message_set_test() ->
         kafcod_message_set:prepare_message_set(#{compression => none}, Messages)
     ),
     ok.
+
+prepare_message_set_all_nulls_test() ->
+    Messages = [
+        #{key => null, value => null, headers => []}
+    ],
+
+    ?assertMatch(
+        [
+            #{
+                attributes := #{compression := none},
+                records := [
+                    #{
+                        attributes := 0,
+                        value := null,
+                        key := null,
+                        timestamp_delta := 0,
+                        offset_delta := 0,
+                        headers := []
+                    }
+                ],
+                base_offset := 0,
+                base_sequence := _,
+                base_timestamp := _,
+                % Must be the same as the offset_delta of the last record.
+                last_offset_delta := 0,
+                magic := 2,
+                max_timestamp := _,
+                partition_leader_epoch := _,
+                producer_epoch := _,
+                producer_id := _
+            }
+        ],
+        kafcod_message_set:prepare_message_set(#{compression => none}, Messages)
+    ),
+    ok.

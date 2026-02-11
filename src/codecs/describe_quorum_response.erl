@@ -1,4 +1,7 @@
 -module(describe_quorum_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_describe_quorum_response_0/1,
     decode_describe_quorum_response_0/1,
@@ -40,7 +43,7 @@ encode_describe_quorum_response_0(
     [
         ?encode_response_header_1(CorrelationId),
         ?encode_int16(ErrorCode),
-        ?encode_compact_array(Topics, fun encode_topic_data_0/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_topic_data_0)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_describe_quorum_response_0(Args) ->
@@ -108,8 +111,8 @@ encode_partition_data_0(
         ?encode_int32(LeaderId),
         ?encode_int32(LeaderEpoch),
         ?encode_int64(HighWatermark),
-        ?encode_compact_array(CurrentVoters, fun encode_replica_state_0/1),
-        ?encode_compact_array(Observers, fun encode_replica_state_0/1),
+        ?encode_compact_array(CurrentVoters, ?encode_element(encode_replica_state_0)),
+        ?encode_compact_array(Observers, ?encode_element(encode_replica_state_0)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_partition_data_0(Args) ->
@@ -174,7 +177,7 @@ encode_topic_data_0(
 ->
     [
         ?encode_compact_string(TopicName),
-        ?encode_compact_array(Partitions, fun encode_partition_data_0/1),
+        ?encode_compact_array(Partitions, ?encode_element(encode_partition_data_0)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_topic_data_0(Args) ->
@@ -278,7 +281,7 @@ encode_describe_quorum_response_1(
     [
         ?encode_response_header_1(CorrelationId),
         ?encode_int16(ErrorCode),
-        ?encode_compact_array(Topics, fun encode_topic_data_1/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_topic_data_1)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_describe_quorum_response_1(Args) ->
@@ -346,8 +349,8 @@ encode_partition_data_1(
         ?encode_int32(LeaderId),
         ?encode_int32(LeaderEpoch),
         ?encode_int64(HighWatermark),
-        ?encode_compact_array(CurrentVoters, fun encode_replica_state_1/1),
-        ?encode_compact_array(Observers, fun encode_replica_state_1/1),
+        ?encode_compact_array(CurrentVoters, ?encode_element(encode_replica_state_1)),
+        ?encode_compact_array(Observers, ?encode_element(encode_replica_state_1)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_partition_data_1(Args) ->
@@ -412,7 +415,7 @@ encode_topic_data_1(
 ->
     [
         ?encode_compact_string(TopicName),
-        ?encode_compact_array(Partitions, fun encode_partition_data_1/1),
+        ?encode_compact_array(Partitions, ?encode_element(encode_partition_data_1)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_topic_data_1(Args) ->

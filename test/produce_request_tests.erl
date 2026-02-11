@@ -1,5 +1,6 @@
 -module(produce_request_tests).
 -include_lib("eunit/include/eunit.hrl").
+-include("catch.hrl").
 
 v7_encoded() ->
     % echo "ksagasgfsaeys-and-headers" | kcat -P -b localhost:9093 -t topic-a -p 1 -k the-key -H fodddo=bar -H baz=quuxsss
@@ -79,3 +80,62 @@ v7_encode_test() ->
     ?assertEqual(
         v7_encoded(), iolist_to_binary(produce_request:encode_produce_request_7(ProduceRequest))
     ).
+
+-define(CORRELATION_ID, 203569230).
+-define(CLIENT_ID, <<"CLIENT-ID-IN-HERE">>).
+
+v8_encode_test() ->
+    ProduceRequest = #{
+        correlation_id => ?CORRELATION_ID,
+        client_id => ?CLIENT_ID,
+
+        acks => -1,
+        timeout_ms => 5_000,
+        transactional_id => null,
+
+        % It turns out that it's valid to send a request with empty 'topic_data', or with empty 'partition_data' inside
+        % 'topic_data'. The broker returns a response with empty 'responses'. However, if you send empty 'records', the
+        % broker returns an INVALID_RECORD error.
+        topic_data => []
+    },
+    ?assertEqual(
+        <<0, 0, 0, 8, 12, 34, 56, 78, 0, 17, 67, 76, 73, 69, 78, 84, 45, 73, 68, 45, 73, 78, 45, 72,
+            69, 82, 69, 255, 255, 255, 255, 0, 0, 19, 136, 0, 0, 0, 0>>,
+        iolist_to_binary(produce_request:encode_produce_request_8(ProduceRequest))
+    ).
+
+v8_encode_null_records_error_test() ->
+    ProduceRequest = #{
+        correlation_id => ?CORRELATION_ID,
+        client_id => ?CLIENT_ID,
+
+        acks => -1,
+        timeout_ms => 5_000,
+        transactional_id => null,
+
+        topic_data => [
+            #{
+                name => <<"example">>,
+                partition_data => [
+                    #{
+                        index => 0,
+                        % Even though the JSON schema files say this is nullable; it isn't really. We should throw an
+                        % error.
+                        records => null
+                    }
+                ]
+            }
+        ]
+    },
+
+    {error, Reason = badarg, StackTrace} = ?CATCH(
+        produce_request:encode_produce_request_8(ProduceRequest)
+    ),
+    ?assertEqual(
+        #{
+            1 =>
+                "expected 'records' to be of type 'records', but has type 'null', value null"
+        },
+        kafcod_errors:format_error(Reason, StackTrace)
+    ),
+    ok.

@@ -1,4 +1,7 @@
 -module(sasl_authenticate_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_sasl_authenticate_response_0/1,
     decode_sasl_authenticate_response_0/1,

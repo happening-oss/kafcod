@@ -6,7 +6,9 @@
 -endif.
 
 version_seq({From, To}) when is_integer(From), is_integer(To), From =< To ->
-    lists:seq(From, To).
+    lists:seq(From, To);
+version_seq(none) ->
+    [].
 
 fields_for_version(Version, Fields) ->
     lists:filter(

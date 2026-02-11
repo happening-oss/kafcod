@@ -1,4 +1,7 @@
 -module(add_partitions_to_txn_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_add_partitions_to_txn_response_0/1,
     decode_add_partitions_to_txn_response_0/1,
@@ -61,7 +64,7 @@ encode_add_partitions_to_txn_response_0(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_array(ResultsByTopicV3AndBelow, fun encode_add_partitions_to_txn_topic_result_0/1)
+        ?encode_array(ResultsByTopicV3AndBelow, ?encode_element(encode_add_partitions_to_txn_topic_result_0))
     ];
 encode_add_partitions_to_txn_response_0(Args) ->
     ?encoder_error(Args, #{
@@ -139,7 +142,7 @@ encode_add_partitions_to_txn_topic_result_0(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(ResultsByPartition, fun encode_add_partitions_to_txn_partition_result_0/1)
+        ?encode_array(ResultsByPartition, ?encode_element(encode_add_partitions_to_txn_partition_result_0))
     ];
 encode_add_partitions_to_txn_topic_result_0(Args) ->
     ?encoder_error(Args, #{
@@ -181,7 +184,7 @@ encode_add_partitions_to_txn_response_1(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_array(ResultsByTopicV3AndBelow, fun encode_add_partitions_to_txn_topic_result_1/1)
+        ?encode_array(ResultsByTopicV3AndBelow, ?encode_element(encode_add_partitions_to_txn_topic_result_1))
     ];
 encode_add_partitions_to_txn_response_1(Args) ->
     ?encoder_error(Args, #{
@@ -259,7 +262,7 @@ encode_add_partitions_to_txn_topic_result_1(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(ResultsByPartition, fun encode_add_partitions_to_txn_partition_result_1/1)
+        ?encode_array(ResultsByPartition, ?encode_element(encode_add_partitions_to_txn_partition_result_1))
     ];
 encode_add_partitions_to_txn_topic_result_1(Args) ->
     ?encoder_error(Args, #{
@@ -301,7 +304,7 @@ encode_add_partitions_to_txn_response_2(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_array(ResultsByTopicV3AndBelow, fun encode_add_partitions_to_txn_topic_result_2/1)
+        ?encode_array(ResultsByTopicV3AndBelow, ?encode_element(encode_add_partitions_to_txn_topic_result_2))
     ];
 encode_add_partitions_to_txn_response_2(Args) ->
     ?encoder_error(Args, #{
@@ -379,7 +382,7 @@ encode_add_partitions_to_txn_topic_result_2(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(ResultsByPartition, fun encode_add_partitions_to_txn_partition_result_2/1)
+        ?encode_array(ResultsByPartition, ?encode_element(encode_add_partitions_to_txn_partition_result_2))
     ];
 encode_add_partitions_to_txn_topic_result_2(Args) ->
     ?encoder_error(Args, #{
@@ -421,7 +424,7 @@ encode_add_partitions_to_txn_response_3(
     [
         ?encode_response_header_1(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_compact_array(ResultsByTopicV3AndBelow, fun encode_add_partitions_to_txn_topic_result_3/1),
+        ?encode_compact_array(ResultsByTopicV3AndBelow, ?encode_element(encode_add_partitions_to_txn_topic_result_3)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_add_partitions_to_txn_response_3(Args) ->
@@ -525,7 +528,7 @@ encode_add_partitions_to_txn_topic_result_3(
 ->
     [
         ?encode_compact_string(Name),
-        ?encode_compact_array(ResultsByPartition, fun encode_add_partitions_to_txn_partition_result_3/1),
+        ?encode_compact_array(ResultsByPartition, ?encode_element(encode_add_partitions_to_txn_partition_result_3)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_add_partitions_to_txn_topic_result_3(Args) ->
@@ -584,7 +587,7 @@ encode_add_partitions_to_txn_response_4(
         ?encode_response_header_1(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
         ?encode_int16(ErrorCode),
-        ?encode_compact_array(ResultsByTransaction, fun encode_add_partitions_to_txn_result_4/1),
+        ?encode_compact_array(ResultsByTransaction, ?encode_element(encode_add_partitions_to_txn_result_4)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_add_partitions_to_txn_response_4(Args) ->
@@ -640,7 +643,7 @@ encode_add_partitions_to_txn_result_4(
 ->
     [
         ?encode_compact_string(TransactionalId),
-        ?encode_compact_array(TopicResults, fun encode_add_partitions_to_txn_topic_result_4/1),
+        ?encode_compact_array(TopicResults, ?encode_element(encode_add_partitions_to_txn_topic_result_4)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_add_partitions_to_txn_result_4(Args) ->
@@ -742,7 +745,7 @@ encode_add_partitions_to_txn_topic_result_4(
 ->
     [
         ?encode_compact_string(Name),
-        ?encode_compact_array(ResultsByPartition, fun encode_add_partitions_to_txn_partition_result_4/1),
+        ?encode_compact_array(ResultsByPartition, ?encode_element(encode_add_partitions_to_txn_partition_result_4)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_add_partitions_to_txn_topic_result_4(Args) ->
@@ -801,7 +804,7 @@ encode_add_partitions_to_txn_response_5(
         ?encode_response_header_1(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
         ?encode_int16(ErrorCode),
-        ?encode_compact_array(ResultsByTransaction, fun encode_add_partitions_to_txn_result_5/1),
+        ?encode_compact_array(ResultsByTransaction, ?encode_element(encode_add_partitions_to_txn_result_5)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_add_partitions_to_txn_response_5(Args) ->
@@ -857,7 +860,7 @@ encode_add_partitions_to_txn_result_5(
 ->
     [
         ?encode_compact_string(TransactionalId),
-        ?encode_compact_array(TopicResults, fun encode_add_partitions_to_txn_topic_result_5/1),
+        ?encode_compact_array(TopicResults, ?encode_element(encode_add_partitions_to_txn_topic_result_5)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_add_partitions_to_txn_result_5(Args) ->
@@ -959,7 +962,7 @@ encode_add_partitions_to_txn_topic_result_5(
 ->
     [
         ?encode_compact_string(Name),
-        ?encode_compact_array(ResultsByPartition, fun encode_add_partitions_to_txn_partition_result_5/1),
+        ?encode_compact_array(ResultsByPartition, ?encode_element(encode_add_partitions_to_txn_partition_result_5)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_add_partitions_to_txn_topic_result_5(Args) ->

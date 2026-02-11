@@ -1,4 +1,7 @@
 -module(renew_delegation_token_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_renew_delegation_token_response_0/1,
     decode_renew_delegation_token_response_0/1,

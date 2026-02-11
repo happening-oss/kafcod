@@ -1,4 +1,7 @@
 -module(consumer_protocol_subscription).
+
+%% This file is auto-generated.
+
 -export([
     encode_consumer_protocol_subscription_0/1,
     decode_consumer_protocol_subscription_0/1,
@@ -77,7 +80,7 @@ encode_consumer_protocol_subscription_1(
     [
         ?encode_array(Topics, ?encode_string_),
         ?encode_nullable_bytes(UserData),
-        ?encode_array(OwnedPartitions, fun encode_topic_partition_1/1)
+        ?encode_array(OwnedPartitions, ?encode_element(encode_topic_partition_1))
     ];
 encode_consumer_protocol_subscription_1(Args) ->
     ?encoder_error(Args, #{
@@ -157,7 +160,7 @@ encode_consumer_protocol_subscription_2(
     [
         ?encode_array(Topics, ?encode_string_),
         ?encode_nullable_bytes(UserData),
-        ?encode_array(OwnedPartitions, fun encode_topic_partition_2/1),
+        ?encode_array(OwnedPartitions, ?encode_element(encode_topic_partition_2)),
         ?encode_int32(GenerationId)
     ];
 encode_consumer_protocol_subscription_2(Args) ->
@@ -243,7 +246,7 @@ encode_consumer_protocol_subscription_3(
     [
         ?encode_array(Topics, ?encode_string_),
         ?encode_nullable_bytes(UserData),
-        ?encode_array(OwnedPartitions, fun encode_topic_partition_3/1),
+        ?encode_array(OwnedPartitions, ?encode_element(encode_topic_partition_3)),
         ?encode_int32(GenerationId),
         ?encode_nullable_string(RackId)
     ];

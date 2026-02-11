@@ -1,4 +1,7 @@
 -module(broker_registration_request).
+
+%% This file is auto-generated.
+
 -export([
     encode_broker_registration_request_0/1,
     decode_broker_registration_request_0/1,
@@ -67,8 +70,8 @@ encode_broker_registration_request_0(
         ?encode_int32(BrokerId),
         ?encode_compact_string(ClusterId),
         ?encode_uuid(IncarnationId),
-        ?encode_compact_array(Listeners, fun encode_listener_0/1),
-        ?encode_compact_array(Features, fun encode_feature_0/1),
+        ?encode_compact_array(Listeners, ?encode_element(encode_listener_0)),
+        ?encode_compact_array(Features, ?encode_element(encode_feature_0)),
         ?encode_compact_nullable_string(Rack),
         ?EMPTY_TAG_BUFFER
     ];
@@ -282,8 +285,8 @@ encode_broker_registration_request_1(
         ?encode_int32(BrokerId),
         ?encode_compact_string(ClusterId),
         ?encode_uuid(IncarnationId),
-        ?encode_compact_array(Listeners, fun encode_listener_1/1),
-        ?encode_compact_array(Features, fun encode_feature_1/1),
+        ?encode_compact_array(Listeners, ?encode_element(encode_listener_1)),
+        ?encode_compact_array(Features, ?encode_element(encode_feature_1)),
         ?encode_compact_nullable_string(Rack),
         ?encode_bool(IsMigratingZkBroker),
         ?EMPTY_TAG_BUFFER
@@ -504,8 +507,8 @@ encode_broker_registration_request_2(
         ?encode_int32(BrokerId),
         ?encode_compact_string(ClusterId),
         ?encode_uuid(IncarnationId),
-        ?encode_compact_array(Listeners, fun encode_listener_2/1),
-        ?encode_compact_array(Features, fun encode_feature_2/1),
+        ?encode_compact_array(Listeners, ?encode_element(encode_listener_2)),
+        ?encode_compact_array(Features, ?encode_element(encode_feature_2)),
         ?encode_compact_nullable_string(Rack),
         ?encode_bool(IsMigratingZkBroker),
         ?encode_compact_array(LogDirs, ?encode_uuid_),
@@ -733,8 +736,8 @@ encode_broker_registration_request_3(
         ?encode_int32(BrokerId),
         ?encode_compact_string(ClusterId),
         ?encode_uuid(IncarnationId),
-        ?encode_compact_array(Listeners, fun encode_listener_3/1),
-        ?encode_compact_array(Features, fun encode_feature_3/1),
+        ?encode_compact_array(Listeners, ?encode_element(encode_listener_3)),
+        ?encode_compact_array(Features, ?encode_element(encode_feature_3)),
         ?encode_compact_nullable_string(Rack),
         ?encode_bool(IsMigratingZkBroker),
         ?encode_compact_array(LogDirs, ?encode_uuid_),

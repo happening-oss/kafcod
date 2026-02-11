@@ -1,4 +1,7 @@
 -module(leader_and_isr_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_leader_and_isr_response_0/1,
     decode_leader_and_isr_response_0/1,
@@ -64,7 +67,7 @@ encode_leader_and_isr_response_0(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int16(ErrorCode),
-        ?encode_array(PartitionErrors, fun encode_leader_and_isr_partition_error_0/1)
+        ?encode_array(PartitionErrors, ?encode_element(encode_leader_and_isr_partition_error_0))
     ];
 encode_leader_and_isr_response_0(Args) ->
     ?encoder_error(Args, #{
@@ -153,7 +156,7 @@ encode_leader_and_isr_response_1(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int16(ErrorCode),
-        ?encode_array(PartitionErrors, fun encode_leader_and_isr_partition_error_1/1)
+        ?encode_array(PartitionErrors, ?encode_element(encode_leader_and_isr_partition_error_1))
     ];
 encode_leader_and_isr_response_1(Args) ->
     ?encoder_error(Args, #{
@@ -242,7 +245,7 @@ encode_leader_and_isr_response_2(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int16(ErrorCode),
-        ?encode_array(PartitionErrors, fun encode_leader_and_isr_partition_error_2/1)
+        ?encode_array(PartitionErrors, ?encode_element(encode_leader_and_isr_partition_error_2))
     ];
 encode_leader_and_isr_response_2(Args) ->
     ?encoder_error(Args, #{
@@ -331,7 +334,7 @@ encode_leader_and_isr_response_3(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int16(ErrorCode),
-        ?encode_array(PartitionErrors, fun encode_leader_and_isr_partition_error_3/1)
+        ?encode_array(PartitionErrors, ?encode_element(encode_leader_and_isr_partition_error_3))
     ];
 encode_leader_and_isr_response_3(Args) ->
     ?encoder_error(Args, #{
@@ -420,7 +423,7 @@ encode_leader_and_isr_response_4(
     [
         ?encode_response_header_1(CorrelationId),
         ?encode_int16(ErrorCode),
-        ?encode_compact_array(PartitionErrors, fun encode_leader_and_isr_partition_error_4/1),
+        ?encode_compact_array(PartitionErrors, ?encode_element(encode_leader_and_isr_partition_error_4)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_leader_and_isr_response_4(Args) ->
@@ -535,7 +538,7 @@ encode_leader_and_isr_response_5(
     [
         ?encode_response_header_1(CorrelationId),
         ?encode_int16(ErrorCode),
-        ?encode_compact_array(Topics, fun encode_leader_and_isr_topic_error_5/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_leader_and_isr_topic_error_5)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_leader_and_isr_response_5(Args) ->
@@ -588,7 +591,7 @@ encode_leader_and_isr_topic_error_5(
 ->
     [
         ?encode_uuid(TopicId),
-        ?encode_compact_array(PartitionErrors, fun encode_leader_and_isr_partition_error_5/1),
+        ?encode_compact_array(PartitionErrors, ?encode_element(encode_leader_and_isr_partition_error_5)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_leader_and_isr_topic_error_5(Args) ->
@@ -694,7 +697,7 @@ encode_leader_and_isr_response_6(
     [
         ?encode_response_header_1(CorrelationId),
         ?encode_int16(ErrorCode),
-        ?encode_compact_array(Topics, fun encode_leader_and_isr_topic_error_6/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_leader_and_isr_topic_error_6)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_leader_and_isr_response_6(Args) ->
@@ -747,7 +750,7 @@ encode_leader_and_isr_topic_error_6(
 ->
     [
         ?encode_uuid(TopicId),
-        ?encode_compact_array(PartitionErrors, fun encode_leader_and_isr_partition_error_6/1),
+        ?encode_compact_array(PartitionErrors, ?encode_element(encode_leader_and_isr_partition_error_6)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_leader_and_isr_topic_error_6(Args) ->
@@ -853,7 +856,7 @@ encode_leader_and_isr_response_7(
     [
         ?encode_response_header_1(CorrelationId),
         ?encode_int16(ErrorCode),
-        ?encode_compact_array(Topics, fun encode_leader_and_isr_topic_error_7/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_leader_and_isr_topic_error_7)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_leader_and_isr_response_7(Args) ->
@@ -906,7 +909,7 @@ encode_leader_and_isr_topic_error_7(
 ->
     [
         ?encode_uuid(TopicId),
-        ?encode_compact_array(PartitionErrors, fun encode_leader_and_isr_partition_error_7/1),
+        ?encode_compact_array(PartitionErrors, ?encode_element(encode_leader_and_isr_partition_error_7)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_leader_and_isr_topic_error_7(Args) ->

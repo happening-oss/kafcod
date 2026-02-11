@@ -1,4 +1,7 @@
 -module(write_txn_markers_request).
+
+%% This file is auto-generated.
+
 -export([
     encode_write_txn_markers_request_0/1,
     decode_write_txn_markers_request_0/1,
@@ -39,7 +42,7 @@ encode_write_txn_markers_request_0(
 ->
     [
         ?encode_request_header_1(?WRITE_TXN_MARKERS_REQUEST, 0, CorrelationId, ClientId),
-        ?encode_array(Markers, fun encode_writable_txn_marker_0/1)
+        ?encode_array(Markers, ?encode_element(encode_writable_txn_marker_0))
     ];
 encode_write_txn_markers_request_0(Args) ->
     ?encoder_error(Args, #{
@@ -126,7 +129,7 @@ encode_writable_txn_marker_0(
         ?encode_int64(ProducerId),
         ?encode_int16(ProducerEpoch),
         ?encode_bool(TransactionResult),
-        ?encode_array(Topics, fun encode_writable_txn_marker_topic_0/1),
+        ?encode_array(Topics, ?encode_element(encode_writable_txn_marker_topic_0)),
         ?encode_int32(CoordinatorEpoch)
     ];
 encode_writable_txn_marker_0(Args) ->
@@ -177,7 +180,7 @@ encode_write_txn_markers_request_1(
 ->
     [
         ?encode_request_header_2(?WRITE_TXN_MARKERS_REQUEST, 1, CorrelationId, ClientId),
-        ?encode_compact_array(Markers, fun encode_writable_txn_marker_1/1),
+        ?encode_compact_array(Markers, ?encode_element(encode_writable_txn_marker_1)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_write_txn_markers_request_1(Args) ->
@@ -290,7 +293,7 @@ encode_writable_txn_marker_1(
         ?encode_int64(ProducerId),
         ?encode_int16(ProducerEpoch),
         ?encode_bool(TransactionResult),
-        ?encode_compact_array(Topics, fun encode_writable_txn_marker_topic_1/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_writable_txn_marker_topic_1)),
         ?encode_int32(CoordinatorEpoch),
         ?EMPTY_TAG_BUFFER
     ];

@@ -51,11 +51,11 @@ produce_many(#{broker := {BootstrapHost, BootstrapPort}, topic := Topic, count :
     ],
 
     % Connect to the bootstrap broker.
-    {ok, Bootstrap} = kafka_connection:start_link(BootstrapHost, BootstrapPort, ?CLIENT_ID),
+    {ok, Bootstrap} = kafcod_connection:start_link(#{host => BootstrapHost, port => BootstrapPort}, #{client_id => ?CLIENT_ID}),
 
     {ok, #{
         topics := [#{name := Topic, error_code := 0, partitions := Partitions}], brokers := Brokers
-    }} = kafka_connection:call(
+    }} = kafcod_connection:call(
         Bootstrap,
         fun metadata_request:encode_metadata_request_7/1,
         #{
@@ -73,9 +73,9 @@ produce_many(#{broker := {BootstrapHost, BootstrapPort}, topic := Topic, count :
                 {Host, Port}
              || #{host := Host, port := Port, node_id := NodeId} <- Brokers, NodeId =:= LeaderId
             ],
-            {ok, Leader} = kafka_connection:start_link(LeaderHost, LeaderPort, ?CLIENT_ID),
+            {ok, Leader} = kafcod_connection:start_link(#{host => LeaderHost, port => LeaderPort}, #{client_id => ?CLIENT_ID}),
 
-            {ok, Response} = kafka_connection:call(
+            {ok, Response} = kafcod_connection:call(
                 Leader,
                 fun produce_request:encode_produce_request_7/1,
                 #{

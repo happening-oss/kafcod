@@ -1,4 +1,7 @@
 -module(describe_acls_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_describe_acls_response_0/1,
     decode_describe_acls_response_0/1,
@@ -57,7 +60,7 @@ encode_describe_acls_response_0(
         ?encode_int32(ThrottleTimeMs),
         ?encode_int16(ErrorCode),
         ?encode_nullable_string(ErrorMessage),
-        ?encode_array(Resources, fun encode_describe_acls_resource_0/1)
+        ?encode_array(Resources, ?encode_element(encode_describe_acls_resource_0))
     ];
 encode_describe_acls_response_0(Args) ->
     ?encoder_error(Args, #{
@@ -159,7 +162,7 @@ encode_describe_acls_resource_0(
     [
         ?encode_int8(ResourceType),
         ?encode_string(ResourceName),
-        ?encode_array(Acls, fun encode_acl_description_0/1)
+        ?encode_array(Acls, ?encode_element(encode_acl_description_0))
     ];
 encode_describe_acls_resource_0(Args) ->
     ?encoder_error(Args, #{
@@ -212,7 +215,7 @@ encode_describe_acls_response_1(
         ?encode_int32(ThrottleTimeMs),
         ?encode_int16(ErrorCode),
         ?encode_nullable_string(ErrorMessage),
-        ?encode_array(Resources, fun encode_describe_acls_resource_1/1)
+        ?encode_array(Resources, ?encode_element(encode_describe_acls_resource_1))
     ];
 encode_describe_acls_response_1(Args) ->
     ?encoder_error(Args, #{
@@ -318,7 +321,7 @@ encode_describe_acls_resource_1(
         ?encode_int8(ResourceType),
         ?encode_string(ResourceName),
         ?encode_int8(PatternType),
-        ?encode_array(Acls, fun encode_acl_description_1/1)
+        ?encode_array(Acls, ?encode_element(encode_acl_description_1))
     ];
 encode_describe_acls_resource_1(Args) ->
     ?encoder_error(Args, #{
@@ -374,7 +377,7 @@ encode_describe_acls_response_2(
         ?encode_int32(ThrottleTimeMs),
         ?encode_int16(ErrorCode),
         ?encode_compact_nullable_string(ErrorMessage),
-        ?encode_compact_array(Resources, fun encode_describe_acls_resource_2/1),
+        ?encode_compact_array(Resources, ?encode_element(encode_describe_acls_resource_2)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_describe_acls_response_2(Args) ->
@@ -506,7 +509,7 @@ encode_describe_acls_resource_2(
         ?encode_int8(ResourceType),
         ?encode_compact_string(ResourceName),
         ?encode_int8(PatternType),
-        ?encode_compact_array(Acls, fun encode_acl_description_2/1),
+        ?encode_compact_array(Acls, ?encode_element(encode_acl_description_2)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_describe_acls_resource_2(Args) ->
@@ -575,7 +578,7 @@ encode_describe_acls_response_3(
         ?encode_int32(ThrottleTimeMs),
         ?encode_int16(ErrorCode),
         ?encode_compact_nullable_string(ErrorMessage),
-        ?encode_compact_array(Resources, fun encode_describe_acls_resource_3/1),
+        ?encode_compact_array(Resources, ?encode_element(encode_describe_acls_resource_3)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_describe_acls_response_3(Args) ->
@@ -707,7 +710,7 @@ encode_describe_acls_resource_3(
         ?encode_int8(ResourceType),
         ?encode_compact_string(ResourceName),
         ?encode_int8(PatternType),
-        ?encode_compact_array(Acls, fun encode_acl_description_3/1),
+        ?encode_compact_array(Acls, ?encode_element(encode_acl_description_3)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_describe_acls_resource_3(Args) ->

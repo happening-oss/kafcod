@@ -1,4 +1,7 @@
 -module(offset_delete_request).
+
+%% This file is auto-generated.
+
 -export([
     encode_offset_delete_request_0/1,
     decode_offset_delete_request_0/1
@@ -38,7 +41,7 @@ encode_offset_delete_request_0(
     [
         ?encode_request_header_1(?OFFSET_DELETE_REQUEST, 0, CorrelationId, ClientId),
         ?encode_string(GroupId),
-        ?encode_array(Topics, fun encode_offset_delete_request_topic_0/1)
+        ?encode_array(Topics, ?encode_element(encode_offset_delete_request_topic_0))
     ];
 encode_offset_delete_request_0(Args) ->
     ?encoder_error(Args, #{
@@ -110,7 +113,7 @@ encode_offset_delete_request_topic_0(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(Partitions, fun encode_offset_delete_request_partition_0/1)
+        ?encode_array(Partitions, ?encode_element(encode_offset_delete_request_partition_0))
     ];
 encode_offset_delete_request_topic_0(Args) ->
     ?encoder_error(Args, #{

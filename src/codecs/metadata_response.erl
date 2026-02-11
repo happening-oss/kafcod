@@ -1,4 +1,7 @@
 -module(metadata_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_metadata_response_0/1,
     decode_metadata_response_0/1,
@@ -106,8 +109,8 @@ encode_metadata_response_0(
 ->
     [
         ?encode_response_header_0(CorrelationId),
-        ?encode_array(Brokers, fun encode_metadata_response_broker_0/1),
-        ?encode_array(Topics, fun encode_metadata_response_topic_0/1)
+        ?encode_array(Brokers, ?encode_element(encode_metadata_response_broker_0)),
+        ?encode_array(Topics, ?encode_element(encode_metadata_response_topic_0))
     ];
 encode_metadata_response_0(Args) ->
     ?encoder_error(Args, #{
@@ -255,7 +258,7 @@ encode_metadata_response_topic_0(
     [
         ?encode_int16(ErrorCode),
         ?encode_string(Name),
-        ?encode_array(Partitions, fun encode_metadata_response_partition_0/1)
+        ?encode_array(Partitions, ?encode_element(encode_metadata_response_partition_0))
     ];
 encode_metadata_response_topic_0(Args) ->
     ?encoder_error(Args, #{
@@ -302,9 +305,9 @@ encode_metadata_response_1(
 ->
     [
         ?encode_response_header_0(CorrelationId),
-        ?encode_array(Brokers, fun encode_metadata_response_broker_1/1),
+        ?encode_array(Brokers, ?encode_element(encode_metadata_response_broker_1)),
         ?encode_int32(ControllerId),
-        ?encode_array(Topics, fun encode_metadata_response_topic_1/1)
+        ?encode_array(Topics, ?encode_element(encode_metadata_response_topic_1))
     ];
 encode_metadata_response_1(Args) ->
     ?encoder_error(Args, #{
@@ -466,7 +469,7 @@ encode_metadata_response_topic_1(
         ?encode_int16(ErrorCode),
         ?encode_string(Name),
         ?encode_bool(IsInternal),
-        ?encode_array(Partitions, fun encode_metadata_response_partition_1/1)
+        ?encode_array(Partitions, ?encode_element(encode_metadata_response_partition_1))
     ];
 encode_metadata_response_topic_1(Args) ->
     ?encoder_error(Args, #{
@@ -519,10 +522,10 @@ encode_metadata_response_2(
 ->
     [
         ?encode_response_header_0(CorrelationId),
-        ?encode_array(Brokers, fun encode_metadata_response_broker_2/1),
+        ?encode_array(Brokers, ?encode_element(encode_metadata_response_broker_2)),
         ?encode_nullable_string(ClusterId),
         ?encode_int32(ControllerId),
-        ?encode_array(Topics, fun encode_metadata_response_topic_2/1)
+        ?encode_array(Topics, ?encode_element(encode_metadata_response_topic_2))
     ];
 encode_metadata_response_2(Args) ->
     ?encoder_error(Args, #{
@@ -687,7 +690,7 @@ encode_metadata_response_topic_2(
         ?encode_int16(ErrorCode),
         ?encode_string(Name),
         ?encode_bool(IsInternal),
-        ?encode_array(Partitions, fun encode_metadata_response_partition_2/1)
+        ?encode_array(Partitions, ?encode_element(encode_metadata_response_partition_2))
     ];
 encode_metadata_response_topic_2(Args) ->
     ?encoder_error(Args, #{
@@ -744,10 +747,10 @@ encode_metadata_response_3(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_array(Brokers, fun encode_metadata_response_broker_3/1),
+        ?encode_array(Brokers, ?encode_element(encode_metadata_response_broker_3)),
         ?encode_nullable_string(ClusterId),
         ?encode_int32(ControllerId),
-        ?encode_array(Topics, fun encode_metadata_response_topic_3/1)
+        ?encode_array(Topics, ?encode_element(encode_metadata_response_topic_3))
     ];
 encode_metadata_response_3(Args) ->
     ?encoder_error(Args, #{
@@ -915,7 +918,7 @@ encode_metadata_response_topic_3(
         ?encode_int16(ErrorCode),
         ?encode_string(Name),
         ?encode_bool(IsInternal),
-        ?encode_array(Partitions, fun encode_metadata_response_partition_3/1)
+        ?encode_array(Partitions, ?encode_element(encode_metadata_response_partition_3))
     ];
 encode_metadata_response_topic_3(Args) ->
     ?encoder_error(Args, #{
@@ -972,10 +975,10 @@ encode_metadata_response_4(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_array(Brokers, fun encode_metadata_response_broker_4/1),
+        ?encode_array(Brokers, ?encode_element(encode_metadata_response_broker_4)),
         ?encode_nullable_string(ClusterId),
         ?encode_int32(ControllerId),
-        ?encode_array(Topics, fun encode_metadata_response_topic_4/1)
+        ?encode_array(Topics, ?encode_element(encode_metadata_response_topic_4))
     ];
 encode_metadata_response_4(Args) ->
     ?encoder_error(Args, #{
@@ -1143,7 +1146,7 @@ encode_metadata_response_topic_4(
         ?encode_int16(ErrorCode),
         ?encode_string(Name),
         ?encode_bool(IsInternal),
-        ?encode_array(Partitions, fun encode_metadata_response_partition_4/1)
+        ?encode_array(Partitions, ?encode_element(encode_metadata_response_partition_4))
     ];
 encode_metadata_response_topic_4(Args) ->
     ?encoder_error(Args, #{
@@ -1200,10 +1203,10 @@ encode_metadata_response_5(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_array(Brokers, fun encode_metadata_response_broker_5/1),
+        ?encode_array(Brokers, ?encode_element(encode_metadata_response_broker_5)),
         ?encode_nullable_string(ClusterId),
         ?encode_int32(ControllerId),
-        ?encode_array(Topics, fun encode_metadata_response_topic_5/1)
+        ?encode_array(Topics, ?encode_element(encode_metadata_response_topic_5))
     ];
 encode_metadata_response_5(Args) ->
     ?encoder_error(Args, #{
@@ -1378,7 +1381,7 @@ encode_metadata_response_topic_5(
         ?encode_int16(ErrorCode),
         ?encode_string(Name),
         ?encode_bool(IsInternal),
-        ?encode_array(Partitions, fun encode_metadata_response_partition_5/1)
+        ?encode_array(Partitions, ?encode_element(encode_metadata_response_partition_5))
     ];
 encode_metadata_response_topic_5(Args) ->
     ?encoder_error(Args, #{
@@ -1435,10 +1438,10 @@ encode_metadata_response_6(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_array(Brokers, fun encode_metadata_response_broker_6/1),
+        ?encode_array(Brokers, ?encode_element(encode_metadata_response_broker_6)),
         ?encode_nullable_string(ClusterId),
         ?encode_int32(ControllerId),
-        ?encode_array(Topics, fun encode_metadata_response_topic_6/1)
+        ?encode_array(Topics, ?encode_element(encode_metadata_response_topic_6))
     ];
 encode_metadata_response_6(Args) ->
     ?encoder_error(Args, #{
@@ -1613,7 +1616,7 @@ encode_metadata_response_topic_6(
         ?encode_int16(ErrorCode),
         ?encode_string(Name),
         ?encode_bool(IsInternal),
-        ?encode_array(Partitions, fun encode_metadata_response_partition_6/1)
+        ?encode_array(Partitions, ?encode_element(encode_metadata_response_partition_6))
     ];
 encode_metadata_response_topic_6(Args) ->
     ?encoder_error(Args, #{
@@ -1670,10 +1673,10 @@ encode_metadata_response_7(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_array(Brokers, fun encode_metadata_response_broker_7/1),
+        ?encode_array(Brokers, ?encode_element(encode_metadata_response_broker_7)),
         ?encode_nullable_string(ClusterId),
         ?encode_int32(ControllerId),
-        ?encode_array(Topics, fun encode_metadata_response_topic_7/1)
+        ?encode_array(Topics, ?encode_element(encode_metadata_response_topic_7))
     ];
 encode_metadata_response_7(Args) ->
     ?encoder_error(Args, #{
@@ -1855,7 +1858,7 @@ encode_metadata_response_topic_7(
         ?encode_int16(ErrorCode),
         ?encode_string(Name),
         ?encode_bool(IsInternal),
-        ?encode_array(Partitions, fun encode_metadata_response_partition_7/1)
+        ?encode_array(Partitions, ?encode_element(encode_metadata_response_partition_7))
     ];
 encode_metadata_response_topic_7(Args) ->
     ?encoder_error(Args, #{
@@ -1915,10 +1918,10 @@ encode_metadata_response_8(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_array(Brokers, fun encode_metadata_response_broker_8/1),
+        ?encode_array(Brokers, ?encode_element(encode_metadata_response_broker_8)),
         ?encode_nullable_string(ClusterId),
         ?encode_int32(ControllerId),
-        ?encode_array(Topics, fun encode_metadata_response_topic_8/1),
+        ?encode_array(Topics, ?encode_element(encode_metadata_response_topic_8)),
         ?encode_int32(ClusterAuthorizedOperations)
     ];
 encode_metadata_response_8(Args) ->
@@ -2107,7 +2110,7 @@ encode_metadata_response_topic_8(
         ?encode_int16(ErrorCode),
         ?encode_string(Name),
         ?encode_bool(IsInternal),
-        ?encode_array(Partitions, fun encode_metadata_response_partition_8/1),
+        ?encode_array(Partitions, ?encode_element(encode_metadata_response_partition_8)),
         ?encode_int32(TopicAuthorizedOperations)
     ];
 encode_metadata_response_topic_8(Args) ->
@@ -2171,10 +2174,10 @@ encode_metadata_response_9(
     [
         ?encode_response_header_1(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_compact_array(Brokers, fun encode_metadata_response_broker_9/1),
+        ?encode_compact_array(Brokers, ?encode_element(encode_metadata_response_broker_9)),
         ?encode_compact_nullable_string(ClusterId),
         ?encode_int32(ControllerId),
-        ?encode_compact_array(Topics, fun encode_metadata_response_topic_9/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_metadata_response_topic_9)),
         ?encode_int32(ClusterAuthorizedOperations),
         ?EMPTY_TAG_BUFFER
     ];
@@ -2402,7 +2405,7 @@ encode_metadata_response_topic_9(
         ?encode_int16(ErrorCode),
         ?encode_compact_string(Name),
         ?encode_bool(IsInternal),
-        ?encode_compact_array(Partitions, fun encode_metadata_response_partition_9/1),
+        ?encode_compact_array(Partitions, ?encode_element(encode_metadata_response_partition_9)),
         ?encode_int32(TopicAuthorizedOperations),
         ?EMPTY_TAG_BUFFER
     ];
@@ -2479,10 +2482,10 @@ encode_metadata_response_10(
     [
         ?encode_response_header_1(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_compact_array(Brokers, fun encode_metadata_response_broker_10/1),
+        ?encode_compact_array(Brokers, ?encode_element(encode_metadata_response_broker_10)),
         ?encode_compact_nullable_string(ClusterId),
         ?encode_int32(ControllerId),
-        ?encode_compact_array(Topics, fun encode_metadata_response_topic_10/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_metadata_response_topic_10)),
         ?encode_int32(ClusterAuthorizedOperations),
         ?EMPTY_TAG_BUFFER
     ];
@@ -2714,7 +2717,7 @@ encode_metadata_response_topic_10(
         ?encode_compact_string(Name),
         ?encode_uuid(TopicId),
         ?encode_bool(IsInternal),
-        ?encode_compact_array(Partitions, fun encode_metadata_response_partition_10/1),
+        ?encode_compact_array(Partitions, ?encode_element(encode_metadata_response_partition_10)),
         ?encode_int32(TopicAuthorizedOperations),
         ?EMPTY_TAG_BUFFER
     ];
@@ -2791,10 +2794,10 @@ encode_metadata_response_11(
     [
         ?encode_response_header_1(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_compact_array(Brokers, fun encode_metadata_response_broker_11/1),
+        ?encode_compact_array(Brokers, ?encode_element(encode_metadata_response_broker_11)),
         ?encode_compact_nullable_string(ClusterId),
         ?encode_int32(ControllerId),
-        ?encode_compact_array(Topics, fun encode_metadata_response_topic_11/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_metadata_response_topic_11)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_metadata_response_11(Args) ->
@@ -3022,7 +3025,7 @@ encode_metadata_response_topic_11(
         ?encode_compact_string(Name),
         ?encode_uuid(TopicId),
         ?encode_bool(IsInternal),
-        ?encode_compact_array(Partitions, fun encode_metadata_response_partition_11/1),
+        ?encode_compact_array(Partitions, ?encode_element(encode_metadata_response_partition_11)),
         ?encode_int32(TopicAuthorizedOperations),
         ?EMPTY_TAG_BUFFER
     ];
@@ -3099,10 +3102,10 @@ encode_metadata_response_12(
     [
         ?encode_response_header_1(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_compact_array(Brokers, fun encode_metadata_response_broker_12/1),
+        ?encode_compact_array(Brokers, ?encode_element(encode_metadata_response_broker_12)),
         ?encode_compact_nullable_string(ClusterId),
         ?encode_int32(ControllerId),
-        ?encode_compact_array(Topics, fun encode_metadata_response_topic_12/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_metadata_response_topic_12)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_metadata_response_12(Args) ->
@@ -3330,7 +3333,7 @@ encode_metadata_response_topic_12(
         ?encode_compact_nullable_string(Name),
         ?encode_uuid(TopicId),
         ?encode_bool(IsInternal),
-        ?encode_compact_array(Partitions, fun encode_metadata_response_partition_12/1),
+        ?encode_compact_array(Partitions, ?encode_element(encode_metadata_response_partition_12)),
         ?encode_int32(TopicAuthorizedOperations),
         ?EMPTY_TAG_BUFFER
     ];

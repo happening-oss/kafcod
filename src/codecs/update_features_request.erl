@@ -1,4 +1,7 @@
 -module(update_features_request).
+
+%% This file is auto-generated.
+
 -export([
     encode_update_features_request_0/1,
     decode_update_features_request_0/1,
@@ -41,7 +44,7 @@ encode_update_features_request_0(
     [
         ?encode_request_header_2(?UPDATE_FEATURES_REQUEST, 0, CorrelationId, ClientId),
         ?encode_int32(TimeoutMs),
-        ?encode_compact_array(FeatureUpdates, fun encode_feature_update_key_0/1),
+        ?encode_compact_array(FeatureUpdates, ?encode_element(encode_feature_update_key_0)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_update_features_request_0(Args) ->
@@ -163,7 +166,7 @@ encode_update_features_request_1(
     [
         ?encode_request_header_2(?UPDATE_FEATURES_REQUEST, 1, CorrelationId, ClientId),
         ?encode_int32(TimeoutMs),
-        ?encode_compact_array(FeatureUpdates, fun encode_feature_update_key_1/1),
+        ?encode_compact_array(FeatureUpdates, ?encode_element(encode_feature_update_key_1)),
         ?encode_bool(ValidateOnly),
         ?EMPTY_TAG_BUFFER
     ];

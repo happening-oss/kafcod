@@ -1,4 +1,7 @@
 -module(offset_for_leader_epoch_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_offset_for_leader_epoch_response_0/1,
     decode_offset_for_leader_epoch_response_0/1,
@@ -50,7 +53,7 @@ encode_offset_for_leader_epoch_response_0(
 ->
     [
         ?encode_response_header_0(CorrelationId),
-        ?encode_array(Topics, fun encode_offset_for_leader_topic_result_0/1)
+        ?encode_array(Topics, ?encode_element(encode_offset_for_leader_topic_result_0))
     ];
 encode_offset_for_leader_epoch_response_0(Args) ->
     ?encoder_error(Args, #{
@@ -132,7 +135,7 @@ encode_offset_for_leader_topic_result_0(
 ->
     [
         ?encode_string(Topic),
-        ?encode_array(Partitions, fun encode_epoch_end_offset_0/1)
+        ?encode_array(Partitions, ?encode_element(encode_epoch_end_offset_0))
     ];
 encode_offset_for_leader_topic_result_0(Args) ->
     ?encoder_error(Args, #{
@@ -170,7 +173,7 @@ encode_offset_for_leader_epoch_response_1(
 ->
     [
         ?encode_response_header_0(CorrelationId),
-        ?encode_array(Topics, fun encode_offset_for_leader_topic_result_1/1)
+        ?encode_array(Topics, ?encode_element(encode_offset_for_leader_topic_result_1))
     ];
 encode_offset_for_leader_epoch_response_1(Args) ->
     ?encoder_error(Args, #{
@@ -259,7 +262,7 @@ encode_offset_for_leader_topic_result_1(
 ->
     [
         ?encode_string(Topic),
-        ?encode_array(Partitions, fun encode_epoch_end_offset_1/1)
+        ?encode_array(Partitions, ?encode_element(encode_epoch_end_offset_1))
     ];
 encode_offset_for_leader_topic_result_1(Args) ->
     ?encoder_error(Args, #{
@@ -301,7 +304,7 @@ encode_offset_for_leader_epoch_response_2(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_array(Topics, fun encode_offset_for_leader_topic_result_2/1)
+        ?encode_array(Topics, ?encode_element(encode_offset_for_leader_topic_result_2))
     ];
 encode_offset_for_leader_epoch_response_2(Args) ->
     ?encoder_error(Args, #{
@@ -393,7 +396,7 @@ encode_offset_for_leader_topic_result_2(
 ->
     [
         ?encode_string(Topic),
-        ?encode_array(Partitions, fun encode_epoch_end_offset_2/1)
+        ?encode_array(Partitions, ?encode_element(encode_epoch_end_offset_2))
     ];
 encode_offset_for_leader_topic_result_2(Args) ->
     ?encoder_error(Args, #{
@@ -435,7 +438,7 @@ encode_offset_for_leader_epoch_response_3(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_array(Topics, fun encode_offset_for_leader_topic_result_3/1)
+        ?encode_array(Topics, ?encode_element(encode_offset_for_leader_topic_result_3))
     ];
 encode_offset_for_leader_epoch_response_3(Args) ->
     ?encoder_error(Args, #{
@@ -527,7 +530,7 @@ encode_offset_for_leader_topic_result_3(
 ->
     [
         ?encode_string(Topic),
-        ?encode_array(Partitions, fun encode_epoch_end_offset_3/1)
+        ?encode_array(Partitions, ?encode_element(encode_epoch_end_offset_3))
     ];
 encode_offset_for_leader_topic_result_3(Args) ->
     ?encoder_error(Args, #{
@@ -569,7 +572,7 @@ encode_offset_for_leader_epoch_response_4(
     [
         ?encode_response_header_1(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_compact_array(Topics, fun encode_offset_for_leader_topic_result_4/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_offset_for_leader_topic_result_4)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_offset_for_leader_epoch_response_4(Args) ->
@@ -687,7 +690,7 @@ encode_offset_for_leader_topic_result_4(
 ->
     [
         ?encode_compact_string(Topic),
-        ?encode_compact_array(Partitions, fun encode_epoch_end_offset_4/1),
+        ?encode_compact_array(Partitions, ?encode_element(encode_epoch_end_offset_4)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_offset_for_leader_topic_result_4(Args) ->

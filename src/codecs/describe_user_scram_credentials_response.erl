@@ -1,4 +1,7 @@
 -module(describe_user_scram_credentials_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_describe_user_scram_credentials_response_0/1,
     decode_describe_user_scram_credentials_response_0/1
@@ -42,7 +45,7 @@ encode_describe_user_scram_credentials_response_0(
         ?encode_int32(ThrottleTimeMs),
         ?encode_int16(ErrorCode),
         ?encode_compact_nullable_string(ErrorMessage),
-        ?encode_compact_array(Results, fun encode_describe_user_scram_credentials_result_0/1),
+        ?encode_compact_array(Results, ?encode_element(encode_describe_user_scram_credentials_result_0)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_describe_user_scram_credentials_response_0(Args) ->
@@ -160,7 +163,7 @@ encode_describe_user_scram_credentials_result_0(
         ?encode_compact_string(User),
         ?encode_int16(ErrorCode),
         ?encode_compact_nullable_string(ErrorMessage),
-        ?encode_compact_array(CredentialInfos, fun encode_credential_info_0/1),
+        ?encode_compact_array(CredentialInfos, ?encode_element(encode_credential_info_0)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_describe_user_scram_credentials_result_0(Args) ->

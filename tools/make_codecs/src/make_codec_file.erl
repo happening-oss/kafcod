@@ -13,6 +13,7 @@ format_file(ModuleName, MessageName, MessageType, Schema) ->
 
     [
         io_lib:format("-module(~s).~n", [ModuleName]),
+        format_head_comment(),
         format_exports(MessageName, ValidVersions),
         format_exported_types(Codecs),
         format_includes(),
@@ -31,6 +32,14 @@ format_file(ModuleName, MessageName, MessageType, Schema) ->
         format_codecs(Codecs),
         ?NL,
         format_types(Codecs),
+        ?NL
+    ].
+
+format_head_comment() ->
+    [
+        ?NL,
+        "%% This file is auto-generated.",
+        ?NL,
         ?NL
     ].
 
@@ -92,7 +101,9 @@ format_includes() ->
 
 get_codecs(MessageName, MessageType, Schema, ValidVersions) ->
     % See KIP-482: adds tagged fields; strings and arrays are compact.
-    FlexibleVersions = version:parse_version_range(maps:get(<<"flexibleVersions">>, Schema)),
+    FlexibleVersions = version:parse_version_range(
+        maps:get(<<"flexibleVersions">>, Schema, <<"none">>)
+    ),
 
     lists:foldl(
         fun(Version, Acc) ->
@@ -352,6 +363,8 @@ format_encoder_guard(
     #{name := Name, type := <<H, _/binary>>, nullable := true}
 ) when H >= $A, H =< $Z ->
     io_lib:format("    ?is_nullable_entity(~s)", [casey:title(Name)]);
+format_encoder_guard(#{name := Name, type := Type, nullable := true}) when Type =:= <<"records">> ->
+    io_lib:format("    ?is_~s(~s)", [Type, casey:title(Name)]);
 format_encoder_guard(#{name := Name, type := Type, nullable := true}) ->
     io_lib:format("    ?is_nullable_~s(~s)", [Type, casey:title(Name)]);
 format_encoder_guard(#{name := Name, type := Type}) ->
@@ -475,8 +488,12 @@ format_field_encoder(Field) ->
 
 format_simple_encoder(
     #{name := Name, type := Type, flexible := IsFlexible, nullable := IsNullable}
-) when Type =:= <<"string">>; Type =:= <<"bytes">>; Type =:= <<"records">> ->
+) when Type =:= <<"string">>; Type =:= <<"bytes">> ->
     io_lib:format("?encode_~s~s(~s)", [get_flavour(IsFlexible, IsNullable), Type, casey:title(Name)]);
+format_simple_encoder(
+    #{name := Name, type := Type, flexible := IsFlexible}
+) when Type =:= <<"records">> ->
+    io_lib:format("?encode_~s~s(~s)", [get_flavour(IsFlexible, false), Type, casey:title(Name)]);
 format_simple_encoder(#{name := Name, type := Type}) ->
     io_lib:format("?encode_~s(~s)", [Type, casey:title(Name)]).
 
@@ -500,11 +517,11 @@ get_element_encoder(ElementType = <<"string">>, _Version, _IsFlexible = true) ->
     io_lib:format("?encode_compact_~s_", [ElementType]);
 get_element_encoder(ElementType = <<"string">>, _Version, _IsFlexible) ->
     io_lib:format("?encode_~s_", [ElementType]);
-get_element_encoder(ElementType = <<H, _/binary>>, _Version, _IsFlexible) when H >= $a, H =< $z ->
+get_element_encoder(ElementType = <<H, _/binary>>, Version, _IsFlexible) when H >= $A, H =< $Z ->
+    io_lib:format("?encode_element(encode_~s_~B)", [casey:underscore(ElementType), Version]);
+get_element_encoder(ElementType, _Version, _IsFlexible) ->
     % primitive types start with lower-case letters.
-    io_lib:format("?encode_~s_", [ElementType]);
-get_element_encoder(ElementType, Version, _IsFlexible) ->
-    io_lib:format("fun encode_~s_~B/1", [casey:underscore(ElementType), Version]).
+    io_lib:format("?encode_~s_", [ElementType]).
 
 format_encoder_error_handler(Name, Version, Fields) ->
     [
@@ -536,7 +553,7 @@ format_error_type(#{
     io_lib:format("        ~s => {nullable_array, ~s}", [
         casey:underscore(Key), format_element_type(ElementType, Version)
     ]);
-format_error_type(#{name := Key, type := Type, nullable := true}) ->
+format_error_type(#{name := Key, type := Type, nullable := true}) when Type =/= <<"records">> ->
     io_lib:format("        ~s => nullable_~s", [casey:underscore(Key), Type]);
 format_error_type(#{name := Key, type := <<H, _/binary>>}) when H >= $A, H =< $Z ->
     io_lib:format("        ~s => map", [casey:underscore(Key)]);
@@ -936,9 +953,15 @@ format_field_decoder(
     );
 format_field_decoder(
     #{name := Name, type := Type, nullable := IsNullable, flexible := IsFlexible}, Index
-) when Type =:= <<"string">>; Type =:= <<"bytes">>; Type =:= <<"records">> ->
+) when Type =:= <<"string">>; Type =:= <<"bytes">> ->
     io_lib:format("    ?_decode_~s~s(~s, Bin~B, Bin~B)", [
         get_flavour(IsFlexible, IsNullable), Type, casey:title(Name), Index, Index + 1
+    ]);
+format_field_decoder(#{name := Name, type := Type, flexible := IsFlexible}, Index) when
+    Type =:= <<"records">>
+->
+    io_lib:format("    ?_decode_~s~s(~s, Bin~B, Bin~B)", [
+        get_flavour(IsFlexible, false), Type, casey:title(Name), Index, Index + 1
     ]);
 format_field_decoder(#{name := Name, type := Type}, Index) ->
     io_lib:format("    ?_decode_~s(~s, Bin~B, Bin~B)", [

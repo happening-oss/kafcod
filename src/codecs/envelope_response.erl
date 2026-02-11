@@ -1,4 +1,7 @@
 -module(envelope_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_envelope_response_0/1,
     decode_envelope_response_0/1

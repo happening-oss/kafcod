@@ -1,4 +1,7 @@
 -module(consumer_protocol_assignment).
+
+%% This file is auto-generated.
+
 -export([
     encode_consumer_protocol_assignment_0/1,
     decode_consumer_protocol_assignment_0/1,
@@ -38,7 +41,7 @@ encode_consumer_protocol_assignment_0(
     ?is_nullable_bytes(UserData)
 ->
     [
-        ?encode_array(AssignedPartitions, fun encode_topic_partition_0/1),
+        ?encode_array(AssignedPartitions, ?encode_element(encode_topic_partition_0)),
         ?encode_nullable_bytes(UserData)
     ];
 encode_consumer_protocol_assignment_0(Args) ->
@@ -110,7 +113,7 @@ encode_consumer_protocol_assignment_1(
     ?is_nullable_bytes(UserData)
 ->
     [
-        ?encode_array(AssignedPartitions, fun encode_topic_partition_1/1),
+        ?encode_array(AssignedPartitions, ?encode_element(encode_topic_partition_1)),
         ?encode_nullable_bytes(UserData)
     ];
 encode_consumer_protocol_assignment_1(Args) ->
@@ -182,7 +185,7 @@ encode_consumer_protocol_assignment_2(
     ?is_nullable_bytes(UserData)
 ->
     [
-        ?encode_array(AssignedPartitions, fun encode_topic_partition_2/1),
+        ?encode_array(AssignedPartitions, ?encode_element(encode_topic_partition_2)),
         ?encode_nullable_bytes(UserData)
     ];
 encode_consumer_protocol_assignment_2(Args) ->
@@ -254,7 +257,7 @@ encode_consumer_protocol_assignment_3(
     ?is_nullable_bytes(UserData)
 ->
     [
-        ?encode_array(AssignedPartitions, fun encode_topic_partition_3/1),
+        ?encode_array(AssignedPartitions, ?encode_element(encode_topic_partition_3)),
         ?encode_nullable_bytes(UserData)
     ];
 encode_consumer_protocol_assignment_3(Args) ->

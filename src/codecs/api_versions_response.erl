@@ -1,4 +1,7 @@
 -module(api_versions_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_api_versions_response_0/1,
     decode_api_versions_response_0/1,
@@ -47,7 +50,7 @@ encode_api_versions_response_0(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int16(ErrorCode),
-        ?encode_array(ApiKeys, fun encode_api_version_0/1)
+        ?encode_array(ApiKeys, ?encode_element(encode_api_version_0))
     ];
 encode_api_versions_response_0(Args) ->
     ?encoder_error(Args, #{
@@ -139,7 +142,7 @@ encode_api_versions_response_1(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int16(ErrorCode),
-        ?encode_array(ApiKeys, fun encode_api_version_1/1),
+        ?encode_array(ApiKeys, ?encode_element(encode_api_version_1)),
         ?encode_int32(ThrottleTimeMs)
     ];
 encode_api_versions_response_1(Args) ->
@@ -235,7 +238,7 @@ encode_api_versions_response_2(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int16(ErrorCode),
-        ?encode_array(ApiKeys, fun encode_api_version_2/1),
+        ?encode_array(ApiKeys, ?encode_element(encode_api_version_2)),
         ?encode_int32(ThrottleTimeMs)
     ];
 encode_api_versions_response_2(Args) ->
@@ -331,7 +334,7 @@ encode_api_versions_response_3(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int16(ErrorCode),
-        ?encode_compact_array(ApiKeys, fun encode_api_version_3/1),
+        ?encode_compact_array(ApiKeys, ?encode_element(encode_api_version_3)),
         ?encode_int32(ThrottleTimeMs),
         ?encode_tagged_fields(
             fun encode_api_versions_response_3_tagged_field/2,
@@ -351,11 +354,11 @@ encode_api_versions_response_3(Args) ->
 ) -> {non_neg_integer(), iodata()} | ignore.
 
 encode_api_versions_response_3_tagged_field(_Key = supported_features, SupportedFeatures) ->
-    {0, ?encode_compact_array(SupportedFeatures, fun encode_supported_feature_key_3/1)};
+    {0, ?encode_compact_array(SupportedFeatures, ?encode_element(encode_supported_feature_key_3))};
 encode_api_versions_response_3_tagged_field(_Key = finalized_features_epoch, FinalizedFeaturesEpoch) ->
     {1, ?encode_int64(FinalizedFeaturesEpoch)};
 encode_api_versions_response_3_tagged_field(_Key = finalized_features, FinalizedFeatures) ->
-    {2, ?encode_compact_array(FinalizedFeatures, fun encode_finalized_feature_key_3/1)};
+    {2, ?encode_compact_array(FinalizedFeatures, ?encode_element(encode_finalized_feature_key_3))};
 encode_api_versions_response_3_tagged_field(_Key = zk_migration_ready, ZkMigrationReady) ->
     {3, ?encode_bool(ZkMigrationReady)};
 encode_api_versions_response_3_tagged_field(_Key, _Value) ->

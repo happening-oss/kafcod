@@ -372,7 +372,7 @@ decode_uuid(Bin = <<Value:16/binary, Rest/binary>>) when is_binary(Bin) ->
     Fun :: fun((Key, Value) -> {Tag, Data} | ignore),
     Args :: map(),
     Key :: atom(),
-    Value :: binary(),
+    Value :: dynamic(),
     Tag :: non_neg_integer(),
     Data :: iodata().
 

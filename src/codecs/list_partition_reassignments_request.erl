@@ -1,4 +1,7 @@
 -module(list_partition_reassignments_request).
+
+%% This file is auto-generated.
+
 -export([
     encode_list_partition_reassignments_request_0/1,
     decode_list_partition_reassignments_request_0/1
@@ -37,7 +40,7 @@ encode_list_partition_reassignments_request_0(
     [
         ?encode_request_header_2(?LIST_PARTITION_REASSIGNMENTS_REQUEST, 0, CorrelationId, ClientId),
         ?encode_int32(TimeoutMs),
-        ?encode_compact_nullable_array(Topics, fun encode_list_partition_reassignments_topics_0/1),
+        ?encode_compact_nullable_array(Topics, ?encode_element(encode_list_partition_reassignments_topics_0)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_list_partition_reassignments_request_0(Args) ->

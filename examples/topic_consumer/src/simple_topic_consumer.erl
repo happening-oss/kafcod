@@ -28,7 +28,7 @@ callback_mode() ->
 init([Host, Port, Topic, Partitions0]) ->
     ClientId = list_to_binary(?MODULE_STRING),
 
-    {ok, Conn} = kafka_connection:start_link(Host, Port, ClientId),
+    {ok, Conn} = kafcod_connection:start_link(#{host => Host, port => Port}, #{client_id => ?CLIENT_ID}),
 
     StateData = #state{
         client_id = ClientId,
@@ -48,7 +48,7 @@ handle_event(internal, fetch, connected, StateData) ->
     {keep_state, StateData2, [{next_event, internal, fetch}]}.
 
 list_offsets(Conn, Topic, PartitionIndexes) ->
-    {ok, OffsetsResponse} = kafka_connection:call(
+    {ok, OffsetsResponse} = kafcod_connection:call(
         Conn,
         fun list_offsets_request:encode_list_offsets_request_7/1,
         #{
@@ -84,7 +84,7 @@ do_fetch(StateData = #state{client_id = ClientId, connection = Conn, topic = Top
     io:format("Fetching from ~s, ~p~n", [Topic, PartitionOffsets]),
     MaxWaitMs = 5_000,
     MaxBytes = 1_024,
-    {ok, FetchResponse} = kafka_connection:call(
+    {ok, FetchResponse} = kafcod_connection:call(
         Conn,
         fun fetch_request:encode_fetch_request_12/1,
         #{

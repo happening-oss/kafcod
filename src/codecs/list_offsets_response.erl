@@ -1,4 +1,7 @@
 -module(list_offsets_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_list_offsets_response_0/1,
     decode_list_offsets_response_0/1,
@@ -70,7 +73,7 @@ encode_list_offsets_response_0(
 ->
     [
         ?encode_response_header_0(CorrelationId),
-        ?encode_array(Topics, fun encode_list_offsets_topic_response_0/1)
+        ?encode_array(Topics, ?encode_element(encode_list_offsets_topic_response_0))
     ];
 encode_list_offsets_response_0(Args) ->
     ?encoder_error(Args, #{
@@ -152,7 +155,7 @@ encode_list_offsets_topic_response_0(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(Partitions, fun encode_list_offsets_partition_response_0/1)
+        ?encode_array(Partitions, ?encode_element(encode_list_offsets_partition_response_0))
     ];
 encode_list_offsets_topic_response_0(Args) ->
     ?encoder_error(Args, #{
@@ -190,7 +193,7 @@ encode_list_offsets_response_1(
 ->
     [
         ?encode_response_header_0(CorrelationId),
-        ?encode_array(Topics, fun encode_list_offsets_topic_response_1/1)
+        ?encode_array(Topics, ?encode_element(encode_list_offsets_topic_response_1))
     ];
 encode_list_offsets_response_1(Args) ->
     ?encoder_error(Args, #{
@@ -279,7 +282,7 @@ encode_list_offsets_topic_response_1(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(Partitions, fun encode_list_offsets_partition_response_1/1)
+        ?encode_array(Partitions, ?encode_element(encode_list_offsets_partition_response_1))
     ];
 encode_list_offsets_topic_response_1(Args) ->
     ?encoder_error(Args, #{
@@ -321,7 +324,7 @@ encode_list_offsets_response_2(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_array(Topics, fun encode_list_offsets_topic_response_2/1)
+        ?encode_array(Topics, ?encode_element(encode_list_offsets_topic_response_2))
     ];
 encode_list_offsets_response_2(Args) ->
     ?encoder_error(Args, #{
@@ -413,7 +416,7 @@ encode_list_offsets_topic_response_2(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(Partitions, fun encode_list_offsets_partition_response_2/1)
+        ?encode_array(Partitions, ?encode_element(encode_list_offsets_partition_response_2))
     ];
 encode_list_offsets_topic_response_2(Args) ->
     ?encoder_error(Args, #{
@@ -455,7 +458,7 @@ encode_list_offsets_response_3(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_array(Topics, fun encode_list_offsets_topic_response_3/1)
+        ?encode_array(Topics, ?encode_element(encode_list_offsets_topic_response_3))
     ];
 encode_list_offsets_response_3(Args) ->
     ?encoder_error(Args, #{
@@ -547,7 +550,7 @@ encode_list_offsets_topic_response_3(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(Partitions, fun encode_list_offsets_partition_response_3/1)
+        ?encode_array(Partitions, ?encode_element(encode_list_offsets_partition_response_3))
     ];
 encode_list_offsets_topic_response_3(Args) ->
     ?encoder_error(Args, #{
@@ -589,7 +592,7 @@ encode_list_offsets_response_4(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_array(Topics, fun encode_list_offsets_topic_response_4/1)
+        ?encode_array(Topics, ?encode_element(encode_list_offsets_topic_response_4))
     ];
 encode_list_offsets_response_4(Args) ->
     ?encoder_error(Args, #{
@@ -687,7 +690,7 @@ encode_list_offsets_topic_response_4(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(Partitions, fun encode_list_offsets_partition_response_4/1)
+        ?encode_array(Partitions, ?encode_element(encode_list_offsets_partition_response_4))
     ];
 encode_list_offsets_topic_response_4(Args) ->
     ?encoder_error(Args, #{
@@ -729,7 +732,7 @@ encode_list_offsets_response_5(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_array(Topics, fun encode_list_offsets_topic_response_5/1)
+        ?encode_array(Topics, ?encode_element(encode_list_offsets_topic_response_5))
     ];
 encode_list_offsets_response_5(Args) ->
     ?encoder_error(Args, #{
@@ -827,7 +830,7 @@ encode_list_offsets_topic_response_5(
 ->
     [
         ?encode_string(Name),
-        ?encode_array(Partitions, fun encode_list_offsets_partition_response_5/1)
+        ?encode_array(Partitions, ?encode_element(encode_list_offsets_partition_response_5))
     ];
 encode_list_offsets_topic_response_5(Args) ->
     ?encoder_error(Args, #{
@@ -869,7 +872,7 @@ encode_list_offsets_response_6(
     [
         ?encode_response_header_1(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_compact_array(Topics, fun encode_list_offsets_topic_response_6/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_list_offsets_topic_response_6)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_list_offsets_response_6(Args) ->
@@ -993,7 +996,7 @@ encode_list_offsets_topic_response_6(
 ->
     [
         ?encode_compact_string(Name),
-        ?encode_compact_array(Partitions, fun encode_list_offsets_partition_response_6/1),
+        ?encode_compact_array(Partitions, ?encode_element(encode_list_offsets_partition_response_6)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_list_offsets_topic_response_6(Args) ->
@@ -1048,7 +1051,7 @@ encode_list_offsets_response_7(
     [
         ?encode_response_header_1(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_compact_array(Topics, fun encode_list_offsets_topic_response_7/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_list_offsets_topic_response_7)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_list_offsets_response_7(Args) ->
@@ -1172,7 +1175,7 @@ encode_list_offsets_topic_response_7(
 ->
     [
         ?encode_compact_string(Name),
-        ?encode_compact_array(Partitions, fun encode_list_offsets_partition_response_7/1),
+        ?encode_compact_array(Partitions, ?encode_element(encode_list_offsets_partition_response_7)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_list_offsets_topic_response_7(Args) ->
@@ -1227,7 +1230,7 @@ encode_list_offsets_response_8(
     [
         ?encode_response_header_1(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_compact_array(Topics, fun encode_list_offsets_topic_response_8/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_list_offsets_topic_response_8)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_list_offsets_response_8(Args) ->
@@ -1351,7 +1354,7 @@ encode_list_offsets_topic_response_8(
 ->
     [
         ?encode_compact_string(Name),
-        ?encode_compact_array(Partitions, fun encode_list_offsets_partition_response_8/1),
+        ?encode_compact_array(Partitions, ?encode_element(encode_list_offsets_partition_response_8)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_list_offsets_topic_response_8(Args) ->

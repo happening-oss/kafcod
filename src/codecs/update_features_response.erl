@@ -1,4 +1,7 @@
 -module(update_features_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_update_features_response_0/1,
     decode_update_features_response_0/1,
@@ -45,7 +48,7 @@ encode_update_features_response_0(
         ?encode_int32(ThrottleTimeMs),
         ?encode_int16(ErrorCode),
         ?encode_compact_nullable_string(ErrorMessage),
-        ?encode_compact_array(Results, fun encode_updatable_feature_result_0/1),
+        ?encode_compact_array(Results, ?encode_element(encode_updatable_feature_result_0)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_update_features_response_0(Args) ->
@@ -174,7 +177,7 @@ encode_update_features_response_1(
         ?encode_int32(ThrottleTimeMs),
         ?encode_int16(ErrorCode),
         ?encode_compact_nullable_string(ErrorMessage),
-        ?encode_compact_array(Results, fun encode_updatable_feature_result_1/1),
+        ?encode_compact_array(Results, ?encode_element(encode_updatable_feature_result_1)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_update_features_response_1(Args) ->

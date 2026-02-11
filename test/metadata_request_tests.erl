@@ -1,10 +1,11 @@
 -module(metadata_request_tests).
 -include_lib("eunit/include/eunit.hrl").
+-include("catch.hrl").
 
 -define(CORRELATION_ID, 203569230).
 -define(CLIENT_ID, <<"CLIENT-ID-IN-HERE">>).
 
-v1_test() ->
+v1_null_topics_test() ->
     % v1 is the first version where topics is nullable.
     CorrelationId = ?CORRELATION_ID,
     ClientId = ?CLIENT_ID,
@@ -20,15 +21,33 @@ v1_test() ->
     ),
     ?assertEqual(Expected, Actual).
 
+v1_with_topics_test() ->
+    CorrelationId = ?CORRELATION_ID,
+    ClientId = ?CLIENT_ID,
+    Expected =
+        <<0, 3, 0, 1, 12, 34, 56, 78, 0, 17, 67, 76, 73, 69, 78, 84, 45, 73, 68, 45, 73, 78, 45, 72,
+            69, 82, 69, 0, 0, 0, 2, 0, 4, 99, 97, 116, 115, 0, 4, 100, 111, 103, 115>>,
+    Actual = iolist_to_binary(
+        metadata_request:encode_metadata_request_1(#{
+            correlation_id => CorrelationId,
+            client_id => ClientId,
+            topics => [
+                #{name => <<"cats">>},
+                #{name => <<"dogs">>}
+            ]
+        })
+    ),
+    ?assertEqual(Expected, Actual).
+
 v4_wrong_fields_test() ->
-    Catch =
-        catch metadata_request:encode_metadata_request_4(#{
+    {error, Reason = badarg, StackTrace} = ?CATCH(
+        metadata_request:encode_metadata_request_4(#{
             client_id => aaa,
             correlation_id => ?CORRELATION_ID,
             topics => [],
             allow_auto_topic_creation => false
-        }),
-    {'EXIT', {Reason = badarg, StackTrace}} = Catch,
+        })
+    ),
     ?assertEqual(
         #{
             1 =>
@@ -43,15 +62,15 @@ v9_missing_fields_test() ->
     % This is a regression test to make sure that stays fixed, and we don't complain about the bool fields at all.
     CorrelationId = ?CORRELATION_ID,
     ClientId = ?CLIENT_ID,
-    Catch =
-        catch metadata_request:encode_metadata_request_9(#{
+    {error, Reason = badarg, StackTrace} = ?CATCH(
+        metadata_request:encode_metadata_request_9(#{
             correlation_id => CorrelationId,
             client_id => ClientId,
             topics => [],
             allow_auto_topic_creation => false,
             include_topic_authorized_operations => true
-        }),
-    {'EXIT', {Reason = badarg, StackTrace}} = Catch,
+        })
+    ),
     ?assertEqual(
         #{
             1 =>
@@ -65,15 +84,15 @@ v9_missing_topics_test() ->
     % Errors about arrays should include the element type.
     CorrelationId = ?CORRELATION_ID,
     ClientId = ?CLIENT_ID,
-    Catch =
-        catch metadata_request:encode_metadata_request_9(#{
+    {error, Reason = badarg, StackTrace} = ?CATCH(
+        metadata_request:encode_metadata_request_9(#{
             correlation_id => CorrelationId,
             client_id => ClientId,
             allow_auto_topic_creation => false,
             include_topic_authorized_operations => true,
             include_cluster_authorized_operations => false
-        }),
-    {'EXIT', {Reason = badarg, StackTrace}} = Catch,
+        })
+    ),
     ?assertEqual(
         #{
             1 =>

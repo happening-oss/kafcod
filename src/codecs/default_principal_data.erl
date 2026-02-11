@@ -1,4 +1,7 @@
 -module(default_principal_data).
+
+%% This file is auto-generated.
+
 -export([
     encode_default_principal_data_0/1,
     decode_default_principal_data_0/1

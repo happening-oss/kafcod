@@ -1,4 +1,7 @@
 -module(snapshot_footer_record).
+
+%% This file is auto-generated.
+
 -export([
     encode_snapshot_footer_record_0/1,
     decode_snapshot_footer_record_0/1

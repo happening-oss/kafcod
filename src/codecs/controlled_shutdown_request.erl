@@ -1,4 +1,7 @@
 -module(controlled_shutdown_request).
+
+%% This file is auto-generated.
+
 -export([
     encode_controlled_shutdown_request_0/1,
     decode_controlled_shutdown_request_0/1,

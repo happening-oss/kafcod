@@ -1,5 +1,13 @@
 -module(kafcod_message_set).
--export([prepare_message_set/2]).
+-export([
+    prepare_message_set/1,
+    prepare_message_set/2
+]).
+
+-export_type([
+    headers/0,
+    message/0
+]).
 
 % Per KIP-82, "duplicate headers with the same key must be supported.", so it's a list of KV.
 -type headers() :: [{Key :: binary(), Value :: binary() | null}].
@@ -9,7 +17,16 @@
     headers := headers()
 }.
 
--spec prepare_message_set(kafcod_record_batch:batch_attributes(), [message(), ...]) ->
+-spec prepare_message_set(Messages :: nonempty_list(message())) ->
+    [kafcod_record_batch:record_batch()].
+
+prepare_message_set(Messages) ->
+    prepare_message_set(#{}, Messages).
+
+-spec prepare_message_set(
+    BatchAttributes :: #{compression => kafcod_record_batch:compression()},
+    Messages :: nonempty_list(message())
+) ->
     [kafcod_record_batch:record_batch()].
 
 prepare_message_set(BatchAttributes, Messages = [_ | _]) when
@@ -18,18 +35,23 @@ prepare_message_set(BatchAttributes, Messages = [_ | _]) when
     DefaultBatchAttributes = #{compression => none},
     BatchAttributes1 = maps:merge(DefaultBatchAttributes, BatchAttributes),
     [
-        % TODO: Are there any reasons why we'd *produce* a message set with multiple batches in it?
+        % According to the Kafka source, v3.8.1,
+        % clients/src/main/java/org/apache/kafka/common/requests/ProduceRequest.java, line 227-254, validateRecords(),
+        % Produce requests must have exactly one record batch per partition.
         prepare_record_batch(BatchAttributes1, Messages)
     ];
 prepare_message_set(BatchAttributes, Messages) ->
     error(badarg, [BatchAttributes, Messages]).
 
--spec prepare_record_batch(kafcod_record_batch:batch_attributes(), [message(), ...]) ->
+-spec prepare_record_batch(
+    BatchAttributes :: kafcod_record_batch:batch_attributes(),
+    Messages :: nonempty_list(message())
+) ->
     kafcod_record_batch:record_batch().
 
-prepare_record_batch(BatchAttributes, Messages = [_ | _]) when is_list(Messages) ->
-    % TODO: Records (i.e. the message set) is nullable.
-    % TODO: What does the broker actually do with that, and should we support it?
+prepare_record_batch(BatchAttributes, Messages = [_ | _]) when
+    is_map(BatchAttributes), is_list(Messages)
+->
     {Records, LastOffsetDelta} = prepare_records(Messages),
     Timestamp = os:system_time(millisecond),
     #{

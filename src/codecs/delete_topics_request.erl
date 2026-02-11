@@ -1,4 +1,7 @@
 -module(delete_topics_request).
+
+%% This file is auto-generated.
+
 -export([
     encode_delete_topics_request_0/1,
     decode_delete_topics_request_0/1,
@@ -368,7 +371,7 @@ encode_delete_topics_request_6(
 ->
     [
         ?encode_request_header_2(?DELETE_TOPICS_REQUEST, 6, CorrelationId, ClientId),
-        ?encode_compact_array(Topics, fun encode_delete_topic_state_6/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_delete_topic_state_6)),
         ?encode_int32(TimeoutMs),
         ?EMPTY_TAG_BUFFER
     ];

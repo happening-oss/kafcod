@@ -1,4 +1,7 @@
 -module(end_quorum_epoch_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_end_quorum_epoch_response_0/1,
     decode_end_quorum_epoch_response_0/1
@@ -33,7 +36,7 @@ encode_end_quorum_epoch_response_0(
     [
         ?encode_response_header_0(CorrelationId),
         ?encode_int16(ErrorCode),
-        ?encode_array(Topics, fun encode_topic_data_0/1)
+        ?encode_array(Topics, ?encode_element(encode_topic_data_0))
     ];
 encode_end_quorum_epoch_response_0(Args) ->
     ?encoder_error(Args, #{
@@ -123,7 +126,7 @@ encode_topic_data_0(
 ->
     [
         ?encode_string(TopicName),
-        ?encode_array(Partitions, fun encode_partition_data_0/1)
+        ?encode_array(Partitions, ?encode_element(encode_partition_data_0))
     ];
 encode_topic_data_0(Args) ->
     ?encoder_error(Args, #{

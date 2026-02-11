@@ -1,4 +1,7 @@
 -module(describe_producers_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_describe_producers_response_0/1,
     decode_describe_producers_response_0/1
@@ -35,7 +38,7 @@ encode_describe_producers_response_0(
     [
         ?encode_response_header_1(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_compact_array(Topics, fun encode_topic_response_0/1),
+        ?encode_compact_array(Topics, ?encode_element(encode_topic_response_0)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_describe_producers_response_0(Args) ->
@@ -168,7 +171,7 @@ encode_partition_response_0(
         ?encode_int32(PartitionIndex),
         ?encode_int16(ErrorCode),
         ?encode_compact_nullable_string(ErrorMessage),
-        ?encode_compact_array(ActiveProducers, fun encode_producer_state_0/1),
+        ?encode_compact_array(ActiveProducers, ?encode_element(encode_producer_state_0)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_partition_response_0(Args) ->
@@ -225,7 +228,7 @@ encode_topic_response_0(
 ->
     [
         ?encode_compact_string(Name),
-        ?encode_compact_array(Partitions, fun encode_partition_response_0/1),
+        ?encode_compact_array(Partitions, ?encode_element(encode_partition_response_0)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_topic_response_0(Args) ->

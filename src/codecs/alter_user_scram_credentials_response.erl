@@ -1,4 +1,7 @@
 -module(alter_user_scram_credentials_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_alter_user_scram_credentials_response_0/1,
     decode_alter_user_scram_credentials_response_0/1
@@ -33,7 +36,7 @@ encode_alter_user_scram_credentials_response_0(
     [
         ?encode_response_header_1(CorrelationId),
         ?encode_int32(ThrottleTimeMs),
-        ?encode_compact_array(Results, fun encode_alter_user_scram_credentials_result_0/1),
+        ?encode_compact_array(Results, ?encode_element(encode_alter_user_scram_credentials_result_0)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_alter_user_scram_credentials_response_0(Args) ->

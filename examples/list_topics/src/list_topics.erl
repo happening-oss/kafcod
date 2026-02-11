@@ -33,8 +33,8 @@ parse_broker(Arg) when is_list(Arg) ->
 
 list_topics(#{broker := {Host, Port}}) ->
     process_flag(trap_exit, true),
-    {ok, Connection} = kafka_connection:start_link(Host, Port, ?CLIENT_ID),
-    {ok, Metadata} = kafka_connection:call(
+    {ok, Connection} = kafcod_connection:start_link(#{host => Host, port => Port}, #{client_id => ?CLIENT_ID}),
+    {ok, Metadata} = kafcod_connection:call(
         Connection,
         fun metadata_request:encode_metadata_request_9/1,
         #{
@@ -48,7 +48,7 @@ list_topics(#{broker := {Host, Port}}) ->
     #{topics := Topics} = Metadata,
     TopicNames = [Name || #{error_code := 0, name := Name} <- Topics],
 
-    {ok, #{results := Results}} = kafka_connection:call(
+    {ok, #{results := Results}} = kafcod_connection:call(
         Connection,
         fun describe_configs_request:encode_describe_configs_request_0/1,
         #{

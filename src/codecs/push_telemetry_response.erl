@@ -1,4 +1,7 @@
 -module(push_telemetry_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_push_telemetry_response_0/1,
     decode_push_telemetry_response_0/1

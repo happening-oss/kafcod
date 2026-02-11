@@ -1,4 +1,7 @@
 -module(list_client_metrics_resources_request).
+
+%% This file is auto-generated.
+
 -export([
     encode_list_client_metrics_resources_request_0/1,
     decode_list_client_metrics_resources_request_0/1

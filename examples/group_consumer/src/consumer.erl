@@ -51,7 +51,7 @@ callback_mode() ->
     [handle_event_function].
 
 init({ClientId, _Broker = #{host := Host, port := Port}, Offsets}) ->
-    {ok, Conn} = kafka_connection:start_link(Host, Port, ClientId),
+    {ok, Conn} = kafcod_connection:start_link(#{host => Host, port => Port}, #{client_id => ClientId}),
     ?LOG_DEBUG("~p connected to ~s:~B", [Conn, Host, Port]),
     StateData = #state{
         connection = Conn,
@@ -68,7 +68,7 @@ do_fetch(
 ) ->
     ?LOG_DEBUG("Fetching from ~p~n", [Offsets]),
     FetchRequest = build_fetch_request(Offsets),
-    {ok, FetchResponse} = kafka_connection:call(
+    {ok, FetchResponse} = kafcod_connection:call(
         Conn,
         fun fetch_request:encode_fetch_request_11/1,
         FetchRequest,
@@ -253,7 +253,7 @@ handle_offsets_out_of_range(Errors, Connection, Offsets) ->
             ListOffsetsRequest = build_list_offsets_request(OffsetsOutOfRange),
             % TODO: Use ListOffsetsResponse to set the offsets in StateData, and trigger another fetch.
             % TODO: If the ListOffsets fails, log an error and continue? We'll try again on the next go-round.
-            {ok, #{topics := TopicOffsets}} = kafka_connection:call(
+            {ok, #{topics := TopicOffsets}} = kafcod_connection:call(
                 Connection,
                 fun list_offsets_request:encode_list_offsets_request_6/1,
                 ListOffsetsRequest,

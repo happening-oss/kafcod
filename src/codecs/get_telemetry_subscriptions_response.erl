@@ -1,4 +1,7 @@
 -module(get_telemetry_subscriptions_response).
+
+%% This file is auto-generated.
+
 -export([
     encode_get_telemetry_subscriptions_response_0/1,
     decode_get_telemetry_subscriptions_response_0/1

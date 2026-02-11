@@ -1,4 +1,7 @@
 -module(alter_user_scram_credentials_request).
+
+%% This file is auto-generated.
+
 -export([
     encode_alter_user_scram_credentials_request_0/1,
     decode_alter_user_scram_credentials_request_0/1
@@ -37,8 +40,8 @@ encode_alter_user_scram_credentials_request_0(
 ->
     [
         ?encode_request_header_2(?ALTER_USER_SCRAM_CREDENTIALS_REQUEST, 0, CorrelationId, ClientId),
-        ?encode_compact_array(Deletions, fun encode_scram_credential_deletion_0/1),
-        ?encode_compact_array(Upsertions, fun encode_scram_credential_upsertion_0/1),
+        ?encode_compact_array(Deletions, ?encode_element(encode_scram_credential_deletion_0)),
+        ?encode_compact_array(Upsertions, ?encode_element(encode_scram_credential_upsertion_0)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_alter_user_scram_credentials_request_0(Args) ->

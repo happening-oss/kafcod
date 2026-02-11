@@ -27,7 +27,7 @@
     {[kafcod_record_batch:record_batch()], Rest :: binary()}.
 
 decode_records(<<Length:32/big-signed, EncodedRecordBatches:Length/binary, Rest/binary>>) ->
-    telemetry:execute([kafcod, records, decode_records], #{byte_size => Length}),
+    telemetry:execute([kafcod, records, decode_records], #{byte_size => Length}, #{}),
     RecordBatches = decode_record_batches(EncodedRecordBatches),
     {RecordBatches, Rest}.
 
@@ -39,7 +39,7 @@ decode_compact_records(<<0:8, Rest/binary>>) ->
 decode_compact_records(Input) ->
     {Length1, Bin1} = kafcod_primitives:decode_unsigned_varint(Input),
     Length = Length1 - 1,
-    telemetry:execute([kafcod, records, decode_records], #{byte_size => Length}),
+    telemetry:execute([kafcod, records, decode_records], #{byte_size => Length}, #{}),
     <<EncodedRecordBatches:Length/binary, Rest/binary>> = Bin1,
     RecordBatches = decode_record_batches(EncodedRecordBatches),
     {RecordBatches, Rest}.
@@ -67,7 +67,7 @@ decode_record_batches(RecordBatches, Acc) ->
 encode_records(RecordBatches) when is_list(RecordBatches) ->
     EncodedRecordBatches = encode_record_batches(RecordBatches),
     Length = iolist_size(EncodedRecordBatches),
-    telemetry:execute([kafcod, records, encode_records], #{byte_size => Length}),
+    telemetry:execute([kafcod, records, encode_records], #{byte_size => Length}, #{}),
     [<<Length:32/big-signed>>, EncodedRecordBatches].
 
 -spec encode_compact_records([kafcod_record_batch:record_batch()]) -> iodata().
@@ -75,7 +75,7 @@ encode_records(RecordBatches) when is_list(RecordBatches) ->
 encode_compact_records(RecordBatches) when is_list(RecordBatches) ->
     EncodedRecordBatches = encode_record_batches(RecordBatches),
     Length = iolist_size(EncodedRecordBatches),
-    telemetry:execute([kafcod, records, encode_records], #{byte_size => Length}),
+    telemetry:execute([kafcod, records, encode_records], #{byte_size => Length}, #{}),
     [kafcod_primitives:encode_unsigned_varint(Length + 1), EncodedRecordBatches].
 
 -spec encode_record_batches([kafcod_record_batch:record_batch()]) -> iodata().

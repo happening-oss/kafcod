@@ -1,4 +1,7 @@
 -module(metadata_request).
+
+%% This file is auto-generated.
+
 -export([
     encode_metadata_request_0/1,
     decode_metadata_request_0/1,
@@ -81,7 +84,7 @@ encode_metadata_request_0(
 ->
     [
         ?encode_request_header_1(?METADATA_REQUEST, 0, CorrelationId, ClientId),
-        ?encode_array(Topics, fun encode_metadata_request_topic_0/1)
+        ?encode_array(Topics, ?encode_element(encode_metadata_request_topic_0))
     ];
 encode_metadata_request_0(Args) ->
     ?encoder_error(Args, #{
@@ -153,7 +156,7 @@ encode_metadata_request_1(
 ->
     [
         ?encode_request_header_1(?METADATA_REQUEST, 1, CorrelationId, ClientId),
-        ?encode_nullable_array(Topics, fun encode_metadata_request_topic_1/1)
+        ?encode_nullable_array(Topics, ?encode_element(encode_metadata_request_topic_1))
     ];
 encode_metadata_request_1(Args) ->
     ?encoder_error(Args, #{
@@ -225,7 +228,7 @@ encode_metadata_request_2(
 ->
     [
         ?encode_request_header_1(?METADATA_REQUEST, 2, CorrelationId, ClientId),
-        ?encode_nullable_array(Topics, fun encode_metadata_request_topic_2/1)
+        ?encode_nullable_array(Topics, ?encode_element(encode_metadata_request_topic_2))
     ];
 encode_metadata_request_2(Args) ->
     ?encoder_error(Args, #{
@@ -297,7 +300,7 @@ encode_metadata_request_3(
 ->
     [
         ?encode_request_header_1(?METADATA_REQUEST, 3, CorrelationId, ClientId),
-        ?encode_nullable_array(Topics, fun encode_metadata_request_topic_3/1)
+        ?encode_nullable_array(Topics, ?encode_element(encode_metadata_request_topic_3))
     ];
 encode_metadata_request_3(Args) ->
     ?encoder_error(Args, #{
@@ -372,7 +375,7 @@ encode_metadata_request_4(
 ->
     [
         ?encode_request_header_1(?METADATA_REQUEST, 4, CorrelationId, ClientId),
-        ?encode_nullable_array(Topics, fun encode_metadata_request_topic_4/1),
+        ?encode_nullable_array(Topics, ?encode_element(encode_metadata_request_topic_4)),
         ?encode_bool(AllowAutoTopicCreation)
     ];
 encode_metadata_request_4(Args) ->
@@ -451,7 +454,7 @@ encode_metadata_request_5(
 ->
     [
         ?encode_request_header_1(?METADATA_REQUEST, 5, CorrelationId, ClientId),
-        ?encode_nullable_array(Topics, fun encode_metadata_request_topic_5/1),
+        ?encode_nullable_array(Topics, ?encode_element(encode_metadata_request_topic_5)),
         ?encode_bool(AllowAutoTopicCreation)
     ];
 encode_metadata_request_5(Args) ->
@@ -530,7 +533,7 @@ encode_metadata_request_6(
 ->
     [
         ?encode_request_header_1(?METADATA_REQUEST, 6, CorrelationId, ClientId),
-        ?encode_nullable_array(Topics, fun encode_metadata_request_topic_6/1),
+        ?encode_nullable_array(Topics, ?encode_element(encode_metadata_request_topic_6)),
         ?encode_bool(AllowAutoTopicCreation)
     ];
 encode_metadata_request_6(Args) ->
@@ -609,7 +612,7 @@ encode_metadata_request_7(
 ->
     [
         ?encode_request_header_1(?METADATA_REQUEST, 7, CorrelationId, ClientId),
-        ?encode_nullable_array(Topics, fun encode_metadata_request_topic_7/1),
+        ?encode_nullable_array(Topics, ?encode_element(encode_metadata_request_topic_7)),
         ?encode_bool(AllowAutoTopicCreation)
     ];
 encode_metadata_request_7(Args) ->
@@ -694,7 +697,7 @@ encode_metadata_request_8(
 ->
     [
         ?encode_request_header_1(?METADATA_REQUEST, 8, CorrelationId, ClientId),
-        ?encode_nullable_array(Topics, fun encode_metadata_request_topic_8/1),
+        ?encode_nullable_array(Topics, ?encode_element(encode_metadata_request_topic_8)),
         ?encode_bool(AllowAutoTopicCreation),
         ?encode_bool(IncludeClusterAuthorizedOperations),
         ?encode_bool(IncludeTopicAuthorizedOperations)
@@ -787,7 +790,7 @@ encode_metadata_request_9(
 ->
     [
         ?encode_request_header_2(?METADATA_REQUEST, 9, CorrelationId, ClientId),
-        ?encode_compact_nullable_array(Topics, fun encode_metadata_request_topic_9/1),
+        ?encode_compact_nullable_array(Topics, ?encode_element(encode_metadata_request_topic_9)),
         ?encode_bool(AllowAutoTopicCreation),
         ?encode_bool(IncludeClusterAuthorizedOperations),
         ?encode_bool(IncludeTopicAuthorizedOperations),
@@ -906,7 +909,7 @@ encode_metadata_request_10(
 ->
     [
         ?encode_request_header_2(?METADATA_REQUEST, 10, CorrelationId, ClientId),
-        ?encode_compact_nullable_array(Topics, fun encode_metadata_request_topic_10/1),
+        ?encode_compact_nullable_array(Topics, ?encode_element(encode_metadata_request_topic_10)),
         ?encode_bool(AllowAutoTopicCreation),
         ?encode_bool(IncludeClusterAuthorizedOperations),
         ?encode_bool(IncludeTopicAuthorizedOperations),
@@ -1029,7 +1032,7 @@ encode_metadata_request_11(
 ->
     [
         ?encode_request_header_2(?METADATA_REQUEST, 11, CorrelationId, ClientId),
-        ?encode_compact_nullable_array(Topics, fun encode_metadata_request_topic_11/1),
+        ?encode_compact_nullable_array(Topics, ?encode_element(encode_metadata_request_topic_11)),
         ?encode_bool(AllowAutoTopicCreation),
         ?encode_bool(IncludeTopicAuthorizedOperations),
         ?EMPTY_TAG_BUFFER
@@ -1148,7 +1151,7 @@ encode_metadata_request_12(
 ->
     [
         ?encode_request_header_2(?METADATA_REQUEST, 12, CorrelationId, ClientId),
-        ?encode_compact_nullable_array(Topics, fun encode_metadata_request_topic_12/1),
+        ?encode_compact_nullable_array(Topics, ?encode_element(encode_metadata_request_topic_12)),
         ?encode_bool(AllowAutoTopicCreation),
         ?encode_bool(IncludeTopicAuthorizedOperations),
         ?EMPTY_TAG_BUFFER

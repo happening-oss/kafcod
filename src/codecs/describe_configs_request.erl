@@ -1,4 +1,7 @@
 -module(describe_configs_request).
+
+%% This file is auto-generated.
+
 -export([
     encode_describe_configs_request_0/1,
     decode_describe_configs_request_0/1,
@@ -49,7 +52,7 @@ encode_describe_configs_request_0(
 ->
     [
         ?encode_request_header_1(?DESCRIBE_CONFIGS_REQUEST, 0, CorrelationId, ClientId),
-        ?encode_array(Resources, fun encode_describe_configs_resource_0/1)
+        ?encode_array(Resources, ?encode_element(encode_describe_configs_resource_0))
     ];
 encode_describe_configs_request_0(Args) ->
     ?encoder_error(Args, #{
@@ -138,7 +141,7 @@ encode_describe_configs_request_1(
 ->
     [
         ?encode_request_header_1(?DESCRIBE_CONFIGS_REQUEST, 1, CorrelationId, ClientId),
-        ?encode_array(Resources, fun encode_describe_configs_resource_1/1),
+        ?encode_array(Resources, ?encode_element(encode_describe_configs_resource_1)),
         ?encode_bool(IncludeSynonyms)
     ];
 encode_describe_configs_request_1(Args) ->
@@ -231,7 +234,7 @@ encode_describe_configs_request_2(
 ->
     [
         ?encode_request_header_1(?DESCRIBE_CONFIGS_REQUEST, 2, CorrelationId, ClientId),
-        ?encode_array(Resources, fun encode_describe_configs_resource_2/1),
+        ?encode_array(Resources, ?encode_element(encode_describe_configs_resource_2)),
         ?encode_bool(IncludeSynonyms)
     ];
 encode_describe_configs_request_2(Args) ->
@@ -327,7 +330,7 @@ encode_describe_configs_request_3(
 ->
     [
         ?encode_request_header_1(?DESCRIBE_CONFIGS_REQUEST, 3, CorrelationId, ClientId),
-        ?encode_array(Resources, fun encode_describe_configs_resource_3/1),
+        ?encode_array(Resources, ?encode_element(encode_describe_configs_resource_3)),
         ?encode_bool(IncludeSynonyms),
         ?encode_bool(IncludeDocumentation)
     ];
@@ -427,7 +430,7 @@ encode_describe_configs_request_4(
 ->
     [
         ?encode_request_header_2(?DESCRIBE_CONFIGS_REQUEST, 4, CorrelationId, ClientId),
-        ?encode_compact_array(Resources, fun encode_describe_configs_resource_4/1),
+        ?encode_compact_array(Resources, ?encode_element(encode_describe_configs_resource_4)),
         ?encode_bool(IncludeSynonyms),
         ?encode_bool(IncludeDocumentation),
         ?EMPTY_TAG_BUFFER

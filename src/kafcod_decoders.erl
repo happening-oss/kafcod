@@ -1,4 +1,7 @@
 -module(kafcod_decoders).
+
+%% This file is auto-generated.
+
 -export([decode/4]).
 decode(_ApiKey = 0, _ApiVersion = 0, request, Payload) -> produce_request:decode_produce_request_0(Payload);
 decode(_ApiKey = 0, _ApiVersion = 1, request, Payload) -> produce_request:decode_produce_request_1(Payload);

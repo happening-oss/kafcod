@@ -8,6 +8,12 @@ main(Args) ->
         Args,
         #{
             arguments => [
+                #{
+                    name => broker,
+                    help => "Bootstrap broker (host[:port])",
+                    type => {custom, fun parse_broker/1}
+                },
+
                 #{name => topic, help => "Topic to consume from", type => binary}
             ],
             handler => fun topic_consumer/1
@@ -15,18 +21,30 @@ main(Args) ->
         #{progname => ?MODULE}
     ).
 
-topic_consumer(#{topic := TopicName}) ->
-    {ok, K} = kafka_connection:start_link("localhost", 9092, ?CLIENT_ID),
+-define(DEFAULT_BROKER_PORT, 9092).
+
+parse_broker(Arg) when is_list(Arg) ->
+    case string:split(Arg, ":") of
+        [Host, Port] ->
+            #{host => Host, port => list_to_integer(Port)};
+        [Host] ->
+            #{host => Host, port => ?DEFAULT_BROKER_PORT};
+        _ ->
+            error(badarg)
+    end.
+
+topic_consumer(#{broker := Bootstrap, topic := TopicName}) ->
+    {ok, K} = kafcod_connection:start_link(Bootstrap, #{client_id => ?CLIENT_ID}),
 
     % Find out how many partitions the given topic has.
-    {ok, Metadata} = kafka_connection:call(
+    {ok, Metadata} = kafcod_connection:call(
         K,
         fun metadata_request:encode_metadata_request_7/1,
         #{topics => [#{name => TopicName}], allow_auto_topic_creation => false},
         fun metadata_response:decode_metadata_response_7/1
     ),
 
-    kafka_connection:stop(K),
+    kafcod_connection:stop(K),
 
     #{brokers := Brokers0, topics := [Topic]} = Metadata,
     Brokers = lists:foldl(

@@ -1,4 +1,7 @@
 -module(sync_group_request).
+
+%% This file is auto-generated.
+
 -export([
     encode_sync_group_request_0/1,
     decode_sync_group_request_0/1,
@@ -65,7 +68,7 @@ encode_sync_group_request_0(
         ?encode_string(GroupId),
         ?encode_int32(GenerationId),
         ?encode_string(MemberId),
-        ?encode_array(Assignments, fun encode_sync_group_request_assignment_0/1)
+        ?encode_array(Assignments, ?encode_element(encode_sync_group_request_assignment_0))
     ];
 encode_sync_group_request_0(Args) ->
     ?encoder_error(Args, #{
@@ -165,7 +168,7 @@ encode_sync_group_request_1(
         ?encode_string(GroupId),
         ?encode_int32(GenerationId),
         ?encode_string(MemberId),
-        ?encode_array(Assignments, fun encode_sync_group_request_assignment_1/1)
+        ?encode_array(Assignments, ?encode_element(encode_sync_group_request_assignment_1))
     ];
 encode_sync_group_request_1(Args) ->
     ?encoder_error(Args, #{
@@ -265,7 +268,7 @@ encode_sync_group_request_2(
         ?encode_string(GroupId),
         ?encode_int32(GenerationId),
         ?encode_string(MemberId),
-        ?encode_array(Assignments, fun encode_sync_group_request_assignment_2/1)
+        ?encode_array(Assignments, ?encode_element(encode_sync_group_request_assignment_2))
     ];
 encode_sync_group_request_2(Args) ->
     ?encoder_error(Args, #{
@@ -369,7 +372,7 @@ encode_sync_group_request_3(
         ?encode_int32(GenerationId),
         ?encode_string(MemberId),
         ?encode_nullable_string(GroupInstanceId),
-        ?encode_array(Assignments, fun encode_sync_group_request_assignment_3/1)
+        ?encode_array(Assignments, ?encode_element(encode_sync_group_request_assignment_3))
     ];
 encode_sync_group_request_3(Args) ->
     ?encoder_error(Args, #{
@@ -476,7 +479,7 @@ encode_sync_group_request_4(
         ?encode_int32(GenerationId),
         ?encode_compact_string(MemberId),
         ?encode_compact_nullable_string(GroupInstanceId),
-        ?encode_compact_array(Assignments, fun encode_sync_group_request_assignment_4/1),
+        ?encode_compact_array(Assignments, ?encode_element(encode_sync_group_request_assignment_4)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_sync_group_request_4(Args) ->
@@ -617,7 +620,7 @@ encode_sync_group_request_5(
         ?encode_compact_nullable_string(GroupInstanceId),
         ?encode_compact_nullable_string(ProtocolType),
         ?encode_compact_nullable_string(ProtocolName),
-        ?encode_compact_array(Assignments, fun encode_sync_group_request_assignment_5/1),
+        ?encode_compact_array(Assignments, ?encode_element(encode_sync_group_request_assignment_5)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_sync_group_request_5(Args) ->

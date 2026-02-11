@@ -1,4 +1,7 @@
 -module(delete_acls_request).
+
+%% This file is auto-generated.
+
 -export([
     encode_delete_acls_request_0/1,
     decode_delete_acls_request_0/1,
@@ -45,7 +48,7 @@ encode_delete_acls_request_0(
 ->
     [
         ?encode_request_header_1(?DELETE_ACLS_REQUEST, 0, CorrelationId, ClientId),
-        ?encode_array(Filters, fun encode_delete_acls_filter_0/1)
+        ?encode_array(Filters, ?encode_element(encode_delete_acls_filter_0))
     ];
 encode_delete_acls_request_0(Args) ->
     ?encoder_error(Args, #{
@@ -152,7 +155,7 @@ encode_delete_acls_request_1(
 ->
     [
         ?encode_request_header_1(?DELETE_ACLS_REQUEST, 1, CorrelationId, ClientId),
-        ?encode_array(Filters, fun encode_delete_acls_filter_1/1)
+        ?encode_array(Filters, ?encode_element(encode_delete_acls_filter_1))
     ];
 encode_delete_acls_request_1(Args) ->
     ?encoder_error(Args, #{
@@ -266,7 +269,7 @@ encode_delete_acls_request_2(
 ->
     [
         ?encode_request_header_2(?DELETE_ACLS_REQUEST, 2, CorrelationId, ClientId),
-        ?encode_compact_array(Filters, fun encode_delete_acls_filter_2/1),
+        ?encode_compact_array(Filters, ?encode_element(encode_delete_acls_filter_2)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_delete_acls_request_2(Args) ->
@@ -406,7 +409,7 @@ encode_delete_acls_request_3(
 ->
     [
         ?encode_request_header_2(?DELETE_ACLS_REQUEST, 3, CorrelationId, ClientId),
-        ?encode_compact_array(Filters, fun encode_delete_acls_filter_3/1),
+        ?encode_compact_array(Filters, ?encode_element(encode_delete_acls_filter_3)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_delete_acls_request_3(Args) ->

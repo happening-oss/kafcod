@@ -74,3 +74,32 @@ encode_decode_assignments_test_() ->
                 Assignment2, kafcod_consumer_protocol:decode_assignment(EncodedAssignment2)
             )}
     ].
+
+empty_assignments_test() ->
+    % Captured earlier; see sync_group_response_tests.erl
+    ?assertEqual(
+        #{user_data => <<>>, assigned_partitions => #{}},
+        kafcod_consumer_protocol:decode_assignment(<<0, 0, 0, 0, 0, 0, 0, 0, 0, 0>>)
+    ).
+
+single_partition_test() ->
+    % Captured earlier; see sync_group_response_tests.erl
+    ?assertEqual(
+        #{
+            user_data => <<>>,
+            assigned_partitions => #{<<"highlander">> => [0]}
+        },
+        kafcod_consumer_protocol:decode_assignment(
+            <<0, 0, 0, 0, 0, 1, 0, 10, 104, 105, 103, 104, 108, 97, 110, 100, 101, 114, 0, 0, 0, 1,
+                0, 0, 0, 0, 0, 0, 0, 0>>
+        )
+    ).
+
+missing_assignment_test() ->
+    ?assertEqual(
+        #{
+            user_data => <<>>,
+            assigned_partitions => #{}
+        },
+        kafcod_consumer_protocol:decode_assignment(<<>>)
+    ).

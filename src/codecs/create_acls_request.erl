@@ -1,4 +1,7 @@
 -module(create_acls_request).
+
+%% This file is auto-generated.
+
 -export([
     encode_create_acls_request_0/1,
     decode_create_acls_request_0/1,
@@ -45,7 +48,7 @@ encode_create_acls_request_0(
 ->
     [
         ?encode_request_header_1(?CREATE_ACLS_REQUEST, 0, CorrelationId, ClientId),
-        ?encode_array(Creations, fun encode_acl_creation_0/1)
+        ?encode_array(Creations, ?encode_element(encode_acl_creation_0))
     ];
 encode_create_acls_request_0(Args) ->
     ?encoder_error(Args, #{
@@ -152,7 +155,7 @@ encode_create_acls_request_1(
 ->
     [
         ?encode_request_header_1(?CREATE_ACLS_REQUEST, 1, CorrelationId, ClientId),
-        ?encode_array(Creations, fun encode_acl_creation_1/1)
+        ?encode_array(Creations, ?encode_element(encode_acl_creation_1))
     ];
 encode_create_acls_request_1(Args) ->
     ?encoder_error(Args, #{
@@ -266,7 +269,7 @@ encode_create_acls_request_2(
 ->
     [
         ?encode_request_header_2(?CREATE_ACLS_REQUEST, 2, CorrelationId, ClientId),
-        ?encode_compact_array(Creations, fun encode_acl_creation_2/1),
+        ?encode_compact_array(Creations, ?encode_element(encode_acl_creation_2)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_create_acls_request_2(Args) ->
@@ -406,7 +409,7 @@ encode_create_acls_request_3(
 ->
     [
         ?encode_request_header_2(?CREATE_ACLS_REQUEST, 3, CorrelationId, ClientId),
-        ?encode_compact_array(Creations, fun encode_acl_creation_3/1),
+        ?encode_compact_array(Creations, ?encode_element(encode_acl_creation_3)),
         ?EMPTY_TAG_BUFFER
     ];
 encode_create_acls_request_3(Args) ->

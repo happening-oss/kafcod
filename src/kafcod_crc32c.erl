@@ -1,7 +1,7 @@
 -module(kafcod_crc32c).
 
 %% For speed, we prefer to use https://hex.pm/packages/crc32cer, a NIF-based implementation, but that breaks the example
-%% escripts (because you can't put NIFs inside escript). If you want to do that, hack on kafcod to call
+%% escripts (because you can't put NIFs inside escript). If you want to do that, hack on kafcod_record_batch.erl to call
 %% kafcod_crc32c_erl instead (but don't commit the change!).
 
 -export([value/1]).
