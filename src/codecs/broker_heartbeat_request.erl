@@ -153,9 +153,9 @@ encode_broker_heartbeat_request_1(Args) ->
         want_shut_down => bool
     }).
 
--spec encode_broker_heartbeat_request_1_tagged_field(
-    Key :: atom(), Value :: list(kafcod:uuid())
-) -> {non_neg_integer(), iodata()} | ignore.
+-spec encode_broker_heartbeat_request_1_tagged_field
+    (offline_log_dirs, Value :: list(kafcod:uuid())) -> {0, iodata()};
+    (Key :: atom(), Value :: dynamic()) -> ignore | dynamic().
 
 encode_broker_heartbeat_request_1_tagged_field(_Key = offline_log_dirs, OfflineLogDirs) ->
     {0, ?encode_compact_array(OfflineLogDirs, ?encode_uuid_)};

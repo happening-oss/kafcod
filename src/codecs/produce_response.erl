@@ -1623,9 +1623,9 @@ encode_produce_response_10(Args) ->
         throttle_time_ms => int32
     }).
 
--spec encode_produce_response_10_tagged_field(
-    Key :: atom(), Value :: list(node_endpoint_10())
-) -> {non_neg_integer(), iodata()} | ignore.
+-spec encode_produce_response_10_tagged_field
+    (node_endpoints, Value :: list(node_endpoint_10())) -> {0, iodata()};
+    (Key :: atom(), Value :: dynamic()) -> ignore | dynamic().
 
 encode_produce_response_10_tagged_field(_Key = node_endpoints, NodeEndpoints) ->
     {0, ?encode_compact_array(NodeEndpoints, ?encode_element(encode_node_endpoint_10))};
@@ -1820,9 +1820,9 @@ encode_partition_produce_response_10(Args) ->
         error_message => nullable_string
     }).
 
--spec encode_partition_produce_response_10_tagged_field(
-    Key :: atom(), Value :: leader_id_and_epoch_10()
-) -> {non_neg_integer(), iodata()} | ignore.
+-spec encode_partition_produce_response_10_tagged_field
+    (current_leader, Value :: leader_id_and_epoch_10()) -> {0, iodata()};
+    (Key :: atom(), Value :: dynamic()) -> ignore | dynamic().
 
 encode_partition_produce_response_10_tagged_field(_Key = current_leader, CurrentLeader) ->
     {0, encode_leader_id_and_epoch_10(CurrentLeader)};
@@ -2019,9 +2019,9 @@ encode_produce_response_11(Args) ->
         throttle_time_ms => int32
     }).
 
--spec encode_produce_response_11_tagged_field(
-    Key :: atom(), Value :: list(node_endpoint_11())
-) -> {non_neg_integer(), iodata()} | ignore.
+-spec encode_produce_response_11_tagged_field
+    (node_endpoints, Value :: list(node_endpoint_11())) -> {0, iodata()};
+    (Key :: atom(), Value :: dynamic()) -> ignore | dynamic().
 
 encode_produce_response_11_tagged_field(_Key = node_endpoints, NodeEndpoints) ->
     {0, ?encode_compact_array(NodeEndpoints, ?encode_element(encode_node_endpoint_11))};
@@ -2216,9 +2216,9 @@ encode_partition_produce_response_11(Args) ->
         error_message => nullable_string
     }).
 
--spec encode_partition_produce_response_11_tagged_field(
-    Key :: atom(), Value :: leader_id_and_epoch_11()
-) -> {non_neg_integer(), iodata()} | ignore.
+-spec encode_partition_produce_response_11_tagged_field
+    (current_leader, Value :: leader_id_and_epoch_11()) -> {0, iodata()};
+    (Key :: atom(), Value :: dynamic()) -> ignore | dynamic().
 
 encode_partition_produce_response_11_tagged_field(_Key = current_leader, CurrentLeader) ->
     {0, encode_leader_id_and_epoch_11(CurrentLeader)};

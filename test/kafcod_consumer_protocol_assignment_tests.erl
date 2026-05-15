@@ -1,5 +1,7 @@
--module(kafcod_consumer_protocol_tests).
+-module(kafcod_consumer_protocol_assignment_tests).
 -include_lib("eunit/include/eunit.hrl").
+
+% See also consumer_protocol_assignment_tests.erl
 
 encode_decode_assignments_test_() ->
     Assignment1 = #{
@@ -75,14 +77,17 @@ encode_decode_assignments_test_() ->
             )}
     ].
 
-empty_assignments_test() ->
+v0_empty_assignments_test() ->
     % Captured earlier; see sync_group_response_tests.erl
     ?assertEqual(
-        #{user_data => <<>>, assigned_partitions => #{}},
+        #{
+            user_data => <<>>,
+            assigned_partitions => #{}
+        },
         kafcod_consumer_protocol:decode_assignment(<<0, 0, 0, 0, 0, 0, 0, 0, 0, 0>>)
     ).
 
-single_partition_test() ->
+v0_single_partition_test() ->
     % Captured earlier; see sync_group_response_tests.erl
     ?assertEqual(
         #{
@@ -92,6 +97,30 @@ single_partition_test() ->
         kafcod_consumer_protocol:decode_assignment(
             <<0, 0, 0, 0, 0, 1, 0, 10, 104, 105, 103, 104, 108, 97, 110, 100, 101, 114, 0, 0, 0, 1,
                 0, 0, 0, 0, 0, 0, 0, 0>>
+        )
+    ).
+
+v3_empty_partition_test() ->
+    % Captured earlier; see sync_group_response_tests.erl
+    % Note that, in v3, the user data is null, rather than empty.
+    ?assertEqual(
+        #{
+            user_data => null,
+            assigned_partitions => #{}
+        },
+        kafcod_consumer_protocol:decode_assignment(<<0, 3, 0, 0, 0, 0, 255, 255, 255, 255>>)
+    ).
+
+v3_single_partition_test() ->
+    % Captured earlier; see sync_group_response_tests.erl
+    ?assertEqual(
+        #{
+            user_data => null,
+            assigned_partitions => #{<<"oneone">> => [0]}
+        },
+        kafcod_consumer_protocol:decode_assignment(
+            <<0, 3, 0, 0, 0, 1, 0, 6, 111, 110, 101, 111, 110, 101, 0, 0, 0, 1, 0, 0, 0, 0, 255,
+                255, 255, 255>>
         )
     ).
 

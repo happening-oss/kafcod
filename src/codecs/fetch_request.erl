@@ -2418,9 +2418,9 @@ encode_fetch_request_12(Args) ->
         rack_id => string
     }).
 
--spec encode_fetch_request_12_tagged_field(
-    Key :: atom(), Value :: binary() | null
-) -> {non_neg_integer(), iodata()} | ignore.
+-spec encode_fetch_request_12_tagged_field
+    (cluster_id, Value :: binary() | null) -> {0, iodata()};
+    (Key :: atom(), Value :: dynamic()) -> ignore | dynamic().
 
 encode_fetch_request_12_tagged_field(_Key = cluster_id, ClusterId) ->
     {0, ?encode_compact_nullable_string(ClusterId)};
@@ -2734,9 +2734,9 @@ encode_fetch_request_13(Args) ->
         rack_id => string
     }).
 
--spec encode_fetch_request_13_tagged_field(
-    Key :: atom(), Value :: binary() | null
-) -> {non_neg_integer(), iodata()} | ignore.
+-spec encode_fetch_request_13_tagged_field
+    (cluster_id, Value :: binary() | null) -> {0, iodata()};
+    (Key :: atom(), Value :: dynamic()) -> ignore | dynamic().
 
 encode_fetch_request_13_tagged_field(_Key = cluster_id, ClusterId) ->
     {0, ?encode_compact_nullable_string(ClusterId)};
@@ -3050,9 +3050,9 @@ encode_fetch_request_14(Args) ->
         rack_id => string
     }).
 
--spec encode_fetch_request_14_tagged_field(
-    Key :: atom(), Value :: binary() | null
-) -> {non_neg_integer(), iodata()} | ignore.
+-spec encode_fetch_request_14_tagged_field
+    (cluster_id, Value :: binary() | null) -> {0, iodata()};
+    (Key :: atom(), Value :: dynamic()) -> ignore | dynamic().
 
 encode_fetch_request_14_tagged_field(_Key = cluster_id, ClusterId) ->
     {0, ?encode_compact_nullable_string(ClusterId)};
@@ -3361,9 +3361,10 @@ encode_fetch_request_15(Args) ->
         rack_id => string
     }).
 
--spec encode_fetch_request_15_tagged_field(
-    Key :: atom(), Value :: binary() | null | replica_state_15()
-) -> {non_neg_integer(), iodata()} | ignore.
+-spec encode_fetch_request_15_tagged_field
+    (cluster_id, Value :: binary() | null) -> {0, iodata()};
+    (replica_state, Value :: replica_state_15()) -> {1, iodata()};
+    (Key :: atom(), Value :: dynamic()) -> ignore | dynamic().
 
 encode_fetch_request_15_tagged_field(_Key = cluster_id, ClusterId) ->
     {0, ?encode_compact_nullable_string(ClusterId)};
@@ -3728,9 +3729,10 @@ encode_fetch_request_16(Args) ->
         rack_id => string
     }).
 
--spec encode_fetch_request_16_tagged_field(
-    Key :: atom(), Value :: binary() | null | replica_state_16()
-) -> {non_neg_integer(), iodata()} | ignore.
+-spec encode_fetch_request_16_tagged_field
+    (cluster_id, Value :: binary() | null) -> {0, iodata()};
+    (replica_state, Value :: replica_state_16()) -> {1, iodata()};
+    (Key :: atom(), Value :: dynamic()) -> ignore | dynamic().
 
 encode_fetch_request_16_tagged_field(_Key = cluster_id, ClusterId) ->
     {0, ?encode_compact_nullable_string(ClusterId)};

@@ -207,7 +207,7 @@ encode_partition_snapshot_0(
     ?is_entity(SnapshotId),
     ?is_int64(Size),
     ?is_int64(Position),
-    ?is_records(UnalignedRecords)
+    ?is_nullable_records(UnalignedRecords)
 ->
     [
         ?encode_int32(Index),
@@ -231,9 +231,9 @@ encode_partition_snapshot_0(Args) ->
         unaligned_records => records
     }).
 
--spec encode_partition_snapshot_0_tagged_field(
-    Key :: atom(), Value :: leader_id_and_epoch_0()
-) -> {non_neg_integer(), iodata()} | ignore.
+-spec encode_partition_snapshot_0_tagged_field
+    (current_leader, Value :: leader_id_and_epoch_0()) -> {0, iodata()};
+    (Key :: atom(), Value :: dynamic()) -> ignore | dynamic().
 
 encode_partition_snapshot_0_tagged_field(_Key = current_leader, CurrentLeader) ->
     {0, encode_leader_id_and_epoch_0(CurrentLeader)};
@@ -352,7 +352,7 @@ decode_topic_snapshot_0_tagged_field(_Tag, _Bin0, Acc) ->
     current_leader => leader_id_and_epoch_0(),
     size := integer(),
     position := integer(),
-    unaligned_records := kafcod_records:records()
+    unaligned_records := kafcod_records:nullable_records()
 }.
 -type topic_snapshot_0() :: #{
     name := binary(),

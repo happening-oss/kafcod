@@ -7,7 +7,8 @@
     encode_compact_records/1
 ]).
 -export_type([
-    records/0
+    records/0,
+    nullable_records/0
 ]).
 
 % Exported for testing. See kafcod_records_tests.
@@ -22,9 +23,10 @@
 % zero or more record batches and each batch contains one or more records.
 
 -type records() :: [kafcod_record_batch:record_batch()].
+-type nullable_records() :: records() | null.
 
 -spec decode_records(Input :: nonempty_binary()) ->
-    {[kafcod_record_batch:record_batch()], Rest :: binary()}.
+    {records(), Rest :: binary()}.
 
 decode_records(<<Length:32/big-signed, EncodedRecordBatches:Length/binary, Rest/binary>>) ->
     telemetry:execute([kafcod, records, decode_records], #{byte_size => Length}, #{}),
@@ -32,7 +34,7 @@ decode_records(<<Length:32/big-signed, EncodedRecordBatches:Length/binary, Rest/
     {RecordBatches, Rest}.
 
 -spec decode_compact_records(Input :: nonempty_binary()) ->
-    {[kafcod_record_batch:record_batch()], Rest :: binary()}.
+    {nullable_records(), Rest :: binary()}.
 
 decode_compact_records(<<0:8, Rest/binary>>) ->
     {null, Rest};
@@ -62,7 +64,7 @@ decode_record_batches(RecordBatches, Acc) ->
             lists:reverse(Acc)
     end.
 
--spec encode_records([kafcod_record_batch:record_batch()]) -> iodata().
+-spec encode_records(records()) -> iodata().
 
 encode_records(RecordBatches) when is_list(RecordBatches) ->
     EncodedRecordBatches = encode_record_batches(RecordBatches),
@@ -70,13 +72,15 @@ encode_records(RecordBatches) when is_list(RecordBatches) ->
     telemetry:execute([kafcod, records, encode_records], #{byte_size => Length}, #{}),
     [<<Length:32/big-signed>>, EncodedRecordBatches].
 
--spec encode_compact_records([kafcod_record_batch:record_batch()]) -> iodata().
+-spec encode_compact_records(nullable_records()) -> iodata().
 
 encode_compact_records(RecordBatches) when is_list(RecordBatches) ->
     EncodedRecordBatches = encode_record_batches(RecordBatches),
     Length = iolist_size(EncodedRecordBatches),
     telemetry:execute([kafcod, records, encode_records], #{byte_size => Length}, #{}),
-    [kafcod_primitives:encode_unsigned_varint(Length + 1), EncodedRecordBatches].
+    [kafcod_primitives:encode_unsigned_varint(Length + 1), EncodedRecordBatches];
+encode_compact_records(_RecordBatches = null) ->
+    <<0:8>>.
 
 -spec encode_record_batches([kafcod_record_batch:record_batch()]) -> iodata().
 

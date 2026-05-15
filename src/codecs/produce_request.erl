@@ -1381,7 +1381,7 @@ encode_partition_produce_data_9(
     }
 ) when
     ?is_int32(Index),
-    ?is_records(Records)
+    ?is_nullable_records(Records)
 ->
     [
         ?encode_int32(Index),
@@ -1558,7 +1558,7 @@ encode_partition_produce_data_10(
     }
 ) when
     ?is_int32(Index),
-    ?is_records(Records)
+    ?is_nullable_records(Records)
 ->
     [
         ?encode_int32(Index),
@@ -1735,7 +1735,7 @@ encode_partition_produce_data_11(
     }
 ) when
     ?is_int32(Index),
-    ?is_records(Records)
+    ?is_nullable_records(Records)
 ->
     [
         ?encode_int32(Index),
@@ -1997,7 +1997,7 @@ decode_topic_produce_data_11_tagged_field(_Tag, _Bin0, Acc) ->
 }.
 -type partition_produce_data_9() :: #{
     index := integer(),
-    records := kafcod_records:records()
+    records := kafcod_records:nullable_records()
 }.
 -type topic_produce_data_9() :: #{
     name := binary(),
@@ -2015,7 +2015,7 @@ decode_topic_produce_data_11_tagged_field(_Tag, _Bin0, Acc) ->
 }.
 -type partition_produce_data_10() :: #{
     index := integer(),
-    records := kafcod_records:records()
+    records := kafcod_records:nullable_records()
 }.
 -type topic_produce_data_10() :: #{
     name := binary(),
@@ -2033,7 +2033,7 @@ decode_topic_produce_data_11_tagged_field(_Tag, _Bin0, Acc) ->
 }.
 -type partition_produce_data_11() :: #{
     index := integer(),
-    records := kafcod_records:records()
+    records := kafcod_records:nullable_records()
 }.
 -type topic_produce_data_11() :: #{
     name := binary(),

@@ -2,7 +2,7 @@
 [{<<"crc32cer">>,{pkg,<<"crc32cer">>,<<"0.1.11">>},0},
  {<<"eqwalizer_support">>,
   {git_subdir,"https://github.com/whatsapp/eqwalizer.git",
-              {ref,"c4d1098174cec06bd124855f3a28dfd6eda0a581"},
+              {ref,"4986d98000d933b1dfb2af5dbe8215d22f4625fe"},
               "eqwalizer_support"},
   0},
  {<<"snappyer">>,{pkg,<<"snappyer">>,<<"1.2.9">>},0},

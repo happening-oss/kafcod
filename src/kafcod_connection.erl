@@ -27,11 +27,11 @@
 -type options() :: #{client_id => binary()}.
 
 -spec start_link(Broker :: broker()) -> start_ret().
-start_link(Broker) ->
+start_link(Broker = #{host := _, port := _}) ->
     start_link(Broker, #{}).
 
 -spec start_link(Broker :: broker(), Options :: options()) -> start_ret().
-start_link(Broker, Options) ->
+start_link(Broker = #{host := _, port := _}, Options) ->
     gen_statem:start_link(?MODULE, [Broker, Options], []).
 
 stop(Pid) when is_pid(Pid) ->

@@ -2570,7 +2570,7 @@ encode_partition_data_12(
     ?is_int64(LogStartOffset),
     ?is_nullable_array(AbortedTransactions),
     ?is_int32(PreferredReadReplica),
-    ?is_records(Records)
+    ?is_nullable_records(Records)
 ->
     [
         ?encode_int32(PartitionIndex),
@@ -2598,9 +2598,11 @@ encode_partition_data_12(Args) ->
         records => records
     }).
 
--spec encode_partition_data_12_tagged_field(
-    Key :: atom(), Value :: epoch_end_offset_12() | leader_id_and_epoch_12() | snapshot_id_12()
-) -> {non_neg_integer(), iodata()} | ignore.
+-spec encode_partition_data_12_tagged_field
+    (diverging_epoch, Value :: epoch_end_offset_12()) -> {0, iodata()};
+    (current_leader, Value :: leader_id_and_epoch_12()) -> {1, iodata()};
+    (snapshot_id, Value :: snapshot_id_12()) -> {2, iodata()};
+    (Key :: atom(), Value :: dynamic()) -> ignore | dynamic().
 
 encode_partition_data_12_tagged_field(_Key = diverging_epoch, DivergingEpoch) ->
     {0, encode_epoch_end_offset_12(DivergingEpoch)};
@@ -3018,7 +3020,7 @@ encode_partition_data_13(
     ?is_int64(LogStartOffset),
     ?is_nullable_array(AbortedTransactions),
     ?is_int32(PreferredReadReplica),
-    ?is_records(Records)
+    ?is_nullable_records(Records)
 ->
     [
         ?encode_int32(PartitionIndex),
@@ -3046,9 +3048,11 @@ encode_partition_data_13(Args) ->
         records => records
     }).
 
--spec encode_partition_data_13_tagged_field(
-    Key :: atom(), Value :: epoch_end_offset_13() | leader_id_and_epoch_13() | snapshot_id_13()
-) -> {non_neg_integer(), iodata()} | ignore.
+-spec encode_partition_data_13_tagged_field
+    (diverging_epoch, Value :: epoch_end_offset_13()) -> {0, iodata()};
+    (current_leader, Value :: leader_id_and_epoch_13()) -> {1, iodata()};
+    (snapshot_id, Value :: snapshot_id_13()) -> {2, iodata()};
+    (Key :: atom(), Value :: dynamic()) -> ignore | dynamic().
 
 encode_partition_data_13_tagged_field(_Key = diverging_epoch, DivergingEpoch) ->
     {0, encode_epoch_end_offset_13(DivergingEpoch)};
@@ -3466,7 +3470,7 @@ encode_partition_data_14(
     ?is_int64(LogStartOffset),
     ?is_nullable_array(AbortedTransactions),
     ?is_int32(PreferredReadReplica),
-    ?is_records(Records)
+    ?is_nullable_records(Records)
 ->
     [
         ?encode_int32(PartitionIndex),
@@ -3494,9 +3498,11 @@ encode_partition_data_14(Args) ->
         records => records
     }).
 
--spec encode_partition_data_14_tagged_field(
-    Key :: atom(), Value :: epoch_end_offset_14() | leader_id_and_epoch_14() | snapshot_id_14()
-) -> {non_neg_integer(), iodata()} | ignore.
+-spec encode_partition_data_14_tagged_field
+    (diverging_epoch, Value :: epoch_end_offset_14()) -> {0, iodata()};
+    (current_leader, Value :: leader_id_and_epoch_14()) -> {1, iodata()};
+    (snapshot_id, Value :: snapshot_id_14()) -> {2, iodata()};
+    (Key :: atom(), Value :: dynamic()) -> ignore | dynamic().
 
 encode_partition_data_14_tagged_field(_Key = diverging_epoch, DivergingEpoch) ->
     {0, encode_epoch_end_offset_14(DivergingEpoch)};
@@ -3914,7 +3920,7 @@ encode_partition_data_15(
     ?is_int64(LogStartOffset),
     ?is_nullable_array(AbortedTransactions),
     ?is_int32(PreferredReadReplica),
-    ?is_records(Records)
+    ?is_nullable_records(Records)
 ->
     [
         ?encode_int32(PartitionIndex),
@@ -3942,9 +3948,11 @@ encode_partition_data_15(Args) ->
         records => records
     }).
 
--spec encode_partition_data_15_tagged_field(
-    Key :: atom(), Value :: epoch_end_offset_15() | leader_id_and_epoch_15() | snapshot_id_15()
-) -> {non_neg_integer(), iodata()} | ignore.
+-spec encode_partition_data_15_tagged_field
+    (diverging_epoch, Value :: epoch_end_offset_15()) -> {0, iodata()};
+    (current_leader, Value :: leader_id_and_epoch_15()) -> {1, iodata()};
+    (snapshot_id, Value :: snapshot_id_15()) -> {2, iodata()};
+    (Key :: atom(), Value :: dynamic()) -> ignore | dynamic().
 
 encode_partition_data_15_tagged_field(_Key = diverging_epoch, DivergingEpoch) ->
     {0, encode_epoch_end_offset_15(DivergingEpoch)};
@@ -4104,9 +4112,9 @@ encode_fetch_response_16(Args) ->
         responses => {array, fetchable_topic_response_16}
     }).
 
--spec encode_fetch_response_16_tagged_field(
-    Key :: atom(), Value :: list(node_endpoint_16())
-) -> {non_neg_integer(), iodata()} | ignore.
+-spec encode_fetch_response_16_tagged_field
+    (node_endpoints, Value :: list(node_endpoint_16())) -> {0, iodata()};
+    (Key :: atom(), Value :: dynamic()) -> ignore | dynamic().
 
 encode_fetch_response_16_tagged_field(_Key = node_endpoints, NodeEndpoints) ->
     {0, ?encode_compact_array(NodeEndpoints, ?encode_element(encode_node_endpoint_16))};
@@ -4380,7 +4388,7 @@ encode_partition_data_16(
     ?is_int64(LogStartOffset),
     ?is_nullable_array(AbortedTransactions),
     ?is_int32(PreferredReadReplica),
-    ?is_records(Records)
+    ?is_nullable_records(Records)
 ->
     [
         ?encode_int32(PartitionIndex),
@@ -4408,9 +4416,11 @@ encode_partition_data_16(Args) ->
         records => records
     }).
 
--spec encode_partition_data_16_tagged_field(
-    Key :: atom(), Value :: epoch_end_offset_16() | leader_id_and_epoch_16() | snapshot_id_16()
-) -> {non_neg_integer(), iodata()} | ignore.
+-spec encode_partition_data_16_tagged_field
+    (diverging_epoch, Value :: epoch_end_offset_16()) -> {0, iodata()};
+    (current_leader, Value :: leader_id_and_epoch_16()) -> {1, iodata()};
+    (snapshot_id, Value :: snapshot_id_16()) -> {2, iodata()};
+    (Key :: atom(), Value :: dynamic()) -> ignore | dynamic().
 
 encode_partition_data_16_tagged_field(_Key = diverging_epoch, DivergingEpoch) ->
     {0, encode_epoch_end_offset_16(DivergingEpoch)};
@@ -4872,7 +4882,7 @@ decode_node_endpoint_16_tagged_field(_Tag, _Bin0, Acc) ->
     snapshot_id => snapshot_id_12(),
     aborted_transactions := list(aborted_transaction_12()) | null,
     preferred_read_replica := integer(),
-    records := kafcod_records:records()
+    records := kafcod_records:nullable_records()
 }.
 -type fetchable_topic_response_12() :: #{
     topic := binary(),
@@ -4912,7 +4922,7 @@ decode_node_endpoint_16_tagged_field(_Tag, _Bin0, Acc) ->
     snapshot_id => snapshot_id_13(),
     aborted_transactions := list(aborted_transaction_13()) | null,
     preferred_read_replica := integer(),
-    records := kafcod_records:records()
+    records := kafcod_records:nullable_records()
 }.
 -type fetchable_topic_response_13() :: #{
     topic_id := kafcod:uuid(),
@@ -4952,7 +4962,7 @@ decode_node_endpoint_16_tagged_field(_Tag, _Bin0, Acc) ->
     snapshot_id => snapshot_id_14(),
     aborted_transactions := list(aborted_transaction_14()) | null,
     preferred_read_replica := integer(),
-    records := kafcod_records:records()
+    records := kafcod_records:nullable_records()
 }.
 -type fetchable_topic_response_14() :: #{
     topic_id := kafcod:uuid(),
@@ -4992,7 +5002,7 @@ decode_node_endpoint_16_tagged_field(_Tag, _Bin0, Acc) ->
     snapshot_id => snapshot_id_15(),
     aborted_transactions := list(aborted_transaction_15()) | null,
     preferred_read_replica := integer(),
-    records := kafcod_records:records()
+    records := kafcod_records:nullable_records()
 }.
 -type fetchable_topic_response_15() :: #{
     topic_id := kafcod:uuid(),
@@ -5033,7 +5043,7 @@ decode_node_endpoint_16_tagged_field(_Tag, _Bin0, Acc) ->
     snapshot_id => snapshot_id_16(),
     aborted_transactions := list(aborted_transaction_16()) | null,
     preferred_read_replica := integer(),
-    records := kafcod_records:records()
+    records := kafcod_records:nullable_records()
 }.
 -type fetchable_topic_response_16() :: #{
     topic_id := kafcod:uuid(),

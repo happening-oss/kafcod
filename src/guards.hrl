@@ -8,13 +8,14 @@
 -define(is_float64(V), is_float(V)).
 
 -define(is_string(V), is_binary(V)).
--define(is_nullable_string(V), (is_binary(V) orelse V =:= null)).
+-define(is_nullable_string(V), (?is_string(V) orelse V =:= null)).
 -define(is_array(V), is_list(V)).
--define(is_nullable_array(V), (is_list(V) orelse V =:= null)).
+-define(is_nullable_array(V), (?is_array(V) orelse V =:= null)).
 -define(is_bytes(V), is_binary(V)).
--define(is_nullable_bytes(V), (is_binary(V) orelse V =:= null)).
+-define(is_nullable_bytes(V), (?is_bytes(V) orelse V =:= null)).
 
 -define(is_records(V), is_list(V)).
+-define(is_nullable_records(V), (?is_records(V) orelse V =:= null)).
 
 % TODO: Assert the length
 -define(is_uuid(V), is_binary(V)).

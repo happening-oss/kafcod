@@ -308,14 +308,11 @@ v11_v12_comparison_test_() ->
 
 encode_all_nulls_test() ->
     Messages = [
-        #{key => null, value => null, headers => []}
+        #{timestamp => 1768996477082, key => null, value => null, headers => []}
     ],
-    [RecordBatch0] = kafcod_message_set:prepare_message_set(
+    [RecordBatch] = kafcod_message_set:prepare_message_set(
         #{compression => none}, Messages
     ),
-
-    % Force the timestamp to a known value, to keep the test repeatable.
-    RecordBatch = RecordBatch0#{base_timestamp => 1768996477082, max_timestamp => 1768996477082},
 
     ?assertEqual(
         <<0, 0, 0, 68, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 56, 0, 0, 0, 0, 2, 179, 95, 111, 228, 0, 0,

@@ -648,9 +648,9 @@ encode_creatable_topic_result_5(Args) ->
         configs => {nullable_array, creatable_topic_configs_5}
     }).
 
--spec encode_creatable_topic_result_5_tagged_field(
-    Key :: atom(), Value :: integer()
-) -> {non_neg_integer(), iodata()} | ignore.
+-spec encode_creatable_topic_result_5_tagged_field
+    (topic_config_error_code, Value :: integer()) -> {0, iodata()};
+    (Key :: atom(), Value :: dynamic()) -> ignore | dynamic().
 
 encode_creatable_topic_result_5_tagged_field(_Key = topic_config_error_code, TopicConfigErrorCode) ->
     {0, ?encode_int16(TopicConfigErrorCode)};
@@ -874,9 +874,9 @@ encode_creatable_topic_result_6(Args) ->
         configs => {nullable_array, creatable_topic_configs_6}
     }).
 
--spec encode_creatable_topic_result_6_tagged_field(
-    Key :: atom(), Value :: integer()
-) -> {non_neg_integer(), iodata()} | ignore.
+-spec encode_creatable_topic_result_6_tagged_field
+    (topic_config_error_code, Value :: integer()) -> {0, iodata()};
+    (Key :: atom(), Value :: dynamic()) -> ignore | dynamic().
 
 encode_creatable_topic_result_6_tagged_field(_Key = topic_config_error_code, TopicConfigErrorCode) ->
     {0, ?encode_int16(TopicConfigErrorCode)};
@@ -1105,9 +1105,9 @@ encode_creatable_topic_result_7(Args) ->
         configs => {nullable_array, creatable_topic_configs_7}
     }).
 
--spec encode_creatable_topic_result_7_tagged_field(
-    Key :: atom(), Value :: integer()
-) -> {non_neg_integer(), iodata()} | ignore.
+-spec encode_creatable_topic_result_7_tagged_field
+    (topic_config_error_code, Value :: integer()) -> {0, iodata()};
+    (Key :: atom(), Value :: dynamic()) -> ignore | dynamic().
 
 encode_creatable_topic_result_7_tagged_field(_Key = topic_config_error_code, TopicConfigErrorCode) ->
     {0, ?encode_int16(TopicConfigErrorCode)};

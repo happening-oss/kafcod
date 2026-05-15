@@ -363,7 +363,11 @@ format_encoder_guard(
     #{name := Name, type := <<H, _/binary>>, nullable := true}
 ) when H >= $A, H =< $Z ->
     io_lib:format("    ?is_nullable_entity(~s)", [casey:title(Name)]);
-format_encoder_guard(#{name := Name, type := Type, nullable := true}) when Type =:= <<"records">> ->
+format_encoder_guard(#{name := Name, type := Type, nullable := _, flexible := true}) when
+    Type =:= <<"records">>
+->
+    io_lib:format("    ?is_nullable_~s(~s)", [Type, casey:title(Name)]);
+format_encoder_guard(#{name := Name, type := Type, nullable := _}) when Type =:= <<"records">> ->
     io_lib:format("    ?is_~s(~s)", [Type, casey:title(Name)]);
 format_encoder_guard(#{name := Name, type := Type, nullable := true}) ->
     io_lib:format("    ?is_nullable_~s(~s)", [Type, casey:title(Name)]);
@@ -376,6 +380,7 @@ get_header_fields(_Name = <<"ControlledShutdownRequest">>, _Type = <<"request">>
             name => <<"CorrelationId">>,
             type => <<"int32">>,
             nullable => false,
+            flexible => false,
             about => <<"The correlation ID of this request.">>,
             version => undefined
         }
@@ -386,6 +391,7 @@ get_header_fields(_Name, <<"request">>, _Type) ->
             name => <<"CorrelationId">>,
             type => <<"int32">>,
             nullable => false,
+            flexible => false,
             about => <<"The correlation ID of this request.">>,
             version => undefined
         },
@@ -406,6 +412,7 @@ get_header_fields(_Name, <<"response">>, _Type) ->
             name => <<"CorrelationId">>,
             type => <<"int32">>,
             nullable => false,
+            flexible => false,
             about => <<"The correlation ID of this request.">>,
             version => undefined
         }
@@ -584,12 +591,7 @@ format_tagged_field_encoders(_Name, _Version, _IsFlexible = true, _TaggedFields 
 format_tagged_fields_encoder(Name, _Type, Version, TaggedFields = [_ | _], _IsFlexible = true) ->
     [
         ?NL,
-        ["-spec ", format_tagged_field_encoder_name(Name, Version), "(", ?NL],
-        ["    Key :: atom(), Value :: ", format_tagged_field_value_type_list(TaggedFields), ?NL],
-        [") -> {non_neg_integer(), iodata()} | ignore."],
-        ?NL,
-
-        ?NL,
+        format_tagged_fields_encoder_spec(Name, Version, TaggedFields),
         lists:join(
             ?NL,
             lists:map(
@@ -604,23 +606,40 @@ format_tagged_fields_encoder(Name, _Type, Version, TaggedFields = [_ | _], _IsFl
 format_tagged_fields_encoder(_Name, _Type, _Version, _TaggedFields, _IsFlexible) ->
     [].
 
-format_tagged_field_value_type_list(TaggedFields) ->
-    lists:join(" | ", lists:map(fun(Field) -> format_type_name(Field) end, TaggedFields)).
+format_tagged_fields_encoder_spec(Name, Version, TaggedFields) ->
+    [
+        ["-spec ", format_tagged_field_encoder_name(Name, Version), ?NL],
+        [format_tagged_fields_encoder_spec_clause(Field) || Field <- TaggedFields],
+        "    (Key :: atom(), Value :: dynamic()) -> ignore | dynamic().",
+        ?NL,
+        ?NL
+    ].
+
+format_tagged_fields_encoder_spec_clause(Field = #{name := Key, tag := Tag}) ->
+    [
+        io_lib:format("    (~s, Value :: ~s) -> ", [casey:underscore(Key), format_type_name(Field)]),
+        format_tagged_field_encoder_tag(Tag),
+        "iodata()",
+        "};",
+        ?NL
+    ];
+format_tagged_fields_encoder_spec_clause(_Field) ->
+    [].
 
 format_tagged_field_encoder(Name, Version, Field = #{name := FieldName, tag := Tag}) ->
     [
         format_tagged_field_encoder_name(Name, Version),
         io_lib:format("(_Key = ~s, ~s) ->", [casey:underscore(FieldName), FieldName]),
         ?NL,
-        format_tagged_field_encoder_tag(Tag),
+        ["    ", format_tagged_field_encoder_tag(Tag)],
         format_field_encoder(Field),
         "};"
     ].
 
 format_tagged_field_encoder_tag(Tag) when is_integer(Tag) ->
-    io_lib:format("    {~B, ", [Tag]);
+    io_lib:format("{~B, ", [Tag]);
 format_tagged_field_encoder_tag(Tag) when is_binary(Tag) ->
-    io_lib:format("    {~B, ", [binary_to_integer(Tag)]).
+    io_lib:format("{~B, ", [binary_to_integer(Tag)]).
 
 format_unrecognised_tagged_field_encoder(Name, Version) ->
     [
@@ -662,7 +681,7 @@ format_field_encoder_test_() ->
             )
         ),
         ?_assertEqual(
-            <<"?encode_array(Members, fun encode_member_identity_3/1)">>,
+            <<"?encode_array(Members, ?encode_element(encode_member_identity_3))">>,
             iolist_to_binary(
                 format_field_encoder(#{
                     name => <<"Members">>,
@@ -674,7 +693,7 @@ format_field_encoder_test_() ->
             )
         ),
         ?_assertEqual(
-            <<"?encode_compact_array(Members, fun encode_member_identity_4/1)">>,
+            <<"?encode_compact_array(Members, ?encode_element(encode_member_identity_4))">>,
             iolist_to_binary(
                 format_field_encoder(#{
                     name => <<"Members">>,
@@ -1028,12 +1047,14 @@ get_extra_type_fields(_Type = <<"request">>) ->
             name => <<"ApiKey">>,
             type => <<"int32">>,
             nullable => false,
+            flexible => false,
             version => undefined
         },
         #{
             name => <<"ApiVersion">>,
             type => <<"int32">>,
             nullable => false,
+            flexible => false,
             version => undefined
         }
     ];
@@ -1045,6 +1066,7 @@ format_type_association(
         name := Name0,
         type := Type,
         nullable := IsNullable,
+        flexible := IsFlexible,
         version := Version,
         tag := _
     }
@@ -1055,13 +1077,14 @@ format_type_association(
         Indent,
         Name,
         " => ",
-        format_type_name(Name, Type, IsNullable, Version)
+        format_type_name(Name, Type, IsNullable, IsFlexible, Version)
     ];
 format_type_association(
     _Field = #{
         name := Name0,
         type := Type,
         nullable := IsNullable,
+        flexible := IsFlexible,
         version := Version
     }
 ) ->
@@ -1071,7 +1094,7 @@ format_type_association(
         Indent,
         Name,
         " := ",
-        format_type_name(Name, Type, IsNullable, Version)
+        format_type_name(Name, Type, IsNullable, IsFlexible, Version)
     ].
 
 format_optional_type_association(
@@ -1079,6 +1102,7 @@ format_optional_type_association(
         name := Name0,
         type := Type,
         nullable := IsNullable,
+        flexible := IsFlexible,
         version := Version
     }
 ) ->
@@ -1088,7 +1112,7 @@ format_optional_type_association(
         Indent,
         Name,
         " => ",
-        format_type_name(Name, Type, IsNullable, Version)
+        format_type_name(Name, Type, IsNullable, IsFlexible, Version)
     ].
 
 format_type_name(
@@ -1096,42 +1120,51 @@ format_type_name(
         name := Name0,
         type := Type,
         nullable := IsNullable,
+        flexible := IsFlexible,
         version := Version
     }
 ) ->
     Name = casey:underscore(Name0),
-    format_type_name(Name, Type, IsNullable, Version).
+    format_type_name(Name, Type, IsNullable, IsFlexible, Version).
 
 % TODO: Use the field name to specialise 'topic', etc.
-format_type_name(_FieldName, <<"string">>, _IsNullable = false, _Version) ->
+format_type_name(_FieldName, <<"string">>, _IsNullable = false, _IsFlexible, _Version) ->
     "binary()";
-format_type_name(_FieldName, <<"string">>, _IsNullable = true, _Version) ->
+format_type_name(_FieldName, <<"string">>, _IsNullable = true, _IsFlexible, _Version) ->
     "binary() | null";
-format_type_name(_FieldName, <<"bytes">>, _IsNullable = false, _Version) ->
+format_type_name(_FieldName, <<"bytes">>, _IsNullable = false, _IsFlexible, _Version) ->
     "kafcod:bytes()";
-format_type_name(_FieldName, <<"bytes">>, _IsNullable = true, _Version) ->
+format_type_name(_FieldName, <<"bytes">>, _IsNullable = true, _IsFlexible, _Version) ->
     "kafcod:nullable_bytes()";
-format_type_name(_FieldName, <<"bool">>, _IsNullable, _Version) ->
+format_type_name(_FieldName, <<"bool">>, _IsNullable, _IsFlexible, _Version) ->
     "boolean()";
-format_type_name(_FieldName, <<"int", _/binary>>, _IsNullable, _Version) ->
+format_type_name(_FieldName, <<"int", _/binary>>, _IsNullable, _IsFlexible, _Version) ->
     "integer()";
-format_type_name(_FieldName, <<"uint", _/binary>>, _IsNullable, _Version) ->
+format_type_name(_FieldName, <<"uint", _/binary>>, _IsNullable, _IsFlexible, _Version) ->
     "non_neg_integer()";
-format_type_name(_FieldName, <<"float", _/binary>>, _IsNullable, _Version) ->
+format_type_name(_FieldName, <<"float", _/binary>>, _IsNullable, _IsFlexible, _Version) ->
     "number()";
-format_type_name(_FieldName, <<"uuid", _/binary>>, _IsNullable, _Version) ->
+format_type_name(_FieldName, <<"uuid", _/binary>>, _IsNullable, _IsFlexible, _Version) ->
     "kafcod:uuid()";
-format_type_name(_FieldName, <<"records", _/binary>>, _IsNullable, _Version) ->
+format_type_name(_FieldName, <<"records", _/binary>>, _IsNullable, _IsFlexible = false, _Version) ->
     "kafcod_records:records()";
-format_type_name(FieldName, <<"[]", ElementType/binary>>, _IsNullable = false, Version) ->
-    io_lib:format("list(~s)", [format_type_name(FieldName, ElementType, false, Version)]);
-format_type_name(FieldName, <<"[]", ElementType/binary>>, _IsNullable = true, Version) ->
-    io_lib:format("list(~s) | null", [format_type_name(FieldName, ElementType, false, Version)]);
-format_type_name(_FieldName, ElementType = <<H, _/binary>>, _IsNullable = false, Version) when
+format_type_name(_FieldName, <<"records", _/binary>>, _IsNullable, _IsFlexible = true, _Version) ->
+    "kafcod_records:nullable_records()";
+format_type_name(FieldName, <<"[]", ElementType/binary>>, _IsNullable = false, IsFlexible, Version) ->
+    io_lib:format("list(~s)", [format_type_name(FieldName, ElementType, false, IsFlexible, Version)]);
+format_type_name(FieldName, <<"[]", ElementType/binary>>, _IsNullable = true, IsFlexible, Version) ->
+    io_lib:format("list(~s) | null", [
+        format_type_name(FieldName, ElementType, false, IsFlexible, Version)
+    ]);
+format_type_name(
+    _FieldName, ElementType = <<H, _/binary>>, _IsNullable = false, _IsFlexible, Version
+) when
     H >= $A, H =< $Z
 ->
     io_lib:format("~s_~B()", [casey:underscore(ElementType), Version]);
-format_type_name(_FieldName, ElementType = <<H, _/binary>>, _IsNullable = true, Version) when
+format_type_name(
+    _FieldName, ElementType = <<H, _/binary>>, _IsNullable = true, _IsFlexible, Version
+) when
     H >= $A, H =< $Z
 ->
     io_lib:format("~s_~B() | null", [casey:underscore(ElementType), Version]).

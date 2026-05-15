@@ -2,9 +2,11 @@
 -export([
     encode_signed_varint/1,
     decode_signed_varint/1,
+    sizeof_signed_varint/1,
 
     encode_unsigned_varint/1,
-    decode_unsigned_varint/1
+    decode_unsigned_varint/1,
+    sizeof_unsigned_varint/1
 ]).
 -export([
     decode_bool/1
@@ -68,6 +70,11 @@ decode_signed_varint(Binary) when is_binary(Binary) ->
     {Value, Rest} = decode_unsigned_varint(Binary),
     {decode_zigzag(Value), Rest}.
 
+-spec sizeof_signed_varint(Value :: integer()) -> non_neg_integer().
+
+sizeof_signed_varint(Value) when is_integer(Value) ->
+    sizeof_unsigned_varint(encode_zigzag(Value)).
+
 % Zigzag encoding is used to avoid sign-extending negative numbers. Positive numbers are doubled, and negative numbers
 % are folded over to fit in the gaps.
 % For example, 0 -> 0, 1 -> 2, 2 -> 4, 3 -> 6, and -1 -> 1, -2 -> 3, -3 -> 5.
@@ -120,6 +127,23 @@ decode_unsigned_varint(<<1:1, A:7, 1:1, B:7, 1:1, C:7, 1:1, D:7, 1:1, E:7, 1:1, 
     {(I bsl 56) bor (H bsl 49) bor (G bsl 42) bor (F bsl 35) bor (E bsl 28) bor (D bsl 21) bor (C bsl 14) bor (B bsl 7) bor A, Rest};
 decode_unsigned_varint(<<1:1, A:7, 1:1, B:7, 1:1, C:7, 1:1, D:7, 1:1, E:7, 1:1, F:7, 1:1, G:7, 1:1, H:7, 1:1, I:7, 0:1, J:7, Rest/binary>>) ->
     {(J bsl 63) bor (I bsl 56) bor (H bsl 49) bor (G bsl 42) bor (F bsl 35) bor (E bsl 28) bor (D bsl 21) bor (C bsl 14) bor (B bsl 7) bor A, Rest}.
+
+-spec sizeof_unsigned_varint(Value :: non_neg_integer()) -> non_neg_integer().
+
+sizeof_unsigned_varint(Value) when is_integer(Value), Value >= 0 ->
+    case Value of
+        V when V < 1 bsl 7 -> 1;
+        V when V < 1 bsl 14 -> 2;
+        V when V < 1 bsl 21 -> 3;
+        V when V < 1 bsl 28 -> 4;
+        V when V < 1 bsl 35 -> 5;
+        V when V < 1 bsl 42 -> 6;
+        V when V < 1 bsl 49 -> 7;
+        V when V < 1 bsl 56 -> 8;
+        V when V < 1 bsl 63 -> 9;
+        V when V < 1 bsl 70 -> 10;
+        _ -> error(badarg, [Value])
+    end.
 
 decode_bool(<<0:8/big, Rest/binary>>) -> {false, Rest};
 decode_bool(<<1:8/big, Rest/binary>>) -> {true, Rest}.

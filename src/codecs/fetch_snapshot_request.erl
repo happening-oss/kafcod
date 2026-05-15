@@ -61,9 +61,9 @@ encode_fetch_snapshot_request_0(Args) ->
         topics => {array, topic_snapshot_0}
     }).
 
--spec encode_fetch_snapshot_request_0_tagged_field(
-    Key :: atom(), Value :: binary() | null
-) -> {non_neg_integer(), iodata()} | ignore.
+-spec encode_fetch_snapshot_request_0_tagged_field
+    (cluster_id, Value :: binary() | null) -> {0, iodata()};
+    (Key :: atom(), Value :: dynamic()) -> ignore | dynamic().
 
 encode_fetch_snapshot_request_0_tagged_field(_Key = cluster_id, ClusterId) ->
     {0, ?encode_compact_nullable_string(ClusterId)};

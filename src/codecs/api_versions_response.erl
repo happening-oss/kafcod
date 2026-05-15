@@ -349,9 +349,12 @@ encode_api_versions_response_3(Args) ->
         throttle_time_ms => int32
     }).
 
--spec encode_api_versions_response_3_tagged_field(
-    Key :: atom(), Value :: list(supported_feature_key_3()) | integer() | list(finalized_feature_key_3()) | boolean()
-) -> {non_neg_integer(), iodata()} | ignore.
+-spec encode_api_versions_response_3_tagged_field
+    (supported_features, Value :: list(supported_feature_key_3())) -> {0, iodata()};
+    (finalized_features_epoch, Value :: integer()) -> {1, iodata()};
+    (finalized_features, Value :: list(finalized_feature_key_3())) -> {2, iodata()};
+    (zk_migration_ready, Value :: boolean()) -> {3, iodata()};
+    (Key :: atom(), Value :: dynamic()) -> ignore | dynamic().
 
 encode_api_versions_response_3_tagged_field(_Key = supported_features, SupportedFeatures) ->
     {0, ?encode_compact_array(SupportedFeatures, ?encode_element(encode_supported_feature_key_3))};

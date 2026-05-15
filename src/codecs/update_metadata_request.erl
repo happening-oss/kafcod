@@ -2236,9 +2236,9 @@ encode_update_metadata_request_8(Args) ->
         live_brokers => {array, update_metadata_broker_8}
     }).
 
--spec encode_update_metadata_request_8_tagged_field(
-    Key :: atom(), Value :: integer()
-) -> {non_neg_integer(), iodata()} | ignore.
+-spec encode_update_metadata_request_8_tagged_field
+    (type, Value :: integer()) -> {0, iodata()};
+    (Key :: atom(), Value :: dynamic()) -> ignore | dynamic().
 
 encode_update_metadata_request_8_tagged_field(_Key = type, Type) ->
     {0, ?encode_int8(Type)};
